@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4A56C0D82A8F536400693C5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56C0D72A8F536400693C5E /* LoginViewController.swift */; };
-		4A56C0DC2A8F5B7600693C5E /* SliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56C0DA2A8F5B7600693C5E /* SliderCollectionViewCell.swift */; };
-		4A56C0DD2A8F5B7600693C5E /* SliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A56C0DB2A8F5B7600693C5E /* SliderCollectionViewCell.xib */; };
 		4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A711FCC2A8E551D00C1348D /* HomeViewController.swift */; };
 		4A711FCF2A8E551D00C1348D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A711FCD2A8E551D00C1348D /* HomeViewController.xib */; };
 		4A7390632A8E1602004E12A3 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7390612A8E1602004E12A3 /* UICollectionView+Extension.swift */; };
@@ -29,6 +27,8 @@
 		4A7FD2DB2A8E030500AEF0CB /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2DA2A8E030500AEF0CB /* Gotham-Bold.otf */; };
 		4A7FD2E22A8E05DF00AEF0CB /* Gotham-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2E02A8E05DF00AEF0CB /* Gotham-Medium.otf */; };
 		4A7FD2E32A8E05DF00AEF0CB /* Gotham-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2E12A8E05DF00AEF0CB /* Gotham-Book.otf */; };
+		4AD5AA6A2A8F74E100B81EE0 /* SliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */; };
+		4AD5AA6B2A8F74E100B81EE0 /* SliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +50,6 @@
 
 /* Begin PBXFileReference section */
 		4A56C0D72A8F536400693C5E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../../../../../../../LoginViewController.swift; sourceTree = "<group>"; };
-		4A56C0DA2A8F5B7600693C5E /* SliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCollectionViewCell.swift; sourceTree = "<group>"; };
-		4A56C0DB2A8F5B7600693C5E /* SliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderCollectionViewCell.xib; sourceTree = "<group>"; };
 		4A711FCC2A8E551D00C1348D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4A711FCD2A8E551D00C1348D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		4A7390612A8E1602004E12A3 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICollectionView+Extension.swift"; path = "../../../../../../Downloads/UICollectionView+Extension.swift"; sourceTree = "<group>"; };
@@ -75,6 +73,8 @@
 		4A7FD2DA2A8E030500AEF0CB /* Gotham-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.otf"; sourceTree = "<group>"; };
 		4A7FD2E02A8E05DF00AEF0CB /* Gotham-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Medium.otf"; sourceTree = "<group>"; };
 		4A7FD2E12A8E05DF00AEF0CB /* Gotham-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Book.otf"; sourceTree = "<group>"; };
+		4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCollectionViewCell.swift; sourceTree = "<group>"; };
+		4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,8 +203,8 @@
 		4A56C0D22A8F4E8D00693C5E /* SliderCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				4A56C0DA2A8F5B7600693C5E /* SliderCollectionViewCell.swift */,
-				4A56C0DB2A8F5B7600693C5E /* SliderCollectionViewCell.xib */,
+				4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */,
+				4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */,
 			);
 			path = SliderCollectionView;
 			sourceTree = "<group>";
@@ -439,7 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A7390712A8E2205004E12A3 /* Main.storyboard in Resources */,
-				4A56C0DD2A8F5B7600693C5E /* SliderCollectionViewCell.xib in Resources */,
+				4AD5AA6B2A8F74E100B81EE0 /* SliderCollectionViewCell.xib in Resources */,
 				4A7FD2E32A8E05DF00AEF0CB /* Gotham-Book.otf in Resources */,
 				4A7FD2DB2A8E030500AEF0CB /* Gotham-Bold.otf in Resources */,
 				4A7FD2852A8DE9D800AEF0CB /* LaunchScreen.storyboard in Resources */,
@@ -478,7 +478,7 @@
 				4A7390742A8E2715004E12A3 /* RegisterViewController.swift in Sources */,
 				4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */,
 				4A7FD27B2A8DE9D600AEF0CB /* SceneDelegate.swift in Sources */,
-				4A56C0DC2A8F5B7600693C5E /* SliderCollectionViewCell.swift in Sources */,
+				4AD5AA6A2A8F74E100B81EE0 /* SliderCollectionViewCell.swift in Sources */,
 				4A7FD2D92A8DFCC300AEF0CB /* Constants.swift in Sources */,
 				4A7390642A8E1602004E12A3 /* UITableView+Extension.swift in Sources */,
 			);

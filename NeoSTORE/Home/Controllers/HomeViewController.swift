@@ -77,7 +77,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.getCell(indexPath: indexPath) as SliderCollectionViewCell
-        cell.setImg(imgName: sliderImages[indexPath.row])
+        //cell.setImg(imgName: sliderImages[indexPath.row])
         cell.sliderImg?.image = UIImage(named: "\(sliderImages[indexPath.row])")
         return cell
     }

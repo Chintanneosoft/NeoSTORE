@@ -9,6 +9,8 @@ import UIKit
 
 class SliderCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var sliderImg: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

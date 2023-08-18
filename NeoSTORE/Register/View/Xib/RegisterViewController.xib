@@ -378,13 +378,13 @@
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVJ-pN-1lh">
-                                            <rect key="frame" x="34" y="621" width="325" height="44.333333333333371"/>
+                                            <rect key="frame" x="34" y="621" width="325" height="43"/>
                                             <color key="backgroundColor" name="Primary Foreground"/>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" title="REGISTER">
-                                                <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
-                                                <color key="baseForegroundColor" name="Primary Background"/>
-                                            </buttonConfiguration>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="REGISTER">
+                                                <color key="titleColor" name="Primary Background"/>
+                                            </state>
                                             <connections>
                                                 <action selector="btnRegisterTapped:" destination="-1" eventType="touchUpInside" id="LbU-qS-7pP"/>
                                             </connections>
