@@ -105,6 +105,11 @@ class RegisterViewController: UIViewController {
         sender.isSelected = !sender.isSelected
     }
     
+    @IBAction func btnRegisterTapped(_ sender: UIButton) {
+        let nextViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
 
     /*
     // MARK: - Navigation
