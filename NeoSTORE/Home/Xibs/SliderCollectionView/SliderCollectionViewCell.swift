@@ -9,15 +9,9 @@ import UIKit
 
 class SliderCollectionViewCell: UICollectionViewCell {
 
-    
-    @IBOutlet weak var sliderImg: UIImageView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
-    func setImg(imgName: String){
-        sliderImg?.image = UIImage(named: imgName)
-    }
+
 }
