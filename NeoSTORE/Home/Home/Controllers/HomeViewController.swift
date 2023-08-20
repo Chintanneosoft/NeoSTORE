@@ -7,41 +7,40 @@
 
 import UIKit
 
+//MARK: - HomeViewControllerDelegate Protocol
+protocol HomeViewControllerDelegate:AnyObject{
+    func showDrawer()
+}
+
+//MARK: - HomeViewController
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var sliderCollectionView: UICollectionView!
+    //MARK: - HomeViewControllerDelegate
+    weak var homeViewDelegate: HomeViewControllerDelegate?
     
+    //MARK: - IBOutlets
+    @IBOutlet weak var sliderCollectionView: UICollectionView!
     @IBOutlet weak var sliderImg: UIImageView!
     @IBOutlet weak var sliderPageControl: UIPageControl!
-    
     @IBOutlet var labels: [UILabel]!
     
-    var sliderImages = ["slider_img1","slider_img2","slider_img3","slider_img4"]
-    
+    //MARK: - Properties
+    private var sliderImages = ["slider_img1","slider_img2","slider_img3","slider_img4"]
     private var drawerViewController: DrawerViewController!
-    private var isMenuVisible = false
     
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         xibRegister()
         setDelegates()
         setUpUI()
-        setDrawer()
         // Do any additional setup after loading the view.
     }
-    func setDrawer(){
-        drawerViewController = DrawerViewController(nibName: "DrawerViewController", bundle: nil)
-                
-                // Add MenuViewController as child
-                addChild(drawerViewController)
-                view.addSubview(drawerViewController.view)
-        drawerViewController.didMove(toParent: self)
-                
-                // Position the menu view off-screen initially
-        drawerViewController.view.frame.origin.x = -drawerViewController.view.frame.size.width
-                
-    }
-    func setUpUI(){
+    
+    //MARK: - Functions
+    private func setUpUI(){
+        
+        //Navigation bar
         navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
         navigationController?.navigationBar.backgroundColor = UIColor(named: "Primary Background")
         navigationItem.title = "NeoSTORE"
@@ -51,38 +50,35 @@ class HomeViewController: UIViewController {
               ]
 
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon"), style: .plain, target: self, action: #selector(showDrawer))
-
                 // Set the left bar button item
         navigationItem.leftBarButtonItem = menuButton
 
         let searchButton = UIBarButtonItem(image: UIImage(named: "search_icon"), style: .plain, target: self, action: #selector(showDrawer))
-
                 // Set the left bar button item
         navigationItem.rightBarButtonItem = searchButton
 
-        
+        //Labels
         for lbl in labels{
             lbl.font = UIFont(name: Font.fontRegular.rawValue, size: 23)
         }
     }
-    func xibRegister(){
+    
+    private func xibRegister(){
 //        sliderCollectionView.registerCell(of: SliderCollectionViewCell.self)
     }
-    func setDelegates(){
+    
+    private func setDelegates(){
 //        sliderCollectionView.delegate = self
 //        sliderCollectionView.dataSource = self
     }
     
+    //MARK: - @objc Functions
     @objc func showDrawer(){
-//        let drawerController = DrawerViewController()
-//        present(drawerController, animated: true)
-        isMenuVisible.toggle()
-                
-                UIView.animate(withDuration: 0.3) {
-                    self.drawerViewController.view.frame.origin.x = self.isMenuVisible ? 0 : -self.drawerViewController.view.frame.size.width
-        }
+        homeViewDelegate?.showDrawer()
         
     }
+    
+    //MARK: - IBActions
     @IBAction func pageChange(_ sender: UIPageControl) {
 //        sliderCollectionView.scrollToItem(at: IndexPath(item: sender.currentPage, section: 0), at: .right, animated: true)
         if sender.currentPage + 1 == sliderImages.count{
@@ -106,6 +102,7 @@ class HomeViewController: UIViewController {
 
 }
 
+//MARK: - CollectionView Delegate & DataSource
 //extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource{
 //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return sliderImages.count

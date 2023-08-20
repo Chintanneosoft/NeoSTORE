@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductListViewController" customModule="NeoSTORE" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Vxn-Bi-8G8">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLD-8x-pMP">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Hyx-Ez-dg6">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Hyx-Ez-dg6" firstAttribute="top" secondItem="FLD-8x-pMP" secondAttribute="top" id="85M-Na-UL2"/>
+                        <constraint firstItem="Hyx-Ez-dg6" firstAttribute="leading" secondItem="FLD-8x-pMP" secondAttribute="leading" id="Bxu-0y-uIq"/>
+                        <constraint firstAttribute="bottom" secondItem="Hyx-Ez-dg6" secondAttribute="bottom" id="TeC-ai-NXi"/>
+                        <constraint firstAttribute="trailing" secondItem="Hyx-Ez-dg6" secondAttribute="trailing" id="xhq-PS-Dyh"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="1oN-h5-Ykq"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="FLD-8x-pMP" firstAttribute="top" secondItem="1oN-h5-Ykq" secondAttribute="top" id="7Oh-MZ-Ehj"/>
+                <constraint firstItem="1oN-h5-Ykq" firstAttribute="bottom" secondItem="FLD-8x-pMP" secondAttribute="bottom" id="UZt-VR-2SU"/>
+                <constraint firstItem="FLD-8x-pMP" firstAttribute="leading" secondItem="1oN-h5-Ykq" secondAttribute="leading" id="sZR-SL-wsK"/>
+                <constraint firstItem="1oN-h5-Ykq" firstAttribute="trailing" secondItem="FLD-8x-pMP" secondAttribute="trailing" id="uHz-mO-fFG"/>
+            </constraints>
+            <point key="canvasLocation" x="30" y="34"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

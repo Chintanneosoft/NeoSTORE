@@ -7,40 +7,34 @@
 
 import UIKit
 
+//MARK: - RegisterViewController
 class RegisterViewController: UIViewController {
 
+    //MARK: - IBOutlets
     @IBOutlet weak var lblHeading: UILabel!
-    
     @IBOutlet weak var lblTermsAndConditions: UILabel!
-    
     @IBOutlet var containerView: [UIView]!
-    
-    
     @IBOutlet weak var tfFirstName: UITextField!
-    
     @IBOutlet weak var tfLastName: UITextField!
-    
     @IBOutlet weak var tfEmail: UITextField!
-    
     @IBOutlet weak var tfPassword: UITextField!
-    
     @IBOutlet weak var tfConfirmPassword: UITextField!
-    
     @IBOutlet weak var tfPhoneNumber: UITextField!
-    
     @IBOutlet weak var btnMale: UIButton!
-    
     @IBOutlet weak var btnFemale: UIButton!
-    
     @IBOutlet weak var btnRegister: UIButton!
     
-    
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
-        // Do any additional setup after loading the view.
+        setDelegates()
     }
-    func setUpUI(){
+    
+    //MARK: - Functions
+    private func setUpUI(){
+        
+        //Navigation bar
         navigationItem.title = "Register"
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.font: UIFont(name: Font.fontRegular.rawValue, size: 24)!,
@@ -49,17 +43,19 @@ class RegisterViewController: UIViewController {
         
         let leftBarButtonItem = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(leftBarButtonTapped))
         leftBarButtonItem.tintColor = UIColor(named: "Primary Foreground")
-
         navigationItem.leftBarButtonItem = leftBarButtonItem
         
+        //Labels
         lblHeading.font = UIFont(name: Font.fontBold.rawValue, size: 45)
         lblTermsAndConditions.font = UIFont(name: Font.fontBold.rawValue, size: 13)
         
+        //Views
         for v in containerView{
             v.layer.borderWidth = 1.0
             v.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
         }
         
+        //TextFields
         tfFirstName.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
         tfFirstName.textColor = UIColor(named: "Primary Foreground")
         tfFirstName.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
@@ -79,17 +75,29 @@ class RegisterViewController: UIViewController {
         tfPhoneNumber.textColor = UIColor(named: "Primary Foreground")
         tfPhoneNumber.attributedPlaceholder = NSAttributedString(string: "Phone Number", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
         
+        //Buttons
         btnRegister.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 26)
         btnRegister.layer.cornerRadius = 5.0
         
         
     }
     
+    func setDelegates(){
+        tfFirstName.delegate = self
+        tfLastName.delegate = self
+        tfEmail.delegate = self
+        tfPassword.delegate = self
+        tfConfirmPassword.delegate = self
+        tfPhoneNumber.delegate = self
+    }
+    
+    //MARK: - @objc Functions
     @objc func leftBarButtonTapped() {
            // Handle left button tap
         navigationController?.popViewController(animated: true)
        }
     
+    //MARK: - IBActions
     @IBAction func btnRadioTapped(_ sender: UIButton) {
         if sender == btnMale{
             btnMale.isSelected = true
@@ -106,7 +114,8 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func btnRegisterTapped(_ sender: UIButton) {
-        let nextViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
+//        let nextViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
+        let nextViewController = HomeContainerViewController()
         navigationController?.pushViewController(nextViewController, animated: true)
     }
     
@@ -121,4 +130,8 @@ class RegisterViewController: UIViewController {
     }
     */
 
+}
+
+extension RegisterViewController: UITextFieldDelegate{
+    
 }
