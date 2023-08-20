@@ -27,8 +27,12 @@
 		4A7FD2DB2A8E030500AEF0CB /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2DA2A8E030500AEF0CB /* Gotham-Bold.otf */; };
 		4A7FD2E22A8E05DF00AEF0CB /* Gotham-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2E02A8E05DF00AEF0CB /* Gotham-Medium.otf */; };
 		4A7FD2E32A8E05DF00AEF0CB /* Gotham-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2E12A8E05DF00AEF0CB /* Gotham-Book.otf */; };
+		4AAAAD572A8F901B0043C491 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAAAD552A8F901B0043C491 /* DrawerViewController.swift */; };
+		4AAAAD582A8F901B0043C491 /* DrawerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAAAD562A8F901B0043C491 /* DrawerViewController.xib */; };
 		4AD5AA6A2A8F74E100B81EE0 /* SliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */; };
 		4AD5AA6B2A8F74E100B81EE0 /* SliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */; };
+		4AD5AA6F2A8F7E5700B81EE0 /* ProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5AA6D2A8F7E5700B81EE0 /* ProductsCollectionViewCell.swift */; };
+		4AD5AA702A8F7E5700B81EE0 /* ProductsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD5AA6E2A8F7E5700B81EE0 /* ProductsCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +77,12 @@
 		4A7FD2DA2A8E030500AEF0CB /* Gotham-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.otf"; sourceTree = "<group>"; };
 		4A7FD2E02A8E05DF00AEF0CB /* Gotham-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Medium.otf"; sourceTree = "<group>"; };
 		4A7FD2E12A8E05DF00AEF0CB /* Gotham-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Book.otf"; sourceTree = "<group>"; };
+		4AAAAD552A8F901B0043C491 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
+		4AAAAD562A8F901B0043C491 /* DrawerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DrawerViewController.xib; path = ../Controller/DrawerViewController.xib; sourceTree = "<group>"; };
 		4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderCollectionViewCell.xib; sourceTree = "<group>"; };
+		4AD5AA6D2A8F7E5700B81EE0 /* ProductsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductsCollectionViewCell.swift; path = ../../../../../../../../Downloads/ProductsCollectionViewCell.swift; sourceTree = "<group>"; };
+		4AD5AA6E2A8F7E5700B81EE0 /* ProductsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductsCollectionViewCell.xib; path = ../../../../../../../../Downloads/ProductsCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +229,7 @@
 		4A7390652A8E1BC5004E12A3 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				4AD5AA6C2A8F7E2500B81EE0 /* SliderViewCell */,
 				4A56C0D22A8F4E8D00693C5E /* SliderCollectionView */,
 				4A711FCD2A8E551D00C1348D /* HomeViewController.xib */,
 			);
@@ -250,6 +259,7 @@
 		4A7FD2772A8DE9D600AEF0CB /* NeoSTORE */ = {
 			isa = PBXGroup;
 			children = (
+				4AD5AA722A8F8F4E00B81EE0 /* Drawer */,
 				4A368CE32A8F4B8B00C0D7BD /* Login */,
 				4A368CDD2A8F4A9400C0D7BD /* Register */,
 				4A7FD2A92A8DEA4700AEF0CB /* Home */,
@@ -332,6 +342,64 @@
 				4A7FD2D82A8DFCC300AEF0CB /* Constants.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		4AD5AA6C2A8F7E2500B81EE0 /* SliderViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				4AD5AA6D2A8F7E5700B81EE0 /* ProductsCollectionViewCell.swift */,
+				4AD5AA6E2A8F7E5700B81EE0 /* ProductsCollectionViewCell.xib */,
+			);
+			path = SliderViewCell;
+			sourceTree = "<group>";
+		};
+		4AD5AA722A8F8F4E00B81EE0 /* Drawer */ = {
+			isa = PBXGroup;
+			children = (
+				4AD5AA752A8F8F7700B81EE0 /* View Model */,
+				4AD5AA742A8F8F6400B81EE0 /* View */,
+				4AD5AA732A8F8F5D00B81EE0 /* Model */,
+			);
+			path = Drawer;
+			sourceTree = "<group>";
+		};
+		4AD5AA732A8F8F5D00B81EE0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AD5AA742A8F8F6400B81EE0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AD5AA772A8F8F9600B81EE0 /* Xib */,
+				4AD5AA762A8F8F8900B81EE0 /* Controller */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AD5AA752A8F8F7700B81EE0 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		4AD5AA762A8F8F8900B81EE0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4AAAAD552A8F901B0043C491 /* DrawerViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4AD5AA772A8F8F9600B81EE0 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				4AAAAD562A8F901B0043C491 /* DrawerViewController.xib */,
+			);
+			path = Xib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -439,7 +507,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A7390712A8E2205004E12A3 /* Main.storyboard in Resources */,
+				4AAAAD582A8F901B0043C491 /* DrawerViewController.xib in Resources */,
 				4AD5AA6B2A8F74E100B81EE0 /* SliderCollectionViewCell.xib in Resources */,
+				4AD5AA702A8F7E5700B81EE0 /* ProductsCollectionViewCell.xib in Resources */,
 				4A7FD2E32A8E05DF00AEF0CB /* Gotham-Book.otf in Resources */,
 				4A7FD2DB2A8E030500AEF0CB /* Gotham-Bold.otf in Resources */,
 				4A7FD2852A8DE9D800AEF0CB /* LaunchScreen.storyboard in Resources */,
@@ -477,7 +547,9 @@
 				4A56C0D82A8F536400693C5E /* LoginViewController.swift in Sources */,
 				4A7390742A8E2715004E12A3 /* RegisterViewController.swift in Sources */,
 				4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */,
+				4AAAAD572A8F901B0043C491 /* DrawerViewController.swift in Sources */,
 				4A7FD27B2A8DE9D600AEF0CB /* SceneDelegate.swift in Sources */,
+				4AD5AA6F2A8F7E5700B81EE0 /* ProductsCollectionViewCell.swift in Sources */,
 				4AD5AA6A2A8F74E100B81EE0 /* SliderCollectionViewCell.swift in Sources */,
 				4A7FD2D92A8DFCC300AEF0CB /* Constants.swift in Sources */,
 				4A7390642A8E1602004E12A3 /* UITableView+Extension.swift in Sources */,
