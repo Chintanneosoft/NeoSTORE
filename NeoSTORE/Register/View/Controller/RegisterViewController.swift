@@ -82,7 +82,7 @@ class RegisterViewController: UIViewController {
         
     }
     
-    func setDelegates(){
+    private func setDelegates(){
         tfFirstName.delegate = self
         tfLastName.delegate = self
         tfEmail.delegate = self
@@ -90,6 +90,8 @@ class RegisterViewController: UIViewController {
         tfConfirmPassword.delegate = self
         tfPhoneNumber.delegate = self
     }
+    
+    
     
     //MARK: - @objc Functions
     @objc func leftBarButtonTapped() {
@@ -115,6 +117,8 @@ class RegisterViewController: UIViewController {
     
     @IBAction func btnRegisterTapped(_ sender: UIButton) {
 //        let nextViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
+//        let valid: Bool = validations()
+        
         let nextViewController = HomeContainerViewController()
         navigationController?.pushViewController(nextViewController, animated: true)
     }
@@ -131,7 +135,7 @@ class RegisterViewController: UIViewController {
     */
 
 }
-
+//MARK: - TextField Delegate
 extension RegisterViewController: UITextFieldDelegate{
     
 }

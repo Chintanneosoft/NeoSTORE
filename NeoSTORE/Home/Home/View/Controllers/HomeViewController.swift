@@ -20,13 +20,16 @@ class HomeViewController: UIViewController {
     
     //MARK: - IBOutlets
     @IBOutlet weak var sliderCollectionView: UICollectionView!
+    @IBOutlet weak var furnitureCollectionView: UICollectionView!
     @IBOutlet weak var sliderImg: UIImageView!
     @IBOutlet weak var sliderPageControl: UIPageControl!
     @IBOutlet var labels: [UILabel]!
     
     //MARK: - Properties
+    
     private var sliderImages = ["slider_img1","slider_img2","slider_img3","slider_img4"]
     private var drawerViewController: DrawerViewController!
+    private var furnitureData:[[String:Any]] = [["name":"Table","lblPosition":Positions.topRight,"imgName":"table","imgPosition":Positions.bottomLeft], ["name":"Sofas","lblPosition":Positions.bottomLeft,"imgName":"sofa","imgPosition":Positions.topRight],["name":"Chairs","lblPosition":Positions.topLeft,"imgName":"chair","imgPosition":Positions.bottomRight],["name":"Cupboards","lblPosition":Positions.bottomRight,"imgName":"cupboard","imgPosition":Positions.topLeft]]
     
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -53,7 +56,7 @@ class HomeViewController: UIViewController {
                 // Set the left bar button item
         navigationItem.leftBarButtonItem = menuButton
 
-        let searchButton = UIBarButtonItem(image: UIImage(named: "search_icon"), style: .plain, target: self, action: #selector(showDrawer))
+        let searchButton = UIBarButtonItem(image: UIImage(named: "search_icon"), style: .plain, target: self, action: #selector(showProductList))
                 // Set the left bar button item
         navigationItem.rightBarButtonItem = searchButton
 
@@ -65,17 +68,24 @@ class HomeViewController: UIViewController {
     
     private func xibRegister(){
 //        sliderCollectionView.registerCell(of: SliderCollectionViewCell.self)
+        furnitureCollectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCollectionViewCell")
     }
     
     private func setDelegates(){
 //        sliderCollectionView.delegate = self
 //        sliderCollectionView.dataSource = self
+        furnitureCollectionView.delegate = self
+        furnitureCollectionView.dataSource = self
     }
     
     //MARK: - @objc Functions
     @objc func showDrawer(){
         homeViewDelegate?.showDrawer()
         
+    }
+    @objc func showProductList(){
+        let nextViewController = ProductListViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     //MARK: - IBActions
@@ -103,7 +113,7 @@ class HomeViewController: UIViewController {
 }
 
 //MARK: - CollectionView Delegate & DataSource
-//extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource{
 //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return sliderImages.count
 //    }
@@ -114,5 +124,45 @@ class HomeViewController: UIViewController {
 //        cell.sliderImg?.image = UIImage(named: "\(sliderImages[indexPath.row])")
 //        return cell
 //    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == furnitureCollectionView{
+            return 4
+        }
+        return sliderImages.count
+    }
 
-//}
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == furnitureCollectionView{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
+            cell.setContraints(lblname: furnitureData[indexPath.row]["name"] as! String, lblPosition: furnitureData[indexPath.row]["lblPosition"] as! Positions, imgName: furnitureData[indexPath.row]["imgName"] as! String, imgPosition: furnitureData[indexPath.row]["imgPosition"] as! Positions)
+            return cell
+            
+        }
+        
+        let cell = collectionView.getCell(indexPath: indexPath) as! SliderCollectionViewCell
+                //cell.setImg(imgName: sliderImages[indexPath.row])
+        cell.sliderImg?.image = UIImage(named: "\(sliderImages[indexPath.row])")
+        return cell
+    }
+}
+extension HomeViewController: UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let availableWidth = collectionView.bounds.width
+        let availableHeight = collectionView.bounds.height
+            let spacing: CGFloat = 50 // Adjust this value as needed
+            let cellWidth = (availableWidth - spacing) / 2
+        let cellHeight = (availableHeight - spacing) / 2
+            return CGSize(width: cellWidth, height: cellWidth) // Make it square or adjust height as needed
+        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            return 20
+        }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+            return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        }
+}

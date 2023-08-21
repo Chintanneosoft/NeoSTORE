@@ -22,11 +22,25 @@ class OptionsCell: UITableViewCell {
         setUpUI()
     }
 
-    func setUpUI(){
+    private func setUpUI(){
         lblOption.font = UIFont(name:Font.fontRegular.rawValue,size: 16)
         lblNotification.font = UIFont(name:Font.fontThin.rawValue,size: 13)
-        lblNotification.layer.cornerRadius = 5
+        lblNotification.layer.cornerRadius = 14
     }
+    
+    func setDetails(optionImg: String,optionName: String,noOfNotifications: Int){
+        lblOption.text = optionName
+        self.optionImg.image = UIImage(named: optionImg)
+        if noOfNotifications > 0{
+            lblNotification.isHidden = false
+        }
+        else{
+            lblNotification.isHidden = true
+        }
+        lblNotification.text = String(noOfNotifications)
+        
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

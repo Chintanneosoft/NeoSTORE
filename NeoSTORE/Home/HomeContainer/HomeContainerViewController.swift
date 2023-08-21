@@ -32,6 +32,10 @@ class HomeContainerViewController: UIViewController {
     //MARK: - Functions
     private func addChildVCs() {
         //Drawer
+        
+        let viewWidth: CGFloat =  self.view.frame.size.width - 80
+        let viewHeight: CGFloat =  self.view.frame.size.height
+        self.drawerVC.view.frame = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
         addChild(drawerVC)
         view.addSubview(drawerVC.view)
         drawerVC.didMove(toParent: self)
@@ -66,8 +70,9 @@ extension HomeContainerViewController: HomeViewControllerDelegate{
         switch drawerState{
         case .closed:
             // open it
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,initialSpringVelocity: 0,options: .curveLinear){
-                self.navVC?.view.frame.origin.x = self.homeVC.view.frame.size.width - 100
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,initialSpringVelocity: 0,options: .curveEaseInOut){
+                self.navVC?.view.frame.origin.x = self.homeVC.view.frame.size.width - 80
+             
             } completion: { [weak self] done in
                 if done{
                     self?.drawerState = .opened
