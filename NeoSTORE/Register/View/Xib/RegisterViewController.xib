@@ -17,6 +17,7 @@
                 <outlet property="btnRegister" destination="VVJ-pN-1lh" id="8oA-bv-hMO"/>
                 <outlet property="lblHeading" destination="Pjx-qm-bVM" id="MRG-SN-82m"/>
                 <outlet property="lblTermsAndConditions" destination="Ztd-Av-xM9" id="gCx-Ww-4e9"/>
+                <outlet property="termsAndCondition" destination="pkJ-kt-4Ln" id="wYQ-m7-vwK"/>
                 <outlet property="tfConfirmPassword" destination="aYh-ic-NjM" id="Eql-cp-5Uy"/>
                 <outlet property="tfEmail" destination="z3x-Yc-MBT" id="1Sq-kb-Kcc"/>
                 <outlet property="tfFirstName" destination="PwX-4H-nZI" id="HWr-8F-1q6"/>
@@ -64,7 +65,7 @@
                                                                 <constraint firstAttribute="width" constant="50" id="xaj-Ix-aXz"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="PwX-4H-nZI">
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Chintan" placeholder="First Name" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="PwX-4H-nZI">
                                                             <rect key="frame" x="65" y="0.0" width="260" height="50"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="textColor" name="Primary Foreground"/>
@@ -93,7 +94,7 @@
                                                                 <constraint firstAttribute="width" constant="50" id="eIM-a4-Xhg"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="AbV-PD-PUw">
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rajgor" placeholder="Last Name" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="AbV-PD-PUw">
                                                             <rect key="frame" x="65" y="0.0" width="260" height="50"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="textColor" name="Primary Foreground"/>
@@ -122,7 +123,7 @@
                                                                 <constraint firstAttribute="width" constant="50" id="d2i-0l-e24"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="z3x-Yc-MBT">
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Chintan@gmail.com" placeholder="Email" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="z3x-Yc-MBT">
                                                             <rect key="frame" x="65" y="0.0" width="260" height="50"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="textColor" name="Primary Foreground"/>
@@ -151,7 +152,7 @@
                                                                 <constraint firstAttribute="width" constant="50" id="9D8-gN-0pe"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="9uX-UY-gZB">
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Chintan@123" placeholder="Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="9uX-UY-gZB">
                                                             <rect key="frame" x="65" y="0.0" width="260" height="50"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="textColor" name="Primary Foreground"/>
@@ -180,7 +181,7 @@
                                                                 <constraint firstAttribute="width" constant="50" id="ohs-Jd-oA0"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="aYh-ic-NjM">
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Chintan@123" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="aYh-ic-NjM">
                                                             <rect key="frame" x="65" y="0.0" width="260" height="50"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="textColor" name="Primary Foreground"/>
@@ -301,7 +302,7 @@
                                                                 <constraint firstAttribute="width" constant="50" id="tje-cg-Kqt"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="5NO-kU-iUT">
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9876543210" placeholder="Phone Number" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="5NO-kU-iUT">
                                                             <rect key="frame" x="65" y="0.0" width="260" height="50"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="textColor" name="Primary Foreground"/>
@@ -449,7 +450,7 @@
         <image name="uncheck_icon" width="25" height="25"/>
         <image name="username_icon" width="15" height="21"/>
         <namedColor name="Primary Background">
-            <color red="0.73299998044967651" green="0.0040000001899898052" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.91399997472763062" green="0.10999999940395355" blue="0.10199999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary Foreground">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

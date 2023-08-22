@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A2D84642A94F17E00DD0D8B /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2D84632A94F17E00DD0D8B /* RegisterModel.swift */; };
 		4A56C0D82A8F536400693C5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56C0D72A8F536400693C5E /* LoginViewController.swift */; };
 		4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A711FCC2A8E551D00C1348D /* HomeViewController.swift */; };
 		4A711FCF2A8E551D00C1348D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A711FCD2A8E551D00C1348D /* HomeViewController.xib */; };
@@ -39,6 +40,8 @@
 		4A91ED2C2A93664200915A0A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED2B2A93664200915A0A /* HomeViewModel.swift */; };
 		4A91ED332A93673B00915A0A /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED312A93673B00915A0A /* HomeCollectionViewCell.swift */; };
 		4A91ED342A93673B00915A0A /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A91ED322A93673B00915A0A /* HomeCollectionViewCell.xib */; };
+		4A9A251A2A949B6900892EB0 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A25192A949B6900892EB0 /* RegisterViewModel.swift */; };
+		4A9A251D2A949BAF00892EB0 /* RegisterAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A251C2A949BAF00892EB0 /* RegisterAPIService.swift */; };
 		4A9A6BEE2A923BDC00250B79 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A6BEC2A923BDC00250B79 /* ProductDetailsViewController.swift */; };
 		4A9A6BEF2A923BDC00250B79 /* ProductDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9A6BED2A923BDC00250B79 /* ProductDetailsViewController.xib */; };
 		4A9A6C032A923DC000250B79 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A6C012A923DC000250B79 /* CartViewController.swift */; };
@@ -74,6 +77,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A2D84632A94F17E00DD0D8B /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		4A56C0D72A8F536400693C5E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../../../../../../../LoginViewController.swift; sourceTree = "<group>"; };
 		4A711FCC2A8E551D00C1348D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4A711FCD2A8E551D00C1348D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 		4A91ED2B2A93664200915A0A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4A91ED312A93673B00915A0A /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A91ED322A93673B00915A0A /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		4A9A25192A949B6900892EB0 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		4A9A251C2A949BAF00892EB0 /* RegisterAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPIService.swift; sourceTree = "<group>"; };
 		4A9A6BEC2A923BDC00250B79 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		4A9A6BED2A923BDC00250B79 /* ProductDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailsViewController.xib; sourceTree = "<group>"; };
 		4A9A6C012A923DC000250B79 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 		4A368CDD2A8F4A9400C0D7BD /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				4A9A251B2A949B7900892EB0 /* WebService */,
 				4A368CE02A8F4B1900C0D7BD /* View */,
 				4A368CDF2A8F4B0500C0D7BD /* ViewModel */,
 				4A368CDE2A8F4AF300C0D7BD /* Model */,
@@ -165,6 +172,7 @@
 		4A368CDE2A8F4AF300C0D7BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A2D84632A94F17E00DD0D8B /* RegisterModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 		4A368CDF2A8F4B0500C0D7BD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4A9A25192A949B6900892EB0 /* RegisterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -448,6 +457,14 @@
 				4A7FD2AA2A8DEA5500AEF0CB /* Controllers */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4A9A251B2A949B7900892EB0 /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				4A9A251C2A949BAF00892EB0 /* RegisterAPIService.swift */,
+			);
+			path = WebService;
 			sourceTree = "<group>";
 		};
 		4A9A6BDE2A923AF900250B79 /* Product List */ = {
@@ -950,9 +967,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A7390632A8E1602004E12A3 /* UICollectionView+Extension.swift in Sources */,
+				4A9A251A2A949B6900892EB0 /* RegisterViewModel.swift in Sources */,
 				4A7FD2792A8DE9D600AEF0CB /* AppDelegate.swift in Sources */,
 				4A56C0D82A8F536400693C5E /* LoginViewController.swift in Sources */,
 				4A9A6BEE2A923BDC00250B79 /* ProductDetailsViewController.swift in Sources */,
+				4A9A251D2A949BAF00892EB0 /* RegisterAPIService.swift in Sources */,
 				4A7390742A8E2715004E12A3 /* RegisterViewController.swift in Sources */,
 				4A9CCA252A921A660088A036 /* HomeContainerViewController.swift in Sources */,
 				4A91ED1B2A93364E00915A0A /* DrawerHeaderTableViewCell.swift in Sources */,
@@ -964,6 +983,7 @@
 				4A9A6C0F2A923E2B00250B79 /* AddAddressViewController.swift in Sources */,
 				4A7FD27B2A8DE9D600AEF0CB /* SceneDelegate.swift in Sources */,
 				4A91ED102A932CF900915A0A /* ProductListCell.swift in Sources */,
+				4A2D84642A94F17E00DD0D8B /* RegisterModel.swift in Sources */,
 				4AD5AA6A2A8F74E100B81EE0 /* SliderCollectionViewCell.swift in Sources */,
 				4A9A6C032A923DC000250B79 /* CartViewController.swift in Sources */,
 				4A7FD2D92A8DFCC300AEF0CB /* Constants.swift in Sources */,

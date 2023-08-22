@@ -84,7 +84,7 @@ class HomeViewController: UIViewController {
         
     }
     @objc func showProductList(){
-        let nextViewController = ProductListViewController()
+        let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
         navigationController?.pushViewController(nextViewController, animated: true)
     }
     

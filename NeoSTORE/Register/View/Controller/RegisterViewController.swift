@@ -23,7 +23,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var btnMale: UIButton!
     @IBOutlet weak var btnFemale: UIButton!
     @IBOutlet weak var btnRegister: UIButton!
-    
+    @IBOutlet weak var termsAndCondition: UIButton!
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +91,11 @@ class RegisterViewController: UIViewController {
         tfPhoneNumber.delegate = self
     }
     
-    
+    private func sendValidations(){
+        let registerViewModel = RegisterViewModel()
+        registerViewModel.registerViewModelDelegate = self
+        registerViewModel.callValidations(fname: tfFirstName.text ?? "", lname: tfLastName.text ?? "", email: tfEmail.text ?? "", pass: tfPassword.text ?? "", cpass: tfConfirmPassword.text ?? "", phone: tfPhoneNumber.text ?? "", btnSelected:btnMale.isSelected ? "Male" : (btnFemale.isSelected ? "Female" : ""), termsAndCondition: termsAndCondition.isSelected)
+    }
     
     //MARK: - @objc Functions
     @objc func leftBarButtonTapped() {
@@ -118,7 +122,8 @@ class RegisterViewController: UIViewController {
     @IBAction func btnRegisterTapped(_ sender: UIButton) {
 //        let nextViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
 //        let valid: Bool = validations()
-        
+        sendValidations()
+
         let nextViewController = HomeContainerViewController()
         navigationController?.pushViewController(nextViewController, animated: true)
     }
@@ -137,5 +142,39 @@ class RegisterViewController: UIViewController {
 }
 //MARK: - TextField Delegate
 extension RegisterViewController: UITextFieldDelegate{
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == tfFirstName{
+            textField.resignFirstResponder()
+            tfLastName.becomeFirstResponder()
+        }
+        if textField == tfLastName{
+            textField.resignFirstResponder()
+            tfEmail.becomeFirstResponder()
+        }
+        if textField == tfEmail{
+            textField.resignFirstResponder()
+            tfPassword.becomeFirstResponder()
+        }
+        if textField == tfPassword{
+            textField.resignFirstResponder()
+            tfConfirmPassword.becomeFirstResponder()
+        }
+        if textField == tfConfirmPassword{
+            textField.resignFirstResponder()
+        }
+        //   textField.resignFirstResponder()
+        return true
+    }
+}
+
+//MARK: - RegisterViewModelDelegate
+extension RegisterViewController: RegisterViewModelDelegate{
+    func showAlert(msg:String) {
+        let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
