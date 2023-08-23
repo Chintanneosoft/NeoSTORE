@@ -1,21 +1,21 @@
 //
-//  RegisterApiService.swift
+//  LoginAPIService.swift
 //  NeoSTORE
 //
-//  Created by Neosoft1 on 22/08/23.
+//  Created by Neosoft1 on 23/08/23.
 //
 
 import UIKit
 
-class RegisterAPIService {
-    
-    func registerUser(fname: String, lname: String, email: String, pass: String, cpass: String, gender: String, phone: String,completion: @escaping(Result<User,Error>) -> Void){
+class LoginAPIService: NSObject {
+    func loginUser(email: String, pass: String, completion: @escaping(Result<User,Error>) -> Void){
         
-        let params = ["first_name": fname, "last_name": lname, "email": email, "password": pass, "confirm_password": cpass,"gender": gender, "phone_no": phone]
+        let params = ["email": email, "password": pass]
         
-        APIManager.shared.callRequest(apiCallType: .userRegister(param: params)){ (response) in
+        APIManager.shared.callRequest(apiCallType: .userLogin(param: params)){ (response) in
             
             switch response {
+            
             case .success(let value):
                 do {
                     let responseData = try JSONDecoder().decode(User.self, from: value)
@@ -23,6 +23,7 @@ class RegisterAPIService {
                 } catch {
                     completion(.failure(error))
                 }
+                
             case .failure(let error):
                 print("In Failure")
                 debugPrint(error.localizedDescription)

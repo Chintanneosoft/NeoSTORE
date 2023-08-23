@@ -6,73 +6,6 @@
 //
 
 import UIKit
-//
-////MARK: - User
-//struct User: Codable {
-//    let status: Int
-//    let data: UserData
-//    let message, userMsg: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case status, data, message
-//        case userMsg = "user_msg"
-//    }
-//}
-//
-//// MARK: - UserData
-//struct UserData: Codable {
-//    let id, roleID: Int
-//    let firstName, lastName, email, username: String
-//    let profilePic, countryID: JSONNull?
-//    let gender, phoneNo: String
-//    let dob: JSONNull?
-//    let isActive: Bool
-//    let created, modified: Date
-//    let accessToken: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case id
-//        case roleID = "role_id"
-//        case firstName = "first_name"
-//        case lastName = "last_name"
-//        case email, username
-//        case profilePic = "profile_pic"
-//        case countryID = "country_id"
-//        case gender
-//        case phoneNo = "phone_no"
-//        case dob
-//        case isActive = "is_active"
-//        case created, modified
-//        case accessToken = "access_token"
-//    }
-//}
-//
-//// MARK: - Encode/decode helpers
-//
-//class JSONNull: Codable, Hashable {
-//
-//    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-//        return true
-//    }
-//
-//    public var hashValue: Int {
-//        return 0
-//    }
-//
-//    public init() {}
-//
-//    public required init(from decoder: Decoder) throws {
-//        let container = try decoder.singleValueContainer()
-//        if !container.decodeNil() {
-//            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-//        }
-//    }
-//
-//    public func encode(to encoder: Encoder) throws {
-//        var container = encoder.singleValueContainer()
-//        try container.encodeNil()
-//    }
-//}
 
 struct User: Codable {
     var status: Int?
@@ -101,7 +34,7 @@ struct UserData: Codable {
     var created: String?
     var modified: String?
     var access_token: String?
-    
+    var country_id : String?
     var dob: String?
     var profile_pic: String?
     
@@ -115,10 +48,30 @@ struct UserData: Codable {
         case gender = "gender"
         case phone_no = "phone_no"
         case is_active = "is_active"
+        case country_id = "country_id"
         case created = "created"
         case modified = "modified"
         case access_token = "access_token"
         case dob = "dob"
         case profile_pic = "profile_pic"
+    }
+    init(from decoder: Decoder) throws {
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        role_id = try values.decodeIfPresent(Int.self, forKey: .role_id)
+        first_name = try values.decodeIfPresent(String.self, forKey: .first_name)
+        last_name = try values.decodeIfPresent(String.self, forKey: .last_name)
+        email = try values.decodeIfPresent(String.self, forKey: .email)
+        username = try values.decodeIfPresent(String.self, forKey: .username)
+        profile_pic = try values.decodeIfPresent(String.self, forKey: .profile_pic)
+        country_id = try values.decodeIfPresent(String.self, forKey: .country_id)
+        gender = try values.decodeIfPresent(String.self, forKey: .gender)
+        phone_no = try values.decodeIfPresent(String.self, forKey: .phone_no)
+        dob = try values.decodeIfPresent(String.self, forKey: .dob)
+        is_active = try values.decodeIfPresent(Bool.self, forKey: .is_active)
+        created = try values.decodeIfPresent(String.self, forKey: .created)
+        modified = try values.decodeIfPresent(String.self, forKey: .modified)
+        access_token = try values.decodeIfPresent(String.self, forKey: .access_token)
     }
 }

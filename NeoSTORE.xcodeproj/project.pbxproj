@@ -55,6 +55,9 @@
 		4A9CCA292A9223550088A036 /* DrawerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9CCA282A9223550088A036 /* DrawerViewController.xib */; };
 		4A9CCA372A9226AE0088A036 /* OptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9CCA352A9226AE0088A036 /* OptionsCell.swift */; };
 		4A9CCA382A9226AE0088A036 /* OptionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9CCA362A9226AE0088A036 /* OptionsCell.xib */; };
+		4A9EF7BE2A95EB8C00C88A5D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF7BD2A95EB8C00C88A5D /* APIManager.swift */; };
+		4A9EF7C02A95EBC800C88A5D /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF7BF2A95EBC800C88A5D /* APIServices.swift */; };
+		4A9EF7C42A961C5900C88A5D /* LoginAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF7C32A961C5900C88A5D /* LoginAPIService.swift */; };
 		4AD5AA6A2A8F74E100B81EE0 /* SliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */; };
 		4AD5AA6B2A8F74E100B81EE0 /* SliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -129,6 +132,9 @@
 		4A9CCA282A9223550088A036 /* DrawerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerViewController.xib; sourceTree = "<group>"; };
 		4A9CCA352A9226AE0088A036 /* OptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCell.swift; sourceTree = "<group>"; };
 		4A9CCA362A9226AE0088A036 /* OptionsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsCell.xib; sourceTree = "<group>"; };
+		4A9EF7BD2A95EB8C00C88A5D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		4A9EF7BF2A95EBC800C88A5D /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
+		4A9EF7C32A961C5900C88A5D /* LoginAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIService.swift; sourceTree = "<group>"; };
 		4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,7 +219,7 @@
 		4A368CE32A8F4B8B00C0D7BD /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				4A91ED1D2A935DB000915A0A /* Apiservice */,
+				4A9EF7C22A961C2900C88A5D /* WebService */,
 				4A368CE62A8F4BFB00C0D7BD /* Model */,
 				4A368CE52A8F4BED00C0D7BD /* ViewModel */,
 				4A368CE42A8F4BE300C0D7BD /* View */,
@@ -311,6 +317,7 @@
 		4A7FD2772A8DE9D600AEF0CB /* NeoSTORE */ = {
 			isa = PBXGroup;
 			children = (
+				4A91ED1D2A935DB000915A0A /* Web Service */,
 				4A368CE32A8F4B8B00C0D7BD /* Login */,
 				4A368CDD2A8F4A9400C0D7BD /* Register */,
 				4A7FD2A92A8DEA4700AEF0CB /* Home */,
@@ -418,11 +425,13 @@
 			path = Validation;
 			sourceTree = "<group>";
 		};
-		4A91ED1D2A935DB000915A0A /* Apiservice */ = {
+		4A91ED1D2A935DB000915A0A /* Web Service */ = {
 			isa = PBXGroup;
 			children = (
+				4A9EF7BD2A95EB8C00C88A5D /* APIManager.swift */,
+				4A9EF7BF2A95EBC800C88A5D /* APIServices.swift */,
 			);
-			path = Apiservice;
+			path = "Web Service";
 			sourceTree = "<group>";
 		};
 		4A91ED202A93644C00915A0A /* HomeBottomViewCell */ = {
@@ -742,6 +751,14 @@
 			path = "Options Cell";
 			sourceTree = "<group>";
 		};
+		4A9EF7C22A961C2900C88A5D /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				4A9EF7C32A961C5900C88A5D /* LoginAPIService.swift */,
+			);
+			path = WebService;
+			sourceTree = "<group>";
+		};
 		4AD5AA722A8F8F4E00B81EE0 /* Drawer */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,6 +1003,7 @@
 				4A2D84642A94F17E00DD0D8B /* RegisterModel.swift in Sources */,
 				4AD5AA6A2A8F74E100B81EE0 /* SliderCollectionViewCell.swift in Sources */,
 				4A9A6C032A923DC000250B79 /* CartViewController.swift in Sources */,
+				4A9EF7BE2A95EB8C00C88A5D /* APIManager.swift in Sources */,
 				4A7FD2D92A8DFCC300AEF0CB /* Constants.swift in Sources */,
 				4A91ED2C2A93664200915A0A /* HomeViewModel.swift in Sources */,
 				4A91ED142A93319600915A0A /* Validation.swift in Sources */,
@@ -993,6 +1011,8 @@
 				4A91ED1F2A935E3700915A0A /* LoginViewModel.swift in Sources */,
 				4A91ED2A2A9365D700915A0A /* HomeModel.swift in Sources */,
 				4A91ED332A93673B00915A0A /* HomeCollectionViewCell.swift in Sources */,
+				4A9EF7C42A961C5900C88A5D /* LoginAPIService.swift in Sources */,
+				4A9EF7C02A95EBC800C88A5D /* APIServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

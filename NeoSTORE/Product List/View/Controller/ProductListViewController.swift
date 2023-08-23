@@ -11,6 +11,22 @@ class ProductListViewController: UIViewController {
 
     
     @IBOutlet weak var productListTableView: UITableView!
+    
+    var categoryId = 1
+    var categoryName: String {
+        switch categoryId{
+        case 1:
+            return "Table"
+        case 2:
+            return "Sofas"
+        case 3:
+            return "Chairs"
+        case 4:
+            return "Cupboards"
+        default:
+            return "None"
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -26,7 +42,19 @@ class ProductListViewController: UIViewController {
         productListTableView.register(UINib(nibName: "ProductListCell", bundle: nil), forCellReuseIdentifier: "ProductListCell")
         
     }
-
+    private func setUpUI(){
+        
+        //Navigation bar
+        navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
+        navigationController?.navigationBar.backgroundColor = UIColor(named: "Primary Background")
+        
+        navigationItem.title = categoryName
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
+            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
+        ]
+        
+    }
     /*
     // MARK: - Navigation
 

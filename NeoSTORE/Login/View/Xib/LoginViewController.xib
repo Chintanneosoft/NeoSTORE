@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="NeoSTORE" customModuleProvider="target">
             <connections>
+                <outlet property="btnAddUserTapped" destination="teh-Gk-9Co" id="Qe3-qg-LNe"/>
                 <outlet property="btnLogin" destination="Slw-Hu-T54" id="hjp-kc-jj3"/>
                 <outlet property="lblDontHaveAccount" destination="U4b-sZ-PHT" id="38g-XJ-1Ul"/>
                 <outlet property="lblForgotPassword" destination="PoP-uJ-HEh" id="f63-k8-Q0F"/>
@@ -128,6 +129,9 @@
                             <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system">
                                 <color key="baseForegroundColor" name="Primary Foreground"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="btnAddUserTapped:" destination="-1" eventType="touchUpInside" id="7Ew-dm-zdj"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" name="Primary Background"/>

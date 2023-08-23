@@ -51,7 +51,7 @@ class Validation{
         }
         
         
-        validationDelegate?.resultMsg(msg: "Validation successfull")
+//        validationDelegate?.resultMsg(msg: "Validation successfull")
         return true
     }
     func loginValidation(email: String?, password: String?) -> Bool{
@@ -73,7 +73,7 @@ class Validation{
             return false
         }
         
-        validationDelegate?.resultMsg(msg: "Validation successfull")
+//        validationDelegate?.resultMsg(msg: "Validation successfull")
         return true
     }
     func containsOnlyCharacters(_ input: String) -> Bool {
@@ -106,13 +106,6 @@ class Validation{
         return numericCharacterSet.isSuperset(of: inputCharacterSet)
     }
     
-//    func validateInput(_ input: String) -> Bool {
-//        let pattern = "^[a-zA-Z0-9]+$"
-//        let regex = try! NSRegularExpression(pattern: pattern)
-//        let range = NSRange(location: 0, length: input.utf16.count)
-//        let matches = regex.matches(in: input, range: range)
-//        return matches.count > 0
-//    }
     func validateEmail(_ input: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)

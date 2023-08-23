@@ -165,4 +165,11 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == furnitureCollectionView{
+                let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
+                nextViewController.categoryId = indexPath.row + 1
+                self.navigationController?.pushViewController(nextViewController, animated: true)
+        }
+    }
 }

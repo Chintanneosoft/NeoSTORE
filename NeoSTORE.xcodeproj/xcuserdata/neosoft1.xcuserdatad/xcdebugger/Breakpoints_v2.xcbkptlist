@@ -7,49 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A84A4FDE-8BD2-495D-92EF-7EF8A87C3059"
+            uuid = "0FDDEB64-EAB7-4173-A745-69DCC0FA6512"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NeoSTORE/Register/WebService/RegisterAPIService.swift"
+            filePath = "NeoSTORE/Register/ViewModel/RegisterViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "registerUser(fname:lname:email:pass:cpass:gender:phone:)"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "didFailToRegister(error:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A84A4FDE-8BD2-495D-92EF-7EF8A87C3059 - 8c638a3612dbec03"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NeoSTORE.RegisterAPIService.registerUser(fname: Swift.String, lname: Swift.String, email: Swift.String, pass: Swift.String, cpass: Swift.String, gender: Swift.String, phone: Swift.String) -&gt; ()"
-                  moduleName = "NeoSTORE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/neosoft1/Desktop/Chintan/Xcodes/NeoSTORE/NeoSTORE/Register/WebService/RegisterAPIService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
-                  offsetFromSymbolStart = "2373">
-               </Location>
-               <Location
-                  uuid = "A84A4FDE-8BD2-495D-92EF-7EF8A87C3059 - 844371bf9d4f5760"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in NeoSTORE.RegisterAPIService.registerUser(fname: Swift.String, lname: Swift.String, email: Swift.String, pass: Swift.String, cpass: Swift.String, gender: Swift.String, phone: Swift.String) -&gt; ()"
-                  moduleName = "NeoSTORE"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/neosoft1/Desktop/Chintan/Xcodes/NeoSTORE/NeoSTORE/Register/WebService/RegisterAPIService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38"
-                  offsetFromSymbolStart = "241">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

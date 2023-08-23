@@ -11,6 +11,7 @@ protocol LoginViewModelDelegate:AnyObject{
 }
 class LoginViewModel{
     private let validation = Validation()
+    private let loginAPIService = LoginAPIService()
     weak var loginViewModelDelegate: LoginViewModelDelegate?
     func callValidations(email:String, pass:String){
         
@@ -19,6 +20,26 @@ class LoginViewModel{
         let validity = validation.loginValidation( email: email, password: pass)
         if validity{
             print(email,pass)
+            loginAPIService.loginUser(email: email, pass: pass){ (response) in
+                switch response{
+                case .success(let value):
+                    print(value)
+                    DispatchQueue.main.async {
+                        if value.status == 200{
+                            self.loginViewModelDelegate?.showAlert(msg: "LoggedIn Successfully")
+                        }
+                        else{
+                            self.loginViewModelDelegate?.showAlert(msg: value.user_msg!)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.async {
+                        self.loginViewModelDelegate?.showAlert(msg: error.localizedDescription)
+                    }
+                }
+                
+            }
         }
     }
 }
