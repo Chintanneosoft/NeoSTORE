@@ -11,21 +11,15 @@ protocol RegisterViewModelDelegate:NSObject {
     func showAlert(msg:String)
 }
 class RegisterViewModel: NSObject {
-  
+    
     let registerAPIService = RegisterAPIService()
     let validation = Validation()
     
     weak var registerViewModelDelegate: RegisterViewModelDelegate?
     
-//    init(){
-//        validation.validationDelegate = self
-////        registerAPIService.APIServiceDelegate = self
-//    }
-    
     func callValidations( fname:String, lname:String, email:String, pass:String, cpass:String, phone:String, btnSelected:String, termsAndCondition:Bool ){
         
-           validation.validationDelegate = self
-//            registerAPIService.APIServiceDelegate = self
+        validation.validationDelegate = self
         
         if btnSelected == "" {
             resultMsg(msg: "Select Gender")
@@ -39,33 +33,25 @@ class RegisterViewModel: NSObject {
         if validity{
             print(fname,lname,email,pass,phone,btnSelected)
             
-//            registerAPIService.APIServiceDelegate = self
-            
-//            DispatchQueue.global().async {
             self.registerAPIService.registerUser(fname: fname, lname: lname, email: email, pass: pass, cpass: cpass, gender: btnSelected, phone: phone){
                 (response) in
-                    switch response {
-                    case .success(let value):
-                        print(value)
-                        DispatchQueue.main.async {
-                            if value.status == 200{
-                                self.registerViewModelDelegate?.showAlert(msg: "Registered Successfully")
-                            }
-                            else{
-                                self.registerViewModelDelegate?.showAlert(msg: value.user_msg!)
-                            }
-                        }
-                    case .failure(let error):
-                        DispatchQueue.main.async {
-                            self.registerViewModelDelegate?.showAlert(msg: String(error.localizedDescription))
-                        }
+                switch response {
+                case .success(let value):
+                    print(value)
+                    if value.status == 200{
+                        self.registerViewModelDelegate?.showAlert(msg: "Registered Successfully")
                     }
+                    else{
+                        self.registerViewModelDelegate?.showAlert(msg: value.user_msg!)
+                    }
+                case .failure(let error):
+                    self.registerViewModelDelegate?.showAlert(msg: String(error.localizedDescription))
+                }
             }
-//            }
         }
     }
-
-
+    
+    
 }
 extension RegisterViewModel: ValidationDelegate{
     func resultMsg(msg: String) {

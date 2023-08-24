@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: - DrawerViewController
 class DrawerViewController: UIViewController {
-
+    
     //MARK: - Properties
     private var optionImgs = ["shoppingcart_icon","table","sofa","chair","cupboard","username_icon","storelocator_icon","myorders_icon","logout_icon"]
     private var optionNames = ["My Cart","Tables","Sofas","Chairs","Cupboards","My Account","Store Locator","My Orders","Logout"]
@@ -32,23 +32,23 @@ class DrawerViewController: UIViewController {
     }
     
     private func xibRegister(){
-//        drawerTableView?.registerCell(of: HeaderCell.self)
-//        drawerTableView?.registerCell(of: OptionsCell.self)
+        //        drawerTableView?.registerCell(of: HeaderCell.self)
+        //        drawerTableView?.registerCell(of: OptionsCell.self)
         
         drawerTableView?.register(UINib(nibName: "DrawerHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "DrawerHeaderTableViewCell")
         drawerTableView?.register(UINib(nibName: "OptionsCell", bundle: nil), forCellReuseIdentifier: "OptionsCell")
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 //MARK: - TableView Delegate & DataSource
@@ -87,5 +87,16 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
         return 220
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section != 0 {
+            if (1...4).contains(indexPath.row){
+                let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
+                nextViewController.productCategoryId = indexPath.row
+                
+                self.navigationController?.pushViewController(nextViewController, animated: true)
+              
+            }
+        }
+    }
 }
 

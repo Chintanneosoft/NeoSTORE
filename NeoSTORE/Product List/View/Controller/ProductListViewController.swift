@@ -34,12 +34,12 @@ class ProductListViewController: UIViewController {
         
     }
     private func setUpUI(){
-        
+//        navigationController?.navigationBar.isHidden = false
         //Navigation bar
         navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
         navigationController?.navigationBar.backgroundColor = UIColor(named: "Primary Background")
         
-        navigationItem.title = categoryName
+        navigationItem.title = "Table"
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
             NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!

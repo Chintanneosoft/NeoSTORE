@@ -161,26 +161,29 @@ extension RegisterViewController: UITextFieldDelegate{
 //MARK: - RegisterViewModelDelegate
 extension RegisterViewController: RegisterViewModelDelegate{
     func showAlert(msg:String) {
-        let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-        if msg == "Registered Successfully"{
-            
-            let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                let nextViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
-                self.navigationController?.pushViewController(nextViewController, animated: true)
-                self.dismiss(animated: true, completion: nil)
-            }
-            
-            alert.addAction(action)
-            
-        } else {
-            
-            let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
-            }
-            
-            alert.addAction(action)
-        }
         
-        self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
+            if msg == "Registered Successfully"{
+                
+                let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                    let nextViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+                    self.navigationController?.pushViewController(nextViewController, animated: true)
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                alert.addAction(action)
+                
+            } else {
+                
+                let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                alert.addAction(action)
+            }
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

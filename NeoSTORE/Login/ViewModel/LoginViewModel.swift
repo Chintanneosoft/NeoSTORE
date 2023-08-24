@@ -25,19 +25,15 @@ class LoginViewModel{
                 case .success(let value):
                     print(value)
                     UserDefaults.standard.set(value.data?.access_token ?? "", forKey: "accessToken")
-                    DispatchQueue.main.async {
                         if value.status == 200{
                             self.loginViewModelDelegate?.showAlert(msg: "LoggedIn Successfully")
                         }
                         else{
                             self.loginViewModelDelegate?.showAlert(msg: value.user_msg!)
                         }
-                    }
                 case .failure(let error):
                     print(error)
-                    DispatchQueue.main.async {
                         self.loginViewModelDelegate?.showAlert(msg: error.localizedDescription)
-                    }
                 }
                 
             }
