@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34484985AC0F3D869FE69DAD /* Pods_NeoSTORE_NeoSTOREUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036BE62EE081AC2292D526A9 /* Pods_NeoSTORE_NeoSTOREUITests.framework */; };
 		4A2D84642A94F17E00DD0D8B /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2D84632A94F17E00DD0D8B /* RegisterModel.swift */; };
 		4A56C0D82A8F536400693C5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56C0D72A8F536400693C5E /* LoginViewController.swift */; };
 		4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A711FCC2A8E551D00C1348D /* HomeViewController.swift */; };
@@ -28,6 +29,10 @@
 		4A7FD2DB2A8E030500AEF0CB /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2DA2A8E030500AEF0CB /* Gotham-Bold.otf */; };
 		4A7FD2E22A8E05DF00AEF0CB /* Gotham-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2E02A8E05DF00AEF0CB /* Gotham-Medium.otf */; };
 		4A7FD2E32A8E05DF00AEF0CB /* Gotham-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2E12A8E05DF00AEF0CB /* Gotham-Book.otf */; };
+		4A8E94A02A973E540067306F /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E949F2A973E540067306F /* ProductListViewModel.swift */; };
+		4A8E94A32A973EEE0067306F /* ProductListAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A22A973EEE0067306F /* ProductListAPIService.swift */; };
+		4A8E94A52A9750FA0067306F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A42A9750FA0067306F /* Product.swift */; };
+		4A8E94A92A976FE00067306F /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A82A976FE00067306F /* Loader.swift */; };
 		4A91ED0C2A932CDC00915A0A /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED0A2A932CDC00915A0A /* ProductListViewController.swift */; };
 		4A91ED0D2A932CDC00915A0A /* ProductListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A91ED0B2A932CDC00915A0A /* ProductListViewController.xib */; };
 		4A91ED102A932CF900915A0A /* ProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED0E2A932CF900915A0A /* ProductListCell.swift */; };
@@ -60,6 +65,8 @@
 		4A9EF7C42A961C5900C88A5D /* LoginAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF7C32A961C5900C88A5D /* LoginAPIService.swift */; };
 		4AD5AA6A2A8F74E100B81EE0 /* SliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */; };
 		4AD5AA6B2A8F74E100B81EE0 /* SliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */; };
+		789B8DE97A977ED5B74BE826 /* Pods_NeoSTORE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E02CC93B97DD9DC88229445 /* Pods_NeoSTORE.framework */; };
+		DA1371B13BDABA37FD650F58 /* Pods_NeoSTORETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC83DFAD0C3B0555542676E0 /* Pods_NeoSTORETests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +87,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		036BE62EE081AC2292D526A9 /* Pods_NeoSTORE_NeoSTOREUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeoSTORE_NeoSTOREUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1468842086069A3780D8D90D /* Pods-NeoSTORE-NeoSTOREUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORE-NeoSTOREUITests.debug.xcconfig"; path = "Target Support Files/Pods-NeoSTORE-NeoSTOREUITests/Pods-NeoSTORE-NeoSTOREUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3195F6AE66B9477BA8B14FF1 /* Pods-NeoSTORE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORE.release.xcconfig"; path = "Target Support Files/Pods-NeoSTORE/Pods-NeoSTORE.release.xcconfig"; sourceTree = "<group>"; };
+		3B2FABAE35101E077091D5F8 /* Pods-NeoSTORE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORE.debug.xcconfig"; path = "Target Support Files/Pods-NeoSTORE/Pods-NeoSTORE.debug.xcconfig"; sourceTree = "<group>"; };
 		4A2D84632A94F17E00DD0D8B /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		4A56C0D72A8F536400693C5E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../../../../../../../LoginViewController.swift; sourceTree = "<group>"; };
 		4A711FCC2A8E551D00C1348D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +116,10 @@
 		4A7FD2DA2A8E030500AEF0CB /* Gotham-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.otf"; sourceTree = "<group>"; };
 		4A7FD2E02A8E05DF00AEF0CB /* Gotham-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Medium.otf"; sourceTree = "<group>"; };
 		4A7FD2E12A8E05DF00AEF0CB /* Gotham-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Book.otf"; sourceTree = "<group>"; };
+		4A8E949F2A973E540067306F /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
+		4A8E94A22A973EEE0067306F /* ProductListAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListAPIService.swift; sourceTree = "<group>"; };
+		4A8E94A42A9750FA0067306F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		4A8E94A82A976FE00067306F /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		4A91ED0A2A932CDC00915A0A /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
 		4A91ED0B2A932CDC00915A0A /* ProductListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductListViewController.xib; sourceTree = "<group>"; };
 		4A91ED0E2A932CF900915A0A /* ProductListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductListCell.swift; path = ../../../../../../../../../Downloads/ProductListCell.swift; sourceTree = "<group>"; };
@@ -137,6 +152,11 @@
 		4A9EF7C32A961C5900C88A5D /* LoginAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIService.swift; sourceTree = "<group>"; };
 		4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderCollectionViewCell.xib; sourceTree = "<group>"; };
+		6D032C117B534D972C7A3592 /* Pods-NeoSTORETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORETests.release.xcconfig"; path = "Target Support Files/Pods-NeoSTORETests/Pods-NeoSTORETests.release.xcconfig"; sourceTree = "<group>"; };
+		8274638D5B9ECF38D689ECBF /* Pods-NeoSTORETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORETests.debug.xcconfig"; path = "Target Support Files/Pods-NeoSTORETests/Pods-NeoSTORETests.debug.xcconfig"; sourceTree = "<group>"; };
+		8E02CC93B97DD9DC88229445 /* Pods_NeoSTORE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeoSTORE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6B9332F07094AF4F250DF32 /* Pods-NeoSTORE-NeoSTOREUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORE-NeoSTOREUITests.release.xcconfig"; path = "Target Support Files/Pods-NeoSTORE-NeoSTOREUITests/Pods-NeoSTORE-NeoSTOREUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BC83DFAD0C3B0555542676E0 /* Pods_NeoSTORETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeoSTORETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				789B8DE97A977ED5B74BE826 /* Pods_NeoSTORE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA1371B13BDABA37FD650F58 /* Pods_NeoSTORETests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,12 +180,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34484985AC0F3D869FE69DAD /* Pods_NeoSTORE_NeoSTOREUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18DDFB9553A4D4A304231DC2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3B2FABAE35101E077091D5F8 /* Pods-NeoSTORE.debug.xcconfig */,
+				3195F6AE66B9477BA8B14FF1 /* Pods-NeoSTORE.release.xcconfig */,
+				1468842086069A3780D8D90D /* Pods-NeoSTORE-NeoSTOREUITests.debug.xcconfig */,
+				A6B9332F07094AF4F250DF32 /* Pods-NeoSTORE-NeoSTOREUITests.release.xcconfig */,
+				8274638D5B9ECF38D689ECBF /* Pods-NeoSTORETests.debug.xcconfig */,
+				6D032C117B534D972C7A3592 /* Pods-NeoSTORETests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		4A368CDD2A8F4A9400C0D7BD /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +318,7 @@
 			children = (
 				4A7390612A8E1602004E12A3 /* UICollectionView+Extension.swift */,
 				4A7390622A8E1602004E12A3 /* UITableView+Extension.swift */,
+				4A8E94A82A976FE00067306F /* Loader.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -301,6 +339,8 @@
 				4A7FD28E2A8DE9D900AEF0CB /* NeoSTORETests */,
 				4A7FD2982A8DE9D900AEF0CB /* NeoSTOREUITests */,
 				4A7FD2762A8DE9D600AEF0CB /* Products */,
+				18DDFB9553A4D4A304231DC2 /* Pods */,
+				C926CFBCB25439DBA87CA4F1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -408,6 +448,14 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		4A8E94A12A973E9E0067306F /* Web Service */ = {
+			isa = PBXGroup;
+			children = (
+				4A8E94A22A973EEE0067306F /* ProductListAPIService.swift */,
+			);
+			path = "Web Service";
+			sourceTree = "<group>";
+		};
 		4A91ED092A932CB700915A0A /* ProductListCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +527,7 @@
 		4A9A6BDE2A923AF900250B79 /* Product List */ = {
 			isa = PBXGroup;
 			children = (
+				4A8E94A12A973E9E0067306F /* Web Service */,
 				4AEB44CE2A93275F0054E69B /* View */,
 				4A9A6BE12A923B2F00250B79 /* ViewModel */,
 				4A9A6BDF2A923B1900250B79 /* Model */,
@@ -489,6 +538,7 @@
 		4A9A6BDF2A923B1900250B79 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A8E94A42A9750FA0067306F /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -496,6 +546,7 @@
 		4A9A6BE12A923B2F00250B79 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4A8E949F2A973E540067306F /* ProductListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -835,6 +886,16 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		C926CFBCB25439DBA87CA4F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E02CC93B97DD9DC88229445 /* Pods_NeoSTORE.framework */,
+				036BE62EE081AC2292D526A9 /* Pods_NeoSTORE_NeoSTOREUITests.framework */,
+				BC83DFAD0C3B0555542676E0 /* Pods_NeoSTORETests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -842,9 +903,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A7FD29F2A8DE9D900AEF0CB /* Build configuration list for PBXNativeTarget "NeoSTORE" */;
 			buildPhases = (
+				8DD1D7567C17878DEA705F75 /* [CP] Check Pods Manifest.lock */,
 				4A7FD2712A8DE9D600AEF0CB /* Sources */,
 				4A7FD2722A8DE9D600AEF0CB /* Frameworks */,
 				4A7FD2732A8DE9D600AEF0CB /* Resources */,
+				7D3508ACC826617F586A9103 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -859,6 +922,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A7FD2A22A8DE9D900AEF0CB /* Build configuration list for PBXNativeTarget "NeoSTORETests" */;
 			buildPhases = (
+				62D07811900EA8A6B6C09CAF /* [CP] Check Pods Manifest.lock */,
 				4A7FD2872A8DE9D900AEF0CB /* Sources */,
 				4A7FD2882A8DE9D900AEF0CB /* Frameworks */,
 				4A7FD2892A8DE9D900AEF0CB /* Resources */,
@@ -877,9 +941,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A7FD2A52A8DE9D900AEF0CB /* Build configuration list for PBXNativeTarget "NeoSTOREUITests" */;
 			buildPhases = (
+				56DEBFF15D1B951DFE85F7B9 /* [CP] Check Pods Manifest.lock */,
 				4A7FD2912A8DE9D900AEF0CB /* Sources */,
 				4A7FD2922A8DE9D900AEF0CB /* Frameworks */,
 				4A7FD2932A8DE9D900AEF0CB /* Resources */,
+				C17A0FDB340C94D668564299 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -978,6 +1044,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		56DEBFF15D1B951DFE85F7B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NeoSTORE-NeoSTOREUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62D07811900EA8A6B6C09CAF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NeoSTORETests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D3508ACC826617F586A9103 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE/Pods-NeoSTORE-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE/Pods-NeoSTORE-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE/Pods-NeoSTORE-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8DD1D7567C17878DEA705F75 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NeoSTORE-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C17A0FDB340C94D668564299 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE-NeoSTOREUITests/Pods-NeoSTORE-NeoSTOREUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE-NeoSTOREUITests/Pods-NeoSTORE-NeoSTOREUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE-NeoSTOREUITests/Pods-NeoSTORE-NeoSTOREUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4A7FD2712A8DE9D600AEF0CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -988,6 +1157,7 @@
 				4A7FD2792A8DE9D600AEF0CB /* AppDelegate.swift in Sources */,
 				4A56C0D82A8F536400693C5E /* LoginViewController.swift in Sources */,
 				4A9A6BEE2A923BDC00250B79 /* ProductDetailsViewController.swift in Sources */,
+				4A8E94A52A9750FA0067306F /* Product.swift in Sources */,
 				4A9A251D2A949BAF00892EB0 /* RegisterAPIService.swift in Sources */,
 				4A7390742A8E2715004E12A3 /* RegisterViewController.swift in Sources */,
 				4A9CCA252A921A660088A036 /* HomeContainerViewController.swift in Sources */,
@@ -997,6 +1167,7 @@
 				4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */,
 				4A91ED0C2A932CDC00915A0A /* ProductListViewController.swift in Sources */,
 				4A9A6C092A923E0100250B79 /* AddressListViewController.swift in Sources */,
+				4A8E94A02A973E540067306F /* ProductListViewModel.swift in Sources */,
 				4A9A6C0F2A923E2B00250B79 /* AddAddressViewController.swift in Sources */,
 				4A7FD27B2A8DE9D600AEF0CB /* SceneDelegate.swift in Sources */,
 				4A91ED102A932CF900915A0A /* ProductListCell.swift in Sources */,
@@ -1010,8 +1181,10 @@
 				4A7390642A8E1602004E12A3 /* UITableView+Extension.swift in Sources */,
 				4A91ED1F2A935E3700915A0A /* LoginViewModel.swift in Sources */,
 				4A91ED2A2A9365D700915A0A /* HomeModel.swift in Sources */,
+				4A8E94A92A976FE00067306F /* Loader.swift in Sources */,
 				4A91ED332A93673B00915A0A /* HomeCollectionViewCell.swift in Sources */,
 				4A9EF7C42A961C5900C88A5D /* LoginAPIService.swift in Sources */,
+				4A8E94A32A973EEE0067306F /* ProductListAPIService.swift in Sources */,
 				4A9EF7C02A95EBC800C88A5D /* APIServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1176,6 +1349,7 @@
 		};
 		4A7FD2A02A8DE9D900AEF0CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B2FABAE35101E077091D5F8 /* Pods-NeoSTORE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1203,6 +1377,7 @@
 		};
 		4A7FD2A12A8DE9D900AEF0CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3195F6AE66B9477BA8B14FF1 /* Pods-NeoSTORE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1230,6 +1405,7 @@
 		};
 		4A7FD2A32A8DE9D900AEF0CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8274638D5B9ECF38D689ECBF /* Pods-NeoSTORETests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1249,6 +1425,7 @@
 		};
 		4A7FD2A42A8DE9D900AEF0CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D032C117B534D972C7A3592 /* Pods-NeoSTORETests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1268,6 +1445,7 @@
 		};
 		4A7FD2A62A8DE9D900AEF0CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1468842086069A3780D8D90D /* Pods-NeoSTORE-NeoSTOREUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1285,6 +1463,7 @@
 		};
 		4A7FD2A72A8DE9D900AEF0CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6B9332F07094AF4F250DF32 /* Pods-NeoSTORE-NeoSTOREUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

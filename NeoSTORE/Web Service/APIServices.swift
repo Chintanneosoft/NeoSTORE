@@ -35,6 +35,7 @@ enum APIServices{
     
     case userRegister(param: [String:Any])
     case userLogin(param: [String:Any])
+    case fetchProductsList(param: [String:Any])
     
     var path: String{
         let apiDomain = "/api/"
@@ -42,26 +43,27 @@ enum APIServices{
         switch self{
             
         case .userRegister:
-        urlPath = apiDomain + "users/register"
+        urlPath = "users/register"
         case .userLogin:
-        urlPath = apiDomain + "users/login"
-            
+        urlPath = "users/login"
+        case .fetchProductsList:
+        urlPath = "products/getList"
         }
-        return baseURL + urlPath
+        return baseURL + apiDomain + urlPath
     }
     
     var httpMethod: String {
         switch self {
-//        case :
-//            return "GET"
-        default:
+        case .userLogin,.userRegister:
             return "POST"
+        default:
+            return "GET"
         }
     }
     
     var param: [String:Any]? {
         switch self {
-        case .userRegister(param: let param), .userLogin(let param):
+        case .userRegister(param: let param), .userLogin(let param),.fetchProductsList(param: let param):
             return param
         default:
             return nil
@@ -70,7 +72,7 @@ enum APIServices{
     
     var header: [String:String] {
         var dict:[String:String]
-        dict = [contentKey:contentValue]
+        dict = [contentKey:contentValue,"access_token":UserDefaults.standard.string(forKey:"accessToken") ?? ""]
         return dict
     }
 }

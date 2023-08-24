@@ -30,9 +30,14 @@ class APIManager {
                 }
                 request.httpBody = requestBodyComponents.query?.data(using: .utf8)
             }
-//            else{
-//                request.url = URL(string: apiCallType.path)
-//            }
+            else{
+                var urlComponents = URLComponents(string: apiCallType.path)
+                urlComponents?.queryItems = parameter.map{
+                    (key, value) in
+                    URLQueryItem(name: key, value: String(describing: value))
+                }
+                request.url = urlComponents?.url
+            }
         }
         
         request.allHTTPHeaderFields = apiCallType.header

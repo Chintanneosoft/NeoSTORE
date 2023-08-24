@@ -24,6 +24,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var btnFemale: UIButton!
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var termsAndCondition: UIButton!
+    
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,15 +130,6 @@ class RegisterViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 //MARK: - TextField Delegate
@@ -162,7 +154,6 @@ extension RegisterViewController: UITextFieldDelegate{
         if textField == tfConfirmPassword{
             textField.resignFirstResponder()
         }
-        //   textField.resignFirstResponder()
         return true
     }
 }
@@ -171,7 +162,7 @@ extension RegisterViewController: UITextFieldDelegate{
 extension RegisterViewController: RegisterViewModelDelegate{
     func showAlert(msg:String) {
         let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-        if msg == "Registered Successfull"{
+        if msg == "Registered Successfully"{
             
             let action = UIAlertAction(title: "OK", style: .default) { (action) in
                 let nextViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)

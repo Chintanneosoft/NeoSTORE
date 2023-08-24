@@ -168,7 +168,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == furnitureCollectionView{
                 let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
-                nextViewController.categoryId = indexPath.row + 1
+            nextViewController.productCategoryId = indexPath.row + 1
                 self.navigationController?.pushViewController(nextViewController, animated: true)
         }
     }

@@ -49,7 +49,7 @@ class RegisterViewModel: NSObject {
                         print(value)
                         DispatchQueue.main.async {
                             if value.status == 200{
-                                self.registerViewModelDelegate?.showAlert(msg: "Registered Successfull")
+                                self.registerViewModelDelegate?.showAlert(msg: "Registered Successfully")
                             }
                             else{
                                 self.registerViewModelDelegate?.showAlert(msg: value.user_msg!)
@@ -64,11 +64,7 @@ class RegisterViewModel: NSObject {
 //            }
         }
     }
-//    func didRegisteredUser() {
-//        DispatchQueue.main.async {
-//            self.registerViewModelDelegate?.showAlert(msg: "Registered Succesfully")
-//        }
-//    }
+
 
 }
 extension RegisterViewModel: ValidationDelegate{
@@ -77,24 +73,3 @@ extension RegisterViewModel: ValidationDelegate{
     }
 }
 
-extension RegisterViewModel {
-    func didRegisteredUser(userData: UserData) {
-            DispatchQueue.main.async {
-                self.registerViewModelDelegate?.showAlert(msg: "Registered Successfully")
-                // Handle the registered user data here
-//                print("User ID: \(userData.id)")
-//                print("First Name: \(userData.first_name)")
-                // ... print other properties
-            }
-        }
-        
-        func didFailToRegister(error: Error) {
-            DispatchQueue.main.async {
-                self.registerViewModelDelegate?.showAlert(msg: "Registration Failed")
-                // Handle the failure here
-                print("Registration Error: \(error)")
-            }
-        }
-    
-    
-}
