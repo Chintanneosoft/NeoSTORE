@@ -65,6 +65,16 @@
 		4A9EF7C42A961C5900C88A5D /* LoginAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF7C32A961C5900C88A5D /* LoginAPIService.swift */; };
 		4AD5AA6A2A8F74E100B81EE0 /* SliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */; };
 		4AD5AA6B2A8F74E100B81EE0 /* SliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */; };
+		4AF66A402A98C4F800F65CDA /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF66A3E2A98C4F800F65CDA /* ResetPasswordViewController.swift */; };
+		4AF66A412A98C4F800F65CDA /* ResetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF66A3F2A98C4F800F65CDA /* ResetPasswordViewController.xib */; };
+		4AF66A452A98D04C00F65CDA /* ProductsNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF66A432A98D04C00F65CDA /* ProductsNameCell.swift */; };
+		4AF66A462A98D04C00F65CDA /* ProductsNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF66A442A98D04C00F65CDA /* ProductsNameCell.xib */; };
+		4AF66A492A98D07100F65CDA /* ProductsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF66A472A98D07100F65CDA /* ProductsDetailCell.swift */; };
+		4AF66A4A2A98D07100F65CDA /* ProductsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF66A482A98D07100F65CDA /* ProductsDetailCell.xib */; };
+		4AF66A4D2A98D09A00F65CDA /* ProductBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF66A4B2A98D09A00F65CDA /* ProductBottomCell.swift */; };
+		4AF66A4E2A98D09A00F65CDA /* ProductBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF66A4C2A98D09A00F65CDA /* ProductBottomCell.xib */; };
+		4AF66A512A98D53600F65CDA /* RatingPopUPUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF66A502A98D53600F65CDA /* RatingPopUPUIView.swift */; };
+		4AF66A532A98D55200F65CDA /* RatingPopUpUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF66A522A98D55200F65CDA /* RatingPopUpUIView.xib */; };
 		789B8DE97A977ED5B74BE826 /* Pods_NeoSTORE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E02CC93B97DD9DC88229445 /* Pods_NeoSTORE.framework */; };
 		DA1371B13BDABA37FD650F58 /* Pods_NeoSTORETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC83DFAD0C3B0555542676E0 /* Pods_NeoSTORETests.framework */; };
 /* End PBXBuildFile section */
@@ -152,6 +162,16 @@
 		4A9EF7C32A961C5900C88A5D /* LoginAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIService.swift; sourceTree = "<group>"; };
 		4AD5AA682A8F74E100B81EE0 /* SliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		4AD5AA692A8F74E100B81EE0 /* SliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderCollectionViewCell.xib; sourceTree = "<group>"; };
+		4AF66A3E2A98C4F800F65CDA /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		4AF66A3F2A98C4F800F65CDA /* ResetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordViewController.xib; sourceTree = "<group>"; };
+		4AF66A432A98D04C00F65CDA /* ProductsNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsNameCell.swift; sourceTree = "<group>"; };
+		4AF66A442A98D04C00F65CDA /* ProductsNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductsNameCell.xib; sourceTree = "<group>"; };
+		4AF66A472A98D07100F65CDA /* ProductsDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsDetailCell.swift; sourceTree = "<group>"; };
+		4AF66A482A98D07100F65CDA /* ProductsDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductsDetailCell.xib; sourceTree = "<group>"; };
+		4AF66A4B2A98D09A00F65CDA /* ProductBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductBottomCell.swift; sourceTree = "<group>"; };
+		4AF66A4C2A98D09A00F65CDA /* ProductBottomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductBottomCell.xib; sourceTree = "<group>"; };
+		4AF66A502A98D53600F65CDA /* RatingPopUPUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingPopUPUIView.swift; sourceTree = "<group>"; };
+		4AF66A522A98D55200F65CDA /* RatingPopUpUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingPopUpUIView.xib; sourceTree = "<group>"; };
 		6D032C117B534D972C7A3592 /* Pods-NeoSTORETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORETests.release.xcconfig"; path = "Target Support Files/Pods-NeoSTORETests/Pods-NeoSTORETests.release.xcconfig"; sourceTree = "<group>"; };
 		8274638D5B9ECF38D689ECBF /* Pods-NeoSTORETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORETests.debug.xcconfig"; path = "Target Support Files/Pods-NeoSTORETests/Pods-NeoSTORETests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E02CC93B97DD9DC88229445 /* Pods_NeoSTORE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeoSTORE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,7 +217,6 @@
 				8274638D5B9ECF38D689ECBF /* Pods-NeoSTORETests.debug.xcconfig */,
 				6D032C117B534D972C7A3592 /* Pods-NeoSTORETests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -359,6 +378,7 @@
 			children = (
 				4A91ED1D2A935DB000915A0A /* Web Service */,
 				4A368CE32A8F4B8B00C0D7BD /* Login */,
+				4AF66A382A98C4A300F65CDA /* Reset Password */,
 				4A368CDD2A8F4A9400C0D7BD /* Register */,
 				4A7FD2A92A8DEA4700AEF0CB /* Home */,
 				4A9A6BF62A923C5100250B79 /* Address */,
@@ -556,6 +576,7 @@
 			children = (
 				4A9A6BEB2A923BBF00250B79 /* ViewModel */,
 				4A9A6BEA2A923BB900250B79 /* View */,
+				4AF66A422A98CFB400F65CDA /* ProductDetailsCell */,
 				4A9A6BE92A923BB000250B79 /* Model */,
 			);
 			path = "Product Details";
@@ -571,6 +592,7 @@
 		4A9A6BEA2A923BB900250B79 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4AF66A4F2A98D50200F65CDA /* RatingPopUp */,
 				4A9A6BF52A923C3900250B79 /* Controller */,
 				4A9A6BF42A923C3200250B79 /* Xib */,
 			);
@@ -886,6 +908,77 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		4AF66A382A98C4A300F65CDA /* Reset Password */ = {
+			isa = PBXGroup;
+			children = (
+				4AF66A3B2A98C4C600F65CDA /* Model */,
+				4AF66A3A2A98C4B900F65CDA /* ViewModel */,
+				4AF66A392A98C4B300F65CDA /* View */,
+			);
+			path = "Reset Password";
+			sourceTree = "<group>";
+		};
+		4AF66A392A98C4B300F65CDA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AF66A3D2A98C4D300F65CDA /* Controller */,
+				4AF66A3C2A98C4CC00F65CDA /* Xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AF66A3A2A98C4B900F65CDA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4AF66A3B2A98C4C600F65CDA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AF66A3C2A98C4CC00F65CDA /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				4AF66A3F2A98C4F800F65CDA /* ResetPasswordViewController.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		4AF66A3D2A98C4D300F65CDA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4AF66A3E2A98C4F800F65CDA /* ResetPasswordViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4AF66A422A98CFB400F65CDA /* ProductDetailsCell */ = {
+			isa = PBXGroup;
+			children = (
+				4AF66A432A98D04C00F65CDA /* ProductsNameCell.swift */,
+				4AF66A442A98D04C00F65CDA /* ProductsNameCell.xib */,
+				4AF66A472A98D07100F65CDA /* ProductsDetailCell.swift */,
+				4AF66A482A98D07100F65CDA /* ProductsDetailCell.xib */,
+				4AF66A4B2A98D09A00F65CDA /* ProductBottomCell.swift */,
+				4AF66A4C2A98D09A00F65CDA /* ProductBottomCell.xib */,
+			);
+			path = ProductDetailsCell;
+			sourceTree = "<group>";
+		};
+		4AF66A4F2A98D50200F65CDA /* RatingPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				4AF66A502A98D53600F65CDA /* RatingPopUPUIView.swift */,
+				4AF66A522A98D55200F65CDA /* RatingPopUpUIView.xib */,
+			);
+			path = RatingPopUp;
+			sourceTree = "<group>";
+		};
 		C926CFBCB25439DBA87CA4F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1007,6 +1100,7 @@
 			files = (
 				4A9A6C042A923DC000250B79 /* CartViewController.xib in Resources */,
 				4A7390712A8E2205004E12A3 /* Main.storyboard in Resources */,
+				4AF66A412A98C4F800F65CDA /* ResetPasswordViewController.xib in Resources */,
 				4A91ED112A932CF900915A0A /* ProductListCell.xib in Resources */,
 				4A91ED1C2A93364E00915A0A /* DrawerHeaderTableViewCell.xib in Resources */,
 				4AD5AA6B2A8F74E100B81EE0 /* SliderCollectionViewCell.xib in Resources */,
@@ -1014,13 +1108,17 @@
 				4A91ED0D2A932CDC00915A0A /* ProductListViewController.xib in Resources */,
 				4A9CCA382A9226AE0088A036 /* OptionsCell.xib in Resources */,
 				4A7FD2DB2A8E030500AEF0CB /* Gotham-Bold.otf in Resources */,
+				4AF66A532A98D55200F65CDA /* RatingPopUpUIView.xib in Resources */,
 				4A9A6C0A2A923E0100250B79 /* AddressListViewController.xib in Resources */,
 				4A9A6BEF2A923BDC00250B79 /* ProductDetailsViewController.xib in Resources */,
+				4AF66A4E2A98D09A00F65CDA /* ProductBottomCell.xib in Resources */,
 				4A7FD2852A8DE9D800AEF0CB /* LaunchScreen.storyboard in Resources */,
 				4A9A6C102A923E2B00250B79 /* AddAddressViewController.xib in Resources */,
+				4AF66A462A98D04C00F65CDA /* ProductsNameCell.xib in Resources */,
 				4A7FD2822A8DE9D800AEF0CB /* Assets.xcassets in Resources */,
 				4A73906D2A8E20A9004E12A3 /* LoginViewController.xib in Resources */,
 				4A91ED342A93673B00915A0A /* HomeCollectionViewCell.xib in Resources */,
+				4AF66A4A2A98D07100F65CDA /* ProductsDetailCell.xib in Resources */,
 				4A7FD2E22A8E05DF00AEF0CB /* Gotham-Medium.otf in Resources */,
 				4A9CCA292A9223550088A036 /* DrawerViewController.xib in Resources */,
 				4A7390752A8E2715004E12A3 /* RegisterViewController.xib in Resources */,
@@ -1156,6 +1254,7 @@
 				4A9A251A2A949B6900892EB0 /* RegisterViewModel.swift in Sources */,
 				4A7FD2792A8DE9D600AEF0CB /* AppDelegate.swift in Sources */,
 				4A56C0D82A8F536400693C5E /* LoginViewController.swift in Sources */,
+				4AF66A4D2A98D09A00F65CDA /* ProductBottomCell.swift in Sources */,
 				4A9A6BEE2A923BDC00250B79 /* ProductDetailsViewController.swift in Sources */,
 				4A8E94A52A9750FA0067306F /* Product.swift in Sources */,
 				4A9A251D2A949BAF00892EB0 /* RegisterAPIService.swift in Sources */,
@@ -1166,19 +1265,23 @@
 				4A9CCA372A9226AE0088A036 /* OptionsCell.swift in Sources */,
 				4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */,
 				4A91ED0C2A932CDC00915A0A /* ProductListViewController.swift in Sources */,
+				4AF66A492A98D07100F65CDA /* ProductsDetailCell.swift in Sources */,
 				4A9A6C092A923E0100250B79 /* AddressListViewController.swift in Sources */,
 				4A8E94A02A973E540067306F /* ProductListViewModel.swift in Sources */,
 				4A9A6C0F2A923E2B00250B79 /* AddAddressViewController.swift in Sources */,
 				4A7FD27B2A8DE9D600AEF0CB /* SceneDelegate.swift in Sources */,
 				4A91ED102A932CF900915A0A /* ProductListCell.swift in Sources */,
 				4A2D84642A94F17E00DD0D8B /* RegisterModel.swift in Sources */,
+				4AF66A512A98D53600F65CDA /* RatingPopUPUIView.swift in Sources */,
 				4AD5AA6A2A8F74E100B81EE0 /* SliderCollectionViewCell.swift in Sources */,
 				4A9A6C032A923DC000250B79 /* CartViewController.swift in Sources */,
 				4A9EF7BE2A95EB8C00C88A5D /* APIManager.swift in Sources */,
 				4A7FD2D92A8DFCC300AEF0CB /* Constants.swift in Sources */,
 				4A91ED2C2A93664200915A0A /* HomeViewModel.swift in Sources */,
 				4A91ED142A93319600915A0A /* Validation.swift in Sources */,
+				4AF66A452A98D04C00F65CDA /* ProductsNameCell.swift in Sources */,
 				4A7390642A8E1602004E12A3 /* UITableView+Extension.swift in Sources */,
+				4AF66A402A98C4F800F65CDA /* ResetPasswordViewController.swift in Sources */,
 				4A91ED1F2A935E3700915A0A /* LoginViewModel.swift in Sources */,
 				4A91ED2A2A9365D700915A0A /* HomeModel.swift in Sources */,
 				4A8E94A92A976FE00067306F /* Loader.swift in Sources */,

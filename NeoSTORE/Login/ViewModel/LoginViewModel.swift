@@ -10,22 +10,26 @@ protocol LoginViewModelDelegate:AnyObject{
     func showAlert(msg:String)
 }
 class LoginViewModel{
+    
     private let validation = Validation()
+    
     private let loginAPIService = LoginAPIService()
+    
     weak var loginViewModelDelegate: LoginViewModelDelegate?
-    func callValidations(email:String, pass:String){
+    
+    func callValidations(email:String, pass:String) {
         
         validation.validationDelegate = self
         
-        let validity = validation.loginValidation( email: email, password: pass)
-        if validity{
+        let validationResult = validation.loginValidation( email: email, password: pass)
+        if validationResult.0{
             print(email,pass)
             loginAPIService.loginUser(email: email, pass: pass){ (response) in
                 switch response{
                 case .success(let value):
                     print(value)
                     UserDefaults.standard.set(value.data?.access_token ?? "", forKey: "accessToken")
-                        if value.status == 200{
+                    if value.status == 200{
                             self.loginViewModelDelegate?.showAlert(msg: "LoggedIn Successfully")
                         }
                         else{
@@ -37,6 +41,9 @@ class LoginViewModel{
                 }
                 
             }
+        }
+        else{
+            self.loginViewModelDelegate?.showAlert(msg: validationResult.1)
         }
     }
 }

@@ -29,8 +29,8 @@ class RegisterViewModel: NSObject {
             resultMsg(msg: "Agree with terms and conditions")
         }
         
-        let validity = validation.registerValidation(firstName: fname, lastName: lname, email: email, password: pass, confirmPassword: cpass, mobileNumber: phone)
-        if validity{
+        let validitionResult = validation.registerValidation(firstName: fname, lastName: lname, email: email, password: pass, confirmPassword: cpass, mobileNumber: phone)
+        if validitionResult.0{
             print(fname,lname,email,pass,phone,btnSelected)
             
             self.registerAPIService.registerUser(fname: fname, lname: lname, email: email, pass: pass, cpass: cpass, gender: btnSelected, phone: phone){
@@ -48,6 +48,9 @@ class RegisterViewModel: NSObject {
                     self.registerViewModelDelegate?.showAlert(msg: String(error.localizedDescription))
                 }
             }
+        }
+        else{
+            self.registerViewModelDelegate?.showAlert(msg: validitionResult.1)
         }
     }
     

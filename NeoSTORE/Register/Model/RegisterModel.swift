@@ -75,3 +75,17 @@ struct UserData: Codable {
         access_token = try values.decodeIfPresent(String.self, forKey: .access_token)
     }
 }
+
+struct UserFailure : Codable {
+    let status : Int?
+    let data : Bool?
+    let message : String?
+    let user_msg : String?
+    
+    enum CodingKeys: String, CodingKey {
+        case status = "status"
+        case data = "data"
+        case message = "message"
+        case user_msg = "user_msg"
+    }
+}

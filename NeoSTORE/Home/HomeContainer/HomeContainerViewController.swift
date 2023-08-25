@@ -28,6 +28,9 @@ class HomeContainerViewController: UIViewController {
         addChildVCs()
         navigationController?.navigationBar.isHidden = true
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
     
     //MARK: - Functions
     private func addChildVCs() {
@@ -80,7 +83,7 @@ extension HomeContainerViewController: HomeViewControllerDelegate{
             }
         case .opened:
             // close it
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,initialSpringVelocity: 0,options: .curveLinear){
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,initialSpringVelocity: 0,options: .curveEaseInOut){
                 self.navVC?.view.frame.origin.x = 0
             } completion: { [weak self] done in
                 if done{

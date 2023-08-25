@@ -60,10 +60,7 @@ class HomeViewController: UIViewController {
                 // Set the left bar button item
         navigationItem.rightBarButtonItem = searchButton
 
-        //Labels
-        for lbl in labels{
-            lbl.font = UIFont(name: Font.fontRegular.rawValue, size: 23)
-        }
+      
     }
     
     private func xibRegister(){

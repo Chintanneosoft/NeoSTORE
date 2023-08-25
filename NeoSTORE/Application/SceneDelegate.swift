@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         // Create your view controller
-        let viewController = LoginViewController()
+        let viewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
         
         // Create a navigation controller if needed
         let navigationController = UINavigationController(rootViewController: viewController)

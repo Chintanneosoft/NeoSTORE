@@ -24,7 +24,9 @@ class DrawerViewController: UIViewController {
         xibRegister()
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
     //MARK: - Functions
     private func setDelegates(){
         drawerTableView?.delegate = self
@@ -94,6 +96,7 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
                 nextViewController.productCategoryId = indexPath.row
                 
                 self.navigationController?.pushViewController(nextViewController, animated: true)
+                
               
             }
         }

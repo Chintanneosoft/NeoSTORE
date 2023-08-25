@@ -12,9 +12,10 @@ class ProductListViewController: UIViewController {
     
     @IBOutlet weak var productListTableView: UITableView!
     
+    @IBOutlet weak var productsViewed: UILabel!
+    var numberOfProductsViewed: Int = 0
     var productsData: Products?
     var productCategoryId: Int?
-    var categoryName: String?
     var loaderView: UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class ProductListViewController: UIViewController {
     private func setDelegates(){
         productListTableView.delegate = self
         productListTableView.dataSource = self
+        
     }
     private func xibRegister(){
         productListTableView.register(UINib(nibName: "ProductListCell", bundle: nil), forCellReuseIdentifier: "ProductListCell")
@@ -36,15 +38,38 @@ class ProductListViewController: UIViewController {
     private func setUpUI(){
 //        navigationController?.navigationBar.isHidden = false
         //Navigation bar
-        navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
-        navigationController?.navigationBar.backgroundColor = UIColor(named: "Primary Background")
-        
-        navigationItem.title = "Table"
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-        ]
-        
+//        navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
+//        navigationController?.navigationBar.backgroundColor = UIColor(named: "Primary Background")
+//
+//        navigationItem.title = "Table"
+//        navigationController?.navigationBar.titleTextAttributes = [
+//            NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
+//            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
+//        ]
+        setUpNavBar()
+    }
+    private func setUpNavBar() {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.title = getTitle(categoryID: productCategoryId ?? 0)
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+//        navigationController?.navigationBar.titleTextAttributes = [
+//            NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
+//            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
+//        ]
+    }
+    private func getTitle(categoryID: Int) -> String {
+        if categoryID == 1 {
+            return "Tables"
+        }
+        else if categoryID == 2 {
+            return "Chairs"
+        }
+        else if categoryID == 3 {
+            return "Sofas"
+        }
+        else {
+            return "Cupboards"
+        }
     }
     private func callViewModelFetchProductList(){
         self.showLoader(view: self.view, aicView: &self.loaderView)
@@ -75,8 +100,12 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+////        return 50
+//    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        numberOfProductsViewed += 1
+        productsViewed.text = "\(indexPath.row+1) of \(productsData?.data?.count ?? 0)"
     }
     
 }
