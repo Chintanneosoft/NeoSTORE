@@ -7,14 +7,23 @@
 
 import UIKit
 
-class RatingPopUPUIView: UIView {
+class RatingPopUPUIView: UIViewController {
+    
+    @IBOutlet weak var lblProductName: UILabel!
+    
+    @IBOutlet weak var imgProduct: UIImageView!
+    
+    @IBOutlet weak var btnRating1: UIButton!
+    @IBOutlet weak var btnRating2: UIButton!
+    @IBOutlet weak var btnRating3: UIButton!
+    @IBOutlet weak var btnRating4: UIButton!
+    @IBOutlet weak var btnRating5: UIButton!
+    @IBOutlet weak var btnRateNow: UIButton!
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+        // Do any additional setup after loading the view.
     }
-    */
+    
 
 }

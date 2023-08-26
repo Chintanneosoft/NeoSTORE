@@ -45,6 +45,8 @@
 		4A91ED2C2A93664200915A0A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED2B2A93664200915A0A /* HomeViewModel.swift */; };
 		4A91ED332A93673B00915A0A /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED312A93673B00915A0A /* HomeCollectionViewCell.swift */; };
 		4A91ED342A93673B00915A0A /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A91ED322A93673B00915A0A /* HomeCollectionViewCell.xib */; };
+		4A97B32C2A9A026C00DC11B6 /* EnterQuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97B32A2A9A026C00DC11B6 /* EnterQuantityView.swift */; };
+		4A97B32D2A9A026C00DC11B6 /* EnterQuantityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A97B32B2A9A026C00DC11B6 /* EnterQuantityView.xib */; };
 		4A9A251A2A949B6900892EB0 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A25192A949B6900892EB0 /* RegisterViewModel.swift */; };
 		4A9A251D2A949BAF00892EB0 /* RegisterAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A251C2A949BAF00892EB0 /* RegisterAPIService.swift */; };
 		4A9A6BEE2A923BDC00250B79 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A6BEC2A923BDC00250B79 /* ProductDetailsViewController.swift */; };
@@ -142,6 +144,8 @@
 		4A91ED2B2A93664200915A0A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4A91ED312A93673B00915A0A /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		4A91ED322A93673B00915A0A /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		4A97B32A2A9A026C00DC11B6 /* EnterQuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQuantityView.swift; sourceTree = "<group>"; };
+		4A97B32B2A9A026C00DC11B6 /* EnterQuantityView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterQuantityView.xib; sourceTree = "<group>"; };
 		4A9A25192A949B6900892EB0 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		4A9A251C2A949BAF00892EB0 /* RegisterAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPIService.swift; sourceTree = "<group>"; };
 		4A9A6BEC2A923BDC00250B79 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
@@ -536,6 +540,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4A97B3292A9A01ED00DC11B6 /* EnterQuantityView */ = {
+			isa = PBXGroup;
+			children = (
+				4A97B32A2A9A026C00DC11B6 /* EnterQuantityView.swift */,
+				4A97B32B2A9A026C00DC11B6 /* EnterQuantityView.xib */,
+			);
+			path = EnterQuantityView;
+			sourceTree = "<group>";
+		};
 		4A9A251B2A949B7900892EB0 /* WebService */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,6 +605,7 @@
 		4A9A6BEA2A923BB900250B79 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A97B3292A9A01ED00DC11B6 /* EnterQuantityView */,
 				4AF66A4F2A98D50200F65CDA /* RatingPopUp */,
 				4A9A6BF52A923C3900250B79 /* Controller */,
 				4A9A6BF42A923C3200250B79 /* Xib */,
@@ -1110,6 +1124,7 @@
 				4A7FD2DB2A8E030500AEF0CB /* Gotham-Bold.otf in Resources */,
 				4AF66A532A98D55200F65CDA /* RatingPopUpUIView.xib in Resources */,
 				4A9A6C0A2A923E0100250B79 /* AddressListViewController.xib in Resources */,
+				4A97B32D2A9A026C00DC11B6 /* EnterQuantityView.xib in Resources */,
 				4A9A6BEF2A923BDC00250B79 /* ProductDetailsViewController.xib in Resources */,
 				4AF66A4E2A98D09A00F65CDA /* ProductBottomCell.xib in Resources */,
 				4A7FD2852A8DE9D800AEF0CB /* LaunchScreen.storyboard in Resources */,
@@ -1260,6 +1275,7 @@
 				4A9A251D2A949BAF00892EB0 /* RegisterAPIService.swift in Sources */,
 				4A7390742A8E2715004E12A3 /* RegisterViewController.swift in Sources */,
 				4A9CCA252A921A660088A036 /* HomeContainerViewController.swift in Sources */,
+				4A97B32C2A9A026C00DC11B6 /* EnterQuantityView.swift in Sources */,
 				4A91ED1B2A93364E00915A0A /* DrawerHeaderTableViewCell.swift in Sources */,
 				4A9CCA272A9223320088A036 /* DrawerViewController.swift in Sources */,
 				4A9CCA372A9226AE0088A036 /* OptionsCell.swift in Sources */,

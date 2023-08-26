@@ -19,14 +19,15 @@ class HomeViewController: UIViewController {
     weak var homeViewDelegate: HomeViewControllerDelegate?
     
     //MARK: - IBOutlets
-    @IBOutlet weak var sliderCollectionView: UICollectionView!
+
+    @IBOutlet weak var sliderScrollView: UIScrollView!
     @IBOutlet weak var furnitureCollectionView: UICollectionView!
     @IBOutlet weak var sliderImg: UIImageView!
     @IBOutlet weak var sliderPageControl: UIPageControl!
     @IBOutlet var labels: [UILabel]!
     
     //MARK: - Properties
-    
+    private var timer: Timer!
     private var sliderImages = ["slider_img1","slider_img2","slider_img3","slider_img4"]
     private var drawerViewController: DrawerViewController!
     private var furnitureData:[[String:Any]] = [["name":"Table","lblPosition":Positions.topRight,"imgName":"table","imgPosition":Positions.bottomLeft], ["name":"Sofas","lblPosition":Positions.bottomLeft,"imgName":"sofa","imgPosition":Positions.topRight],["name":"Chairs","lblPosition":Positions.topLeft,"imgName":"chair","imgPosition":Positions.bottomRight],["name":"Cupboards","lblPosition":Positions.bottomRight,"imgName":"cupboard","imgPosition":Positions.topLeft]]
