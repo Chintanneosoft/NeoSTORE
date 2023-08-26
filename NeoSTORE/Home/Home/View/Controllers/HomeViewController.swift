@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
     
     //MARK: - Properties
     private var timer: Timer!
+    private var noOfImgs: Int = 0
     private var sliderImages = ["slider_img1","slider_img2","slider_img3","slider_img4"]
     private var drawerViewController: DrawerViewController!
     private var furnitureData:[[String:Any]] = [["name":"Table","lblPosition":Positions.topRight,"imgName":"table","imgPosition":Positions.bottomLeft], ["name":"Sofas","lblPosition":Positions.bottomLeft,"imgName":"sofa","imgPosition":Positions.topRight],["name":"Chairs","lblPosition":Positions.topLeft,"imgName":"chair","imgPosition":Positions.bottomRight],["name":"Cupboards","lblPosition":Positions.bottomRight,"imgName":"cupboard","imgPosition":Positions.topLeft]]
@@ -39,6 +40,10 @@ class HomeViewController: UIViewController {
         setDelegates()
         setUpUI()
         // Do any additional setup after loading the view.
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.timer.invalidate()
     }
     
     //MARK: - Functions
@@ -60,20 +65,35 @@ class HomeViewController: UIViewController {
         let searchButton = UIBarButtonItem(image: UIImage(named: "search_icon"), style: .plain, target: self, action: #selector(showProductList))
                 // Set the left bar button item
         navigationItem.rightBarButtonItem = searchButton
-
-      
+        
+        setSliderScrollView()
+        
     }
     
     private func xibRegister(){
 //        sliderCollectionView.registerCell(of: SliderCollectionViewCell.self)
         furnitureCollectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCollectionViewCell")
     }
-    
+    private func setSliderScrollView(){
+        self.timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
+        for i in 0..<sliderImages.count {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleToFill
+            imageView.image = UIImage(named: sliderImages[i])
+            let xPos = CGFloat (i)*self.view.bounds.size.width
+            imageView.frame = CGRect (x: xPos, y: 0, width: view.frame.size.width, height: sliderScrollView.frame.size.height)
+            sliderScrollView.contentSize.width = view.frame.size.width*CGFloat(i+1)
+            sliderScrollView.showsHorizontalScrollIndicator = false
+            sliderScrollView.addSubview(imageView)
+        }
+    }
     private func setDelegates(){
 //        sliderCollectionView.delegate = self
 //        sliderCollectionView.dataSource = self
+        sliderScrollView.delegate = self
         furnitureCollectionView.delegate = self
         furnitureCollectionView.dataSource = self
+        
     }
     
     //MARK: - @objc Functions
@@ -85,16 +105,26 @@ class HomeViewController: UIViewController {
         let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
         navigationController?.pushViewController(nextViewController, animated: true)
     }
+    @objc func timerRunning() {
+        if self.noOfImgs < self.sliderImages.count-1 {
+            noOfImgs += 1
+                }
+                else{
+                    self.noOfImgs = 0
+                }
+        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(noOfImgs) * view.frame.size.width, y: 0), animated: true)
+    }
     
     //MARK: - IBActions
     @IBAction func pageChange(_ sender: UIPageControl) {
 //        sliderCollectionView.scrollToItem(at: IndexPath(item: sender.currentPage, section: 0), at: .right, animated: true)
-        if sender.currentPage + 1 == sliderImages.count{
-            sliderImg.image = UIImage(named: sliderImages[0])
-        }
-        else{
-            sliderImg.image = UIImage(named: sliderImages[sender.currentPage+1])
-        }
+        let current = sender.currentPage
+        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(current) * view.frame.size.width, y: 0), animated: true)
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let page = scrollView.contentOffset.x / scrollView.frame.width
+        sliderPageControl.numberOfPages = sliderImages.count
+        sliderPageControl.currentPage = Int(page)
     }
      
 

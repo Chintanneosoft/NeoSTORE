@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,7 +22,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9E-Q9-e3z">
-                        <rect key="frame" x="0.0" y="0.0" width="349" height="432"/>
+                        <rect key="frame" x="0.0" y="0.0" width="349" height="442"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcA-wg-lmf">
                                 <rect key="frame" x="0.0" y="0.0" width="349" height="305"/>
@@ -45,7 +44,7 @@
                                         </constraints>
                                         <state key="normal" title="Button" image="share"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OUT OF STOCK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YP7-8y-H9n">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OUT OF STOCK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YP7-8y-H9n">
                                         <rect key="frame" x="180.66666666666666" y="12" width="95.333333333333343" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="Y1y-LY-nlB"/>
@@ -93,7 +92,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="TVe-2H-wDB">
-                                <rect key="frame" x="0.0" y="305" width="349" height="127"/>
+                                <rect key="frame" x="0.0" y="315" width="349" height="127"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmN-19-ya2">
                                         <rect key="frame" x="13" y="27" width="323" height="25"/>
@@ -126,7 +125,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TVe-2H-wDB" firstAttribute="leading" secondItem="M9E-Q9-e3z" secondAttribute="leading" id="Nmm-Le-ZbJ"/>
                             <constraint firstAttribute="trailing" secondItem="TVe-2H-wDB" secondAttribute="trailing" id="T9A-5J-7oT"/>
@@ -134,16 +133,18 @@
                             <constraint firstItem="HcA-wg-lmf" firstAttribute="leading" secondItem="M9E-Q9-e3z" secondAttribute="leading" id="fFt-yr-XVW"/>
                             <constraint firstAttribute="trailing" secondItem="HcA-wg-lmf" secondAttribute="trailing" id="g1f-pf-GtM"/>
                             <constraint firstAttribute="bottom" secondItem="TVe-2H-wDB" secondAttribute="bottom" id="mwl-V9-V7R"/>
-                            <constraint firstItem="TVe-2H-wDB" firstAttribute="top" secondItem="HcA-wg-lmf" secondAttribute="bottom" id="nS2-O7-imb"/>
+                            <constraint firstItem="TVe-2H-wDB" firstAttribute="top" secondItem="HcA-wg-lmf" secondAttribute="bottom" constant="10" id="nS2-O7-imb"/>
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="M9E-Q9-e3z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="4Yd-ge-0UR"/>
                     <constraint firstItem="M9E-Q9-e3z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xiV-uZ-Bf6"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="btnShare" destination="btk-P0-ka0" id="InZ-Sh-yzw"/>
                 <outlet property="lblOutOfStock" destination="YP7-8y-H9n" id="YZa-6Y-9Cb"/>
@@ -155,8 +156,5 @@
     </objects>
     <resources>
         <image name="share" width="30" height="30"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

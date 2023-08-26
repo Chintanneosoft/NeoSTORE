@@ -28,13 +28,13 @@ class LoginViewModel{
                 switch response{
                 case .success(let value):
                     print(value)
-                    UserDefaults.standard.set(value.data?.access_token ?? "", forKey: "accessToken")
-                    if value.status == 200{
-                            self.loginViewModelDelegate?.showAlert(msg: "LoggedIn Successfully")
-                        }
-                        else{
-                            self.loginViewModelDelegate?.showAlert(msg: value.user_msg!)
-                        }
+                    if (value.0 != nil){
+                        UserDefaults.standard.set(value.0!.data?.access_token ?? "", forKey: "accessToken")
+                        self.loginViewModelDelegate?.showAlert(msg: "LoggedIn Successfully")
+                    }
+                    else{
+                        self.loginViewModelDelegate?.showAlert(msg: value.1!.user_msg!)
+                    }
                 case .failure(let error):
                     print(error)
                         self.loginViewModelDelegate?.showAlert(msg: error.localizedDescription)

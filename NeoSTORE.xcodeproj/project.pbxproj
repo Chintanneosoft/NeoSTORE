@@ -47,6 +47,8 @@
 		4A91ED342A93673B00915A0A /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A91ED322A93673B00915A0A /* HomeCollectionViewCell.xib */; };
 		4A97B32C2A9A026C00DC11B6 /* EnterQuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97B32A2A9A026C00DC11B6 /* EnterQuantityView.swift */; };
 		4A97B32D2A9A026C00DC11B6 /* EnterQuantityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A97B32B2A9A026C00DC11B6 /* EnterQuantityView.xib */; };
+		4A97B32F2A9A1D9C00DC11B6 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97B32E2A9A1D9C00DC11B6 /* ProductDetailsViewModel.swift */; };
+		4A97B3322A9A1DD300DC11B6 /* ProductDetailsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97B3312A9A1DD300DC11B6 /* ProductDetailsAPIService.swift */; };
 		4A9A251A2A949B6900892EB0 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A25192A949B6900892EB0 /* RegisterViewModel.swift */; };
 		4A9A251D2A949BAF00892EB0 /* RegisterAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A251C2A949BAF00892EB0 /* RegisterAPIService.swift */; };
 		4A9A6BEE2A923BDC00250B79 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9A6BEC2A923BDC00250B79 /* ProductDetailsViewController.swift */; };
@@ -146,6 +148,8 @@
 		4A91ED322A93673B00915A0A /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		4A97B32A2A9A026C00DC11B6 /* EnterQuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterQuantityView.swift; sourceTree = "<group>"; };
 		4A97B32B2A9A026C00DC11B6 /* EnterQuantityView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnterQuantityView.xib; sourceTree = "<group>"; };
+		4A97B32E2A9A1D9C00DC11B6 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
+		4A97B3312A9A1DD300DC11B6 /* ProductDetailsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsAPIService.swift; sourceTree = "<group>"; };
 		4A9A25192A949B6900892EB0 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		4A9A251C2A949BAF00892EB0 /* RegisterAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPIService.swift; sourceTree = "<group>"; };
 		4A9A6BEC2A923BDC00250B79 /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
@@ -549,6 +553,14 @@
 			path = EnterQuantityView;
 			sourceTree = "<group>";
 		};
+		4A97B3302A9A1DA300DC11B6 /* Web Service */ = {
+			isa = PBXGroup;
+			children = (
+				4A97B3312A9A1DD300DC11B6 /* ProductDetailsAPIService.swift */,
+			);
+			path = "Web Service";
+			sourceTree = "<group>";
+		};
 		4A9A251B2A949B7900892EB0 /* WebService */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,6 +599,7 @@
 		4A9A6BE82A923BA100250B79 /* Product Details */ = {
 			isa = PBXGroup;
 			children = (
+				4A97B3302A9A1DA300DC11B6 /* Web Service */,
 				4A9A6BEB2A923BBF00250B79 /* ViewModel */,
 				4A9A6BEA2A923BB900250B79 /* View */,
 				4AF66A422A98CFB400F65CDA /* ProductDetailsCell */,
@@ -616,6 +629,7 @@
 		4A9A6BEB2A923BBF00250B79 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4A97B32E2A9A1D9C00DC11B6 /* ProductDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1302,7 +1316,9 @@
 				4A91ED2A2A9365D700915A0A /* HomeModel.swift in Sources */,
 				4A8E94A92A976FE00067306F /* Loader.swift in Sources */,
 				4A91ED332A93673B00915A0A /* HomeCollectionViewCell.swift in Sources */,
+				4A97B3322A9A1DD300DC11B6 /* ProductDetailsAPIService.swift in Sources */,
 				4A9EF7C42A961C5900C88A5D /* LoginAPIService.swift in Sources */,
+				4A97B32F2A9A1D9C00DC11B6 /* ProductDetailsViewModel.swift in Sources */,
 				4A8E94A32A973EEE0067306F /* ProductListAPIService.swift in Sources */,
 				4A9EF7C02A95EBC800C88A5D /* APIServices.swift in Sources */,
 			);

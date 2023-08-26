@@ -107,6 +107,10 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
         numberOfProductsViewed += 1
         productsViewed.text = "\(indexPath.row+1) of \(productsData?.data?.count ?? 0)"
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextViewController = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
     
 }
 

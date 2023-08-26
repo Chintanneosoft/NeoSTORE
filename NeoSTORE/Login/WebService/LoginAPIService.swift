@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginAPIService: NSObject {
-    func loginUser(email: String, pass: String, completion: @escaping(Result<User,Error>) -> Void){
+    func loginUser(email: String, pass: String, completion: @escaping(Result<(User?,UserFailure?),Error>) -> Void){
         
         let params = ["email": email, "password": pass]
         
@@ -19,9 +19,15 @@ class LoginAPIService: NSObject {
             case .success(let value):
                 do {
                     let responseData = try JSONDecoder().decode(User.self, from: value)
-                    completion(.success(responseData))
+                    completion(.success((responseData,nil)))
                 } catch {
-                    completion(.failure(error))
+                    do{
+                        let responseData = try JSONDecoder().decode(UserFailure.self, from: value)
+                        completion(.success((nil,responseData)))
+                    }
+                    catch{
+                        completion(.failure(error))
+                    }
                 }
                 
             case .failure(let error):

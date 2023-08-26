@@ -26,5 +26,13 @@ class ProductsDetailCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    func setDetails(imgName: String, price: Int){
+        lblPrice.text = "Rs: " + String(price)
+        
+        setImage(url:imgName)
+    }
+    private func setImage(url:String){
+      
+        
+    }
 }
