@@ -7,11 +7,13 @@
 
 import Foundation
 
+//MARK: - APIManager
 class APIManager {
-    
+    // Shared Instance
     static let shared = APIManager()
     private init(){}
     
+    // Common Request Function
     func callRequest(apiCallType: APIServices, completion: @escaping(Result<Data,Error>)->Void){
         
         let session = URLSession.shared

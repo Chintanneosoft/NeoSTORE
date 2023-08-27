@@ -8,11 +8,11 @@
 import UIKit
 
 class ProductDetailsAPIService: NSObject {
-        func fetchProductsDetails(productCategoryId: Int,completion: @escaping(Result<Products,Error>) -> Void){
+        func fetchProductsDetails(productId: Int,completion: @escaping(Result<Products,Error>) -> Void){
             
-            let params = ["product_category_id" : productCategoryId]
+            let params = ["product_id" : productId]
             
-            APIManager.shared.callRequest(apiCallType: .fetchProductsList(param: params)){ (response) in
+            APIManager.shared.callRequest(apiCallType: .fetchProductsDetails(param: params)){ (response) in
                 
                 switch response {
                 

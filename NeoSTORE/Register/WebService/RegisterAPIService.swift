@@ -7,8 +7,10 @@
 
 import UIKit
 
+//MARK: - RegisterAPIService
 class RegisterAPIService {
     
+    //APIRequest Function Call
     func registerUser(fname: String, lname: String, email: String, pass: String, cpass: String, gender: String, phone: String,completion: @escaping(Result<User,Error>) -> Void){
         
         let params = ["first_name": fname, "last_name": lname, "email": email, "password": pass, "confirm_password": cpass,"gender": gender, "phone_no": phone]
@@ -16,6 +18,7 @@ class RegisterAPIService {
         APIManager.shared.callRequest(apiCallType: .userRegister(param: params)){ (response) in
             
             switch response {
+                
             case .success(let value):
                 do {
                     let responseData = try JSONDecoder().decode(User.self, from: value)
@@ -23,6 +26,7 @@ class RegisterAPIService {
                 } catch {
                     completion(.failure(error))
                 }
+                
             case .failure(let error):
                 print("In Failure")
                 debugPrint(error.localizedDescription)

@@ -14,17 +14,14 @@ protocol HomeViewControllerDelegate:AnyObject{
 
 //MARK: - HomeViewController
 class HomeViewController: UIViewController {
-
+    
     //MARK: - HomeViewControllerDelegate
     weak var homeViewDelegate: HomeViewControllerDelegate?
     
     //MARK: - IBOutlets
-
     @IBOutlet weak var sliderScrollView: UIScrollView!
     @IBOutlet weak var furnitureCollectionView: UICollectionView!
-    @IBOutlet weak var sliderImg: UIImageView!
     @IBOutlet weak var sliderPageControl: UIPageControl!
-    @IBOutlet var labels: [UILabel]!
     
     //MARK: - Properties
     private var timer: Timer!
@@ -56,26 +53,33 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
             NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-              ]
-
+        ]
+        
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon"), style: .plain, target: self, action: #selector(showDrawer))
-                // Set the left bar button item
+        // Set the left bar button item
         navigationItem.leftBarButtonItem = menuButton
-
+        
         let searchButton = UIBarButtonItem(image: UIImage(named: "search_icon"), style: .plain, target: self, action: #selector(showProductList))
-                // Set the left bar button item
+        // Set the left bar button item
         navigationItem.rightBarButtonItem = searchButton
         
         setSliderScrollView()
-        
     }
-    
+
+    private func setDelegates(){
+        sliderScrollView.delegate = self
+        furnitureCollectionView.delegate = self
+        furnitureCollectionView.dataSource = self
+    }
+
     private func xibRegister(){
-//        sliderCollectionView.registerCell(of: SliderCollectionViewCell.self)
         furnitureCollectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCollectionViewCell")
     }
+    
     private func setSliderScrollView(){
+        
         self.timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
+        
         for i in 0..<sliderImages.count {
             let imageView = UIImageView()
             imageView.contentMode = .scaleToFill
@@ -86,118 +90,92 @@ class HomeViewController: UIViewController {
             sliderScrollView.showsHorizontalScrollIndicator = false
             sliderScrollView.addSubview(imageView)
         }
-    }
-    private func setDelegates(){
-//        sliderCollectionView.delegate = self
-//        sliderCollectionView.dataSource = self
-        sliderScrollView.delegate = self
-        furnitureCollectionView.delegate = self
-        furnitureCollectionView.dataSource = self
         
     }
     
-    //MARK: - @objc Functions
-    @objc func showDrawer(){
-        homeViewDelegate?.showDrawer()
-        
-    }
-    @objc func showProductList(){
-        let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
-        navigationController?.pushViewController(nextViewController, animated: true)
-    }
-    @objc func timerRunning() {
-        if self.noOfImgs < self.sliderImages.count-1 {
-            noOfImgs += 1
-                }
-                else{
-                    self.noOfImgs = 0
-                }
-        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(noOfImgs) * view.frame.size.width, y: 0), animated: true)
-    }
-    
-    //MARK: - IBActions
-    @IBAction func pageChange(_ sender: UIPageControl) {
-//        sliderCollectionView.scrollToItem(at: IndexPath(item: sender.currentPage, section: 0), at: .right, animated: true)
-        let current = sender.currentPage
-        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(current) * view.frame.size.width, y: 0), animated: true)
-    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = scrollView.contentOffset.x / scrollView.frame.width
         sliderPageControl.numberOfPages = sliderImages.count
         sliderPageControl.currentPage = Int(page)
     }
-     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    //MARK: - @objc Functions
+    @objc func showDrawer(){
+        homeViewDelegate?.showDrawer()
     }
-    */
-
+    
+    @objc func showProductList(){
+        let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
+    @objc func timerRunning() {
+        
+        if self.noOfImgs < self.sliderImages.count-1 {
+            noOfImgs += 1
+        }
+        else{
+            self.noOfImgs = 0
+        }
+        
+        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(noOfImgs) * view.frame.size.width, y: 0), animated: true)
+    }
+    
+    //MARK: - IBActions
+    @IBAction func pageChange(_ sender: UIPageControl) {
+        let current = sender.currentPage
+        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(current) * view.frame.size.width, y: 0), animated: true)
+    }
+    
 }
 
 //MARK: - CollectionView Delegate & DataSource
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource{
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return sliderImages.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.getCell(indexPath: indexPath) as SliderCollectionViewCell
-//        //cell.setImg(imgName: sliderImages[indexPath.row])
-//        cell.sliderImg?.image = UIImage(named: "\(sliderImages[indexPath.row])")
-//        return cell
-//    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == furnitureCollectionView{
             return 4
         }
         return sliderImages.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if collectionView == furnitureCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
-            cell.setContraints(lblname: furnitureData[indexPath.row]["name"] as! String, lblPosition: furnitureData[indexPath.row]["lblPosition"] as! Positions, imgName: furnitureData[indexPath.row]["imgName"] as! String, imgPosition: furnitureData[indexPath.row]["imgPosition"] as! Positions)
-            return cell
-            
-        }
-        
-        let cell = collectionView.getCell(indexPath: indexPath) as! SliderCollectionViewCell
-                //cell.setImg(imgName: sliderImages[indexPath.row])
-        cell.sliderImg?.image = UIImage(named: "\(sliderImages[indexPath.row])")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
+        cell.setContraints(lblname: furnitureData[indexPath.row]["name"] as! String, lblPosition: furnitureData[indexPath.row]["lblPosition"] as! Positions, imgName: furnitureData[indexPath.row]["imgName"] as! String, imgPosition: furnitureData[indexPath.row]["imgPosition"] as! Positions)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == furnitureCollectionView{
+            let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
+            nextViewController.productCategoryId = indexPath.row + 1
+            self.navigationController?.pushViewController(nextViewController, animated: true)
+        }
+    }
 }
-extension HomeViewController: UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let availableWidth = collectionView.bounds.width
-        let availableHeight = collectionView.bounds.height
-            let spacing: CGFloat = 50 // Adjust this value as needed
-            let cellWidth = (availableWidth - spacing) / 2
-        let cellHeight = (availableHeight - spacing) / 2
-            return CGSize(width: cellWidth, height: cellWidth) // Make it square or adjust height as needed
-        }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-            return 20
-        }
 
+//MARK: - CollectionView DelegateFlowLayout
+extension HomeViewController: UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let availableWidth = collectionView.bounds.width
+        let availableHeight = collectionView.bounds.height
+        let spacing: CGFloat = 50 
+        let cellWidth = (availableWidth - spacing) / 2
+        return CGSize(width: cellWidth, height: cellWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-            return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-        }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == furnitureCollectionView{
-                let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
-            nextViewController.productCategoryId = indexPath.row + 1
-                self.navigationController?.pushViewController(nextViewController, animated: true)
-        }
+        return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
     }
+    
 }

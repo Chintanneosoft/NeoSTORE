@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - User
 struct User: Codable {
     var status: Int?
     var data: UserData?
@@ -21,6 +22,8 @@ struct User: Codable {
     }
 }
 
+
+//MARK: - UserData
 struct UserData: Codable {
     var id: Int?
     var role_id: Int?
@@ -76,6 +79,8 @@ struct UserData: Codable {
     }
 }
 
+
+//MARK: - UserFailure
 struct UserFailure : Codable {
     let status : Int?
     let data : Bool?

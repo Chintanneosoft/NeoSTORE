@@ -79,33 +79,36 @@ class RegisterViewController: UIViewController {
         //Buttons
         btnRegister.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 26)
         btnRegister.layer.cornerRadius = 5.0
-        
-        
+    
     }
     
     private func setDelegates(){
+        
         tfFirstName.delegate = self
         tfLastName.delegate = self
         tfEmail.delegate = self
         tfPassword.delegate = self
         tfConfirmPassword.delegate = self
         tfPhoneNumber.delegate = self
+        
     }
     
     private func sendValidations(){
+        
         let registerViewModel = RegisterViewModel()
         registerViewModel.registerViewModelDelegate = self
         registerViewModel.callValidations(fname: tfFirstName.text ?? "", lname: tfLastName.text ?? "", email: tfEmail.text ?? "", pass: tfPassword.text ?? "", cpass: tfConfirmPassword.text ?? "", phone: tfPhoneNumber.text ?? "", btnSelected:btnMale.isSelected ? "Male" : (btnFemale.isSelected ? "Female" : ""), termsAndCondition: termsAndCondition.isSelected)
+        
     }
     
     //MARK: - @objc Functions
-    @objc func leftBarButtonTapped() {
-           // Handle left button tap
+    @objc func leftBarButtonTapped(){
         navigationController?.popViewController(animated: true)
        }
     
     //MARK: - IBActions
     @IBAction func btnRadioTapped(_ sender: UIButton) {
+        
         if sender == btnMale{
             btnMale.isSelected = true
             btnFemale.isSelected = false
@@ -114,6 +117,7 @@ class RegisterViewController: UIViewController {
             btnMale.isSelected = false
             btnFemale.isSelected = true
         }
+        
     }
     
     @IBAction func btnCheckBoxTapped(_ sender: UIButton) {
@@ -121,19 +125,15 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func btnRegisterTapped(_ sender: UIButton) {
-//        let nextViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
-//        let valid: Bool = validations()
         sendValidations()
-
-//        let nextViewController = HomeContainerViewController()
-//        navigationController?.pushViewController(nextViewController, animated: true)
     }
     
-
-
 }
+
+
 //MARK: - TextField Delegate
 extension RegisterViewController: UITextFieldDelegate{
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == tfFirstName{
             textField.resignFirstResponder()
@@ -160,6 +160,7 @@ extension RegisterViewController: UITextFieldDelegate{
 
 //MARK: - RegisterViewModelDelegate
 extension RegisterViewController: RegisterViewModelDelegate{
+    
     func showAlert(msg:String) {
         
         DispatchQueue.main.async {

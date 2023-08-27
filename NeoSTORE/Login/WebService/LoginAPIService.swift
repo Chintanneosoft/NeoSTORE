@@ -7,7 +7,10 @@
 
 import UIKit
 
+//MARK: - LoginAPIService
 class LoginAPIService: NSObject {
+    
+    //APIRequest Function Call
     func loginUser(email: String, pass: String, completion: @escaping(Result<(User?,UserFailure?),Error>) -> Void){
         
         let params = ["email": email, "password": pass]
