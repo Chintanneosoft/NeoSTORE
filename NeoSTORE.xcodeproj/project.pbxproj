@@ -29,10 +29,13 @@
 		4A7FD2DB2A8E030500AEF0CB /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2DA2A8E030500AEF0CB /* Gotham-Bold.otf */; };
 		4A7FD2E22A8E05DF00AEF0CB /* Gotham-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2E02A8E05DF00AEF0CB /* Gotham-Medium.otf */; };
 		4A7FD2E32A8E05DF00AEF0CB /* Gotham-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A7FD2E12A8E05DF00AEF0CB /* Gotham-Book.otf */; };
+		4A8D50CD2A9C723A0056D86E /* ProductDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D50CC2A9C723A0056D86E /* ProductDetailsModel.swift */; };
+		4A8D50D02A9CBEF40056D86E /* ProductImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D50CE2A9CBEF40056D86E /* ProductImageCollectionViewCell.swift */; };
+		4A8D50D12A9CBEF40056D86E /* ProductImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D50CF2A9CBEF40056D86E /* ProductImageCollectionViewCell.xib */; };
 		4A8E94A02A973E540067306F /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E949F2A973E540067306F /* ProductListViewModel.swift */; };
 		4A8E94A32A973EEE0067306F /* ProductListAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A22A973EEE0067306F /* ProductListAPIService.swift */; };
 		4A8E94A52A9750FA0067306F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A42A9750FA0067306F /* Product.swift */; };
-		4A8E94A92A976FE00067306F /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A82A976FE00067306F /* Loader.swift */; };
+		4A8E94A92A976FE00067306F /* Common Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A82A976FE00067306F /* Common Functions.swift */; };
 		4A91ED0C2A932CDC00915A0A /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED0A2A932CDC00915A0A /* ProductListViewController.swift */; };
 		4A91ED0D2A932CDC00915A0A /* ProductListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A91ED0B2A932CDC00915A0A /* ProductListViewController.xib */; };
 		4A91ED102A932CF900915A0A /* ProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED0E2A932CF900915A0A /* ProductListCell.swift */; };
@@ -132,10 +135,13 @@
 		4A7FD2DA2A8E030500AEF0CB /* Gotham-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.otf"; sourceTree = "<group>"; };
 		4A7FD2E02A8E05DF00AEF0CB /* Gotham-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Medium.otf"; sourceTree = "<group>"; };
 		4A7FD2E12A8E05DF00AEF0CB /* Gotham-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Book.otf"; sourceTree = "<group>"; };
+		4A8D50CC2A9C723A0056D86E /* ProductDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsModel.swift; sourceTree = "<group>"; };
+		4A8D50CE2A9CBEF40056D86E /* ProductImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		4A8D50CF2A9CBEF40056D86E /* ProductImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		4A8E949F2A973E540067306F /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 		4A8E94A22A973EEE0067306F /* ProductListAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListAPIService.swift; sourceTree = "<group>"; };
 		4A8E94A42A9750FA0067306F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		4A8E94A82A976FE00067306F /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		4A8E94A82A976FE00067306F /* Common Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Common Functions.swift"; sourceTree = "<group>"; };
 		4A91ED0A2A932CDC00915A0A /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
 		4A91ED0B2A932CDC00915A0A /* ProductListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductListViewController.xib; sourceTree = "<group>"; };
 		4A91ED0E2A932CF900915A0A /* ProductListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductListCell.swift; path = ../../../../../../../../../Downloads/ProductListCell.swift; sourceTree = "<group>"; };
@@ -340,7 +346,7 @@
 			children = (
 				4A7390612A8E1602004E12A3 /* UICollectionView+Extension.swift */,
 				4A7390622A8E1602004E12A3 /* UITableView+Extension.swift */,
-				4A8E94A82A976FE00067306F /* Loader.swift */,
+				4A8E94A82A976FE00067306F /* Common Functions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -607,6 +613,7 @@
 		4A9A6BE92A923BB000250B79 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A8D50CC2A9C723A0056D86E /* ProductDetailsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1104,6 +1111,8 @@
 				4AF66A482A98D07100F65CDA /* ProductsDetailCell.xib */,
 				4AF66A4B2A98D09A00F65CDA /* ProductBottomCell.swift */,
 				4AF66A4C2A98D09A00F65CDA /* ProductBottomCell.xib */,
+				4A8D50CE2A9CBEF40056D86E /* ProductImageCollectionViewCell.swift */,
+				4A8D50CF2A9CBEF40056D86E /* ProductImageCollectionViewCell.xib */,
 			);
 			path = ProductDetailsCell;
 			sourceTree = "<group>";
@@ -1242,6 +1251,7 @@
 				4A91ED112A932CF900915A0A /* ProductListCell.xib in Resources */,
 				4A91ED1C2A93364E00915A0A /* DrawerHeaderTableViewCell.xib in Resources */,
 				4A7FD2E32A8E05DF00AEF0CB /* Gotham-Book.otf in Resources */,
+				4A8D50D12A9CBEF40056D86E /* ProductImageCollectionViewCell.xib in Resources */,
 				4A91ED0D2A932CDC00915A0A /* ProductListViewController.xib in Resources */,
 				4A9CCA382A9226AE0088A036 /* OptionsCell.xib in Resources */,
 				4A9B95292A9B531100CD724D /* ProfileViewController.xib in Resources */,
@@ -1415,9 +1425,11 @@
 				4A91ED102A932CF900915A0A /* ProductListCell.swift in Sources */,
 				4A2D84642A94F17E00DD0D8B /* RegisterModel.swift in Sources */,
 				4AF66A512A98D53600F65CDA /* RatingPopUPUIView.swift in Sources */,
+				4A8D50D02A9CBEF40056D86E /* ProductImageCollectionViewCell.swift in Sources */,
 				4A9A6C032A923DC000250B79 /* CartViewController.swift in Sources */,
 				4A9EF7BE2A95EB8C00C88A5D /* APIManager.swift in Sources */,
 				4A7FD2D92A8DFCC300AEF0CB /* Constants.swift in Sources */,
+				4A8D50CD2A9C723A0056D86E /* ProductDetailsModel.swift in Sources */,
 				4A91ED2C2A93664200915A0A /* HomeViewModel.swift in Sources */,
 				4A91ED142A93319600915A0A /* Validation.swift in Sources */,
 				4AF66A452A98D04C00F65CDA /* ProductsNameCell.swift in Sources */,
@@ -1425,7 +1437,7 @@
 				4AF66A402A98C4F800F65CDA /* ResetPasswordViewController.swift in Sources */,
 				4A91ED1F2A935E3700915A0A /* LoginViewModel.swift in Sources */,
 				4A91ED2A2A9365D700915A0A /* HomeModel.swift in Sources */,
-				4A8E94A92A976FE00067306F /* Loader.swift in Sources */,
+				4A8E94A92A976FE00067306F /* Common Functions.swift in Sources */,
 				4A91ED332A93673B00915A0A /* HomeCollectionViewCell.swift in Sources */,
 				4A97B3322A9A1DD300DC11B6 /* ProductDetailsAPIService.swift in Sources */,
 				4A9EF7C42A961C5900C88A5D /* LoginAPIService.swift in Sources */,

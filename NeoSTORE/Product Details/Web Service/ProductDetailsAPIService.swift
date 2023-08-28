@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductDetailsAPIService: NSObject {
-        func fetchProductsDetails(productId: Int,completion: @escaping(Result<Products,Error>) -> Void){
+        func fetchProductsDetails(productId: Int,completion: @escaping(Result<ProductDetails,Error>) -> Void){
             
             let params = ["product_id" : productId]
             
@@ -18,7 +18,7 @@ class ProductDetailsAPIService: NSObject {
                 
                 case .success(let value):
                     do {
-                        let responseData = try JSONDecoder().decode(Products.self, from: value)
+                        let responseData = try JSONDecoder().decode(ProductDetails.self, from: value)
                         completion(.success(responseData))
                     } catch {
                         completion(.failure(error))

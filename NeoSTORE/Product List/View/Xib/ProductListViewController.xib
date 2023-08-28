@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,8 +22,9 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xE6-K5-flb">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="sectionIndexBackgroundColor" name="Primary Background"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWX-m7-EwO">
                     <rect key="frame" x="196.66666666666666" y="788" width="0.0" height="0.0"/>
@@ -32,19 +34,22 @@
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="36f-Aa-jj8"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="Primary Background"/>
             <constraints>
                 <constraint firstItem="xE6-K5-flb" firstAttribute="leading" secondItem="36f-Aa-jj8" secondAttribute="leading" id="IDh-Jq-cxl"/>
                 <constraint firstItem="EWX-m7-EwO" firstAttribute="centerX" secondItem="IDa-2C-yCv" secondAttribute="centerX" id="SGp-KK-GWM"/>
                 <constraint firstItem="xE6-K5-flb" firstAttribute="top" secondItem="36f-Aa-jj8" secondAttribute="top" id="WGU-Xz-FkN"/>
                 <constraint firstItem="36f-Aa-jj8" firstAttribute="trailing" secondItem="xE6-K5-flb" secondAttribute="trailing" id="i2q-Wb-qAF"/>
                 <constraint firstItem="36f-Aa-jj8" firstAttribute="bottom" secondItem="EWX-m7-EwO" secondAttribute="bottom" constant="30" id="jIe-RO-d2b"/>
-                <constraint firstItem="36f-Aa-jj8" firstAttribute="bottom" secondItem="xE6-K5-flb" secondAttribute="bottom" id="nZR-z7-fEV"/>
+                <constraint firstAttribute="bottom" secondItem="xE6-K5-flb" secondAttribute="bottom" id="nZR-z7-fEV"/>
             </constraints>
             <point key="canvasLocation" x="37" y="39"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="Primary Background">
+            <color red="0.91399997472763062" green="0.10999999940395355" blue="0.10199999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

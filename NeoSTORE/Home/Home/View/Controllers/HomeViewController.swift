@@ -38,6 +38,7 @@ class HomeViewController: UIViewController {
         setUpUI()
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.timer.invalidate()
@@ -81,11 +82,15 @@ class HomeViewController: UIViewController {
         self.timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
         
         for i in 0..<sliderImages.count {
+
             let imageView = UIImageView()
             imageView.contentMode = .scaleToFill
+            
+            let imageWidth = view.frame.size.width - 50
             imageView.image = UIImage(named: sliderImages[i])
             let xPos = CGFloat (i)*self.view.bounds.size.width
-            imageView.frame = CGRect (x: xPos, y: 0, width: view.frame.size.width, height: sliderScrollView.frame.size.height)
+            print(xPos)
+            imageView.frame = CGRect (x: xPos, y: 0, width: imageWidth, height: sliderScrollView.frame.size.height)
             sliderScrollView.contentSize.width = view.frame.size.width*CGFloat(i+1)
             sliderScrollView.showsHorizontalScrollIndicator = false
             sliderScrollView.addSubview(imageView)
@@ -118,7 +123,7 @@ class HomeViewController: UIViewController {
             self.noOfImgs = 0
         }
         
-        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(noOfImgs) * view.frame.size.width, y: 0), animated: true)
+        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(noOfImgs) * view.bounds.width, y: 0), animated: true)
     }
     
     //MARK: - IBActions

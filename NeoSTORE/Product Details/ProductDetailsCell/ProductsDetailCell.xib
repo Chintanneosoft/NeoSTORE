@@ -147,9 +147,12 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="btnShare" destination="btk-P0-ka0" id="InZ-Sh-yzw"/>
+                <outlet property="lblDescription" destination="DmN-19-ya2" id="OEz-Nm-pB5"/>
                 <outlet property="lblOutOfStock" destination="YP7-8y-H9n" id="YZa-6Y-9Cb"/>
                 <outlet property="lblPrice" destination="AgW-9t-fd7" id="hsb-8I-8Jx"/>
                 <outlet property="productImage" destination="6q6-ch-w6Q" id="vjk-Gl-Wui"/>
+                <outlet property="productImageCollection" destination="Ajx-Vy-UY1" id="VTe-rc-TLN"/>
+                <outlet property="tvDescription" destination="DyZ-6l-C2v" id="9t1-89-upT"/>
             </connections>
             <point key="canvasLocation" x="97.70992366412213" y="67.25352112676056"/>
         </tableViewCell>

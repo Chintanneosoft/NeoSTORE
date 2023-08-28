@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 extension UIViewController{
+    
+    //MARK: - Loader
     func showLoader(view: UIView, aicView: inout UIView?) {
         let parentView = UIView(frame: UIScreen.main.bounds)
         parentView.isUserInteractionEnabled = false
@@ -23,8 +25,17 @@ extension UIViewController{
         // Assign view
         aicView = parentView
     }
-    //MARK:- Hiding loader view
+    
     func hideLoader(viewLoaderScreen: UIView?) {
         viewLoaderScreen?.isHidden = true
+    }
+    
+    //MARK: - Alert
+    func showAlert(title: String,msg :String){
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(action)
     }
 }

@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,29 +19,22 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1K-El-I5G">
                         <rect key="frame" x="0.0" y="0.0" width="324" height="116"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZWV-IX-tKf">
-                                <rect key="frame" x="13" y="13" width="80" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="SFu-A4-gi5"/>
-                                    <constraint firstAttribute="height" constant="80" id="jJB-v6-aep"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAP-Zn-FK3">
-                                <rect key="frame" x="103" y="20" width="98.333333333333314" height="31"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="14.000000000000007" y="19.999999999999996" width="121.66666666666669" height="35.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Producer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUi-0J-C1L">
-                                <rect key="frame" x="103" y="55" width="44" height="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUi-0J-C1L">
+                                <rect key="frame" x="14" y="59.666666666666664" width="67" height="19.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Producer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP5-Gd-Qny">
+                                <rect key="frame" x="14" y="89" width="44" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Rs 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP5-Gd-Qny">
-                                <rect key="frame" x="103" y="77" width="39" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" name="Primary Background"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="1n2-0R-5ue">
@@ -98,13 +90,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="aAP-Zn-FK3" firstAttribute="top" secondItem="X1K-El-I5G" secondAttribute="top" constant="20" id="9EY-fU-Dtc"/>
-                            <constraint firstItem="ZWV-IX-tKf" firstAttribute="top" secondItem="X1K-El-I5G" secondAttribute="top" constant="13" id="B3W-8W-JFv"/>
-                            <constraint firstItem="ZWV-IX-tKf" firstAttribute="leading" secondItem="X1K-El-I5G" secondAttribute="leading" constant="13" id="Kqq-cg-Rxh"/>
-                            <constraint firstItem="QP5-Gd-Qny" firstAttribute="leading" secondItem="ZWV-IX-tKf" secondAttribute="trailing" constant="10" id="NOE-0w-G9U"/>
-                            <constraint firstItem="QUi-0J-C1L" firstAttribute="leading" secondItem="ZWV-IX-tKf" secondAttribute="trailing" constant="10" id="Nqf-JT-IHq"/>
+                            <constraint firstItem="aAP-Zn-FK3" firstAttribute="leading" secondItem="X1K-El-I5G" secondAttribute="leading" constant="14" id="DHV-Sb-qBc"/>
+                            <constraint firstItem="QUi-0J-C1L" firstAttribute="leading" secondItem="aAP-Zn-FK3" secondAttribute="leading" id="IBk-HE-jtb"/>
                             <constraint firstAttribute="bottom" secondItem="1n2-0R-5ue" secondAttribute="bottom" constant="20" id="aht-3C-Dnw"/>
-                            <constraint firstItem="aAP-Zn-FK3" firstAttribute="leading" secondItem="ZWV-IX-tKf" secondAttribute="trailing" constant="10" id="egI-hs-cDx"/>
                             <constraint firstAttribute="bottom" secondItem="QP5-Gd-Qny" secondAttribute="bottom" constant="15" id="gNq-hX-lBO"/>
+                            <constraint firstItem="QP5-Gd-Qny" firstAttribute="leading" secondItem="aAP-Zn-FK3" secondAttribute="leading" id="rdl-dd-x3N"/>
                             <constraint firstAttribute="trailing" secondItem="1n2-0R-5ue" secondAttribute="trailing" constant="10" id="u7a-1t-Zpk"/>
                             <constraint firstItem="QUi-0J-C1L" firstAttribute="top" secondItem="aAP-Zn-FK3" secondAttribute="bottom" constant="4" id="vqk-S9-d6l"/>
                             <constraint firstItem="QP5-Gd-Qny" firstAttribute="top" secondItem="QUi-0J-C1L" secondAttribute="bottom" constant="10" id="xzM-kX-vQR"/>
@@ -125,9 +115,8 @@
                 <outlet property="btnRating3" destination="bhS-Re-KbV" id="TQ2-Mk-HTE"/>
                 <outlet property="btnRating4" destination="STm-lZ-tf9" id="lZY-qh-1bL"/>
                 <outlet property="btnRating5" destination="TM5-sf-hZ6" id="TKp-GE-LDP"/>
-                <outlet property="imgProduct" destination="ZWV-IX-tKf" id="Ylc-5a-342"/>
-                <outlet property="lblPrice" destination="QP5-Gd-Qny" id="Cd5-1B-Uvu"/>
-                <outlet property="lblProducer" destination="QUi-0J-C1L" id="vQM-D4-tuV"/>
+                <outlet property="lblCategory" destination="QUi-0J-C1L" id="Vuq-Ui-NSU"/>
+                <outlet property="lblProducer" destination="QP5-Gd-Qny" id="HNl-DF-uYu"/>
                 <outlet property="lblProductName" destination="aAP-Zn-FK3" id="iDm-p8-7xG"/>
             </connections>
             <point key="canvasLocation" x="58.015267175572518" y="45.070422535211272"/>
@@ -136,8 +125,5 @@
     <resources>
         <image name="star_check" width="44" height="44"/>
         <image name="star_unchek" width="44" height="44"/>
-        <namedColor name="Primary Background">
-            <color red="0.91399997472763062" green="0.10999999940395355" blue="0.10199999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>

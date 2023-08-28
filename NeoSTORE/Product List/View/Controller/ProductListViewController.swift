@@ -17,6 +17,7 @@ class ProductListViewController: UIViewController {
     var productsData: Products?
     var productCategoryId: Int?
     var loaderView: UIView?
+    var productImg: UIImage?
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -25,7 +26,11 @@ class ProductListViewController: UIViewController {
         // Do any additional setup after loading the view.
         
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        setUpNavBar()
+    }
     private func setDelegates(){
         productListTableView.delegate = self
         productListTableView.dataSource = self
@@ -37,25 +42,46 @@ class ProductListViewController: UIViewController {
     }
     private func setUpUI(){
 //        navigationController?.navigationBar.isHidden = false
-        //Navigation bar
-//        navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
-//        navigationController?.navigationBar.backgroundColor = UIColor(named: "Primary Background")
-//
-//        navigationItem.title = "Table"
-//        navigationController?.navigationBar.titleTextAttributes = [
-//            NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
-//            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-//        ]
+//        Navigation bar
+        navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
+        navigationController?.navigationBar.backgroundColor = UIColor(named: "Primary Background")
+
+        navigationItem.title = "Table"
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
+            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
+        ]
         setUpNavBar()
     }
     private func setUpNavBar() {
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationItem.title = getTitle(categoryID: productCategoryId ?? 0)
-        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+//        self.navigationController?.navigationBar.isHidden = false
+//        self.navigationItem.title = getTitle(categoryID: productCategoryId ?? 0)
+//        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 //        navigationController?.navigationBar.titleTextAttributes = [
 //            NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
 //            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
 //        ]
+        let backButton = UIBarButtonItem()
+               backButton.title = "" // Set an empty title
+               navigationItem.backBarButtonItem = backButton
+               
+               // navigation bar back image
+               navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
+               
+               // navigation bar back text
+               navigationController?.navigationBar.backItem?.title = ""
+               
+               // navigation bar items color
+               navigationController?.navigationBar.tintColor = UIColor.white
+               
+               // addding search bitton on screen
+//               let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector())
+//               navigationItem.rightBarButtonItem = searchButton
+               
+               // setting title for navigation bar
+               title = "Products"
+               navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+               
     }
     private func getTitle(categoryID: Int) -> String {
         if categoryID == 1 {
@@ -77,16 +103,6 @@ class ProductListViewController: UIViewController {
         productListViewModel.productListViewModelDelegate = self
         productListViewModel.callFetchProductList(productCategory: productCategoryId ?? 0)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
@@ -96,19 +112,18 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListCell
-        cell.setDetails(productImgName: productsData?.data?[indexPath.row].productImages ?? "", productName: productsData?.data?[indexPath.row].name ?? "", producerName: productsData?.data?[indexPath.row].producer ?? "", price: productsData?.data?[indexPath.row].cost ?? 0)
+        cell.setDetails(productImgName: productsData?.data?[indexPath.row].productImages ?? "", productName: productsData?.data?[indexPath.row].name ?? "", producerName: productsData?.data?[indexPath.row].producer ?? "", price: productsData?.data?[indexPath.row].cost ?? 0,rating: productsData?.data?[indexPath.row].rating ?? 0)
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-////        return 50
-//    }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         numberOfProductsViewed += 1
         productsViewed.text = "\(indexPath.row+1) of \(productsData?.data?.count ?? 0)"
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextViewController = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
+        nextViewController.productId = indexPath.row + 1
+        nextViewController.productCategory = getTitle(categoryID: productCategoryId ?? 0)
         navigationController?.pushViewController(nextViewController, animated: true)
     }
     
@@ -122,7 +137,11 @@ extension ProductListViewController: ProductListViewModelDelegate{
             self.hideLoader(viewLoaderScreen: self.loaderView)
         }
     }
-    func failureProductList() {
-        navigationController?.popViewController(animated: true)
+    func failureProductList(msg: String) {
+        print(msg)
+        showAlert(title: "Error", msg: msg)
+    }
+    func setImage(img: UIImage) {
+        productImg = img
     }
 }

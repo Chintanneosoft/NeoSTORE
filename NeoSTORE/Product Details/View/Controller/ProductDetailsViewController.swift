@@ -6,15 +6,19 @@
 //
 
 import UIKit
-
+//MARK: - ProductDetailsViewController
 class ProductDetailsViewController: UIViewController {
 
     @IBOutlet weak var productsDetailsTableView: UITableView!
-    
+    private var productsDetails: ProductDetails?
+    var productId : Int?
+    var productCategory : String?
+    var loaderView: UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
         xibRegister()
+        callViewModelFetchProductDetails()
         // Do any additional setup after loading the view.
     }
     private func setDelegates(){
@@ -26,18 +30,15 @@ class ProductDetailsViewController: UIViewController {
         productsDetailsTableView.register(UINib(nibName: "ProductsDetailCell", bundle: nil), forCellReuseIdentifier: "ProductsDetailCell")
         productsDetailsTableView.register(UINib(nibName: "ProductBottomCell", bundle: nil), forCellReuseIdentifier: "ProductBottomCell")
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func callViewModelFetchProductDetails(){
+        self.showLoader(view: self.view, aicView: &self.loaderView)
+        let productDetailsViewModel = ProductDetailsViewModel()
+        productDetailsViewModel.productDetailsViewModelDelegate = self
+        productDetailsViewModel.callProductDetails(productId: productId ?? 0)
     }
-    */
-
 }
 
+//MARK: - TableView Delegate and DataSource
 extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -51,11 +52,11 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
         switch indexPath.section{
         case 0:
             let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductsNameCell", for: indexPath) as! ProductsNameCell
-            cell.setDetails(imgName: "", productName: "Product Name", producerName: "Producer", price: 0)
+            cell.setDetails(productName: productsDetails?.data?.name ?? "", producerName: productsDetails?.data?.producer ?? "", category: productCategory ?? "")
             return cell
         case 1:
             let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductsDetailCell", for: indexPath) as! ProductsDetailCell
-            cell.setDetails(imgName: "", price: 0)
+            cell.setDetails(productImages: productsDetails?.data?.productImages ?? [], productDescription: productsDetails?.data?.dataDescription ?? "", price: productsDetails?.data?.cost ?? 0)
             return cell
         case 2:
             let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductBottomCell", for: indexPath) as! ProductBottomCell
@@ -65,6 +66,23 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
         }
         let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductsNameCell", for: indexPath)
         return cell
+    }
+    
+}
+
+//MARK: - ProductDetailsViewModelDelegate
+extension ProductDetailsViewController: ProductDetailsViewModelDelegate{
+    func setProductDetails(productDetails: ProductDetails) {
+        self.productsDetails = productDetails
+        DispatchQueue.main.async {
+            self.productsDetailsTableView.reloadData()
+            self.hideLoader(viewLoaderScreen: self.loaderView)
+        }
+    }
+    
+    func failureProductDetails(msg: String) {
+        print(msg)
+        showAlert(title: "Error", msg: msg)
     }
     
     

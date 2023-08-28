@@ -9,11 +9,9 @@ import UIKit
 
 class ProductsNameCell: UITableViewCell {
 
-    @IBOutlet weak var imgProduct: UIImageView!
-
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var lblProducer: UILabel!
-    @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var lblCategory: UILabel!
     
     @IBOutlet weak var btnRating1: UIButton!
     @IBOutlet weak var btnRating2: UIButton!
@@ -32,11 +30,11 @@ class ProductsNameCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setDetails(imgName: String, productName: String, producerName: String, price: Int){
+    func setDetails(productName: String, producerName: String, category: String){
         lblProductName.text = productName
-        lblPrice.text = "Rs: " + String(price)
+        lblCategory.text = category
         lblProducer.text = producerName
-        setImage(url:imgName)
+//        setImage(url:imgName)
     }
     private func setImage(url:String){
       

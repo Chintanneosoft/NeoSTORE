@@ -29,11 +29,13 @@ class HomeCollectionViewCell: UICollectionViewCell {
     }
     
     func applyConstraints(view: UIView,position:Positions){
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         if view == img {
             let widthConstraint = NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100)
             let heightConstraint = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100)
             view.addConstraints([widthConstraint, heightConstraint])
+            
         }
         switch position {
         case .topLeft:
