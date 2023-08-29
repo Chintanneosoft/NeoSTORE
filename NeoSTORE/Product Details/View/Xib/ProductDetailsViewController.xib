@@ -38,7 +38,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="9uX-xO-Lwz"/>
-            <color key="backgroundColor" name="Primary Foreground"/>
+            <color key="backgroundColor" name="Primary Background"/>
             <constraints>
                 <constraint firstItem="9uX-xO-Lwz" firstAttribute="trailing" secondItem="uhS-r5-NRz" secondAttribute="trailing" id="EQp-Me-yGZ"/>
                 <constraint firstItem="uhS-r5-NRz" firstAttribute="leading" secondItem="9uX-xO-Lwz" secondAttribute="leading" id="HGT-3F-Qe2"/>
@@ -49,8 +49,8 @@
         </view>
     </objects>
     <resources>
-        <namedColor name="Primary Foreground">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Primary Background">
+            <color red="0.91399997472763062" green="0.10999999940395355" blue="0.10199999809265137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

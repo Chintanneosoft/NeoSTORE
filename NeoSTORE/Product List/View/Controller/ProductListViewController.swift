@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductListViewController: UIViewController {
-
+    
     
     @IBOutlet weak var productListTableView: UITableView!
     
@@ -41,47 +41,19 @@ class ProductListViewController: UIViewController {
         
     }
     private func setUpUI(){
-//        navigationController?.navigationBar.isHidden = false
-//        Navigation bar
-        navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
-        navigationController?.navigationBar.backgroundColor = UIColor(named: "Primary Background")
-
-        navigationItem.title = "Table"
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-        ]
-        setUpNavBar()
+        
     }
     private func setUpNavBar() {
-//        self.navigationController?.navigationBar.isHidden = false
-//        self.navigationItem.title = getTitle(categoryID: productCategoryId ?? 0)
-//        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-//        navigationController?.navigationBar.titleTextAttributes = [
-//            NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
-//            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-//        ]
+        navigationItem.title = getTitle(categoryID: productCategoryId ?? 0)
+        
         let backButton = UIBarButtonItem()
-               backButton.title = "" // Set an empty title
-               navigationItem.backBarButtonItem = backButton
-               
-               // navigation bar back image
-               navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-               
-               // navigation bar back text
-               navigationController?.navigationBar.backItem?.title = ""
-               
-               // navigation bar items color
-               navigationController?.navigationBar.tintColor = UIColor.white
-               
-               // addding search bitton on screen
-//               let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector())
-//               navigationItem.rightBarButtonItem = searchButton
-               
-               // setting title for navigation bar
-               title = "Products"
-               navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-               
+        backButton.title = "" // Set an empty title
+        navigationItem.backBarButtonItem = backButton
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
+        
+        
+        
     }
     private func getTitle(categoryID: Int) -> String {
         if categoryID == 1 {
@@ -113,6 +85,7 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListCell
         cell.setDetails(productImgName: productsData?.data?[indexPath.row].productImages ?? "", productName: productsData?.data?[indexPath.row].name ?? "", producerName: productsData?.data?[indexPath.row].producer ?? "", price: productsData?.data?[indexPath.row].cost ?? 0,rating: productsData?.data?[indexPath.row].rating ?? 0)
+        cell.selectionStyle = .none
         return cell
     }
     

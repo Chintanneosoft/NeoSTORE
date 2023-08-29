@@ -24,9 +24,7 @@ class HomeContainerViewController: UIViewController {
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         addChildVCs()
-        navigationController?.navigationBar.isHidden = true
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -53,18 +51,6 @@ class HomeContainerViewController: UIViewController {
         self.navVC = navVC
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 //MARK: - HomeContainerViewController Delegate
@@ -76,7 +62,8 @@ extension HomeContainerViewController: HomeViewControllerDelegate{
             // open it
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,initialSpringVelocity: 0,options: .curveEaseInOut){
                 self.navVC?.view.frame.origin.x = self.homeVC.view.frame.size.width - 80
-             
+                self.homeVC.view.backgroundColor = UIColor(named: "Black Background")
+                self.homeVC.view.isUserInteractionEnabled = false
             } completion: { [weak self] done in
                 if done{
                     self?.drawerState = .opened
@@ -86,6 +73,8 @@ extension HomeContainerViewController: HomeViewControllerDelegate{
             // close it
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,initialSpringVelocity: 0,options: .curveEaseInOut){
                 self.navVC?.view.frame.origin.x = 0
+                self.homeVC.view.backgroundColor = UIColor(named: "Primary Background")
+                self.homeVC.view.isUserInteractionEnabled = true
             } completion: { [weak self] done in
                 if done{
                     self?.drawerState = .closed

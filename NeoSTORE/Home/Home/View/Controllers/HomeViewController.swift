@@ -39,6 +39,11 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpUI()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.timer.invalidate()
@@ -46,27 +51,24 @@ class HomeViewController: UIViewController {
     
     //MARK: - Functions
     private func setUpUI(){
-        
-        //Navigation bar
-        navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
-        navigationController?.navigationBar.backgroundColor = UIColor(named: "Primary Background")
-        navigationItem.title = "NeoSTORE"
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-        ]
-        
-        let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon"), style: .plain, target: self, action: #selector(showDrawer))
-        // Set the left bar button item
-        navigationItem.leftBarButtonItem = menuButton
-        
-        let searchButton = UIBarButtonItem(image: UIImage(named: "search_icon"), style: .plain, target: self, action: #selector(showProductList))
-        // Set the left bar button item
-        navigationItem.rightBarButtonItem = searchButton
+        setUpNavBar()
         
         setSliderScrollView()
     }
+    private func setUpNavBar(){
+        
+//        //Navigation bar
 
+        navigationItem.title = "NeoSTORE"
+
+        let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon"), style: .plain, target: self, action: #selector(showDrawer))
+        // Set the left bar button item
+        navigationItem.leftBarButtonItem = menuButton
+//        
+        let searchButton = UIBarButtonItem(image: UIImage(named: "search_icon"), style: .plain, target: self, action: #selector(showProductList))
+        // Set the left bar button item
+        navigationItem.rightBarButtonItem = searchButton
+    }
     private func setDelegates(){
         sliderScrollView.delegate = self
         furnitureCollectionView.delegate = self
@@ -79,19 +81,19 @@ class HomeViewController: UIViewController {
     
     private func setSliderScrollView(){
         
-        self.timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
         
         for i in 0..<sliderImages.count {
 
             let imageView = UIImageView()
             imageView.contentMode = .scaleToFill
             
-            let imageWidth = view.frame.size.width - 50
+            let imageWidth = UIScreen.main.bounds.width
             imageView.image = UIImage(named: sliderImages[i])
-            let xPos = CGFloat (i)*self.view.bounds.size.width
+            let xPos = CGFloat (i) * UIScreen.main.bounds.width
             print(xPos)
             imageView.frame = CGRect (x: xPos, y: 0, width: imageWidth, height: sliderScrollView.frame.size.height)
-            sliderScrollView.contentSize.width = view.frame.size.width*CGFloat(i+1)
+            sliderScrollView.contentSize.width = UIScreen.main.bounds.width*CGFloat(i+1)
             sliderScrollView.showsHorizontalScrollIndicator = false
             sliderScrollView.addSubview(imageView)
         }
@@ -123,13 +125,13 @@ class HomeViewController: UIViewController {
             self.noOfImgs = 0
         }
         
-        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(noOfImgs) * view.bounds.width, y: 0), animated: true)
+        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(noOfImgs) * UIScreen.main.bounds.width, y: 0), animated: true)
     }
     
     //MARK: - IBActions
     @IBAction func pageChange(_ sender: UIPageControl) {
         let current = sender.currentPage
-        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(current) * view.frame.size.width, y: 0), animated: true)
+        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(current) * UIScreen.main.bounds.width, y: 0), animated: true)
     }
     
 }

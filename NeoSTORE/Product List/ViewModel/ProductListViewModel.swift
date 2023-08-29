@@ -36,17 +36,4 @@ class ProductListViewModel:NSObject {
             }
         }
     }
-    
-    func callFetchImages(url: URL,completion: @escaping((Result<UIImage,Error>) -> Void)){
-        productListAPIService.fetchImages(url: url){
-            response in
-            switch response{
-            case .success(let value):
-                completion(.success(value))
-            case .failure(let error):
-                print(error)
-                completion(.failure(error))
-            }
-        }
-    }
 }

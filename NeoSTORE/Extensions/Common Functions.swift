@@ -39,3 +39,23 @@ extension UIViewController{
             alert.addAction(action)
     }
 }
+
+extension UINavigationController{
+    open override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            // Configure the navigation bar appearance
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.configureWithOpaqueBackground()
+            navigationBarAppearance.backgroundColor = UIColor(named: "Primary Background")
+            navigationBarAppearance.titleTextAttributes = [
+                NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
+                NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
+            ]
+            navigationBar.standardAppearance = navigationBarAppearance
+            navigationBar.scrollEdgeAppearance = navigationBarAppearance
+            
+            // Optionally, set other navigation bar properties
+            navigationBar.tintColor = UIColor(named: "Primary Foreground")
+        }
+}

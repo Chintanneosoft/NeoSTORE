@@ -14,6 +14,7 @@ class DrawerViewController: UIViewController {
     private var optionImgs = ["shoppingcart_icon","table","sofa","chair","cupboard","username_icon","storelocator_icon","myorders_icon","logout_icon"]
     private var optionNames = ["My Cart","Tables","Sofas","Chairs","Cupboards","My Account","Store Locator","My Orders","Logout"]
     private var noOfNotifications = [2,0,0,0,0,0,0,0,0]
+    
     //MARK: - IBOutlets
     @IBOutlet weak var drawerTableView: UITableView?
     
@@ -73,11 +74,13 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "DrawerHeaderTableViewCell") as! DrawerHeaderTableViewCell
             cell.setDetails(imgName: "username_icon", name: "Chintan", email: "Chintan.rajgor@neosoftmail.com")
+            cell.selectionStyle = .none
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionsCell") as! OptionsCell
             cell.setDetails(optionImg: optionImgs[indexPath.row], optionName: optionNames[indexPath.row], noOfNotifications: noOfNotifications[indexPath.row])
+            cell.selectionStyle = .none
             return cell
         }
     }
@@ -90,13 +93,15 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let homeContainerView = HomeContainerViewController()
         if indexPath.section != 0 {
             if (1...4).contains(indexPath.row){
                 let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
                 nextViewController.productCategoryId = indexPath.row
+                homeContainerView.showDrawer()
+                homeContainerView.showDrawer()
                 
                 self.navigationController?.pushViewController(nextViewController, animated: true)
-                
               
             }
         }

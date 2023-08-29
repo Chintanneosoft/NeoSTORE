@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProductsDetailCell: UITableViewCell {
 
@@ -23,7 +24,7 @@ class ProductsDetailCell: UITableViewCell {
     @IBOutlet weak var tvDescription: UITextView!
     
     var productImagesData: [ProductImage]?
-    var productImages: [UIImage]?
+    var productImgURLs: [String] = []
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -46,26 +47,15 @@ class ProductsDetailCell: UITableViewCell {
     }
     func setDetails(productImages: [ProductImage],productDescription: String, price: Int){
         lblPrice.text = "Rs: " + String(price)
-//        setImage(url:imgName)
         self.productImagesData = productImages
-        self.lblDescription.text = productDescription
+        self.tvDescription.text = productDescription
+        self.lblDescription.text = "Description"
         self.productImageCollection.reloadData()
+        setImages()
     }
     private func setImages(){
-        let productListViewModel = ProductListViewModel()
-        for p in productImagesData!{
-            let url = URL(string:p.image ?? "")
-            productListViewModel.callFetchImages(url: url!){
-                response in
-                switch response{
-                case .success(let image):
-                    DispatchQueue.main.async {
-                        self.productImages?.append(image)
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
+        for p in self.productImagesData!{
+            productImgURLs += [p.image ?? ""]
         }
     }
 }
@@ -78,11 +68,39 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = productImageCollection.dequeueReusableCell(withReuseIdentifier: "ProductImageCollectionViewCell", for: indexPath) as! ProductImageCollectionViewCell
-        cell.productImgs.image = productImages?[indexPath.row]
+//        cell.productImgs.image = productImages?[indexPath.row]
+        let imgUrl = productImgURLs[indexPath.row]
+        cell.setImg(url: imgUrl)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        productImage.image = productImages?[indexPath.row]
+//        productImage.image = productImages?[indexPath.row]
+        let imgUrl = URL(string: productImgURLs[indexPath.row] )
+        productImage.sd_setImage(with: imgUrl)
     }
+}
+//MARK: - CollectionView DelegateFlowLayout
+extension ProductsDetailCell: UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let availableWidth = collectionView.bounds.width
+        let availableHeight = collectionView.bounds.height
+        let spacing: CGFloat = 50
+        let cellWidth = (availableWidth - spacing) / 2
+        return CGSize(width: cellWidth, height: cellWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
+    
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProductImageCollectionViewCell: UICollectionViewCell {
 
@@ -14,5 +15,8 @@ class ProductImageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    func setImg(url: String){
+        let imgUrl = URL(string: url )
+        productImgs.sd_setImage(with: imgUrl)
+    }
 }

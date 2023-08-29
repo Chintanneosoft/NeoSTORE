@@ -36,10 +36,10 @@
 		4A8E94A32A973EEE0067306F /* ProductListAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A22A973EEE0067306F /* ProductListAPIService.swift */; };
 		4A8E94A52A9750FA0067306F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A42A9750FA0067306F /* Product.swift */; };
 		4A8E94A92A976FE00067306F /* Common Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A82A976FE00067306F /* Common Functions.swift */; };
+		4A90F0E12A9DB726002964BC /* ProductListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A90F0DF2A9DB725002964BC /* ProductListCell.xib */; };
+		4A90F0E22A9DB726002964BC /* ProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A90F0E02A9DB725002964BC /* ProductListCell.swift */; };
 		4A91ED0C2A932CDC00915A0A /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED0A2A932CDC00915A0A /* ProductListViewController.swift */; };
 		4A91ED0D2A932CDC00915A0A /* ProductListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A91ED0B2A932CDC00915A0A /* ProductListViewController.xib */; };
-		4A91ED102A932CF900915A0A /* ProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED0E2A932CF900915A0A /* ProductListCell.swift */; };
-		4A91ED112A932CF900915A0A /* ProductListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A91ED0F2A932CF900915A0A /* ProductListCell.xib */; };
 		4A91ED142A93319600915A0A /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED132A93319600915A0A /* Validation.swift */; };
 		4A91ED1B2A93364E00915A0A /* DrawerHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A91ED192A93364E00915A0A /* DrawerHeaderTableViewCell.swift */; };
 		4A91ED1C2A93364E00915A0A /* DrawerHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A91ED1A2A93364E00915A0A /* DrawerHeaderTableViewCell.xib */; };
@@ -142,10 +142,10 @@
 		4A8E94A22A973EEE0067306F /* ProductListAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListAPIService.swift; sourceTree = "<group>"; };
 		4A8E94A42A9750FA0067306F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4A8E94A82A976FE00067306F /* Common Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Common Functions.swift"; sourceTree = "<group>"; };
+		4A90F0DF2A9DB725002964BC /* ProductListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductListCell.xib; sourceTree = "<group>"; };
+		4A90F0E02A9DB725002964BC /* ProductListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListCell.swift; sourceTree = "<group>"; };
 		4A91ED0A2A932CDC00915A0A /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
 		4A91ED0B2A932CDC00915A0A /* ProductListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductListViewController.xib; sourceTree = "<group>"; };
-		4A91ED0E2A932CF900915A0A /* ProductListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductListCell.swift; path = ../../../../../../../../../Downloads/ProductListCell.swift; sourceTree = "<group>"; };
-		4A91ED0F2A932CF900915A0A /* ProductListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductListCell.xib; path = ../../../../../../../../../Downloads/ProductListCell.xib; sourceTree = "<group>"; };
 		4A91ED132A93319600915A0A /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		4A91ED192A93364E00915A0A /* DrawerHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		4A91ED1A2A93364E00915A0A /* DrawerHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawerHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -489,8 +489,8 @@
 		4A91ED092A932CB700915A0A /* ProductListCell */ = {
 			isa = PBXGroup;
 			children = (
-				4A91ED0E2A932CF900915A0A /* ProductListCell.swift */,
-				4A91ED0F2A932CF900915A0A /* ProductListCell.xib */,
+				4A90F0E02A9DB725002964BC /* ProductListCell.swift */,
+				4A90F0DF2A9DB725002964BC /* ProductListCell.xib */,
 			);
 			path = ProductListCell;
 			sourceTree = "<group>";
@@ -1248,7 +1248,6 @@
 				4A9A6C042A923DC000250B79 /* CartViewController.xib in Resources */,
 				4A7390712A8E2205004E12A3 /* Main.storyboard in Resources */,
 				4AF66A412A98C4F800F65CDA /* ResetPasswordViewController.xib in Resources */,
-				4A91ED112A932CF900915A0A /* ProductListCell.xib in Resources */,
 				4A91ED1C2A93364E00915A0A /* DrawerHeaderTableViewCell.xib in Resources */,
 				4A7FD2E32A8E05DF00AEF0CB /* Gotham-Book.otf in Resources */,
 				4A8D50D12A9CBEF40056D86E /* ProductImageCollectionViewCell.xib in Resources */,
@@ -1259,6 +1258,7 @@
 				4AF66A532A98D55200F65CDA /* RatingPopUpUIView.xib in Resources */,
 				4A9A6C0A2A923E0100250B79 /* AddressListViewController.xib in Resources */,
 				4A97B32D2A9A026C00DC11B6 /* EnterQuantityView.xib in Resources */,
+				4A90F0E12A9DB726002964BC /* ProductListCell.xib in Resources */,
 				4A9A6BEF2A923BDC00250B79 /* ProductDetailsViewController.xib in Resources */,
 				4AF66A4E2A98D09A00F65CDA /* ProductBottomCell.xib in Resources */,
 				4A7FD2852A8DE9D800AEF0CB /* LaunchScreen.storyboard in Resources */,
@@ -1414,6 +1414,7 @@
 				4A97B32C2A9A026C00DC11B6 /* EnterQuantityView.swift in Sources */,
 				4A91ED1B2A93364E00915A0A /* DrawerHeaderTableViewCell.swift in Sources */,
 				4A9CCA272A9223320088A036 /* DrawerViewController.swift in Sources */,
+				4A90F0E22A9DB726002964BC /* ProductListCell.swift in Sources */,
 				4A9CCA372A9226AE0088A036 /* OptionsCell.swift in Sources */,
 				4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */,
 				4A91ED0C2A932CDC00915A0A /* ProductListViewController.swift in Sources */,
@@ -1422,7 +1423,6 @@
 				4A8E94A02A973E540067306F /* ProductListViewModel.swift in Sources */,
 				4A9A6C0F2A923E2B00250B79 /* AddAddressViewController.swift in Sources */,
 				4A7FD27B2A8DE9D600AEF0CB /* SceneDelegate.swift in Sources */,
-				4A91ED102A932CF900915A0A /* ProductListCell.swift in Sources */,
 				4A2D84642A94F17E00DD0D8B /* RegisterModel.swift in Sources */,
 				4AF66A512A98D53600F65CDA /* RatingPopUPUIView.swift in Sources */,
 				4A8D50D02A9CBEF40056D86E /* ProductImageCollectionViewCell.swift in Sources */,
