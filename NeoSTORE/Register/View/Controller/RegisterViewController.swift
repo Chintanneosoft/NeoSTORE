@@ -25,6 +25,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var termsAndCondition: UIButton!
     
+    var loaderView: UIView?
+    
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +36,17 @@ class RegisterViewController: UIViewController {
     
     //MARK: - Functions
     private func setUpUI(){
-        
         //Navigation bar
-        navigationItem.title = "Register"
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont(name: Font.fontRegular.rawValue, size: 24)!,
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-              ]
         
-        let leftBarButtonItem = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(leftBarButtonTapped))
-        leftBarButtonItem.tintColor = UIColor(named: "Primary Foreground")
-        navigationItem.leftBarButtonItem = leftBarButtonItem
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = "Register"
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "" // Set an empty title
+        navigationItem.backBarButtonItem = backButton
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
+        
         
         //Labels
         lblHeading.font = UIFont(name: Font.fontBold.rawValue, size: 45)
@@ -55,6 +57,8 @@ class RegisterViewController: UIViewController {
             v.layer.borderWidth = 1.0
             v.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
         }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
         
         //TextFields
         tfFirstName.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
@@ -106,6 +110,10 @@ class RegisterViewController: UIViewController {
         navigationController?.popViewController(animated: true)
        }
     
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
     //MARK: - IBActions
     @IBAction func btnRadioTapped(_ sender: UIButton) {
         
@@ -125,6 +133,7 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func btnRegisterTapped(_ sender: UIButton) {
+        self.showLoader(view: self.view, aicView: &self.loaderView)
         sendValidations()
     }
     
@@ -154,7 +163,16 @@ extension RegisterViewController: UITextFieldDelegate{
         if textField == tfConfirmPassword{
             textField.resignFirstResponder()
         }
+        if textField == tfPhoneNumber{
+            textField.resignFirstResponder()
+        }
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == tfPhoneNumber{
+            textField.keyboardType = .numberPad
+        }
     }
 }
 
@@ -164,18 +182,18 @@ extension RegisterViewController: RegisterViewModelDelegate{
     func showAlert(msg:String) {
         
         DispatchQueue.main.async {
+            
             let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
             if msg == "Registered Successfully"{
                 
-                let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                    let nextViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
-                    self.navigationController?.pushViewController(nextViewController, animated: true)
-                    self.dismiss(animated: true, completion: nil)
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    let windows = windowScene.windows
+                    windows.first?.rootViewController = UINavigationController(rootViewController: HomeContainerViewController())
+                    windows.first?.makeKeyAndVisible()
                 }
                 
-                alert.addAction(action)
                 
-            } else {
+            }  else {
                 
                 let action = UIAlertAction(title: "OK", style: .default) { (action) in
                     self.dismiss(animated: true, completion: nil)

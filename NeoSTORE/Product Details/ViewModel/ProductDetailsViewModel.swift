@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: - ProductDetailsViewModel Protocol
 protocol ProductDetailsViewModelDelegate: NSObject{
-    func setProductDetails(productDetails: ProductDetails)
+    func setProductDetails()
     func failureProductDetails(msg: String)
 }
 
@@ -22,13 +22,16 @@ class ProductDetailsViewModel: NSObject {
     //APIService Object
     private let productDetailsAPIService = ProductDetailsAPIService()
     
+    var productsDetails: ProductDetails?
+    
     func callProductDetails(productId: Int){
         productDetailsAPIService.fetchProductsDetails(productId: productId){
             (response) in
             switch response{
             case .success(let value):
                 print(value)
-                self.productDetailsViewModelDelegate?.setProductDetails(productDetails: value)
+                self.productsDetails = value
+                self.productDetailsViewModelDelegate?.setProductDetails()
             case .failure(let error):
                 print(error)
                 self.productDetailsViewModelDelegate?.failureProductDetails(msg: error.localizedDescription)

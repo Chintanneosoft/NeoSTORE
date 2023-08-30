@@ -13,15 +13,14 @@ class ProductsNameCell: UITableViewCell {
     @IBOutlet weak var lblProducer: UILabel!
     @IBOutlet weak var lblCategory: UILabel!
     
-    @IBOutlet weak var btnRating1: UIButton!
-    @IBOutlet weak var btnRating2: UIButton!
-    @IBOutlet weak var btnRating3: UIButton!
-    @IBOutlet weak var btnRating4: UIButton!
-    @IBOutlet weak var btnRating5: UIButton!
+    @IBOutlet var btnRatings: [UIButton]!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setUpUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,15 +28,27 @@ class ProductsNameCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    func setDetails(productName: String, producerName: String, category: String){
+    func setUpUI(){
+        lblProductName.font = UIFont(name: Font.fontRegular.rawValue, size: 19)
+        lblCategory.font = UIFont(name: Font.fontThin.rawValue, size: 16)
+        lblProducer.font = UIFont(name: Font.fontRegular.rawValue, size: 10)
+    }
+    func setDetails(productName: String, producerName: String, category: String, rating: Int){
         lblProductName.text = productName
         lblCategory.text = category
         lblProducer.text = producerName
-//        setImage(url:imgName)
+        setRatings(rating: rating)
     }
-    private func setImage(url:String){
-      
-        
+    private func setRatings(rating:Int){
+        var cnt: Int = 0
+        for btn in btnRatings{
+            if cnt < rating {
+                btn.isSelected = true
+            }
+            else{
+                break
+            }
+            cnt+=1
+        }
     }
 }

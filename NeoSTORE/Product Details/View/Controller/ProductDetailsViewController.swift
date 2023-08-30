@@ -10,10 +10,14 @@ import UIKit
 class ProductDetailsViewController: UIViewController {
 
     @IBOutlet weak var productsDetailsTableView: UITableView!
-    private var productsDetails: ProductDetails?
+    
+//    private var productsDetails: ProductDetails?
+    let productDetailsViewModel = ProductDetailsViewModel()
+    
     var productId : Int?
     var productCategory : String?
     var loaderView: UIView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -27,7 +31,7 @@ class ProductDetailsViewController: UIViewController {
     }
     private func setUpNavBar(){
             
-        navigationItem.title = productsDetails?.data?.name
+        navigationItem.title = productDetailsViewModel.productsDetails?.data?.name
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title
         navigationItem.backBarButtonItem = backButton
@@ -48,7 +52,6 @@ class ProductDetailsViewController: UIViewController {
     }
     private func callViewModelFetchProductDetails(){
         self.showLoader(view: self.view, aicView: &self.loaderView)
-        let productDetailsViewModel = ProductDetailsViewModel()
         productDetailsViewModel.productDetailsViewModelDelegate = self
         productDetailsViewModel.callProductDetails(productId: productId ?? 0)
     }
@@ -68,12 +71,12 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
         switch indexPath.section{
         case 0:
             let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductsNameCell", for: indexPath) as! ProductsNameCell
-            cell.setDetails(productName: productsDetails?.data?.name ?? "", producerName: productsDetails?.data?.producer ?? "", category: productCategory ?? "")
+            cell.setDetails(productName: productDetailsViewModel.productsDetails?.data?.name ?? "", producerName: productDetailsViewModel.productsDetails?.data?.producer ?? "", category: productCategory ?? "", rating: productDetailsViewModel.productsDetails?.data?.rating ?? 0)
             cell.selectionStyle = .none
             return cell
         case 1:
             let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductsDetailCell", for: indexPath) as! ProductsDetailCell
-            cell.setDetails(productImages: productsDetails?.data?.productImages ?? [], productDescription: productsDetails?.data?.dataDescription ?? "", price: productsDetails?.data?.cost ?? 0)
+            cell.setDetails(productImages: productDetailsViewModel.productsDetails?.data?.productImages ?? [], productDescription: productDetailsViewModel.productsDetails?.data?.dataDescription ?? "", price: productDetailsViewModel.productsDetails?.data?.cost ?? 0)
             cell.selectionStyle = .none
             return cell
         case 2:
@@ -90,42 +93,14 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
     
 }
 
-////MARK: - TableView FlowLayout
-//extension ProductDetailsViewController:UICollectionViewDelegateFlowLayout {
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        // Define your cell size
-//
-//        return CGSize(width: collectionView.bounds.width - 20, height: 100) // For example
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        // Define your section insets (space between cells and leading/trailing edges)
-//        if section == 1{
-//            return UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20)
-//        }
-//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//    }
-//
-////    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-////        // Define the minimum space between items in the same row
-////        return 70
-////    }
-////
-////    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-////        // Define the minimum space between rows
-////        return 10
-////    }
-//
-//    // ... your other code
-//}
+
 //MARK: - ProductDetailsViewModelDelegate
 extension ProductDetailsViewController: ProductDetailsViewModelDelegate{
-    func setProductDetails(productDetails: ProductDetails) {
-        self.productsDetails = productDetails
+    func setProductDetails() {
+//        self.productsDetails = productDetails
         DispatchQueue.main.async {
             self.productsDetailsTableView.reloadData()
-            self.navigationItem.title = productDetails.data?.name
+            self.navigationItem.title = self.productDetailsViewModel.productsDetails?.data?.name
             self.hideLoader(viewLoaderScreen: self.loaderView)
         }
     }

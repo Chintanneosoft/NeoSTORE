@@ -13,6 +13,9 @@ class ProductListViewController: UIViewController {
     @IBOutlet weak var productListTableView: UITableView!
     
     @IBOutlet weak var productsViewed: UILabel!
+    
+    
+    let productListViewModel = ProductListViewModel()
     var numberOfProductsViewed: Int = 0
     var productsData: Products?
     var productCategoryId: Int?
@@ -45,7 +48,6 @@ class ProductListViewController: UIViewController {
     }
     private func setUpNavBar() {
         navigationItem.title = getTitle(categoryID: productCategoryId ?? 0)
-        
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title
         navigationItem.backBarButtonItem = backButton
@@ -71,7 +73,6 @@ class ProductListViewController: UIViewController {
     }
     private func callViewModelFetchProductList(){
         self.showLoader(view: self.view, aicView: &self.loaderView)
-        let productListViewModel = ProductListViewModel()
         productListViewModel.productListViewModelDelegate = self
         productListViewModel.callFetchProductList(productCategory: productCategoryId ?? 0)
     }
@@ -79,12 +80,12 @@ class ProductListViewController: UIViewController {
 
 extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return productsData?.data?.count ?? 0
+        return productListViewModel.productsData?.data?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListCell
-        cell.setDetails(productImgName: productsData?.data?[indexPath.row].productImages ?? "", productName: productsData?.data?[indexPath.row].name ?? "", producerName: productsData?.data?[indexPath.row].producer ?? "", price: productsData?.data?[indexPath.row].cost ?? 0,rating: productsData?.data?[indexPath.row].rating ?? 0)
+        cell.setDetails(productImgName: productListViewModel.productsData?.data?[indexPath.row].productImages ?? "", productName: productListViewModel.productsData?.data?[indexPath.row].name ?? "", producerName: productListViewModel.productsData?.data?[indexPath.row].producer ?? "", price: productListViewModel.productsData?.data?[indexPath.row].cost ?? 0,rating: productListViewModel.productsData?.data?[indexPath.row].rating ?? 0)
         cell.selectionStyle = .none
         return cell
     }
@@ -95,7 +96,7 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextViewController = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
-        nextViewController.productId = indexPath.row + 1
+        nextViewController.productId = productListViewModel.productsData?.data?[indexPath.row].id
         nextViewController.productCategory = getTitle(categoryID: productCategoryId ?? 0)
         navigationController?.pushViewController(nextViewController, animated: true)
     }
@@ -103,8 +104,7 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
 }
 
 extension ProductListViewController: ProductListViewModelDelegate{
-    func setProductsList(productList: Products) {
-        self.productsData = productList
+    func setProductsList() {
         DispatchQueue.main.async {
             self.productListTableView.reloadData()
             self.hideLoader(viewLoaderScreen: self.loaderView)
@@ -114,7 +114,5 @@ extension ProductListViewController: ProductListViewModelDelegate{
         print(msg)
         showAlert(title: "Error", msg: msg)
     }
-    func setImage(img: UIImage) {
-        productImg = img
-    }
+
 }

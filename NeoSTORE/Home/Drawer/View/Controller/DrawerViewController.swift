@@ -26,6 +26,7 @@ class DrawerViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
     //MARK: - Functions
@@ -94,16 +95,26 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let homeContainerView = HomeContainerViewController()
-        if indexPath.section != 0 {
-            if (1...4).contains(indexPath.row){
+        switch indexPath.section{
+        case 1:
+            switch indexPath.row{
+            case 1...4:
+                
                 let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
                 nextViewController.productCategoryId = indexPath.row
                 homeContainerView.showDrawer()
                 homeContainerView.showDrawer()
                 
                 self.navigationController?.pushViewController(nextViewController, animated: true)
-              
+            default:
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    let windows = windowScene.windows
+                    windows.first?.rootViewController = UINavigationController(rootViewController: LoginViewController(nibName: "LoginViewController", bundle: nil))
+                    windows.first?.makeKeyAndVisible()
+                }
             }
+        default:
+            print("0")
         }
     }
 }

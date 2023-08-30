@@ -14,19 +14,19 @@ class ProductListCell: UITableViewCell {
     @IBOutlet weak var lblProducer: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     
-    @IBOutlet weak var btnRating1: UIButton!
-    @IBOutlet weak var btnRating2: UIButton!
-    @IBOutlet weak var btnRating3: UIButton!
-    @IBOutlet weak var btnRating4: UIButton!
-    @IBOutlet weak var btnRating5: UIButton!
-    
     @IBOutlet var btnRatings: [UIButton]!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setUpUI()
     }
-    
+    func setUpUI(){
+        lblProductName.font = UIFont(name: Font.fontRegular.rawValue, size: 15)
+        lblProducer.font = UIFont(name: Font.fontThin.rawValue, size: 10)
+        lblPrice.font = UIFont(name: Font.fontRegular.rawValue, size: 20)
+//        lblProductName.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
+    }
     func setDetails(productImgName: String, productName: String, producerName: String, price: Int, rating: Int){
         //        productImg.image = UIImage(named: productImgName)
         lblProductName.text = productName

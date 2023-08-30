@@ -50,6 +50,9 @@ class HomeContainerViewController: UIViewController {
         navVC.didMove(toParent: self)
         self.navVC = navVC
         
+        let backButton = UIBarButtonItem()
+        backButton.title = "" // Set an empty title
+        navigationItem.backBarButtonItem = backButton
     }
 }
 

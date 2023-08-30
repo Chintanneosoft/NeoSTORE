@@ -57,17 +57,20 @@ class HomeViewController: UIViewController {
     }
     private func setUpNavBar(){
         
-//        //Navigation bar
-
+        //Navigation bar
         navigationItem.title = "NeoSTORE"
-
+        
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon"), style: .plain, target: self, action: #selector(showDrawer))
         // Set the left bar button item
         navigationItem.leftBarButtonItem = menuButton
-//        
+       
         let searchButton = UIBarButtonItem(image: UIImage(named: "search_icon"), style: .plain, target: self, action: #selector(showProductList))
         // Set the left bar button item
         navigationItem.rightBarButtonItem = searchButton
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "" // Set an empty title
+        navigationItem.backBarButtonItem = backButton
     }
     private func setDelegates(){
         sliderScrollView.delegate = self
@@ -81,7 +84,8 @@ class HomeViewController: UIViewController {
     
     private func setSliderScrollView(){
         
-        self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(timerRunning), userInfo: nil, repeats: true)
+
         
         for i in 0..<sliderImages.count {
 
@@ -118,14 +122,11 @@ class HomeViewController: UIViewController {
     
     @objc func timerRunning() {
         
-        if self.noOfImgs < self.sliderImages.count-1 {
-            noOfImgs += 1
-        }
-        else{
-            self.noOfImgs = 0
-        }
-        
-        sliderScrollView.setContentOffset(CGPoint(x: CGFloat(noOfImgs) * UIScreen.main.bounds.width, y: 0), animated: true)
+        noOfImgs = (noOfImgs + 1) % sliderImages.count // Cycle through image indices
+
+            let offsetX = CGFloat(noOfImgs) * UIScreen.main.bounds.width
+            sliderScrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+
     }
     
     //MARK: - IBActions

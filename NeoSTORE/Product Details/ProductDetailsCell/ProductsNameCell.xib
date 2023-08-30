@@ -110,14 +110,14 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="btnRating1" destination="rrN-QK-c6O" id="Orh-JC-j9o"/>
-                <outlet property="btnRating2" destination="WZK-4H-I5Z" id="aDF-5E-KWB"/>
-                <outlet property="btnRating3" destination="bhS-Re-KbV" id="TQ2-Mk-HTE"/>
-                <outlet property="btnRating4" destination="STm-lZ-tf9" id="lZY-qh-1bL"/>
-                <outlet property="btnRating5" destination="TM5-sf-hZ6" id="TKp-GE-LDP"/>
                 <outlet property="lblCategory" destination="QUi-0J-C1L" id="Vuq-Ui-NSU"/>
                 <outlet property="lblProducer" destination="QP5-Gd-Qny" id="HNl-DF-uYu"/>
                 <outlet property="lblProductName" destination="aAP-Zn-FK3" id="iDm-p8-7xG"/>
+                <outletCollection property="btnRatings" destination="rrN-QK-c6O" collectionClass="NSMutableArray" id="PPA-MA-WZS"/>
+                <outletCollection property="btnRatings" destination="WZK-4H-I5Z" collectionClass="NSMutableArray" id="Sss-my-b8m"/>
+                <outletCollection property="btnRatings" destination="bhS-Re-KbV" collectionClass="NSMutableArray" id="bvQ-WL-BDK"/>
+                <outletCollection property="btnRatings" destination="STm-lZ-tf9" collectionClass="NSMutableArray" id="VYu-Dp-5q7"/>
+                <outletCollection property="btnRatings" destination="TM5-sf-hZ6" collectionClass="NSMutableArray" id="oin-3f-45g"/>
             </connections>
             <point key="canvasLocation" x="58.015267175572518" y="45.070422535211272"/>
         </tableViewCell>

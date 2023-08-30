@@ -10,6 +10,7 @@ import SDWebImage
 
 class ProductsDetailCell: UITableViewCell {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblOutOfStock: UILabel!
     
@@ -21,7 +22,7 @@ class ProductsDetailCell: UITableViewCell {
     
     @IBOutlet weak var lblDescription: UILabel!
     
-    @IBOutlet weak var tvDescription: UITextView!
+    @IBOutlet weak var lblTextDescription: UILabel!
     
     var productImagesData: [ProductImage]?
     var productImgURLs: [String] = []
@@ -30,6 +31,7 @@ class ProductsDetailCell: UITableViewCell {
         // Initialization code
         setDelegates()
         xibRegister()
+        setUpUI()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,6 +40,12 @@ class ProductsDetailCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    private func setUpUI(){
+        containerView.layer.cornerRadius = 5
+        
+        lblDescription.font = UIFont(name: Font.fontRegular.rawValue, size: 15)
+        lblTextDescription.font = UIFont(name: Font.fontThin.rawValue, size: 10)
+    }
     private func setDelegates(){
         productImageCollection.delegate = self
         productImageCollection.dataSource = self
@@ -48,8 +56,8 @@ class ProductsDetailCell: UITableViewCell {
     func setDetails(productImages: [ProductImage],productDescription: String, price: Int){
         lblPrice.text = "Rs: " + String(price)
         self.productImagesData = productImages
-        self.tvDescription.text = productDescription
-        self.lblDescription.text = "Description"
+        self.lblTextDescription.text = productDescription
+        self.lblDescription.text = "DESCRIPTION"
         self.productImageCollection.reloadData()
         setImages()
     }
@@ -71,6 +79,11 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
 //        cell.productImgs.image = productImages?[indexPath.row]
         let imgUrl = productImgURLs[indexPath.row]
         cell.setImg(url: imgUrl)
+        if indexPath.row == 0{
+            productImage.sd_setImage(with: URL(string: imgUrl))
+        }
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 0.5
         return cell
     }
     
@@ -78,6 +91,16 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
 //        productImage.image = productImages?[indexPath.row]
         let imgUrl = URL(string: productImgURLs[indexPath.row] )
         productImage.sd_setImage(with: imgUrl)
+        
+        let cell : UICollectionViewCell = collectionView.cellForItem(at: indexPath)!
+        cell.layer.borderColor = UIColor(named: "Primary Background")?.cgColor
+        cell.layer.borderWidth = 0.5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell : UICollectionViewCell = collectionView.cellForItem(at: indexPath)!
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 0.5
     }
 }
 //MARK: - CollectionView DelegateFlowLayout
@@ -85,22 +108,14 @@ extension ProductsDetailCell: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = collectionView.bounds.width
-        let availableHeight = collectionView.bounds.height
-        let spacing: CGFloat = 50
-        let cellWidth = (availableWidth - spacing) / 2
-        return CGSize(width: cellWidth, height: cellWidth)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
+        _ = collectionView.bounds.height
+        let cellWidth = availableWidth / 2.5
+        return CGSize(width: cellWidth, height: 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    }
+            // Define your section insets (space between cells and leading/trailing edges)
+            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        }
     
 }

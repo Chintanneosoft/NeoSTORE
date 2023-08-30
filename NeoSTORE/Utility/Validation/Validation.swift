@@ -16,7 +16,7 @@ class Validation{
 
     func registerValidation(firstName: String?, lastName: String?, email: String?, password: String?, confirmPassword: String?, mobileNumber: String?) -> (Bool,String){
         
-        guard firstName != "" && lastName != "" && password != "" && confirmPassword != "" else {
+        guard firstName != "" && lastName != "" && password != "" && confirmPassword != "" && email != "" && mobileNumber != "" else {
 //            validationDelegate?.resultMsg(msg: "Please fill the required fields")
             return (false,"Please fill the required fields")
         }

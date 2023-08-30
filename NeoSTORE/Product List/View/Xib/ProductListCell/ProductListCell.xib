@@ -120,11 +120,6 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="btnRating1" destination="axe-Mv-xJG" id="hNX-EY-5ap"/>
-                <outlet property="btnRating2" destination="Q9J-Pu-SD0" id="C45-qc-ZDV"/>
-                <outlet property="btnRating3" destination="HTc-Xi-Nrh" id="tKB-RO-5um"/>
-                <outlet property="btnRating4" destination="lrR-R2-AQM" id="dM7-ig-3P6"/>
-                <outlet property="btnRating5" destination="NOS-6q-ky4" id="9cC-W1-5Gm"/>
                 <outlet property="lblPrice" destination="QPn-1G-jvS" id="iLG-5k-T00"/>
                 <outlet property="lblProducer" destination="Bk0-D7-MsO" id="cId-Oo-SbV"/>
                 <outlet property="lblProductName" destination="BeH-Kr-XNn" id="w0b-bL-NcR"/>
