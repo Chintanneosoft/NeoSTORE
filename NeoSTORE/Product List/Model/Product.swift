@@ -38,3 +38,4 @@ struct ProductsData: Codable {
         case productImages = "product_images"
     }
 }
+

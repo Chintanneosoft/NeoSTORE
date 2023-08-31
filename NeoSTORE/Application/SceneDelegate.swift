@@ -19,10 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        
+        let viewController : UIViewController
         // Create your view controller
-        let viewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
-        
+        if UserDefaults.standard.string(forKey: "accessToken") == nil || UserDefaults.standard.string(forKey: "accessToken") == ""{
+            viewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+        } else {
+            viewController = HomeContainerViewController()
+        }
         // Create a navigation controller if needed
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController // or viewController if not using navigation controller

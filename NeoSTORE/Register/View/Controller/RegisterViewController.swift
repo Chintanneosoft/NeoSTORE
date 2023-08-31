@@ -183,15 +183,13 @@ extension RegisterViewController: RegisterViewModelDelegate{
         
         DispatchQueue.main.async {
             
+            self.hideLoader(viewLoaderScreen: self.loaderView)
             let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
             if msg == "Registered Successfully"{
                 
-                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                    let windows = windowScene.windows
-                    windows.first?.rootViewController = UINavigationController(rootViewController: HomeContainerViewController())
-                    windows.first?.makeKeyAndVisible()
-                }
                 
+                let nextViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+                self.navigationController?.pushViewController(nextViewController, animated: true)
                 
             }  else {
                 

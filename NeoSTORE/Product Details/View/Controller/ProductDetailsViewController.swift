@@ -11,7 +11,10 @@ class ProductDetailsViewController: UIViewController {
 
     @IBOutlet weak var productsDetailsTableView: UITableView!
     
-//    private var productsDetails: ProductDetails?
+    @IBOutlet weak var btnBuyNow: UIButton!
+    
+    @IBOutlet weak var btnRate: UIButton!
+    //    private var productsDetails: ProductDetails?
     let productDetailsViewModel = ProductDetailsViewModel()
     
     var productId : Int?
@@ -55,12 +58,38 @@ class ProductDetailsViewController: UIViewController {
         productDetailsViewModel.productDetailsViewModelDelegate = self
         productDetailsViewModel.callProductDetails(productId: productId ?? 0)
     }
+    
+    @IBAction func btnRateTapped(_ sender: UIButton) {
+        let ratingPopUpUIView = RatingPopUiViewController(nibName: "RatingPopUiViewController", bundle: nil)
+        ratingPopUpUIView.modalPresentationStyle = .overCurrentContext
+        ratingPopUpUIView.productId = productId
+        ratingPopUpUIView.productName = productDetailsViewModel.productsDetails?.data?.name
+        ratingPopUpUIView.productImgURL = productDetailsViewModel.productsDetails?.data?.productImages?[0].image
+        self.navigationController?.present(ratingPopUpUIView, animated: false)
+    }
+    @IBAction func btnBuyNowTapped(_ sender: UIButton) {
+        let enterQuantityView = EnterQuantityViewController(nibName: "EnterQuantityViewController", bundle: nil)
+        enterQuantityView.modalPresentationStyle = .overCurrentContext
+        enterQuantityView.productId = productId
+        enterQuantityView.productName = productDetailsViewModel.productsDetails?.data?.name
+        enterQuantityView.productImgURL = productDetailsViewModel.productsDetails?.data?.productImages?[0].image
+        self.navigationController?.present(enterQuantityView, animated: false)
+    }
+    
+//    func btnRatingTapped(){
+//        let ratingPopUpUIView = RatingPopUiViewController(nibName: "RatingPopUiViewController", bundle: nil)
+//        ratingPopUpUIView.modalPresentationStyle = .overCurrentContext
+//        ratingPopUpUIView.productId = productId
+//        ratingPopUpUIView.productName = productDetailsViewModel.productsDetails?.data?.name
+//        ratingPopUpUIView.productImgURL = productDetailsViewModel.productsDetails?.data?.productImages?[0].image
+//        self.navigationController?.present(ratingPopUpUIView, animated: false)
+//    }
 }
 
 //MARK: - TableView Delegate and DataSource
 extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,10 +108,6 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
             cell.setDetails(productImages: productDetailsViewModel.productsDetails?.data?.productImages ?? [], productDescription: productDetailsViewModel.productsDetails?.data?.dataDescription ?? "", price: productDetailsViewModel.productsDetails?.data?.cost ?? 0)
             cell.selectionStyle = .none
             return cell
-        case 2:
-            let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductBottomCell", for: indexPath) as! ProductBottomCell
-            cell.selectionStyle = .none
-            return cell
         default:
             print("")
         }
@@ -97,7 +122,6 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
 //MARK: - ProductDetailsViewModelDelegate
 extension ProductDetailsViewController: ProductDetailsViewModelDelegate{
     func setProductDetails() {
-//        self.productsDetails = productDetails
         DispatchQueue.main.async {
             self.productsDetailsTableView.reloadData()
             self.navigationItem.title = self.productDetailsViewModel.productsDetails?.data?.name
@@ -107,8 +131,10 @@ extension ProductDetailsViewController: ProductDetailsViewModelDelegate{
     
     func failureProductDetails(msg: String) {
         print(msg)
-        showAlert(title: "Error", msg: msg)
+        DispatchQueue.main.async {
+            self.showAlert(title: "Error", msg: msg)
+        }
     }
     
-    
 }
+

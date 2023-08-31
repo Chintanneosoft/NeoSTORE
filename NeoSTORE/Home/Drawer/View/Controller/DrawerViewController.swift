@@ -98,6 +98,8 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
         switch indexPath.section{
         case 1:
             switch indexPath.row{
+            case 0:
+                print(0)
             case 1...4:
                 
                 let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
@@ -106,12 +108,16 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
                 homeContainerView.showDrawer()
                 
                 self.navigationController?.pushViewController(nextViewController, animated: true)
-            default:
+            case 8:
+                UserDefaults.standard.set("", forKey: "accessToken")
+               // UserDefaults.standard.set(nil, forKey: "accessToken")
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                     let windows = windowScene.windows
                     windows.first?.rootViewController = UINavigationController(rootViewController: LoginViewController(nibName: "LoginViewController", bundle: nil))
                     windows.first?.makeKeyAndVisible()
                 }
+            default:
+                print(indexPath.row)
             }
         default:
             print("0")
