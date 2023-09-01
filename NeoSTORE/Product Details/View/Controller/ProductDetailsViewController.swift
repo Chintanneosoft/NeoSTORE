@@ -6,6 +6,8 @@
 //
 
 import UIKit
+
+
 //MARK: - ProductDetailsViewController
 class ProductDetailsViewController: UIViewController {
 
@@ -15,6 +17,8 @@ class ProductDetailsViewController: UIViewController {
     
     @IBOutlet weak var btnRate: UIButton!
     //    private var productsDetails: ProductDetails?
+    
+    
     let productDetailsViewModel = ProductDetailsViewModel()
     
     var productId : Int?
@@ -25,12 +29,12 @@ class ProductDetailsViewController: UIViewController {
         super.viewDidLoad()
         setDelegates()
         xibRegister()
-        callViewModelFetchProductDetails()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUpNavBar()
+        callViewModelFetchProductDetails()
     }
     private func setUpNavBar(){
             
@@ -61,6 +65,7 @@ class ProductDetailsViewController: UIViewController {
     
     @IBAction func btnRateTapped(_ sender: UIButton) {
         let ratingPopUpUIView = RatingPopUiViewController(nibName: "RatingPopUiViewController", bundle: nil)
+        ratingPopUpUIView.ratingUpdateDataDelegate = self
         ratingPopUpUIView.modalPresentationStyle = .overCurrentContext
         ratingPopUpUIView.productId = productId
         ratingPopUpUIView.productName = productDetailsViewModel.productsDetails?.data?.name
@@ -69,6 +74,7 @@ class ProductDetailsViewController: UIViewController {
     }
     @IBAction func btnBuyNowTapped(_ sender: UIButton) {
         let enterQuantityView = EnterQuantityViewController(nibName: "EnterQuantityViewController", bundle: nil)
+//        enterQuantityView
         enterQuantityView.modalPresentationStyle = .overCurrentContext
         enterQuantityView.productId = productId
         enterQuantityView.productName = productDetailsViewModel.productsDetails?.data?.name
@@ -138,3 +144,8 @@ extension ProductDetailsViewController: ProductDetailsViewModelDelegate{
     
 }
 
+extension ProductDetailsViewController: RatingUpdateData{
+    func updateData() {
+        callViewModelFetchProductDetails()
+    }
+}

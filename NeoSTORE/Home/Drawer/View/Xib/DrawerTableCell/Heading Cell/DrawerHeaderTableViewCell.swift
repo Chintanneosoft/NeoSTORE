@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 class DrawerHeaderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImg: UIImageView!
@@ -26,8 +26,7 @@ class DrawerHeaderTableViewCell: UITableViewCell {
     
     func setDetails(imgName: String,name: String,email: String){
         lblName.text = name
-        profileImg.image = UIImage(named: imgName)
         lblEmail.text = email
+        profileImg.sd_setImage(with: URL(string: imgName))
     }
-    
 }

@@ -37,11 +37,12 @@ enum APIServices{
     //All Possible Requests
     case userRegister(param: [String:Any])
     case userLogin(param: [String:Any])
+    case fetchUser
     case fetchProductsList(param: [String:Any])
     case fetchProductsDetails(param: [String:Any])
     case setRatings(param : [String:Any])
     case addToCart(param: [String: Any])
-    
+    case getCart
     // Setting url path
     var path: String{
         let apiDomain = "/api/"
@@ -52,6 +53,8 @@ enum APIServices{
             urlPath = "users/register"
         case .userLogin:
             urlPath = "users/login"
+        case .fetchUser:
+            urlPath = "users/getUserData"
         case .fetchProductsList:
             urlPath = "products/getList"
         case .fetchProductsDetails:
@@ -60,6 +63,8 @@ enum APIServices{
             urlPath = "products/setRating"
         case .addToCart:
             urlPath = "addToCart"
+        case .getCart:
+            urlPath = "cart"
         }
             return baseURL + apiDomain + urlPath
         }

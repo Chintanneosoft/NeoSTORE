@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3i-4E-v3i">
-                                <rect key="frame" x="143.66666666666666" y="172" width="32.666666666666657" height="21"/>
+                                <rect key="frame" x="143.66666666666666" y="168" width="32.666666666666657" height="25"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" name="Primary Foreground"/>
                                 <nil key="highlightedColor"/>
@@ -46,7 +46,7 @@
                             <constraint firstAttribute="bottom" secondItem="R3i-4E-v3i" secondAttribute="bottom" constant="15" id="AoB-9w-ADb"/>
                             <constraint firstItem="M73-zp-7fY" firstAttribute="centerX" secondItem="mDJ-JQ-MOe" secondAttribute="centerX" id="B1g-tc-i33"/>
                             <constraint firstItem="7ad-0Q-c0H" firstAttribute="centerX" secondItem="mDJ-JQ-MOe" secondAttribute="centerX" id="PqK-wR-Htz"/>
-                            <constraint firstItem="R3i-4E-v3i" firstAttribute="top" secondItem="M73-zp-7fY" secondAttribute="bottom" constant="8" id="mdI-Zc-iKr"/>
+                            <constraint firstItem="R3i-4E-v3i" firstAttribute="top" secondItem="M73-zp-7fY" secondAttribute="bottom" constant="4" id="mdI-Zc-iKr"/>
                             <constraint firstItem="7ad-0Q-c0H" firstAttribute="top" secondItem="mDJ-JQ-MOe" secondAttribute="top" constant="36" id="n8g-eL-mgg"/>
                             <constraint firstItem="R3i-4E-v3i" firstAttribute="centerX" secondItem="mDJ-JQ-MOe" secondAttribute="centerX" id="z4y-yf-j37"/>
                         </constraints>

@@ -35,17 +35,4 @@ class ProductListAPIService: NSObject {
         }
     }
     
-    func fetchImages(url: URL,completion: @escaping((Result<UIImage,Error>) -> Void)){
-        URLSession.shared.dataTask(with:url ) { data, response, error in
-            if error != nil{
-                completion(.failure(error!))
-            }
-            guard let image = UIImage(data: data!) else {
-                    print("Invalid image data")
-                    return
-                }
-            completion(.success(image))
-            
-        }.resume()
-    }
 }

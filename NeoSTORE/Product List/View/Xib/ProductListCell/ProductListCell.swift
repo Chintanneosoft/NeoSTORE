@@ -37,6 +37,9 @@ class ProductListCell: UITableViewCell {
     }
     
     private func setRatings(rating: Int){
+        for btn in btnRatings{
+            btn.isSelected = false
+        }
         var cnt: Int = 0
         for btn in btnRatings{
             if cnt<rating {

@@ -51,7 +51,7 @@
                                 <constraint firstAttribute="width" constant="112" id="f6a-nq-KDT"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DR9-vM-xf4" userLabel="Submit">
                             <rect key="frame" x="80" y="377" width="160" height="34.333333333333314"/>

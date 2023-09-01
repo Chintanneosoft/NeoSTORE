@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 class OptionsCell: UITableViewCell {
 
     
@@ -30,7 +30,6 @@ class OptionsCell: UITableViewCell {
     
     func setDetails(optionImg: String,optionName: String,noOfNotifications: Int){
         lblOption.text = optionName
-        self.optionImg.image = UIImage(named: optionImg)
         if noOfNotifications > 0{
             lblNotification.isHidden = false
         }
@@ -38,7 +37,7 @@ class OptionsCell: UITableViewCell {
             lblNotification.isHidden = true
         }
         lblNotification.text = String(noOfNotifications)
-        
+        self.optionImg.image = UIImage(named: optionImg)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

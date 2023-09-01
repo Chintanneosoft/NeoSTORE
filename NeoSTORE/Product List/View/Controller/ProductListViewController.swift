@@ -25,7 +25,7 @@ class ProductListViewController: UIViewController {
         super.viewDidLoad()
         setDelegates()
         xibRegister()
-        callViewModelFetchProductList()
+        setUpUI()
         // Do any additional setup after loading the view.
         
     }
@@ -33,6 +33,7 @@ class ProductListViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         setUpNavBar()
+        callViewModelFetchProductList()
     }
     private func setDelegates(){
         productListTableView.delegate = self
@@ -44,7 +45,7 @@ class ProductListViewController: UIViewController {
         
     }
     private func setUpUI(){
-        
+//        callViewModelFetchProductList()
     }
     private func setUpNavBar() {
         navigationItem.title = getTitle(categoryID: productCategoryId ?? 0)
@@ -90,10 +91,10 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        numberOfProductsViewed += 1
-        productsViewed.text = "\(indexPath.row+1) of \(productsData?.data?.count ?? 0)"
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        numberOfProductsViewed += 1
+//        productsViewed.text = "\(indexPath.row+1) of \(productsData?.data?.count ?? 0)"
+//    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextViewController = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
         nextViewController.productId = productListViewModel.productsData?.data?[indexPath.row].id

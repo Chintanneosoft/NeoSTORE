@@ -36,13 +36,9 @@ class EnterQuantityViewController: UIViewController {
         lblProductName.text = productName
         
         containerView.layer.cornerRadius = 10
-//        let width: CGFloat = 300 // Change to your desired width
-//        let height: CGFloat = 200 // Change to your desired height
-//        preferredContentSize = CGSize(width: width, height: height)
-//
-//        view.backgroundColor = UIColor(white: 0.2, alpha: 0.7)
-//        view.layer.cornerRadius = 10
-//        view.clipsToBounds = true
+        
+        tfEnterQty.becomeFirstResponder()
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissAtTap))
         superView.addGestureRecognizer(tapGesture)
         
