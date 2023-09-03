@@ -8,7 +8,7 @@
 import UIKit
 
 class CartAPIService: NSObject {
-    func getCartDetails(completion: @escaping(Result<(FetchUser?,UserFailure?),Error>) -> Void){
+    func getCartDetails(completion: @escaping(Result<(Cart?,UserFailure?),Error>) -> Void){
         
         APIManager.shared.callRequest(apiCallType: .getCart){ (response) in
             
@@ -16,7 +16,7 @@ class CartAPIService: NSObject {
                 
             case .success(let value):
                 do {
-                    let responseData = try JSONDecoder().decode(FetchUser.self, from: value)
+                    let responseData = try JSONDecoder().decode(Cart.self, from: value)
                     completion(.success((responseData,nil)))
                 } catch {
                     do{

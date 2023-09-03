@@ -1,21 +1,17 @@
 //
-//  CartCell.swift
+//  TotalCell.swift
 //  NeoSTORE
 //
-//  Created by Neosoft1 on 01/09/23.
+//  Created by Neosoft1 on 02/09/23.
 //
 
 import UIKit
 
-class CartCell: UITableViewCell {
+class TotalCell: UITableViewCell {
 
-    @IBOutlet weak var productImg: UIImageView!
+    @IBOutlet weak var lblTotal: UILabel!
     
-    @IBOutlet weak var lblProductName: UILabel!
-    
-    @IBOutlet weak var lblProductCategory: UILabel!
-    
-    @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var ltlTotalPrice: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,5 +22,7 @@ class CartCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    func setDetails(totalPrice: Int){
+        ltlTotalPrice.text = "₹" + String(totalPrice)
+    }
 }

@@ -54,9 +54,6 @@ class ProductListViewController: UIViewController {
         navigationItem.backBarButtonItem = backButton
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        
-        
-        
     }
     private func getTitle(categoryID: Int) -> String {
         if categoryID == 1 {

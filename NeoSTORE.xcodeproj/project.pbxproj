@@ -87,6 +87,9 @@
 		4A9EF7BE2A95EB8C00C88A5D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF7BD2A95EB8C00C88A5D /* APIManager.swift */; };
 		4A9EF7C02A95EBC800C88A5D /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF7BF2A95EBC800C88A5D /* APIServices.swift */; };
 		4A9EF7C42A961C5900C88A5D /* LoginAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9EF7C32A961C5900C88A5D /* LoginAPIService.swift */; };
+		4AA48CBB2AA3431D00922820 /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA48CBA2AA3431D00922820 /* CartModel.swift */; };
+		4AA48CBE2AA3482E00922820 /* TotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA48CBC2AA3482E00922820 /* TotalCell.swift */; };
+		4AA48CBF2AA3482E00922820 /* TotalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA48CBD2AA3482E00922820 /* TotalCell.xib */; };
 		4AF66A402A98C4F800F65CDA /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF66A3E2A98C4F800F65CDA /* ResetPasswordViewController.swift */; };
 		4AF66A412A98C4F800F65CDA /* ResetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF66A3F2A98C4F800F65CDA /* ResetPasswordViewController.xib */; };
 		4AF66A452A98D04C00F65CDA /* ProductsNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF66A432A98D04C00F65CDA /* ProductsNameCell.swift */; };
@@ -202,6 +205,9 @@
 		4A9EF7BD2A95EB8C00C88A5D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		4A9EF7BF2A95EBC800C88A5D /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
 		4A9EF7C32A961C5900C88A5D /* LoginAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIService.swift; sourceTree = "<group>"; };
+		4AA48CBA2AA3431D00922820 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
+		4AA48CBC2AA3482E00922820 /* TotalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCell.swift; sourceTree = "<group>"; };
+		4AA48CBD2AA3482E00922820 /* TotalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalCell.xib; sourceTree = "<group>"; };
 		4AF66A3E2A98C4F800F65CDA /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		4AF66A3F2A98C4F800F65CDA /* ResetPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordViewController.xib; sourceTree = "<group>"; };
 		4AF66A432A98D04C00F65CDA /* ProductsNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsNameCell.swift; sourceTree = "<group>"; };
@@ -604,13 +610,15 @@
 			path = "Web Service";
 			sourceTree = "<group>";
 		};
-		4A950F9E2AA1C98700EF3FB3 /* CartCell */ = {
+		4A950F9E2AA1C98700EF3FB3 /* CartCells */ = {
 			isa = PBXGroup;
 			children = (
 				4A950F9F2AA1C9B700EF3FB3 /* CartCell.swift */,
 				4A950FA02AA1C9B700EF3FB3 /* CartCell.xib */,
+				4AA48CBC2AA3482E00922820 /* TotalCell.swift */,
+				4AA48CBD2AA3482E00922820 /* TotalCell.xib */,
 			);
-			path = CartCell;
+			path = CartCells;
 			sourceTree = "<group>";
 		};
 		4A950FA52AA1F9E700EF3FB3 /* Web Services */ = {
@@ -730,7 +738,7 @@
 		4A9A6BF12A923C1300250B79 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4A950F9E2AA1C98700EF3FB3 /* CartCell */,
+				4A950F9E2AA1C98700EF3FB3 /* CartCells */,
 				4A9A6C002A923DA400250B79 /* Controller */,
 				4A9A6BFF2A923D9B00250B79 /* Xib */,
 			);
@@ -740,6 +748,7 @@
 		4A9A6BF22A923C1E00250B79 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4AA48CBA2AA3431D00922820 /* CartModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1337,6 +1346,7 @@
 				4A8D50D12A9CBEF40056D86E /* ProductImageCollectionViewCell.xib in Resources */,
 				4A91ED0D2A932CDC00915A0A /* ProductListViewController.xib in Resources */,
 				4A9CCA382A9226AE0088A036 /* OptionsCell.xib in Resources */,
+				4AA48CBF2AA3482E00922820 /* TotalCell.xib in Resources */,
 				4A9B95292A9B531100CD724D /* ProfileViewController.xib in Resources */,
 				4A7FD2DB2A8E030500AEF0CB /* Gotham-Bold.otf in Resources */,
 				4A9A6C0A2A923E0100250B79 /* AddressListViewController.xib in Resources */,
@@ -1498,6 +1508,7 @@
 				4A7390742A8E2715004E12A3 /* RegisterViewController.swift in Sources */,
 				4A930BA12AA08E3C00EF3D9D /* RatingPopUiViewController.swift in Sources */,
 				4A9CCA252A921A660088A036 /* HomeContainerViewController.swift in Sources */,
+				4AA48CBB2AA3431D00922820 /* CartModel.swift in Sources */,
 				4A950F9A2AA1AC3800EF3FB3 /* DrawerViewModel.swift in Sources */,
 				4A930B9E2AA072F600EF3D9D /* RatingPopUpViewModel.swift in Sources */,
 				4A91ED1B2A93364E00915A0A /* DrawerHeaderTableViewCell.swift in Sources */,
@@ -1520,6 +1531,7 @@
 				4A9A6C032A923DC000250B79 /* CartViewController.swift in Sources */,
 				4A9EF7BE2A95EB8C00C88A5D /* APIManager.swift in Sources */,
 				4A7FD2D92A8DFCC300AEF0CB /* Constants.swift in Sources */,
+				4AA48CBE2AA3482E00922820 /* TotalCell.swift in Sources */,
 				4A8D50CD2A9C723A0056D86E /* ProductDetailsModel.swift in Sources */,
 				4A91ED2C2A93664200915A0A /* HomeViewModel.swift in Sources */,
 				4A91ED142A93319600915A0A /* Validation.swift in Sources */,

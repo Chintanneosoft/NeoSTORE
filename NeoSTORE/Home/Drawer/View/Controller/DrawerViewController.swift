@@ -118,7 +118,8 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
         case 1:
             switch indexPath.row{
             case 0:
-                print(0)
+                let nextViewController = CartViewController(nibName: "CartViewController", bundle: nil)
+                self.navigationController?.pushViewController(nextViewController, animated: true)
             case 1...4:
                 let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
                 nextViewController.productCategoryId = indexPath.row
