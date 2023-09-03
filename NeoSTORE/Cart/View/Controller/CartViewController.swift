@@ -105,6 +105,8 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
         if indexPath.section == 0 {
             
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completionHandler) in
+                self.showLoader(view: self.view, aicView: &self.loaderView)
+                self.cartViewModel.callDeleteCart(productId: self.cartViewModel.cartList?[indexPath.row].productID ?? 0)
                 self.cartViewModel.cartList?.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 completionHandler(true)

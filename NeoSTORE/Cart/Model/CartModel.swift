@@ -44,3 +44,11 @@ struct CartProduct: Codable {
         case subTotal = "sub_total"
     }
 }
+
+//MARK: - CartUpdate
+struct CartUpdate: Codable {
+    let status: Int
+    let data: Bool
+    let total_carts: Int?
+    let message,user_msg : String
+}

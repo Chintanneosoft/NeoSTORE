@@ -31,10 +31,11 @@ class DrawerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        callUserData()
     }
     //MARK: - Functions
     private func setUpUI(){
-        callUserData()
+//        callUserData()
     }
     private func setDelegates(){
         drawerTableView?.delegate = self
