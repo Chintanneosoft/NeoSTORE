@@ -74,7 +74,6 @@ class ProductDetailsViewController: UIViewController {
     }
     @IBAction func btnBuyNowTapped(_ sender: UIButton) {
         let enterQuantityView = EnterQuantityViewController(nibName: "EnterQuantityViewController", bundle: nil)
-//        enterQuantityView
         enterQuantityView.modalPresentationStyle = .overCurrentContext
         enterQuantityView.productId = productId
         enterQuantityView.productName = productDetailsViewModel.productsDetails?.data?.name
@@ -82,14 +81,7 @@ class ProductDetailsViewController: UIViewController {
         self.navigationController?.present(enterQuantityView, animated: false)
     }
     
-//    func btnRatingTapped(){
-//        let ratingPopUpUIView = RatingPopUiViewController(nibName: "RatingPopUiViewController", bundle: nil)
-//        ratingPopUpUIView.modalPresentationStyle = .overCurrentContext
-//        ratingPopUpUIView.productId = productId
-//        ratingPopUpUIView.productName = productDetailsViewModel.productsDetails?.data?.name
-//        ratingPopUpUIView.productImgURL = productDetailsViewModel.productsDetails?.data?.productImages?[0].image
-//        self.navigationController?.present(ratingPopUpUIView, animated: false)
-//    }
+
 }
 
 //MARK: - TableView Delegate and DataSource

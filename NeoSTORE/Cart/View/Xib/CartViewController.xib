@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="btnOrderNow" destination="PLl-bn-gie" id="c5T-Wn-81E"/>
                 <outlet property="cartTableView" destination="pcT-Fm-lo3" id="Lbz-Kt-w86"/>
+                <outlet property="quantityPickerView" destination="aRi-4z-yI7" id="Jx7-GA-J2q"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -40,15 +41,25 @@
                                 <action selector="btnOrderNowTapped:" destination="-1" eventType="touchUpInside" id="f5S-nP-LjU"/>
                             </connections>
                         </button>
+                        <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRi-4z-yI7">
+                            <rect key="frame" x="0.0" y="559" width="393" height="200"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.10701392975864031" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="200" id="zdh-T4-wEn"/>
+                            </constraints>
+                        </pickerView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="PLl-bn-gie" firstAttribute="top" secondItem="pcT-Fm-lo3" secondAttribute="bottom" constant="15" id="2Y7-mP-5ky"/>
                         <constraint firstItem="pcT-Fm-lo3" firstAttribute="leading" secondItem="9d5-Ox-p85" secondAttribute="leading" id="45E-wx-gZ2"/>
+                        <constraint firstAttribute="trailing" secondItem="aRi-4z-yI7" secondAttribute="trailing" id="5Un-H4-tVk"/>
                         <constraint firstAttribute="trailing" secondItem="PLl-bn-gie" secondAttribute="trailing" constant="15" id="9B3-ee-tab"/>
                         <constraint firstAttribute="bottom" secondItem="PLl-bn-gie" secondAttribute="bottom" constant="15" id="RZ9-oV-evr"/>
+                        <constraint firstItem="aRi-4z-yI7" firstAttribute="leading" secondItem="9d5-Ox-p85" secondAttribute="leading" id="aEF-yx-AZT"/>
                         <constraint firstItem="pcT-Fm-lo3" firstAttribute="top" secondItem="9d5-Ox-p85" secondAttribute="top" id="fiI-kE-eG2"/>
                         <constraint firstAttribute="trailing" secondItem="pcT-Fm-lo3" secondAttribute="trailing" id="gh8-gn-bf3"/>
+                        <constraint firstAttribute="bottom" secondItem="aRi-4z-yI7" secondAttribute="bottom" id="jQQ-Cr-V1U"/>
                         <constraint firstItem="PLl-bn-gie" firstAttribute="leading" secondItem="9d5-Ox-p85" secondAttribute="leading" constant="15" id="pBD-Z8-gR2"/>
                     </constraints>
                 </view>

@@ -33,7 +33,7 @@ class ProductListViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         setUpNavBar()
-        callViewModelFetchProductList()
+        fetchProductList()
     }
     private func setDelegates(){
         productListTableView.delegate = self
@@ -69,7 +69,7 @@ class ProductListViewController: UIViewController {
             return "Cupboards"
         }
     }
-    private func callViewModelFetchProductList(){
+    private func fetchProductList(){
         self.showLoader(view: self.view, aicView: &self.loaderView)
         productListViewModel.productListViewModelDelegate = self
         productListViewModel.callFetchProductList(productCategory: productCategoryId ?? 0)

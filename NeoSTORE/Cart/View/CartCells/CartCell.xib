@@ -50,17 +50,38 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select_button" translatesAutoresizingMaskIntoConstraints="NO" id="dw3-KA-eZv">
+                                <rect key="frame" x="95" y="71.666666666666671" width="35" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="2T9-ph-Biv"/>
+                                    <constraint firstAttribute="width" constant="35" id="yVe-AI-adf"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T0-wF-fM0">
+                                <rect key="frame" x="97" y="79.333333333333329" width="20" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="3h5-yn-HGE"/>
+                                    <constraint firstAttribute="width" constant="20" id="zFN-ML-awz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="2T0-wF-fM0" firstAttribute="centerY" secondItem="dw3-KA-eZv" secondAttribute="centerY" id="2lP-Wh-bTV"/>
                             <constraint firstAttribute="trailing" secondItem="0Ao-f7-vhD" secondAttribute="trailing" constant="15" id="4X0-Pj-wlD"/>
                             <constraint firstItem="gXS-s8-QkV" firstAttribute="centerY" secondItem="Lso-nW-GxO" secondAttribute="centerY" id="5eE-ev-FO0"/>
                             <constraint firstAttribute="bottom" secondItem="TN4-fN-zca" secondAttribute="bottom" constant="20.329999999999998" id="NcW-EP-moM"/>
                             <constraint firstItem="0Ao-f7-vhD" firstAttribute="top" secondItem="Lso-nW-GxO" secondAttribute="top" constant="20" id="Tpt-ut-CqC"/>
+                            <constraint firstItem="dw3-KA-eZv" firstAttribute="top" secondItem="y5i-BM-QVV" secondAttribute="bottom" constant="3" id="VHt-sA-MCM"/>
                             <constraint firstItem="0Ao-f7-vhD" firstAttribute="leading" secondItem="gXS-s8-QkV" secondAttribute="trailing" constant="15" id="YAj-YX-kGv"/>
+                            <constraint firstItem="2T0-wF-fM0" firstAttribute="leading" secondItem="dw3-KA-eZv" secondAttribute="leading" constant="2" id="a55-er-o1w"/>
                             <constraint firstItem="y5i-BM-QVV" firstAttribute="top" secondItem="0Ao-f7-vhD" secondAttribute="bottom" constant="5" id="ebH-fV-KDJ"/>
                             <constraint firstAttribute="trailing" secondItem="TN4-fN-zca" secondAttribute="trailing" constant="15" id="fo4-Q4-mlN"/>
                             <constraint firstItem="y5i-BM-QVV" firstAttribute="trailing" secondItem="0Ao-f7-vhD" secondAttribute="trailing" id="onj-NF-QL0"/>
+                            <constraint firstItem="dw3-KA-eZv" firstAttribute="leading" secondItem="0Ao-f7-vhD" secondAttribute="leading" id="qCU-gl-ds4"/>
                             <constraint firstItem="y5i-BM-QVV" firstAttribute="leading" secondItem="0Ao-f7-vhD" secondAttribute="leading" id="tIK-Ye-F0v"/>
                             <constraint firstItem="TN4-fN-zca" firstAttribute="top" secondItem="y5i-BM-QVV" secondAttribute="bottom" constant="5" id="uqr-XZ-qjr"/>
                             <constraint firstItem="gXS-s8-QkV" firstAttribute="leading" secondItem="Lso-nW-GxO" secondAttribute="leading" constant="15" id="utd-cO-oz5"/>
@@ -76,15 +97,18 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="imgDropdown" destination="dw3-KA-eZv" id="3Zz-Qz-e3A"/>
                 <outlet property="lblPrice" destination="TN4-fN-zca" id="9HI-mL-J5k"/>
                 <outlet property="lblProductCategory" destination="y5i-BM-QVV" id="bh1-qz-574"/>
                 <outlet property="lblProductName" destination="0Ao-f7-vhD" id="mv8-y0-qaH"/>
+                <outlet property="lblQunatity" destination="2T0-wF-fM0" id="WIg-jS-cTj"/>
                 <outlet property="productImg" destination="gXS-s8-QkV" id="4py-T9-Nx1"/>
             </connections>
             <point key="canvasLocation" x="83.969465648854964" y="67.957746478873247"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="select_button" width="70" height="47"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
