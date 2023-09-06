@@ -17,6 +17,7 @@
                 <outlet property="btnRegister" destination="VVJ-pN-1lh" id="8oA-bv-hMO"/>
                 <outlet property="lblHeading" destination="Pjx-qm-bVM" id="MRG-SN-82m"/>
                 <outlet property="lblTermsAndConditions" destination="Ztd-Av-xM9" id="gCx-Ww-4e9"/>
+                <outlet property="registerScrollView" destination="dSp-P6-byg" id="pXd-TY-GuZ"/>
                 <outlet property="termsAndCondition" destination="pkJ-kt-4Ln" id="wYQ-m7-vwK"/>
                 <outlet property="tfConfirmPassword" destination="aYh-ic-NjM" id="Eql-cp-5Uy"/>
                 <outlet property="tfEmail" destination="z3x-Yc-MBT" id="1Sq-kb-Kcc"/>
@@ -307,7 +308,7 @@
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="textColor" name="Primary Foreground"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -7,19 +7,41 @@
 
 import UIKit
 
-class AddAddressModel: NSObject {
-
-}
-//MARK: - Order
-struct Order: Codable {
-    let status: Int
-    let data: [OrderData]?
-    let message,user_msg : String
-}
-
-// MARK: - OrderData
-struct OrderData: Codable {
-    let id: Int
-    let cost: Double
-    let created: String
-}
+////MARK: - Order
+//struct Order: Codable {
+//    let status: Int
+//    let message,userMsg : String
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case status, message
+//        case userMsg = "user_msg"
+//    }
+//}
+//
+////MARK: - Order
+//struct OrderList: Codable {
+//    let status: Int
+//    let data: [OrderData]?
+//    let message,userMsg : String
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case status, message, data
+//        case userMsg = "user_msg"
+//    }
+//}
+//
+//// MARK: - OrderData
+//struct OrderData: Codable {
+//    let id: Int
+//    let cost: Double
+//    let created: String
+//}
+////struct Welcome: Codable {
+////    let status: Int
+////    let message, userMsg: String
+////
+////    enum CodingKeys: String, CodingKey {
+////        case status, message
+////        case userMsg = "user_msg"
+////    }
+////}

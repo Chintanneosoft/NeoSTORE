@@ -1,16 +1,16 @@
 //
-//  AddAddressAPIService.swift
+//  AddressListAPIService.swift
 //  NeoSTORE
 //
-//  Created by Neosoft1 on 04/09/23.
+//  Created by Neosoft1 on 05/09/23.
 //
 
 import UIKit
 
-class AddAddressAPIService: NSObject {
-    func addAddress(addess: String,completion: @escaping(Result<OrderList,Error>) -> Void){
+class AddressListAPIService: NSObject {
+    func placeOrder(addess: String,completion: @escaping(Result<OrderList,Error>) -> Void){
         let param = ["address":addess]
-        APIManager.shared.callRequest(apiCallType:.placeOrder(param: param)){ (response) in
+        APIManager.shared.callRequest(apiCallType: .placeOrder(param: param)){ (response) in
             
             switch response {
                 
@@ -32,5 +32,4 @@ class AddAddressAPIService: NSObject {
             
         }
     }
-    
 }

@@ -8,6 +8,7 @@
 import UIKit
 
 class EnterQuantityViewController: UIViewController {
+    
     @IBOutlet var superView: UIView!
     
     @IBOutlet weak var containerView: UIView!
@@ -20,6 +21,8 @@ class EnterQuantityViewController: UIViewController {
     @IBOutlet weak var tfEnterQty: UITextField!
     
     @IBOutlet weak var btnSubmit: UIButton!
+    
+    @IBOutlet weak var enterQuantityScrollView: UIScrollView!
     
     var productImgURL: String?
     var productName: String?
@@ -39,14 +42,31 @@ class EnterQuantityViewController: UIViewController {
         
         tfEnterQty.becomeFirstResponder()
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissAtTap))
-        superView.addGestureRecognizer(tapGesture)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func dismissAtTap(){
+    @IBAction func btnRemoveTapped(_ sender: UIButton) {
         self.dismiss(animated: false)
     }
+    
+    @objc func keyboardWillShow(notification:NSNotification) {
+
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+
+        var contentInset:UIEdgeInsets = self.enterQuantityScrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 20
+        enterQuantityScrollView.contentInset = contentInset
+    }
+
+    @objc func keyboardWillHide(notification:NSNotification) {
+
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        enterQuantityScrollView.contentInset = contentInset
+    }
+    
     @IBAction func btnSubmitTapped(_ sender: UIButton) {
         let enterQuantityViewModel = EnterQuantityViewModel()
         enterQuantityViewModel.enterQuantityViewModelDelegate = self

@@ -8,14 +8,29 @@
 import UIKit
 
 class EditProfileViewController: UIViewController {
-
+    @IBOutlet weak var profileImg: UIImageView!
+    
+    @IBOutlet weak var tfFirstName: UITextField!
+    @IBOutlet weak var tfLastName: UITextField!
+    @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet weak var tfPhone: UITextField!
+    @IBOutlet weak var tfDOB: UITextField!
+    
+    @IBOutlet weak var btnSubmit: UIButton!
+    
+    
+    
+    @IBOutlet var containerViews: [UIView]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func btnSubmitTapped(_ sender: UIButton) {
+    }
+    
     /*
     // MARK: - Navigation
 

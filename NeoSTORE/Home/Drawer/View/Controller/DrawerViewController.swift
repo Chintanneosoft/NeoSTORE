@@ -85,6 +85,7 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "DrawerHeaderTableViewCell") as! DrawerHeaderTableViewCell
+            cell.drawerHeaderTableViewCellDelegate = self
             cell.setDetails(imgName: drawerViewModel.userData?.data?.user_data?.profile_pic ?? "", name: ((drawerViewModel.userData?.data?.user_data?.first_name ?? "") + " " + (drawerViewModel.userData?.data?.user_data?.last_name ?? "")), email: drawerViewModel.userData?.data?.user_data?.email ?? "")
             cell.selectionStyle = .none
             return cell
@@ -139,6 +140,15 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
         default:
             print("0")
         }
+    }
+}
+
+//MARK: - DrawerHeaderTableViewCellDelegate
+extension DrawerViewController: DrawerHeaderTableViewCellDelegate{
+    func goToProfile() {
+        let nextViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        nextViewController.userData = drawerViewModel.userData
+        self.navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
 

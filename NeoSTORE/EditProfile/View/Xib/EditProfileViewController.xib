@@ -11,7 +11,19 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfileViewController" customModule="NeoSTORE" customModuleProvider="target">
             <connections>
+                <outlet property="btnSubmit" destination="idN-LT-rMn" id="1hv-kT-LW3"/>
+                <outlet property="profileImg" destination="0XX-U9-98x" id="Frc-om-dAV"/>
+                <outlet property="tfDOB" destination="lAl-gZ-zEd" id="Gcw-c3-KD0"/>
+                <outlet property="tfEmail" destination="p11-kq-web" id="Z3u-JN-k9g"/>
+                <outlet property="tfFirstName" destination="EXV-Ok-djM" id="nJ1-6T-3Gz"/>
+                <outlet property="tfLastName" destination="KRx-D5-i8r" id="DRK-XE-u0T"/>
+                <outlet property="tfPhone" destination="a6u-mq-nhn" id="3gs-jN-6CE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="containerViews" destination="jvw-JI-aJt" collectionClass="NSMutableArray" id="UBD-90-vhH"/>
+                <outletCollection property="containerViews" destination="2JA-Xk-e5E" collectionClass="NSMutableArray" id="6od-q5-QJF"/>
+                <outletCollection property="containerViews" destination="s1a-cv-6vr" collectionClass="NSMutableArray" id="b5o-Nw-94r"/>
+                <outletCollection property="containerViews" destination="Udw-Ow-Ip6" collectionClass="NSMutableArray" id="aey-n4-8LP"/>
+                <outletCollection property="containerViews" destination="jOR-dy-sMg" collectionClass="NSMutableArray" id="2IF-Zu-XnV"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -185,6 +197,9 @@
                                     <state key="normal" title="SUBMIT">
                                         <color key="titleColor" name="Primary Background"/>
                                     </state>
+                                    <connections>
+                                        <action selector="btnSubmitTapped:" destination="-1" eventType="touchUpInside" id="G6v-7Y-Hof"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>

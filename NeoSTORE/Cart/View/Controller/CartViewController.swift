@@ -34,6 +34,7 @@ class CartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         callMyCart()
+//        cartViewModel.cartList = []
         navigationController?.navigationBar.isHidden = false
     }
     
@@ -166,6 +167,15 @@ extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
         cartViewModel.callUpdateCart(productId: currProductId, quantity: currQuantity)
     }
     
+//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//        // Create a custom view for the row, which can be a UILabel or any other UIView
+//        let label = UILabel()
+//        label.text = quantityArr[row]// Your data for this row
+//        label.textAlignment = .center
+//        label.font = UIFont.systemFont(ofSize: 18)
+//        return label
+//    }
+    
 }
 
 extension CartViewController: CartViewModelDelegate{
@@ -179,17 +189,21 @@ extension CartViewController: CartViewModelDelegate{
     func failureCart(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.cartTableView.reloadData()
             self.showAlert(title: "Error", msg: msg)
+            
         }
     }
         
 }
 
 extension CartViewController: UpdateQuantity{
+    
     func changeDropDownState(productId: Int) {
         currProductId = productId
         changeState()
     }
+    
     func changeState(){
         if dropDownState{
             quantityPickerView.isHidden = true

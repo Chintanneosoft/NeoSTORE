@@ -36,6 +36,9 @@
 		4A8E94A32A973EEE0067306F /* ProductListAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A22A973EEE0067306F /* ProductListAPIService.swift */; };
 		4A8E94A52A9750FA0067306F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A42A9750FA0067306F /* Product.swift */; };
 		4A8E94A92A976FE00067306F /* Common Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E94A82A976FE00067306F /* Common Functions.swift */; };
+		4A8ECD442AA6F2CB0042E92C /* AddressListAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8ECD432AA6F2CB0042E92C /* AddressListAPIService.swift */; };
+		4A8ECD462AA6F3500042E92C /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8ECD452AA6F3500042E92C /* OrderModel.swift */; };
+		4A8ECD482AA6F39D0042E92C /* AddressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8ECD472AA6F39D0042E92C /* AddressListViewModel.swift */; };
 		4A9027532AA5C21500D3BB81 /* AddressListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9027512AA5C21500D3BB81 /* AddressListCell.swift */; };
 		4A9027542AA5C21500D3BB81 /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9027522AA5C21500D3BB81 /* AddressListCell.xib */; };
 		4A9027562AA5F3A800D3BB81 /* AddAddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9027552AA5F3A700D3BB81 /* AddAddressModel.swift */; };
@@ -159,6 +162,9 @@
 		4A8E94A22A973EEE0067306F /* ProductListAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListAPIService.swift; sourceTree = "<group>"; };
 		4A8E94A42A9750FA0067306F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4A8E94A82A976FE00067306F /* Common Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Common Functions.swift"; sourceTree = "<group>"; };
+		4A8ECD432AA6F2CB0042E92C /* AddressListAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListAPIService.swift; sourceTree = "<group>"; };
+		4A8ECD452AA6F3500042E92C /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		4A8ECD472AA6F39D0042E92C /* AddressListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListViewModel.swift; sourceTree = "<group>"; };
 		4A9027512AA5C21500D3BB81 /* AddressListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListCell.swift; sourceTree = "<group>"; };
 		4A9027522AA5C21500D3BB81 /* AddressListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressListCell.xib; sourceTree = "<group>"; };
 		4A9027552AA5F3A700D3BB81 /* AddAddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressModel.swift; sourceTree = "<group>"; };
@@ -520,6 +526,14 @@
 			path = "Web Service";
 			sourceTree = "<group>";
 		};
+		4A8ECD422AA6F2730042E92C /* Web Service */ = {
+			isa = PBXGroup;
+			children = (
+				4A8ECD432AA6F2CB0042E92C /* AddressListAPIService.swift */,
+			);
+			path = "Web Service";
+			sourceTree = "<group>";
+		};
 		4A9027502AA5C1E700D3BB81 /* AddressListCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -827,6 +841,7 @@
 		4A9A6BF82A923C9A00250B79 /* Address List */ = {
 			isa = PBXGroup;
 			children = (
+				4A8ECD422AA6F2730042E92C /* Web Service */,
 				4A9A6BFB2A923D6D00250B79 /* Model */,
 				4A9A6BFA2A923D6400250B79 /* ViewModel */,
 				4A9A6BF92A923D5E00250B79 /* View */,
@@ -846,6 +861,7 @@
 		4A9A6BFA2A923D6400250B79 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4A8ECD472AA6F39D0042E92C /* AddressListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -853,6 +869,7 @@
 		4A9A6BFB2A923D6D00250B79 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A8ECD452AA6F3500042E92C /* OrderModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1541,10 +1558,13 @@
 				4A9A251D2A949BAF00892EB0 /* RegisterAPIService.swift in Sources */,
 				4A7390742A8E2715004E12A3 /* RegisterViewController.swift in Sources */,
 				4A9027582AA5F43B00D3BB81 /* AddAddressViewModel.swift in Sources */,
+				4A8ECD462AA6F3500042E92C /* OrderModel.swift in Sources */,
 				4A930BA12AA08E3C00EF3D9D /* RatingPopUiViewController.swift in Sources */,
+				4A8ECD482AA6F39D0042E92C /* AddressListViewModel.swift in Sources */,
 				4A9CCA252A921A660088A036 /* HomeContainerViewController.swift in Sources */,
 				4AA48CBB2AA3431D00922820 /* CartModel.swift in Sources */,
 				4A950F9A2AA1AC3800EF3FB3 /* DrawerViewModel.swift in Sources */,
+				4A8ECD442AA6F2CB0042E92C /* AddressListAPIService.swift in Sources */,
 				4A930B9E2AA072F600EF3D9D /* RatingPopUpViewModel.swift in Sources */,
 				4A91ED1B2A93364E00915A0A /* DrawerHeaderTableViewCell.swift in Sources */,
 				4A9CCA272A9223320088A036 /* DrawerViewController.swift in Sources */,

@@ -44,13 +44,12 @@ class RatingPopUiViewController: UIViewController {
         lblProductName.text = productName
         
         containerView.layer.cornerRadius = 10
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissAtTap))
-        superView.addGestureRecognizer(tapGesture)
-    }
-    @objc func dismissAtTap(){
-        self.dismiss(animated: false)
+        
     }
     
+    @IBAction func btnRemoveTapped(_ sender: UIButton) {
+        self.dismiss(animated: false)
+    }
     @IBAction func ratingTapped(_ sender: UIButton) {
         var cnt = 0
         rating = sender.tag

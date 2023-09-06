@@ -43,7 +43,7 @@
                         </button>
                         <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRi-4z-yI7">
                             <rect key="frame" x="0.0" y="559" width="393" height="200"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.10701392975864031" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="systemGray3Color"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="200" id="zdh-T4-wEn"/>
                             </constraints>
@@ -84,6 +84,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

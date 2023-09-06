@@ -50,10 +50,22 @@ class AddAddressViewController: UIViewController {
             self.showAlert(title: "Alert", msg: "Fill Address")
         }
         else {
-            let address = tvAddress.text + " " + tfLandmark.text + " " + tfCity.text + " " + tfZipCode.text + " " + tfState.text + " " + tfCountry.text
-            self.addAddressViewModel.addAddressViewModelDelegate = self
-            self.showLoader(view: self.view, aicView: &self.loaderView)
-            self.addAddressViewModel.addAddress(address: address)
+            let address1 = tvAddress.text + " " + (tfLandmark.text ?? "") + " "
+            let address2 = (tfCity.text ?? "") + " " + (tfZipCode.text ?? "") + " "
+            let address3 = (tfState.text ?? "") + " " + (tfCountry.text ?? "")
+            let address = address1 + address2 + address3
+            UserDefaults.standard.set(address, forKey: "userAddress")
+            let alert = UIAlertController(title: nil, message: "Your Address is Saved Successfully", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+
+//            self.addAddressViewModel.addAddressViewModelDelegate = self
+//            self.showLoader(view: self.view, aicView: &self.loaderView)
+//            self.addAddressViewModel.addAddress(address: address)
         }
     }
     
@@ -69,19 +81,20 @@ class AddAddressViewController: UIViewController {
 
 }
 
-extension AddAddressViewController: AddAddressViewModelDelegate{
-    func successAddress(msg: String) {
-        DispatchQueue.main.async {
-            hideLoader(viewLoaderScreen: self.loaderView)
-            showAlert(title: "Success", msg: msg)
-        }
-    }
-    
-    func failureAddress(msg: String) {
-        DispatchQueue.main.async {
-            showAlert(title: "Error", msg: msg)
-        }
-    }
-    
-    
-}
+//extension AddAddressViewController: AddAddressViewModelDelegate{
+//    func successAddress(msg: String) {
+//        DispatchQueue.main.async {
+//            self.hideLoader(viewLoaderScreen: self.loaderView)
+//            self.showAlert(title: "Success", msg: msg)
+//        }
+//    }
+//
+//    func failureAddress(msg: String) {
+//        DispatchQueue.main.async {
+//            self.hideLoader(viewLoaderScreen: self.loaderView)
+//            self.showAlert(title: "Error", msg: msg)
+//        }
+//    }
+//
+//
+//}

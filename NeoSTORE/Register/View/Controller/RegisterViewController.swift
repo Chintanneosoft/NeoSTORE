@@ -25,6 +25,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var termsAndCondition: UIButton!
     
+    @IBOutlet weak var registerScrollView: UIScrollView!
+    
     var loaderView: UIView?
     
     //MARK: - ViewDidLoad
@@ -84,6 +86,7 @@ class RegisterViewController: UIViewController {
         btnRegister.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 26)
         btnRegister.layer.cornerRadius = 5.0
     
+        
     }
     
     private func setDelegates(){
@@ -95,6 +98,8 @@ class RegisterViewController: UIViewController {
         tfConfirmPassword.delegate = self
         tfPhoneNumber.delegate = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func sendValidations(){
@@ -169,10 +174,21 @@ extension RegisterViewController: UITextFieldDelegate{
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == tfPhoneNumber{
-            textField.keyboardType = .numberPad
-        }
+    @objc func keyboardWillShow(notification:NSNotification) {
+
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+
+        var contentInset:UIEdgeInsets = self.registerScrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 20
+        registerScrollView.contentInset = contentInset
+    }
+
+    @objc func keyboardWillHide(notification:NSNotification) {
+
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        registerScrollView.contentInset = contentInset
     }
 }
 
