@@ -9,6 +9,7 @@ import UIKit
 
 protocol AddressListCellDelegate: NSObject{
     func btnSelectTapped(btnTag: Int)
+    func btnCancelTapped(btnTag: Int)
 }
 
 class AddressListCell: UITableViewCell {
@@ -41,4 +42,10 @@ class AddressListCell: UITableViewCell {
     @IBAction func btnSelectTapped(_ sender: UIButton) {
         addressListCellDelegate?.btnSelectTapped(btnTag: sender.tag)
     }
+    
+    @IBAction func btnCancelTapped(_ sender: UIButton) {
+        addressListCellDelegate?.btnCancelTapped(btnTag: sender.tag)
+        
+    }
+    
 }

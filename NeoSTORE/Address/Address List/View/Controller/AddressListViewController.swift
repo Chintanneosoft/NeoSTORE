@@ -16,7 +16,8 @@ class AddressListViewController: UIViewController {
     var addressListViewModel = AddressListViewModel()
     
     var btnSelected: Int?
-    
+    var btnCancel: Int?
+
     var loaderView: UIView?
     var address: [String?] = []
     var selectedAddress: String?
@@ -89,11 +90,13 @@ class AddressListViewController: UIViewController {
 }
 extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return address.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = addressListTableView.dequeueReusableCell(withIdentifier: "AddressListCell", for: indexPath) as! AddressListCell
+        
+        cell.addressListCellDelegate = self
         
         let addressWords = address[0]?.components(separatedBy: " ")
 
@@ -113,6 +116,7 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
             cell.btnSelect.isSelected = false
         }
         cell.btnSelect.tag = indexPath.row
+        cell.btnCancel.tag = indexPath.row
         return cell
     }
     
@@ -123,6 +127,13 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
     
 }
 extension AddressListViewController: AddressListCellDelegate{
+    func btnCancelTapped(btnTag: Int) {
+        
+        let indexPath = IndexPath(row: btnTag, section: 0)
+        address.remove(at: indexPath.row)
+        addressListTableView.deleteRows(at: [indexPath], with: .fade)
+    }
+    
     func btnSelectTapped(btnTag: Int) {
         btnSelected = btnTag
         addressListTableView.reloadData()
@@ -133,7 +144,20 @@ extension AddressListViewController: AddressListViewModelDelegate{
     func successAddress(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader(viewLoaderScreen: self.loaderView)
-            self.showAlert(title: "Success", msg: msg)
+            let alert = UIAlertController(title: "Success", message: msg, preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+                if let navigationController = self.navigationController {
+                    for viewController in navigationController.viewControllers {
+                        if viewController is HomeContainerViewController {
+                            navigationController.popToViewController(viewController, animated: true)
+                            break
+                        }
+                    }
+                }
+            }
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
         }
     }
 

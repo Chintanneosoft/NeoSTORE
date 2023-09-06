@@ -46,7 +46,9 @@ enum APIServices{
     case updateCart(param: [String: Any])
     case deleteCart(param: [String: Any])
     case placeOrder(param: [String: Any])
-    
+    case getOrderList
+    case getOrderDetail(param: [String: Any])
+
     // Setting url path
     var path: String{
         let apiDomain = "/api/"
@@ -75,6 +77,10 @@ enum APIServices{
             urlPath = "deleteCart"
         case .placeOrder:
             urlPath = "order"
+        case .getOrderList:
+            urlPath = "orderList"
+        case .getOrderDetail:
+            urlPath = "orderDetail"
         }
             return baseURL + apiDomain + urlPath
         }
@@ -93,7 +99,7 @@ enum APIServices{
         // Param to pass in HTTPBody of URL
         var param: [String:Any]? {
             switch self {
-            case .userRegister(param: let param), .userLogin(let param),.fetchProductsList(param: let param),.fetchProductsDetails(param: let param),.setRatings(param: let param),.addToCart(param: let param),.updateCart(param: let param),.deleteCart(param: let param),.placeOrder(param: let param):
+            case .userRegister(param: let param), .userLogin(let param),.fetchProductsList(param: let param),.fetchProductsDetails(param: let param),.setRatings(param: let param),.addToCart(param: let param),.updateCart(param: let param),.deleteCart(param: let param),.placeOrder(param: let param),.getOrderDetail(param: let param):
                 return param
             default:
                 return nil

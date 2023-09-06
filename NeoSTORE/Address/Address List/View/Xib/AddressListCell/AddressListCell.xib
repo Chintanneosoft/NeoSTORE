@@ -67,6 +67,9 @@
                                             </imageReference>
                                             <color key="baseForegroundColor" name="Black Background"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="btnCancelTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dr5-eA-gzu"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>

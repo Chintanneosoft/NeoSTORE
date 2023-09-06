@@ -18,6 +18,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddAddressViewController" customModule="NeoSTORE" customModuleProvider="target">
             <connections>
+                <outlet property="addAddressScrollView" destination="IwF-5S-1Fv" id="KtG-jf-B50"/>
                 <outlet property="btnSaveAddress" destination="tqW-YC-g9o" id="xT2-2W-7Xm"/>
                 <outlet property="lblAddress" destination="Ooq-pb-clb" id="R3w-MJ-VQo"/>
                 <outlet property="lblCity1" destination="l3z-Vf-qbi" id="QQu-aH-giC"/>
@@ -39,145 +40,160 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9U-gR-7dE">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwF-5S-1Fv">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ooq-pb-clb">
-                            <rect key="frame" x="29.999999999999993" y="50" width="79.333333333333314" height="20"/>
-                            <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9so-iv-hqL">
-                            <rect key="frame" x="30" y="80" width="333" height="80"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P9U-gR-7dE">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ooq-pb-clb">
+                                    <rect key="frame" x="29.999999999999993" y="50" width="79.333333333333314" height="20"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9so-iv-hqL">
+                                    <rect key="frame" x="30" y="80" width="333" height="80"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="80" id="MTg-e7-hT8"/>
+                                    </constraints>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3z-Vf-qbi">
+                                    <rect key="frame" x="29.999999999999996" y="187" width="37.666666666666657" height="20"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="LANDMARK" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lde-fP-a6i">
+                                    <rect key="frame" x="30" y="217" width="333" height="34"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vr-9J-qUs">
+                                    <rect key="frame" x="29.999999999999996" y="278" width="37.666666666666657" height="20"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="MUMBAI" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klh-k1-NAm">
+                                    <rect key="frame" x="30" y="308" width="144" height="34"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="030-dP-YB6">
+                                    <rect key="frame" x="204" y="278" width="49" height="20"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="MAHARASHTRA" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mji-he-Wpp">
+                                    <rect key="frame" x="204" y="308" width="159" height="34"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZIP CODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMn-3W-tsA">
+                                    <rect key="frame" x="29.999999999999993" y="369" width="78.333333333333314" height="20"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="110006" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Y2-61-pEa">
+                                    <rect key="frame" x="30" y="399" width="144" height="34"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COUNTRY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRw-Dl-sFk">
+                                    <rect key="frame" x="204" y="369" width="81.666666666666686" height="20"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="INDIA" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qqe-Lp-4mp">
+                                    <rect key="frame" x="204" y="399" width="159" height="34"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqW-YC-g9o">
+                                    <rect key="frame" x="30" y="460" width="333" height="45"/>
+                                    <color key="backgroundColor" red="0.85882352939999995" green="0.08235294118" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="zMm-eA-xkt"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="20"/>
+                                    <state key="normal" title="SAVE ADDRESS">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnSaveAddressTapped:" destination="-1" eventType="touchUpInside" id="Cav-nk-2x2"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="80" id="MTg-e7-hT8"/>
+                                <constraint firstItem="Qqe-Lp-4mp" firstAttribute="leading" secondItem="Mji-he-Wpp" secondAttribute="leading" id="0Sx-sv-4qq"/>
+                                <constraint firstItem="9so-iv-hqL" firstAttribute="leading" secondItem="Ooq-pb-clb" secondAttribute="leading" id="0Tr-fp-HnE"/>
+                                <constraint firstItem="9Y2-61-pEa" firstAttribute="top" secondItem="jMn-3W-tsA" secondAttribute="bottom" constant="10" id="4Il-No-8Bm"/>
+                                <constraint firstItem="Mji-he-Wpp" firstAttribute="top" secondItem="klh-k1-NAm" secondAttribute="top" id="4tB-sI-4he"/>
+                                <constraint firstItem="Lde-fP-a6i" firstAttribute="leading" secondItem="9so-iv-hqL" secondAttribute="leading" id="5UI-cp-n2W"/>
+                                <constraint firstItem="Ooq-pb-clb" firstAttribute="leading" secondItem="P9U-gR-7dE" secondAttribute="leading" constant="30" id="5tP-w3-bxh"/>
+                                <constraint firstItem="klh-k1-NAm" firstAttribute="top" secondItem="4Vr-9J-qUs" secondAttribute="bottom" constant="10" id="8Kq-F1-fLk"/>
+                                <constraint firstItem="9Y2-61-pEa" firstAttribute="trailing" secondItem="klh-k1-NAm" secondAttribute="trailing" id="Ara-KV-GPo"/>
+                                <constraint firstItem="tqW-YC-g9o" firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" id="BJK-NT-3wz"/>
+                                <constraint firstItem="jMn-3W-tsA" firstAttribute="leading" secondItem="4Vr-9J-qUs" secondAttribute="leading" id="DbZ-UE-Ord"/>
+                                <constraint firstItem="nRw-Dl-sFk" firstAttribute="leading" secondItem="030-dP-YB6" secondAttribute="leading" id="EK2-Y8-W6f"/>
+                                <constraint firstItem="jMn-3W-tsA" firstAttribute="top" secondItem="klh-k1-NAm" secondAttribute="bottom" constant="27" id="Hqe-Em-btD"/>
+                                <constraint firstItem="Qqe-Lp-4mp" firstAttribute="top" secondItem="9Y2-61-pEa" secondAttribute="top" id="Ihe-Zu-SYf"/>
+                                <constraint firstItem="9so-iv-hqL" firstAttribute="top" secondItem="Ooq-pb-clb" secondAttribute="bottom" constant="10" id="KV7-2b-YGe"/>
+                                <constraint firstItem="030-dP-YB6" firstAttribute="top" secondItem="4Vr-9J-qUs" secondAttribute="top" id="LTN-Db-PRi"/>
+                                <constraint firstItem="Lde-fP-a6i" firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" id="Lkc-RS-jCq"/>
+                                <constraint firstItem="tqW-YC-g9o" firstAttribute="leading" secondItem="9so-iv-hqL" secondAttribute="leading" id="MON-WT-Uqh"/>
+                                <constraint firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" constant="30" id="RBv-34-Nyi"/>
+                                <constraint firstItem="nRw-Dl-sFk" firstAttribute="top" secondItem="jMn-3W-tsA" secondAttribute="top" id="RIR-wg-3wc"/>
+                                <constraint firstItem="4Vr-9J-qUs" firstAttribute="leading" secondItem="Ooq-pb-clb" secondAttribute="leading" id="ZAz-16-azp"/>
+                                <constraint firstItem="Qqe-Lp-4mp" firstAttribute="trailing" secondItem="Mji-he-Wpp" secondAttribute="trailing" id="bzj-nK-rwa"/>
+                                <constraint firstItem="klh-k1-NAm" firstAttribute="leading" secondItem="9so-iv-hqL" secondAttribute="leading" id="duh-9J-Ypo"/>
+                                <constraint firstAttribute="trailing" secondItem="030-dP-YB6" secondAttribute="trailing" constant="140" id="e3n-B0-Jyz"/>
+                                <constraint firstItem="4Vr-9J-qUs" firstAttribute="top" secondItem="Lde-fP-a6i" secondAttribute="bottom" constant="27" id="eFT-l0-9GP"/>
+                                <constraint firstItem="Mji-he-Wpp" firstAttribute="leading" secondItem="klh-k1-NAm" secondAttribute="trailing" constant="30" id="fou-mw-oT2"/>
+                                <constraint firstItem="tqW-YC-g9o" firstAttribute="top" secondItem="9Y2-61-pEa" secondAttribute="bottom" constant="27" id="hBh-x1-g4A"/>
+                                <constraint firstItem="Mji-he-Wpp" firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" id="jOW-38-aMd"/>
+                                <constraint firstItem="Ooq-pb-clb" firstAttribute="top" secondItem="P9U-gR-7dE" secondAttribute="top" constant="50" id="o5v-A2-wS2"/>
+                                <constraint firstItem="l3z-Vf-qbi" firstAttribute="leading" secondItem="Ooq-pb-clb" secondAttribute="leading" id="pFC-V6-5hG"/>
+                                <constraint firstItem="Mji-he-Wpp" firstAttribute="leading" secondItem="030-dP-YB6" secondAttribute="leading" id="sbK-Dq-7EF"/>
+                                <constraint firstItem="9Y2-61-pEa" firstAttribute="leading" secondItem="jMn-3W-tsA" secondAttribute="leading" id="se6-4y-joy"/>
+                                <constraint firstItem="l3z-Vf-qbi" firstAttribute="top" secondItem="9so-iv-hqL" secondAttribute="bottom" constant="27" id="uYt-Ug-u96"/>
+                                <constraint firstItem="Lde-fP-a6i" firstAttribute="top" secondItem="l3z-Vf-qbi" secondAttribute="bottom" constant="10" id="wKZ-Kz-51Z"/>
                             </constraints>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="17"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3z-Vf-qbi">
-                            <rect key="frame" x="29.999999999999996" y="187" width="37.666666666666657" height="20"/>
-                            <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="LANDMARK" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lde-fP-a6i">
-                            <rect key="frame" x="30" y="217" width="333" height="34"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vr-9J-qUs">
-                            <rect key="frame" x="29.999999999999996" y="278" width="37.666666666666657" height="20"/>
-                            <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="MUMBAI" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klh-k1-NAm">
-                            <rect key="frame" x="30" y="308" width="144" height="34"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="030-dP-YB6">
-                            <rect key="frame" x="204" y="278" width="49" height="20"/>
-                            <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="MAHARASHTRA" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mji-he-Wpp">
-                            <rect key="frame" x="204" y="308" width="159" height="34"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZIP CODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMn-3W-tsA">
-                            <rect key="frame" x="29.999999999999993" y="369" width="78.333333333333314" height="20"/>
-                            <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="110006" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Y2-61-pEa">
-                            <rect key="frame" x="30" y="399" width="144" height="34"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COUNTRY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRw-Dl-sFk">
-                            <rect key="frame" x="204" y="369" width="81.666666666666686" height="20"/>
-                            <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="INDIA" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qqe-Lp-4mp">
-                            <rect key="frame" x="204" y="399" width="159" height="34"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqW-YC-g9o">
-                            <rect key="frame" x="30" y="460" width="333" height="45"/>
-                            <color key="backgroundColor" red="0.85882352939999995" green="0.08235294118" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="45" id="zMm-eA-xkt"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="20"/>
-                            <state key="normal" title="SAVE ADDRESS">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="btnSaveAddressTapped:" destination="-1" eventType="touchUpInside" id="Cav-nk-2x2"/>
-                            </connections>
-                        </button>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="Qqe-Lp-4mp" firstAttribute="leading" secondItem="Mji-he-Wpp" secondAttribute="leading" id="0Sx-sv-4qq"/>
-                        <constraint firstItem="9so-iv-hqL" firstAttribute="leading" secondItem="Ooq-pb-clb" secondAttribute="leading" id="0Tr-fp-HnE"/>
-                        <constraint firstItem="9Y2-61-pEa" firstAttribute="top" secondItem="jMn-3W-tsA" secondAttribute="bottom" constant="10" id="4Il-No-8Bm"/>
-                        <constraint firstItem="Mji-he-Wpp" firstAttribute="top" secondItem="klh-k1-NAm" secondAttribute="top" id="4tB-sI-4he"/>
-                        <constraint firstItem="Lde-fP-a6i" firstAttribute="leading" secondItem="9so-iv-hqL" secondAttribute="leading" id="5UI-cp-n2W"/>
-                        <constraint firstItem="Ooq-pb-clb" firstAttribute="leading" secondItem="P9U-gR-7dE" secondAttribute="leading" constant="30" id="5tP-w3-bxh"/>
-                        <constraint firstItem="klh-k1-NAm" firstAttribute="top" secondItem="4Vr-9J-qUs" secondAttribute="bottom" constant="10" id="8Kq-F1-fLk"/>
-                        <constraint firstItem="9Y2-61-pEa" firstAttribute="trailing" secondItem="klh-k1-NAm" secondAttribute="trailing" id="Ara-KV-GPo"/>
-                        <constraint firstItem="tqW-YC-g9o" firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" id="BJK-NT-3wz"/>
-                        <constraint firstItem="jMn-3W-tsA" firstAttribute="leading" secondItem="4Vr-9J-qUs" secondAttribute="leading" id="DbZ-UE-Ord"/>
-                        <constraint firstItem="nRw-Dl-sFk" firstAttribute="leading" secondItem="030-dP-YB6" secondAttribute="leading" id="EK2-Y8-W6f"/>
-                        <constraint firstItem="jMn-3W-tsA" firstAttribute="top" secondItem="klh-k1-NAm" secondAttribute="bottom" constant="27" id="Hqe-Em-btD"/>
-                        <constraint firstItem="Qqe-Lp-4mp" firstAttribute="top" secondItem="9Y2-61-pEa" secondAttribute="top" id="Ihe-Zu-SYf"/>
-                        <constraint firstItem="9so-iv-hqL" firstAttribute="top" secondItem="Ooq-pb-clb" secondAttribute="bottom" constant="10" id="KV7-2b-YGe"/>
-                        <constraint firstItem="030-dP-YB6" firstAttribute="top" secondItem="4Vr-9J-qUs" secondAttribute="top" id="LTN-Db-PRi"/>
-                        <constraint firstItem="Lde-fP-a6i" firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" id="Lkc-RS-jCq"/>
-                        <constraint firstItem="tqW-YC-g9o" firstAttribute="leading" secondItem="9so-iv-hqL" secondAttribute="leading" id="MON-WT-Uqh"/>
-                        <constraint firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" constant="30" id="RBv-34-Nyi"/>
-                        <constraint firstItem="nRw-Dl-sFk" firstAttribute="top" secondItem="jMn-3W-tsA" secondAttribute="top" id="RIR-wg-3wc"/>
-                        <constraint firstItem="4Vr-9J-qUs" firstAttribute="leading" secondItem="Ooq-pb-clb" secondAttribute="leading" id="ZAz-16-azp"/>
-                        <constraint firstItem="Qqe-Lp-4mp" firstAttribute="trailing" secondItem="Mji-he-Wpp" secondAttribute="trailing" id="bzj-nK-rwa"/>
-                        <constraint firstItem="klh-k1-NAm" firstAttribute="leading" secondItem="9so-iv-hqL" secondAttribute="leading" id="duh-9J-Ypo"/>
-                        <constraint firstAttribute="trailing" secondItem="030-dP-YB6" secondAttribute="trailing" constant="140" id="e3n-B0-Jyz"/>
-                        <constraint firstItem="4Vr-9J-qUs" firstAttribute="top" secondItem="Lde-fP-a6i" secondAttribute="bottom" constant="27" id="eFT-l0-9GP"/>
-                        <constraint firstItem="Mji-he-Wpp" firstAttribute="leading" secondItem="klh-k1-NAm" secondAttribute="trailing" constant="30" id="fou-mw-oT2"/>
-                        <constraint firstItem="tqW-YC-g9o" firstAttribute="top" secondItem="9Y2-61-pEa" secondAttribute="bottom" constant="27" id="hBh-x1-g4A"/>
-                        <constraint firstItem="Mji-he-Wpp" firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" id="jOW-38-aMd"/>
-                        <constraint firstItem="Ooq-pb-clb" firstAttribute="top" secondItem="P9U-gR-7dE" secondAttribute="top" constant="50" id="o5v-A2-wS2"/>
-                        <constraint firstItem="l3z-Vf-qbi" firstAttribute="leading" secondItem="Ooq-pb-clb" secondAttribute="leading" id="pFC-V6-5hG"/>
-                        <constraint firstItem="Mji-he-Wpp" firstAttribute="leading" secondItem="030-dP-YB6" secondAttribute="leading" id="sbK-Dq-7EF"/>
-                        <constraint firstItem="9Y2-61-pEa" firstAttribute="leading" secondItem="jMn-3W-tsA" secondAttribute="leading" id="se6-4y-joy"/>
-                        <constraint firstItem="l3z-Vf-qbi" firstAttribute="top" secondItem="9so-iv-hqL" secondAttribute="bottom" constant="27" id="uYt-Ug-u96"/>
-                        <constraint firstItem="Lde-fP-a6i" firstAttribute="top" secondItem="l3z-Vf-qbi" secondAttribute="bottom" constant="10" id="wKZ-Kz-51Z"/>
+                        <constraint firstItem="P9U-gR-7dE" firstAttribute="bottom" secondItem="cQv-PD-a6z" secondAttribute="bottom" id="4Sz-Oq-a8j"/>
+                        <constraint firstItem="P9U-gR-7dE" firstAttribute="width" secondItem="2bT-NS-hb9" secondAttribute="width" id="ZWI-O9-Kil"/>
+                        <constraint firstItem="P9U-gR-7dE" firstAttribute="trailing" secondItem="cQv-PD-a6z" secondAttribute="trailing" id="hem-KR-5Bi"/>
+                        <constraint firstItem="P9U-gR-7dE" firstAttribute="height" secondItem="2bT-NS-hb9" secondAttribute="height" id="qqY-Wj-8fk"/>
+                        <constraint firstItem="cQv-PD-a6z" firstAttribute="top" secondItem="P9U-gR-7dE" secondAttribute="top" id="xoO-wh-fbS"/>
+                        <constraint firstItem="cQv-PD-a6z" firstAttribute="leading" secondItem="P9U-gR-7dE" secondAttribute="leading" id="yeo-69-fq4"/>
                     </constraints>
-                </view>
+                    <viewLayoutGuide key="contentLayoutGuide" id="cQv-PD-a6z"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="2bT-NS-hb9"/>
+                </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="P9U-gR-7dE" secondAttribute="trailing" id="5Fy-3A-E0n"/>
-                <constraint firstItem="P9U-gR-7dE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Xlx-jN-919"/>
-                <constraint firstItem="P9U-gR-7dE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jUQ-Pi-e6g"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="P9U-gR-7dE" secondAttribute="bottom" id="yah-7M-1oO"/>
+                <constraint firstItem="IwF-5S-1Fv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2t2-jH-gDK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="IwF-5S-1Fv" secondAttribute="bottom" id="AUX-du-xJW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IwF-5S-1Fv" secondAttribute="trailing" id="c6m-gw-jAO"/>
+                <constraint firstItem="IwF-5S-1Fv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="tzh-dd-eGz"/>
             </constraints>
             <point key="canvasLocation" x="55.725190839694655" y="19.718309859154932"/>
         </view>

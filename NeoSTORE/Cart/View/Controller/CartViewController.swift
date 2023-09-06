@@ -34,8 +34,15 @@ class CartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         callMyCart()
-//        cartViewModel.cartList = []
+        cartViewModel.cartList = nil
+        cartViewModel.myCart = nil
         navigationController?.navigationBar.isHidden = false
+        if cartViewModel.cartList?.count ?? 0 > 0 {
+            btnOrderNow.isEnabled = true
+        }
+        else {
+            btnOrderNow.isEnabled = false
+        }
     }
     
     private func setUpNavBar() {

@@ -14,7 +14,7 @@ extension UIViewController{
         let parentView = UIView(frame: UIScreen.main.bounds)
         parentView.isUserInteractionEnabled = false
         
-        let ai = UIActivityIndicatorView()
+        let ai = UIActivityIndicatorView(style: .large)
         ai.color = .black
         ai.startAnimating()
         ai.center = parentView.center
@@ -64,3 +64,10 @@ extension UINavigationController{
         
         }
 }
+
+extension Notification.Name {
+    static let updateCart = Notification.Name("updateCart")
+}
+//extension Notification.Keys {
+//    static let cartCount = "newDataKey"
+//}

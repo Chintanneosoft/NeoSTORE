@@ -7,16 +7,26 @@
 
 import UIKit
 
+//MARK: - DrawerViewControllerDelegate Protocol
+protocol DrawerViewControllerDelegate:AnyObject{
+    func showDrawer()
+}
+
 //MARK: - DrawerViewController
 class DrawerViewController: UIViewController {
+    
+    
+    //MARK: - DrawerViewControllerDelegate
+    weak var drawerViewControllerDelegate: DrawerViewControllerDelegate?
     
     //MARK: - Properties
     private var optionImgs = ["shoppingcart_icon","table","sofa","chair","cupboard","username_icon","storelocator_icon","myorders_icon","logout_icon"]
     private var optionNames = ["My Cart","Tables","Sofas","Chairs","Cupboards","My Account","Store Locator","My Orders","Logout"]
-    private var noOfNotifications = [2,0,0,0,0,0,0,0,0]
     
     var loaderView : UIView?
     let drawerViewModel = DrawerViewModel()
+    
+    private var noOfNotifications: Int?
     //MARK: - IBOutlets
     @IBOutlet weak var drawerTableView: UITableView?
     
@@ -26,16 +36,26 @@ class DrawerViewController: UIViewController {
         setDelegates()
         xibRegister()
         setUpUI()
+        callUserData()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        callUserData()
+    }
+    
+    deinit{
+        NotificationCenter.default.removeObserver(self, name: .updateCart, object: nil)
     }
     //MARK: - Functions
     private func setUpUI(){
 //        callUserData()
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(updateCartCount(_:)),
+                name: .updateCart,
+                object: nil
+            )
     }
     private func setDelegates(){
         drawerTableView?.delegate = self
@@ -54,6 +74,17 @@ class DrawerViewController: UIViewController {
         drawerViewModel.drawerViewModelDelegate = self
         drawerViewModel.callFetchUser()
     }
+    
+    func showDrawer(){
+        drawerViewControllerDelegate?.showDrawer()
+    }
+    
+    @objc func updateCartCount(_ notification: Notification){
+        noOfNotifications = notification.userInfo?["cartCount"] as? Int
+        drawerTableView?.reloadData()
+    }
+    
+    
     /*
      // MARK: - Navigation
      
@@ -94,7 +125,7 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionsCell") as! OptionsCell
             switch indexPath.row{
             case 0:
-                cell.setDetails(optionImg: optionImgs[indexPath.row], optionName: optionNames[indexPath.row], noOfNotifications: drawerViewModel.userData?.data?.total_carts ?? 0)
+                cell.setDetails(optionImg: optionImgs[indexPath.row], optionName: optionNames[indexPath.row], noOfNotifications: noOfNotifications ?? 0)
             case 1...4:
                 cell.setDetails(optionImg:optionImgs[indexPath.row], optionName:  drawerViewModel.userData?.data?.product_categories?[indexPath.row-1].name ?? "", noOfNotifications: 0)
             case 7:
@@ -115,7 +146,7 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        drawerViewControllerDelegate?.showDrawer()
         switch indexPath.section{
         case 1:
             switch indexPath.row{
@@ -126,6 +157,9 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
                 let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
                 nextViewController.productCategoryId = indexPath.row
                 
+                self.navigationController?.pushViewController(nextViewController, animated: true)
+            case 7:
+                let nextViewController = MyOrdersViewController(nibName: "MyOrdersViewController", bundle: nil)
                 self.navigationController?.pushViewController(nextViewController, animated: true)
             case 8:
                 UserDefaults.standard.set("", forKey: "accessToken")
@@ -156,6 +190,7 @@ extension DrawerViewController: DrawerHeaderTableViewCellDelegate{
 extension DrawerViewController: DrawerViewModelDelegate{
     func setDrawer() {
         DispatchQueue.main.async {
+            self.noOfNotifications = self.drawerViewModel.userData?.data?.total_carts
             self.drawerTableView?.reloadData()
             self.hideLoader(viewLoaderScreen: self.loaderView)
         }

@@ -44,6 +44,13 @@ class EnterQuantityViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
     }
     
     @IBAction func btnRemoveTapped(_ sender: UIButton) {
@@ -78,10 +85,12 @@ class EnterQuantityViewController: UIViewController {
 
 extension EnterQuantityViewController: EnterQuantityViewModelDelegate{
     
-    func ratingResult(title: String,msg: String) {
+    func ratingResult(cartCount: Int,title: String,msg: String) {
         DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .updateCart, object: nil, userInfo: ["cartCount":cartCount])
             let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                    
                     self.dismiss(animated: false, completion: nil)
                     self.dismiss(animated: false)
                 }

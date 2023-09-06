@@ -72,6 +72,7 @@ class HomeViewController: UIViewController {
         backButton.title = "" // Set an empty title
         navigationItem.backBarButtonItem = backButton
     }
+    
     private func setDelegates(){
         sliderScrollView.delegate = self
         furnitureCollectionView.delegate = self
@@ -168,7 +169,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = collectionView.bounds.width
-        let availableHeight = collectionView.bounds.height
         let spacing: CGFloat = 50 
         let cellWidth = (availableWidth - spacing) / 2
         return CGSize(width: cellWidth, height: cellWidth)
