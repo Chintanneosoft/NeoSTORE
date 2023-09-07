@@ -38,10 +38,16 @@ class RegisterViewController: UIViewController {
     
     //MARK: - Functions
     private func setUpUI(){
-        //Navigation bar
+        //Navigation bar\
+        self.navigationController?.navigationBar.isHidden = false
         
-        navigationController?.navigationBar.isHidden = false
+        
+        
         navigationItem.title = "Register"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont(name: Font.fontRegular.rawValue, size: 20)!,
+            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
+        ]
         
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title
@@ -138,7 +144,7 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func btnRegisterTapped(_ sender: UIButton) {
-        self.showLoader(view: self.view, aicView: &self.loaderView)
+        self.showLoader()
         sendValidations()
     }
     
@@ -199,7 +205,7 @@ extension RegisterViewController: RegisterViewModelDelegate{
         
         DispatchQueue.main.async {
             
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
             let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
             if msg == "Registered Successfully"{
                 

@@ -19,9 +19,14 @@ class TotalCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        setUpUI()
         // Configure the view for the selected state
     }
+    
+    private func setUpUI(){
+        lblTotal.font = UIFont(name: Font.fontRegular.rawValue, size: 20)
+    }
+    
     func setDetails(totalPrice: Int){
         ltlTotalPrice.text = "₹" + String(totalPrice)
     }

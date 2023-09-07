@@ -70,7 +70,7 @@ class DrawerViewController: UIViewController {
         drawerTableView?.register(UINib(nibName: "OptionsCell", bundle: nil), forCellReuseIdentifier: "OptionsCell")
     }
     private func callUserData(){
-        self.showLoader(view: self.view, aicView: &self.loaderView)
+        self.showLoader()
         drawerViewModel.drawerViewModelDelegate = self
         drawerViewModel.callFetchUser()
     }
@@ -146,19 +146,27 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        drawerViewControllerDelegate?.showDrawer()
+        
         switch indexPath.section{
+        case 0:
+            drawerViewControllerDelegate?.showDrawer()
+            let nextViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            nextViewController.userData = drawerViewModel.userData
+            self.navigationController?.pushViewController(nextViewController, animated: true)
         case 1:
             switch indexPath.row{
             case 0:
+                drawerViewControllerDelegate?.showDrawer()
                 let nextViewController = CartViewController(nibName: "CartViewController", bundle: nil)
                 self.navigationController?.pushViewController(nextViewController, animated: true)
             case 1...4:
+                drawerViewControllerDelegate?.showDrawer()
                 let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
                 nextViewController.productCategoryId = indexPath.row
                 
                 self.navigationController?.pushViewController(nextViewController, animated: true)
             case 7:
+                drawerViewControllerDelegate?.showDrawer()
                 let nextViewController = MyOrdersViewController(nibName: "MyOrdersViewController", bundle: nil)
                 self.navigationController?.pushViewController(nextViewController, animated: true)
             case 8:
@@ -180,6 +188,7 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
 //MARK: - DrawerHeaderTableViewCellDelegate
 extension DrawerViewController: DrawerHeaderTableViewCellDelegate{
     func goToProfile() {
+        drawerViewControllerDelegate?.showDrawer()
         let nextViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
         nextViewController.userData = drawerViewModel.userData
         self.navigationController?.pushViewController(nextViewController, animated: true)
@@ -192,7 +201,7 @@ extension DrawerViewController: DrawerViewModelDelegate{
         DispatchQueue.main.async {
             self.noOfNotifications = self.drawerViewModel.userData?.data?.total_carts
             self.drawerTableView?.reloadData()
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
         }
     }
     

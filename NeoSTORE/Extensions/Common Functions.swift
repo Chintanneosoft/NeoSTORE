@@ -7,27 +7,37 @@
 
 import Foundation
 import UIKit
+import SwiftLoader
 extension UIViewController{
     
     //MARK: - Loader
-    func showLoader(view: UIView, aicView: inout UIView?) {
+    func showLoader() {
         let parentView = UIView(frame: UIScreen.main.bounds)
         parentView.isUserInteractionEnabled = false
         
-        let ai = UIActivityIndicatorView(style: .large)
-        ai.color = .black
-        ai.startAnimating()
-        ai.center = parentView.center
-        
-        parentView.addSubview(ai)
-        view.addSubview(parentView)
+//        let ai = UIActivityIndicatorView(style: .large)
+//        let ai = ActivityIndicatorView(isVisible: false, type: .arcs(count: 4, lineWidth: 2))
+//        ai.type = .arcs(count: 4, lineWidth: 2)
+//        ai.color = .black
+//        ai.startAnimating()
+//        ai.center = parentView.center
+        var config : SwiftLoader.Config = SwiftLoader.Config()
+        config.size = 60
+        config.backgroundColor = .systemGray6
+        config.spinnerColor = UIColor(named: "Primary Background") ?? .red
+        config.spinnerLineWidth = 2
+        SwiftLoader.setConfig(config)
+        SwiftLoader.show(animated: true)
+//        parentView.addSubview(ai)
+//        view.addSubview(parentView)
         
         // Assign view
-        aicView = parentView
+//        aicView = parentView
     }
     
-    func hideLoader(viewLoaderScreen: UIView?) {
-        viewLoaderScreen?.isHidden = true
+    func hideLoader() {
+//        viewLoaderScreen?.isHidden = true
+        SwiftLoader.hide()
     }
     
     //MARK: - Alert

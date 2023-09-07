@@ -7,6 +7,8 @@ target 'NeoSTORE' do
 
   # Pods for NeoSTORE
   pod 'SDWebImage'
+  pod 'SwiftLoader'
+
   target 'NeoSTORETests' do
     inherit! :search_paths
     # Pods for testing

@@ -60,6 +60,9 @@ class AddressListViewController: UIViewController {
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title
         navigationItem.backBarButtonItem = backButton
+        
+        lblShippingAddress.font = UIFont(name: Font.fontThin.rawValue, size: 18)
+        btnPlaceOrder.layer.cornerRadius = 5
     }
     @objc func addAddress(){
         let nextViewController = AddAddressViewController(nibName: "AddAddressViewController", bundle: nil)
@@ -69,7 +72,7 @@ class AddressListViewController: UIViewController {
     @IBAction func btnPlaceOrder(_ sender: UIButton) {
         if btnSelected != nil{
             addressListViewModel.addressListViewModelDelegate = self
-            self.showLoader(view: self.view, aicView: &self.loaderView)
+            self.showLoader()
             self.addressListViewModel.placeOrder(address: address[0] ?? "")
         }
         else{
@@ -143,7 +146,7 @@ extension AddressListViewController: AddressListCellDelegate{
 extension AddressListViewController: AddressListViewModelDelegate{
     func successAddress(msg: String) {
         DispatchQueue.main.async {
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
             let alert = UIAlertController(title: "Success", message: msg, preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)
@@ -163,7 +166,7 @@ extension AddressListViewController: AddressListViewModelDelegate{
 
     func failureAddress(msg: String) {
         DispatchQueue.main.async {
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
             self.showAlert(title: "Error", msg: msg)
         }
     }

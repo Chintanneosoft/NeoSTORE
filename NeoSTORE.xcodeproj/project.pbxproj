@@ -99,8 +99,6 @@
 		4A9A6C102A923E2B00250B79 /* AddAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9A6C0E2A923E2B00250B79 /* AddAddressViewController.xib */; };
 		4A9B95282A9B531100CD724D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B95262A9B531100CD724D /* ProfileViewController.swift */; };
 		4A9B95292A9B531100CD724D /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9B95272A9B531100CD724D /* ProfileViewController.xib */; };
-		4A9B952C2A9B558C00CD724D /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B952A2A9B558C00CD724D /* EditProfileViewController.swift */; };
-		4A9B952D2A9B558C00CD724D /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9B952B2A9B558C00CD724D /* EditProfileViewController.xib */; };
 		4A9CCA252A921A660088A036 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9CCA242A921A660088A036 /* HomeContainerViewController.swift */; };
 		4A9CCA272A9223320088A036 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9CCA262A9223320088A036 /* DrawerViewController.swift */; };
 		4A9CCA292A9223550088A036 /* DrawerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9CCA282A9223550088A036 /* DrawerViewController.xib */; };
@@ -239,8 +237,6 @@
 		4A9A6C0E2A923E2B00250B79 /* AddAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAddressViewController.xib; sourceTree = "<group>"; };
 		4A9B95262A9B531100CD724D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4A9B95272A9B531100CD724D /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
-		4A9B952A2A9B558C00CD724D /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		4A9B952B2A9B558C00CD724D /* EditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
 		4A9CCA242A921A660088A036 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		4A9CCA262A9223320088A036 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
 		4A9CCA282A9223550088A036 /* DrawerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerViewController.xib; sourceTree = "<group>"; };
@@ -464,7 +460,6 @@
 				4A933CAE2AA889A1001652CC /* MyOrders */,
 				4A933CC52AA89CBC001652CC /* Order Details */,
 				4A9B95142A9B521F00CD724D /* Profile */,
-				4A9B95152A9B524900CD724D /* EditProfile */,
 				4A7390602A8E15D3004E12A3 /* Extensions */,
 				4A7FD2D72A8DFCA200AEF0CB /* Utility */,
 				4A7FD2A82A8DEA1300AEF0CB /* Application */,
@@ -1129,17 +1124,6 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		4A9B95152A9B524900CD724D /* EditProfile */ = {
-			isa = PBXGroup;
-			children = (
-				4A9B951D2A9B52AA00CD724D /* Model */,
-				4A9B951C2A9B52A300CD724D /* View Model */,
-				4A9B951B2A9B529D00CD724D /* View */,
-				4A9B951A2A9B529200CD724D /* Web Services */,
-			);
-			path = EditProfile;
-			sourceTree = "<group>";
-		};
 		4A9B95162A9B526600CD724D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1168,52 +1152,6 @@
 			children = (
 			);
 			path = "Web Services";
-			sourceTree = "<group>";
-		};
-		4A9B951A2A9B529200CD724D /* Web Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Web Services";
-			sourceTree = "<group>";
-		};
-		4A9B951B2A9B529D00CD724D /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4A9B951F2A9B52B600CD724D /* Controller */,
-				4A9B951E2A9B52AF00CD724D /* Xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		4A9B951C2A9B52A300CD724D /* View Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Model";
-			sourceTree = "<group>";
-		};
-		4A9B951D2A9B52AA00CD724D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		4A9B951E2A9B52AF00CD724D /* Xib */ = {
-			isa = PBXGroup;
-			children = (
-				4A9B952B2A9B558C00CD724D /* EditProfileViewController.xib */,
-			);
-			path = Xib;
-			sourceTree = "<group>";
-		};
-		4A9B951F2A9B52B600CD724D /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				4A9B952A2A9B558C00CD724D /* EditProfileViewController.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		4A9B95202A9B52C500CD724D /* Xib */ = {
@@ -1583,7 +1521,6 @@
 				4A91ED342A93673B00915A0A /* HomeCollectionViewCell.xib in Resources */,
 				4AF66A4A2A98D07100F65CDA /* ProductsDetailCell.xib in Resources */,
 				4A7FD2E22A8E05DF00AEF0CB /* Gotham-Medium.otf in Resources */,
-				4A9B952D2A9B558C00CD724D /* EditProfileViewController.xib in Resources */,
 				4A9CCA292A9223550088A036 /* DrawerViewController.xib in Resources */,
 				4A933CAD2AA8652D001652CC /* RatingPopUiViewController.xib in Resources */,
 				4A7390752A8E2715004E12A3 /* RegisterViewController.xib in Resources */,
@@ -1716,7 +1653,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A9B952C2A9B558C00CD724D /* EditProfileViewController.swift in Sources */,
 				4A7390632A8E1602004E12A3 /* UICollectionView+Extension.swift in Sources */,
 				4A9A251A2A949B6900892EB0 /* RegisterViewModel.swift in Sources */,
 				4A90275B2AA5F46300D3BB81 /* AddAddressAPIService.swift in Sources */,

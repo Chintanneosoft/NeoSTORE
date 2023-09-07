@@ -56,6 +56,8 @@ class AddAddressViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        btnSaveAddress.layer.cornerRadius = 5
     }
     private func setUpNavBar(){
         //Navigation bar

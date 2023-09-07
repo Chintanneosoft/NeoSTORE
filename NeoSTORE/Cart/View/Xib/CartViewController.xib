@@ -34,7 +34,7 @@
                             <rect key="frame" x="15" y="709.66666666666663" width="363" height="34.333333333333371"/>
                             <color key="backgroundColor" name="Primary Background"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Order Now">
+                            <buttonConfiguration key="configuration" style="plain" title="ORDER NOW">
                                 <color key="baseForegroundColor" name="Primary Foreground"/>
                             </buttonConfiguration>
                             <connections>

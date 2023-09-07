@@ -28,23 +28,19 @@ class CartViewController: UIViewController {
         setDelegates()
         xibRegister()
         setUpNavBar()
+        setUpUI()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         callMyCart()
-        cartViewModel.cartList = nil
-        cartViewModel.myCart = nil
         navigationController?.navigationBar.isHidden = false
-        if cartViewModel.cartList?.count ?? 0 > 0 {
-            btnOrderNow.isEnabled = true
-        }
-        else {
-            btnOrderNow.isEnabled = false
-        }
+        
     }
-    
+    private func setUpUI(){
+        btnOrderNow.layer.cornerRadius = 5
+    }
     private func setUpNavBar() {
         navigationItem.title = "My Cart"
         let backButton = UIBarButtonItem()
@@ -70,7 +66,7 @@ class CartViewController: UIViewController {
     
     private func callMyCart(){
         cartViewModel.cartViewModelDelegate = self
-        self.showLoader(view: view, aicView: &self.loaderView)
+        self.showLoader()
         cartViewModel.callFetchCart()
     }
     
@@ -134,7 +130,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
         if indexPath.section == 0 {
             
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completionHandler) in
-                self.showLoader(view: self.view, aicView: &self.loaderView)
+                self.showLoader()
                 self.cartViewModel.callDeleteCart(productId: self.cartViewModel.cartList?[indexPath.row].productID ?? 0)
                 self.cartViewModel.cartList?.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -170,7 +166,7 @@ extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
         // Handle row selection if needed
         currQuantity = Int(quantityArr[row]) ?? 0
         changeState()
-        self.showLoader(view: self.view, aicView: &self.loaderView)
+        self.showLoader()
         cartViewModel.callUpdateCart(productId: currProductId, quantity: currQuantity)
     }
     
@@ -188,14 +184,20 @@ extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
 extension CartViewController: CartViewModelDelegate{
     func setCart() {
         DispatchQueue.main.async {
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
             self.cartTableView.reloadData()
+            if self.cartViewModel.cartList?.count != nil {
+                self.btnOrderNow.isEnabled = true
+            }
+            else {
+                self.btnOrderNow.isEnabled = false
+            }
         }
     }
     
     func failureCart(msg: String) {
         DispatchQueue.main.async {
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
             self.cartTableView.reloadData()
             self.showAlert(title: "Error", msg: msg)
             

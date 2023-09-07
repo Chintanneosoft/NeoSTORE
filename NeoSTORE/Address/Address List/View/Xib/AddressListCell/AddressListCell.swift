@@ -35,6 +35,9 @@ class AddressListCell: UITableViewCell {
         // Configure the view for the selected state
     }
     private func setUpUI(){
+        
+        lblTitle.font = UIFont(name: Font.fontRegular.rawValue, size: 22)
+        lblAddress.font = UIFont(name: Font.fontThin.rawValue, size: 15)
         containerView.layer.cornerRadius = 5
         containerView.layer.borderWidth = 0.1
     }

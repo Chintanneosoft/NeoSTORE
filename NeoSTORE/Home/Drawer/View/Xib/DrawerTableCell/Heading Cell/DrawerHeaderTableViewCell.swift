@@ -19,6 +19,7 @@ class DrawerHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var lblEmail: UILabel!
      
     weak var drawerHeaderTableViewCellDelegate : DrawerHeaderTableViewCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,16 +27,23 @@ class DrawerHeaderTableViewCell: UITableViewCell {
     }
 
     private func setUpUI(){
+        
         lblName.font = UIFont(name:Font.fontRegular.rawValue,size: 23)
         lblEmail.font = UIFont(name:Font.fontThin.rawValue,size: 13)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
-        lblName.addGestureRecognizer(tap)
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
+        lblName.addGestureRecognizer(tap1)
         lblName.isUserInteractionEnabled = true
-        lblEmail.addGestureRecognizer(tap)
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
+        lblEmail.addGestureRecognizer(tap2)
         lblEmail.isUserInteractionEnabled = true
-        profileImg.addGestureRecognizer(tap)
+        let tap3 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
+        profileImg.addGestureRecognizer(tap3)
         profileImg.isUserInteractionEnabled = true
+        
+        profileImg.layer.cornerRadius = profileImg.bounds.width/2
+        profileImg.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+        profileImg.layer.borderWidth = 2
         
     }
     

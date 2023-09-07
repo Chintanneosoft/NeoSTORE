@@ -29,6 +29,7 @@ class ProductDetailsViewController: UIViewController {
         super.viewDidLoad()
         setDelegates()
         xibRegister()
+        setUpUI()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -36,9 +37,26 @@ class ProductDetailsViewController: UIViewController {
         setUpNavBar()
         callViewModelFetchProductDetails()
     }
+    
+    private func setUpUI(){
+        btnRate.layer.cornerRadius = 5
+        btnBuyNow.layer.cornerRadius = 5
+    }
+    
     private func setUpNavBar(){
             
+        if let navigationController = self.navigationController {
+                    navigationController.navigationBar.titleTextAttributes = [
+                        NSAttributedString.Key.font: UIFont(name: Font.fontRegular.rawValue, size: 20)!,
+                        NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
+                    ]
+        }
+//        navigationController?.navigationBar.titleTextAttributes = [
+//            NSAttributedString.Key.font: UIFont(name: Font.fontRegular.rawValue, size: 20)!,
+//            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
+//        ]
         navigationItem.title = productDetailsViewModel.productsDetails?.data?.name
+        
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title
         navigationItem.backBarButtonItem = backButton
@@ -58,7 +76,7 @@ class ProductDetailsViewController: UIViewController {
         productsDetailsTableView.register(UINib(nibName: "ProductBottomCell", bundle: nil), forCellReuseIdentifier: "ProductBottomCell")
     }
     private func callViewModelFetchProductDetails(){
-        self.showLoader(view: self.view, aicView: &self.loaderView)
+        self.showLoader()
         productDetailsViewModel.productDetailsViewModelDelegate = self
         productDetailsViewModel.callProductDetails(productId: productId ?? 0)
     }
@@ -123,7 +141,7 @@ extension ProductDetailsViewController: ProductDetailsViewModelDelegate{
         DispatchQueue.main.async {
             self.productsDetailsTableView.reloadData()
             self.navigationItem.title = self.productDetailsViewModel.productsDetails?.data?.name
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
         }
     }
     

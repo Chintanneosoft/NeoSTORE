@@ -40,6 +40,9 @@ class EnterQuantityViewController: UIViewController {
         
         containerView.layer.cornerRadius = 10
         
+        btnSubmit.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 25)
+        btnSubmit.layer.cornerRadius = 5
+        
         tfEnterQty.becomeFirstResponder()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)

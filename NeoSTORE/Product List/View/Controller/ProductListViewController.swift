@@ -21,6 +21,7 @@ class ProductListViewController: UIViewController {
     var productCategoryId: Int?
     var loaderView: UIView?
     var productImg: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -48,7 +49,13 @@ class ProductListViewController: UIViewController {
 //        callViewModelFetchProductList()
     }
     private func setUpNavBar() {
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont(name: Font.fontRegular.rawValue, size: 20)!,
+            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
+        ]
         navigationItem.title = getTitle(categoryID: productCategoryId ?? 0)
+        
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title
         navigationItem.backBarButtonItem = backButton
@@ -70,7 +77,7 @@ class ProductListViewController: UIViewController {
         }
     }
     private func fetchProductList(){
-        self.showLoader(view: self.view, aicView: &self.loaderView)
+        self.showLoader()
         productListViewModel.productListViewModelDelegate = self
         productListViewModel.callFetchProductList(productCategory: productCategoryId ?? 0)
     }
@@ -105,7 +112,7 @@ extension ProductListViewController: ProductListViewModelDelegate{
     func setProductsList() {
         DispatchQueue.main.async {
             self.productListTableView.reloadData()
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
         }
     }
     func failureProductList(msg: String) {

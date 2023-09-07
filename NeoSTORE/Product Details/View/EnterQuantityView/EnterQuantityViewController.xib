@@ -68,7 +68,7 @@
                                                     <rect key="frame" x="80" y="377.33333333333337" width="160" height="34.333333333333314"/>
                                                     <color key="backgroundColor" name="Primary Background"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Buy Now">
+                                                    <buttonConfiguration key="configuration" style="plain" title="BUY NOW">
                                                         <color key="baseForegroundColor" name="Primary Foreground"/>
                                                     </buttonConfiguration>
                                                     <connections>

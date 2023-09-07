@@ -24,6 +24,7 @@ class OrderDetailsViewController: UIViewController {
         setUpNavBar()
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         callOrderDetails()
@@ -48,7 +49,7 @@ class OrderDetailsViewController: UIViewController {
     
     private func callOrderDetails(){
         orderDetailsViewModel.orderDetailsViewModelDelegate = self
-        showLoader(view: view, aicView: &loaderView)
+        showLoader()
         orderDetailsViewModel.getOrderDetails(orderId: orderId ?? 0)
     }
 
@@ -85,14 +86,14 @@ extension OrderDetailsViewController: UITableViewDelegate, UITableViewDataSource
 extension OrderDetailsViewController: OrderDetailsViewModelDelegate{
     func successOrderDetails() {
         DispatchQueue.main.async {
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
             self.orderDetailsTableView.reloadData()
         }
     }
     
     func failureOrderDetails(msg: String) {
         DispatchQueue.main.async {
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
             self.showAlert(title: "Error", msg: msg)
         }
     }

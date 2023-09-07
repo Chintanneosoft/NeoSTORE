@@ -48,7 +48,7 @@ class MyOrdersViewController: UIViewController {
     }
     private func callMyOrderList(){
         myOrderViewModel.myOrderViewModelDelegate = self
-        showLoader(view: view, aicView: &loaderView)
+        showLoader()
         myOrderViewModel.placeOrder()
     }
     /*
@@ -86,14 +86,14 @@ extension MyOrdersViewController: UITableViewDelegate, UITableViewDataSource{
 extension MyOrdersViewController: MyOrderViewModelDelegate{
     func successOrderList() {
         DispatchQueue.main.async {
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
             self.myOrdersTableView.reloadData()
         }
     }
     
     func failureOrderList(msg: String) {
         DispatchQueue.main.async {
-            self.hideLoader(viewLoaderScreen: self.loaderView)
+            self.hideLoader()
             self.showAlert(title: "Error", msg: msg)
         }
     }

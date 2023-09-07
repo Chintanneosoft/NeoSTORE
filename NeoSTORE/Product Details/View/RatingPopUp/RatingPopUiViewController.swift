@@ -55,6 +55,9 @@ class RatingPopUiViewController: UIViewController {
         
         containerView.layer.cornerRadius = 10
         
+        btnRateNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 25)
+        btnRateNow.layer.cornerRadius = 5
+        
         let img1Tap = UITapGestureRecognizer(target: self, action: #selector(handleOneStar))
         let img2Tap = UITapGestureRecognizer(target: self, action: #selector(handleTwoStar))
         let img3Tap = UITapGestureRecognizer(target: self, action: #selector(handleThreeStar))
