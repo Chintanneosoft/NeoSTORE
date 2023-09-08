@@ -38,6 +38,7 @@ enum APIServices{
     case userRegister(param: [String:Any])
     case userLogin(param: [String:Any])
     case fetchUser
+    case updateUser(param: [String:Any])
     case fetchProductsList(param: [String:Any])
     case fetchProductsDetails(param: [String:Any])
     case setRatings(param : [String:Any])
@@ -61,6 +62,8 @@ enum APIServices{
             urlPath = "users/login"
         case .fetchUser:
             urlPath = "users/getUserData"
+        case .updateUser:
+            urlPath = "users/update"
         case .fetchProductsList:
             urlPath = "products/getList"
         case .fetchProductsDetails:
@@ -89,7 +92,7 @@ enum APIServices{
         // Setting HTTP Method
         var httpMethod: String {
             switch self {
-            case .userLogin,.userRegister,.setRatings,.addToCart,.updateCart,.deleteCart,.placeOrder:
+            case .userLogin,.userRegister,.updateUser,.setRatings,.addToCart,.updateCart,.deleteCart,.placeOrder:
                 return "POST"
             default:
                 return "GET"
@@ -99,7 +102,7 @@ enum APIServices{
         // Param to pass in HTTPBody of URL
         var param: [String:Any]? {
             switch self {
-            case .userRegister(param: let param), .userLogin(let param),.fetchProductsList(param: let param),.fetchProductsDetails(param: let param),.setRatings(param: let param),.addToCart(param: let param),.updateCart(param: let param),.deleteCart(param: let param),.placeOrder(param: let param),.getOrderDetail(param: let param):
+            case .userRegister(param: let param), .userLogin(let param),.updateUser(param: let param),.fetchProductsList(param: let param),.fetchProductsDetails(param: let param),.setRatings(param: let param),.addToCart(param: let param),.updateCart(param: let param),.deleteCart(param: let param),.placeOrder(param: let param),.getOrderDetail(param: let param):
                 return param
             default:
                 return nil

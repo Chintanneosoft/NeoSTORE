@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		34484985AC0F3D869FE69DAD /* Pods_NeoSTORE_NeoSTOREUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036BE62EE081AC2292D526A9 /* Pods_NeoSTORE_NeoSTOREUITests.framework */; };
 		4A2D84642A94F17E00DD0D8B /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2D84632A94F17E00DD0D8B /* RegisterModel.swift */; };
+		4A3416D52AAAEEBD00DC326D /* ProfileAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3416D42AAAEEBC00DC326D /* ProfileAPIService.swift */; };
+		4A3416D72AAB1E0800DC326D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3416D62AAB1E0800DC326D /* ProfileViewModel.swift */; };
 		4A56C0D82A8F536400693C5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A56C0D72A8F536400693C5E /* LoginViewController.swift */; };
 		4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A711FCC2A8E551D00C1348D /* HomeViewController.swift */; };
 		4A711FCF2A8E551D00C1348D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A711FCD2A8E551D00C1348D /* HomeViewController.xib */; };
@@ -143,6 +145,8 @@
 		3195F6AE66B9477BA8B14FF1 /* Pods-NeoSTORE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORE.release.xcconfig"; path = "Target Support Files/Pods-NeoSTORE/Pods-NeoSTORE.release.xcconfig"; sourceTree = "<group>"; };
 		3B2FABAE35101E077091D5F8 /* Pods-NeoSTORE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORE.debug.xcconfig"; path = "Target Support Files/Pods-NeoSTORE/Pods-NeoSTORE.debug.xcconfig"; sourceTree = "<group>"; };
 		4A2D84632A94F17E00DD0D8B /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		4A3416D42AAAEEBC00DC326D /* ProfileAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAPIService.swift; sourceTree = "<group>"; };
+		4A3416D62AAB1E0800DC326D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		4A56C0D72A8F536400693C5E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ../../../../../../../LoginViewController.swift; sourceTree = "<group>"; };
 		4A711FCC2A8E551D00C1348D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4A711FCD2A8E551D00C1348D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -1136,6 +1140,7 @@
 		4A9B95172A9B526C00CD724D /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A3416D62AAB1E0800DC326D /* ProfileViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -1150,6 +1155,7 @@
 		4A9B95192A9B527B00CD724D /* Web Services */ = {
 			isa = PBXGroup;
 			children = (
+				4A3416D42AAAEEBC00DC326D /* ProfileAPIService.swift */,
 			);
 			path = "Web Services";
 			sourceTree = "<group>";
@@ -1679,6 +1685,7 @@
 				4AA48CBB2AA3431D00922820 /* CartModel.swift in Sources */,
 				4A933CBF2AA891B0001652CC /* MyOrdersAPIService.swift in Sources */,
 				4A950F9A2AA1AC3800EF3FB3 /* DrawerViewModel.swift in Sources */,
+				4A3416D72AAB1E0800DC326D /* ProfileViewModel.swift in Sources */,
 				4A8ECD442AA6F2CB0042E92C /* AddressListAPIService.swift in Sources */,
 				4A930B9E2AA072F600EF3D9D /* RatingPopUpViewModel.swift in Sources */,
 				4A91ED1B2A93364E00915A0A /* DrawerHeaderTableViewCell.swift in Sources */,
@@ -1715,6 +1722,7 @@
 				4AF66A402A98C4F800F65CDA /* ResetPasswordViewController.swift in Sources */,
 				4A91ED1F2A935E3700915A0A /* LoginViewModel.swift in Sources */,
 				4A91ED2A2A9365D700915A0A /* HomeModel.swift in Sources */,
+				4A3416D52AAAEEBD00DC326D /* ProfileAPIService.swift in Sources */,
 				4A8E94A92A976FE00067306F /* Common Functions.swift in Sources */,
 				4A91ED332A93673B00915A0A /* HomeCollectionViewCell.swift in Sources */,
 				4A97B3322A9A1DD300DC11B6 /* ProductDetailsAPIService.swift in Sources */,
@@ -1892,8 +1900,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeoSTORE/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1908,6 +1918,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chintan.NeoSTORE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1920,8 +1931,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeoSTORE/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1936,6 +1949,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chintan.NeoSTORE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
