@@ -77,6 +77,20 @@ class Validation{
 //        validationDelegate?.resultMsg(msg: "Validation successfull")
         return (true,"Enter your valid password")
     }
+    
+    func updateUserValidation(fname: String, lname: String, email: String, dob:String,profilePic:String,phone:String) -> (Bool,String){
+        guard fname != "" && lname != "" && email != "" && dob != "" && profilePic != "" && phone != "" else {
+//            validationDelegate?.resultMsg(msg: "Please fill the required fields")
+            return (false,"Please fill the required fields")
+        }
+        if email != "" {
+            guard validateEmail(email ) == true else {
+//                validationDelegate?.resultMsg( msg:"Enter your valid email id")
+                return (false,"Enter your valid email id")
+            }
+        }
+        return (true,"Validation SuccessFull")
+    }
     func containsOnlyCharacters(_ input: String) -> Bool {
         let characterSet = CharacterSet.letters
         return input.rangeOfCharacter(from: characterSet.inverted) == nil

@@ -25,7 +25,7 @@ class DrawerViewController: UIViewController {
     
     var loaderView : UIView?
     let drawerViewModel = DrawerViewModel()
-    
+   
     private var noOfNotifications: Int?
     //MARK: - IBOutlets
     @IBOutlet weak var drawerTableView: UITableView?
@@ -150,9 +150,10 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
         switch indexPath.section{
         case 0:
             drawerViewControllerDelegate?.showDrawer()
-            let nextViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-            nextViewController.userData = drawerViewModel.userData
-            self.navigationController?.pushViewController(nextViewController, animated: true)
+            let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            profileViewController.userData = drawerViewModel.userData
+            profileViewController.UserDataUpdateDelegate = self
+            self.navigationController?.pushViewController(profileViewController, animated: true)
         case 1:
             switch indexPath.row{
             case 0:
@@ -214,3 +215,8 @@ extension DrawerViewController: DrawerViewModelDelegate{
     
 }
 
+extension DrawerViewController: UserDataUpdate{
+    func updateDrawer() {
+        callUserData()
+    }
+}

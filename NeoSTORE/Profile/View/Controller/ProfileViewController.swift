@@ -8,10 +8,18 @@
 import UIKit
 import SDWebImage
 import MobileCoreServices
+import UniformTypeIdentifiers
 
+
+//MARK: - UserDataUpdate Protocol
+protocol UserDataUpdate:NSObject{
+    func updateDrawer()
+}
+
+//MARK: - ProfileViewController
 class ProfileViewController: UIViewController {
     
-    
+    //MARK: - IBOutlets
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet var containerViews: [UIView]!
     @IBOutlet weak var tfFirstName: UITextField!
@@ -23,12 +31,20 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var btnRestPassword: UIButton!
     @IBOutlet weak var profileScrollView: UIScrollView!
     
+    weak var UserDataUpdateDelegate: UserDataUpdate?
+    
+    //properties
     private var datePicker: UIDatePicker!
     
     var userData : FetchUser?
+    var userImg : String?
+    
     var extraHeight = 0
     var editState = false
     
+    let profileViewModel = ProfileViewModel()
+    
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -42,14 +58,32 @@ class ProfileViewController: UIViewController {
         setUpNavBar()
     }
     
+    //MARK: - Functions
     private func setDelegates(){
+        
         tfDOB.delegate = self
         tfEmail.delegate = self
         tfPhone.delegate = self
         tfLastName.delegate = self
         tfFirstName.delegate = self
+        
     }
     
+    //Navbar
+    private func setUpNavBar(){
+        
+        navigationController?.navigationBar.isHidden = false
+    
+        navigationItem.title = "My Account"
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "" // Set an empty title
+        navigationItem.backBarButtonItem = backButton
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
+    }
+    
+    //Set Up UI
     private func setUpUI(){
         
         //Views
@@ -58,15 +92,12 @@ class ProfileViewController: UIViewController {
             v.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
         }
         
+        //Text Fields
         tfFirstName.text = userData?.data?.user_data?.first_name
         tfLastName.text = userData?.data?.user_data?.last_name
         tfEmail.text = userData?.data?.user_data?.email
         tfPhone.text = userData?.data?.user_data?.phone_no
         tfDOB.text = userData?.data?.user_data?.dob
-        
-        if let img = userData?.data?.user_data?.profile_pic{
-            profileImg.sd_setImage(with: URL(string: img))
-        }
         
         tfDOB.isEnabled = false
         tfEmail.isEnabled = false
@@ -92,19 +123,27 @@ class ProfileViewController: UIViewController {
         tfLastName.textColor = UIColor(named: "Primary Foreground")
         tfFirstName.textColor = UIColor(named: "Primary Foreground")
         
+        //Image
+        if let img = userData?.data?.user_data?.profile_pic{
+            profileImg.sd_setImage(with: URL(string: img))
+        }
         profileImg.layer.cornerRadius = profileImg.bounds.width/2
         let imgTap = UITapGestureRecognizer(target: self, action: #selector(imgTapped))
         profileImg.addGestureRecognizer(imgTap)
         
         btnEditProflie.layer.cornerRadius = 5
         
+        //Keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
+        
     }
     
+    
+    //Date Picker
     func setDatePicker(){
         
         datePicker = UIDatePicker()
@@ -123,19 +162,6 @@ class ProfileViewController: UIViewController {
         tfDOB.inputView = datePicker
         tfDOB.inputAccessoryView = toolbar
     }
-    func setUpNavBar(){
-        
-        navigationController?.navigationBar.isHidden = false
-        
-        
-        navigationItem.title = "My Account"
-        
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-    }
     
     func updateDate() {
         let dateFormatter = DateFormatter()
@@ -146,15 +172,11 @@ class ProfileViewController: UIViewController {
         
         tfDOB.text = formattedDate
     }
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
-    @objc func datePickerValueChanged() {
-        updateDate()
-    }
-    @objc func imgTapped(){
-        tfFirstName.resignFirstResponder()
-        actionOptions()
+    
+    func callUpdateUser(){
+        showLoader()
+        profileViewModel.profileViewModelDelegate = self
+        profileViewModel.callValidations(fname: tfFirstName.text ?? "", lname: tfLastName.text ?? "", email: tfEmail.text ?? "", dob: tfDOB.text ?? "" , profilePic: userImg ?? "", phone: tfPhone.text ?? "")
     }
     
     func actionOptions(){
@@ -176,7 +198,7 @@ class ProfileViewController: UIViewController {
             let image = UIImagePickerController()
             image.allowsEditing = true
             image.sourceType = .camera
-            image.mediaTypes = [kUTTypeImage as String]
+            image.mediaTypes = [UTType.image.identifier]
             self.present(image,animated: true,completion:nil)
         }
     }
@@ -190,6 +212,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    //MARK: - @objc Functions
     @objc func keyboardWillShow(notification:NSNotification) {
         
         guard let userInfo = notification.userInfo else { return }
@@ -207,10 +230,24 @@ class ProfileViewController: UIViewController {
         profileScrollView.contentInset = contentInset
     }
     
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
+    @objc func imgTapped(){
+        tfFirstName.resignFirstResponder()
+        actionOptions()
+    }
+    
     @objc func doneButtonTapped() {
         tfDOB.resignFirstResponder()
     }
     
+    @objc func datePickerValueChanged() {
+        updateDate()
+    }
+    
+    //MARK: - IBActions
     @IBAction func btnEditProfileTapped(_ sender: UIButton) {
         editState = !editState
         if editState {
@@ -236,29 +273,17 @@ class ProfileViewController: UIViewController {
             profileImg.isUserInteractionEnabled = false
             btnEditProflie.setTitle("EDIT PROFILE", for: .normal)
             //   navigationItem.title = "My Account"
+            callUpdateUser()
         }
-        
-        
-        
     }
     
     @IBAction func btnResetPasswordTapped(_ sender: UIButton) {
         
     }
     
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
+
+//MARK: - TextFieldDelegate
 extension ProfileViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == tfDOB{
@@ -294,32 +319,49 @@ extension ProfileViewController: UITextFieldDelegate{
     }
 }
 
+//MARK: - ImagePickerController Delegate
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print(info)
         
-        let data = convertFromUIImageTODict(info)
-        if let editingImg =  data[convertInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage{
+        if let editingImg = info[.editedImage] as? UIImage{
             print(editingImg)
-            self.profileImg.image = editingImg
+            
+            if let imgData = editingImg.jpegData(compressionQuality: 0.8){
+                let base64String = imgData.base64EncodedString()
+                self.userImg = base64String
+            }
+            if let data = Data(base64Encoded: userImg ?? "") {
+                if let image = UIImage(data: data) {
+                    self.profileImg.image = image
+                }
+            }
+           
         }
-//        if let editingImage = info[UIImagePickerController.InfoKey(rawValue: convertInfoKey(UIImagePickerController.InfoKey.editedImage))] as? UIImage{
-//            print(editingImage)
-//            self.profileImg.image = editingImage
-//        }
         picker.dismiss(animated: true)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true)
     }
+
+}
+
+//MARK: - ProfileViewModelDelegate
+extension ProfileViewController: ProfileViewModelDelegate{
     
-    func convertFromUIImageTODict(_ input :[UIImagePickerController.InfoKey: Any]) -> [String:Any]{
-        return Dictionary(uniqueKeysWithValues: input.map({ key, value in
-            (key.rawValue,value)
-        }))
+    func setUserData() {
+        DispatchQueue.main.async {
+            self.hideLoader()
+            self.UserDataUpdateDelegate?.updateDrawer()
+        }
     }
-    func convertInfoKey(_ input : UIImagePickerController.InfoKey) -> String{
-        return input.rawValue
+    
+    func failureUser(msg: String) {
+        DispatchQueue.main.async {
+            self.hideLoader()
+            self.showAlert(title: "Error", msg: msg)
+        }
     }
 }

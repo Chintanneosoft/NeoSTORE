@@ -22,6 +22,7 @@ class ProfileViewModel: NSObject {
     //APIService Object
     private let profileAPIService = ProfileAPIService()
     
+    let validation = Validation()
     var userData : User?
     
     func callUpdateUser(fname: String, lname: String, email: String, dob:String,profilePic:String,phone:String){
@@ -35,6 +36,7 @@ class ProfileViewModel: NSObject {
                 if (value.0 != nil){
                     self.userData = value.0
                     self.profileViewModelDelegate?.setUserData()
+                    print(self.userData)
                 }
                 else{
                     self.profileViewModelDelegate?.failureUser(msg: value.1!.user_msg!)
@@ -46,6 +48,17 @@ class ProfileViewModel: NSObject {
         }
     }
     
-   
+    func callValidations(fname: String, lname: String, email: String, dob:String,profilePic:String,phone:String){
+        let validationResult = validation.updateUserValidation(fname: fname, lname: lname, email: email, dob:dob,profilePic:profilePic,phone:phone)
+        
+        if validationResult.0{
+            callUpdateUser(fname: fname, lname: lname, email: email, dob: dob, profilePic: profilePic, phone: phone)
+            
+        }
+        else{
+            profileViewModelDelegate?.failureUser(msg: validationResult.1)
+        }
+        
+    }
 }
 

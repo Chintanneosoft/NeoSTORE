@@ -58,6 +58,7 @@ class APIManager {
 
             guard (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String:Any] != nil else {
                 print("Not containing JSON")
+                print("Response Content: \(String(data: content, encoding: .utf8) ?? "N/A")")
                 return
             }
             completion(.success(content))
