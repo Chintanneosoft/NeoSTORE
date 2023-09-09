@@ -11,11 +11,6 @@ import MobileCoreServices
 import UniformTypeIdentifiers
 
 
-//MARK: - UserDataUpdate Protocol
-protocol UserDataUpdate:NSObject{
-    func updateDrawer()
-}
-
 //MARK: - ProfileViewController
 class ProfileViewController: UIViewController {
     
@@ -31,7 +26,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var btnRestPassword: UIButton!
     @IBOutlet weak var profileScrollView: UIScrollView!
     
-    weak var UserDataUpdateDelegate: UserDataUpdate?
     
     //properties
     private var datePicker: UIDatePicker!
@@ -354,7 +348,7 @@ extension ProfileViewController: ProfileViewModelDelegate{
     func setUserData() {
         DispatchQueue.main.async {
             self.hideLoader()
-            self.UserDataUpdateDelegate?.updateDrawer()
+            NotificationCenter.default.post(name: .updateDrawer, object: nil)
         }
     }
     

@@ -46,6 +46,7 @@ class DrawerViewController: UIViewController {
     
     deinit{
         NotificationCenter.default.removeObserver(self, name: .updateCart, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .updateDrawer, object: nil)
     }
     //MARK: - Functions
     private func setUpUI(){
@@ -56,6 +57,13 @@ class DrawerViewController: UIViewController {
                 name: .updateCart,
                 object: nil
             )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateDrawer),
+            name: .updateDrawer,
+            object: nil
+        )
     }
     private func setDelegates(){
         drawerTableView?.delegate = self
@@ -84,7 +92,9 @@ class DrawerViewController: UIViewController {
         drawerTableView?.reloadData()
     }
     
-    
+    @objc func updateDrawer(_ notification: Notification) {
+        callUserData()
+    }
     /*
      // MARK: - Navigation
      
@@ -152,7 +162,6 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
             drawerViewControllerDelegate?.showDrawer()
             let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
             profileViewController.userData = drawerViewModel.userData
-            profileViewController.UserDataUpdateDelegate = self
             self.navigationController?.pushViewController(profileViewController, animated: true)
         case 1:
             switch indexPath.row{
@@ -213,10 +222,4 @@ extension DrawerViewController: DrawerViewModelDelegate{
         }
     }
     
-}
-
-extension DrawerViewController: UserDataUpdate{
-    func updateDrawer() {
-        callUserData()
-    }
 }

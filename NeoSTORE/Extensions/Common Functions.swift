@@ -77,6 +77,7 @@ extension UINavigationController{
 
 extension Notification.Name {
     static let updateCart = Notification.Name("updateCart")
+    static let updateDrawer = Notification.Name("UpdateDrawerNotification")
 }
 //extension Notification.Keys {
 //    static let cartCount = "newDataKey"
