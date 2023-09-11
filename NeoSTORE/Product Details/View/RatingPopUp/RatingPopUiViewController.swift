@@ -91,8 +91,14 @@ class RatingPopUiViewController: UIViewController {
     }
     
     @objc func handleOneStar() {
+        if rating == 1{
+            setRating(rate: 0)
+            rating = 0
+        }
+        else {
             setRating(rate: 1)
             rating = 1
+        }
         }
         @objc func handleTwoStar() {
             setRating(rate: 2)

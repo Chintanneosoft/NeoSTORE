@@ -40,8 +40,10 @@ class CartViewController: UIViewController {
     }
     private func setUpUI(){
         btnOrderNow.layer.cornerRadius = 5
+        btnOrderNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
     }
     private func setUpNavBar() {
+        setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "My Cart"
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title

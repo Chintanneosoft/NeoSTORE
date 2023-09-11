@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController {
     
     var userData : FetchUser?
     var userImg : String?
+    var userImgData : Data?
     
     var extraHeight = 0
     var editState = false
@@ -67,7 +68,7 @@ class ProfileViewController: UIViewController {
     private func setUpNavBar(){
         
         navigationController?.navigationBar.isHidden = false
-    
+        setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "My Account"
         
         let backButton = UIBarButtonItem()
@@ -121,11 +122,16 @@ class ProfileViewController: UIViewController {
         if let img = userData?.data?.user_data?.profile_pic{
             profileImg.sd_setImage(with: URL(string: img))
         }
+        //MARK: - Locally Saved Image Fetch
+        profileImg.image = loadProfileImage(imageName: "profile_picture")
+        
         profileImg.layer.cornerRadius = profileImg.bounds.width/2
         let imgTap = UITapGestureRecognizer(target: self, action: #selector(imgTapped))
         profileImg.addGestureRecognizer(imgTap)
         
         btnEditProflie.layer.cornerRadius = 5
+        btnEditProflie.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
+        btnRestPassword.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
         
         //Keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
@@ -205,7 +211,8 @@ class ProfileViewController: UIViewController {
             self.present(image, animated: true,completion:nil)
         }
     }
-    
+   
+
     //MARK: - @objc Functions
     @objc func keyboardWillShow(notification:NSNotification) {
         
@@ -244,6 +251,7 @@ class ProfileViewController: UIViewController {
     //MARK: - IBActions
     @IBAction func btnEditProfileTapped(_ sender: UIButton) {
         editState = !editState
+        
         if editState {
             tfDOB.isEnabled = true
             tfEmail.isEnabled = true
@@ -272,7 +280,8 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func btnResetPasswordTapped(_ sender: UIButton) {
-        
+        let profileViewController = ResetPasswordViewController(nibName: "ResetPasswordViewController", bundle: nil)
+        self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
 }
@@ -324,14 +333,21 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             
             if let imgData = editingImg.jpegData(compressionQuality: 0.8){
                 let base64String = imgData.base64EncodedString()
+                self.userImgData = imgData
                 self.userImg = base64String
             }
+//            uploadImage()
             if let data = Data(base64Encoded: userImg ?? "") {
                 if let image = UIImage(data: data) {
                     self.profileImg.image = image
                 }
+                
+                //MARK: - Locally Saved Image
+                let imageToSave = UIImage(data: data)!
+                let imageName = "profile_picture.jpg"
+                saveImage(image: imageToSave, withName: imageName)
             }
-           
+            
         }
         picker.dismiss(animated: true)
     }
@@ -339,6 +355,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true)
     }
+    
 
 }
 

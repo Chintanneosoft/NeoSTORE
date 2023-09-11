@@ -40,14 +40,9 @@ class RegisterViewController: UIViewController {
     private func setUpUI(){
         //Navigation bar\
         self.navigationController?.navigationBar.isHidden = false
-        
-        
+        setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
         
         navigationItem.title = "Register"
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont(name: Font.fontRegular.rawValue, size: 20)!,
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-        ]
         
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title

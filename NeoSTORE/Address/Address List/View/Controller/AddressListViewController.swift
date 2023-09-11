@@ -51,6 +51,7 @@ class AddressListViewController: UIViewController {
     }
     private func setUpNavBar(){
         //Navigation bar
+        setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "Address List"
        
         let plusButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addAddress))
@@ -63,6 +64,7 @@ class AddressListViewController: UIViewController {
         
         lblShippingAddress.font = UIFont(name: Font.fontThin.rawValue, size: 18)
         btnPlaceOrder.layer.cornerRadius = 5
+        btnPlaceOrder.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
     }
     @objc func addAddress(){
         let nextViewController = AddAddressViewController(nibName: "AddAddressViewController", bundle: nil)

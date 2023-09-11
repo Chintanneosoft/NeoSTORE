@@ -49,11 +49,7 @@ class ProductListViewController: UIViewController {
 //        callViewModelFetchProductList()
     }
     private func setUpNavBar() {
-        
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont(name: Font.fontRegular.rawValue, size: 20)!,
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-        ]
+        setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
         navigationItem.title = getTitle(categoryID: productCategoryId ?? 0)
         
         let backButton = UIBarButtonItem()

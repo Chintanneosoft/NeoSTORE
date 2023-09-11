@@ -41,20 +41,13 @@ class ProductDetailsViewController: UIViewController {
     private func setUpUI(){
         btnRate.layer.cornerRadius = 5
         btnBuyNow.layer.cornerRadius = 5
+        btnRate.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
+        btnBuyNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
     }
     
     private func setUpNavBar(){
             
-        if let navigationController = self.navigationController {
-                    navigationController.navigationBar.titleTextAttributes = [
-                        NSAttributedString.Key.font: UIFont(name: Font.fontRegular.rawValue, size: 20)!,
-                        NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-                    ]
-        }
-//        navigationController?.navigationBar.titleTextAttributes = [
-//            NSAttributedString.Key.font: UIFont(name: Font.fontRegular.rawValue, size: 20)!,
-//            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
-//        ]
+        setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
         navigationItem.title = productDetailsViewModel.productsDetails?.data?.name
         
         let backButton = UIBarButtonItem()

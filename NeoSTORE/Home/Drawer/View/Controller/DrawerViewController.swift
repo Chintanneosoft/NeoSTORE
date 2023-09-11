@@ -175,6 +175,11 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
                 nextViewController.productCategoryId = indexPath.row
                 
                 self.navigationController?.pushViewController(nextViewController, animated: true)
+            case 5:
+                drawerViewControllerDelegate?.showDrawer()
+                let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+                profileViewController.userData = drawerViewModel.userData
+                self.navigationController?.pushViewController(profileViewController, animated: true)
             case 7:
                 drawerViewControllerDelegate?.showDrawer()
                 let nextViewController = MyOrdersViewController(nibName: "MyOrdersViewController", bundle: nil)

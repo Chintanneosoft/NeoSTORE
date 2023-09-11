@@ -24,7 +24,14 @@ class ResetPasswordViewController: UIViewController {
         // Do any additional setup after loading the view.
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpNavBar()
+    }
+    private func setUpNavBar(){
+        setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
+        navigationItem.title = "Reset Password"
+    }
     private func setUpUI(){
         
         //Labels
@@ -33,7 +40,7 @@ class ResetPasswordViewController: UIViewController {
         //TextFields
         tfCurrentPassword.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
         tfCurrentPassword.textColor = UIColor(named: "Primary Foreground")
-        tfCurrentPassword.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Current Password")!])
+        tfCurrentPassword.attributedPlaceholder = NSAttributedString(string: "Current Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
         tfNewPassword.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
         tfNewPassword.textColor = UIColor(named: "Primary Foreground")
         tfNewPassword.attributedPlaceholder = NSAttributedString(string: "New Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
@@ -41,7 +48,12 @@ class ResetPasswordViewController: UIViewController {
         tfConfirmPassword.textColor = UIColor(named: "Primary Foreground")
         tfConfirmPassword.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
         
-        btnResetPassword.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 26)
+        for v in containerViews{
+            v.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+            v.layer.borderWidth = 1
+        }
+        
+        btnResetPassword.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 18)
         btnResetPassword.layer.cornerRadius = 5.0
     }
 

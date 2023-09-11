@@ -25,7 +25,12 @@ class DrawerHeaderTableViewCell: UITableViewCell {
         // Initialization code
         setUpUI()
     }
-
+    
+//    func getDocumentsDirectory() -> URL {
+//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        return paths[0]
+//    }
+    
     private func setUpUI(){
         
         lblName.font = UIFont(name:Font.fontRegular.rawValue,size: 23)
@@ -51,9 +56,20 @@ class DrawerHeaderTableViewCell: UITableViewCell {
         lblName.text = name
         lblEmail.text = email
         profileImg.sd_setImage(with: URL(string: imgName))
+        profileImg.image = loadProfileImage(imageName: "profile_picture")
     }
     
     @objc func profileTapped(){
         drawerHeaderTableViewCellDelegate?.goToProfile()
     }
+    
+    
+
+//    // In your ProfileViewController, set the profile image:
+//    if let profileImage = loadProfileImage() {
+//        profileImg.image = profileImage
+//    } else {
+//        // Handle the case where the image couldn't be loaded
+//        // You can set a default profile picture or show an error message.
+//    }
 }

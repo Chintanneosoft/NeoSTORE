@@ -58,6 +58,7 @@ class HomeViewController: UIViewController {
     private func setUpNavBar(){
         
         //Navigation bar
+        setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "NeoSTORE"
         
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon"), style: .plain, target: self, action: #selector(showDrawer))

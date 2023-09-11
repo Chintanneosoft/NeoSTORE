@@ -58,9 +58,11 @@ class AddAddressViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
         btnSaveAddress.layer.cornerRadius = 5
+        btnSaveAddress.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
     }
     private func setUpNavBar(){
         //Navigation bar
+        setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "Add Address"
         
         let backButton = UIBarButtonItem()
