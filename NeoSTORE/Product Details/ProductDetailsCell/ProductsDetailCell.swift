@@ -111,6 +111,7 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
         if indexPath.row != 0{
             collectionView.cellForItem(at: IndexPath(row: 0, section: 0))?.layer.borderColor = UIColor.black.cgColor
         }
+        productImageCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     func changeSelectedCellUI(idx: Int,s: Bool) -> CGColor{

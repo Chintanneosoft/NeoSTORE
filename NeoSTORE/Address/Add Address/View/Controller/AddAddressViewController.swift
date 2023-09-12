@@ -15,7 +15,6 @@ class AddAddressViewController: UIViewController {
     @IBOutlet weak var lblState: UILabel!
     @IBOutlet weak var lblZipCode: UILabel!
     @IBOutlet weak var lblCountry: UILabel!
-    
     @IBOutlet weak var tvAddress: UITextView!
     @IBOutlet weak var tfLandmark: UITextField!
     @IBOutlet weak var tfCity: UITextField!
@@ -92,8 +91,8 @@ class AddAddressViewController: UIViewController {
     
     
     @IBAction func btnSaveAddressTapped(_ sender: UIButton) {
-        if tvAddress.text == ""{
-            self.showAlert(title: "Alert", msg: "Fill Address")
+        if tvAddress.text == "" && tfLandmark.text == "" && tfCity.text == "" && tfState.text == "" && tfCountry.text == "" && tfZipCode.text == ""{
+            self.showAlert(title: "Alert", msg: "Fill all the Fields")
         }
         else {
             let address1 = tvAddress.text + " " + (tfLandmark.text ?? "") + " "

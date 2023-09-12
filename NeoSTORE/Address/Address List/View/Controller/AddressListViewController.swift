@@ -103,12 +103,13 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = addressListTableView.dequeueReusableCell(withIdentifier: "AddressListCell", for: indexPath) as! AddressListCell
         
         cell.addressListCellDelegate = self
         
         cell.lblTitle.text = UserDefaults.standard.string(forKey: "userFirstName")
-
+        print(cell.lblTitle.text)
         cell.lblAddress.text = address[0] ?? "Please Add Address"
         
         if btnSelected == indexPath.row{
