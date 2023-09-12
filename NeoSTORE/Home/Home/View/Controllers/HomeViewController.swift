@@ -97,7 +97,6 @@ class HomeViewController: UIViewController {
             let imageWidth = UIScreen.main.bounds.width
             imageView.image = UIImage(named: sliderImages[i])
             let xPos = CGFloat (i) * UIScreen.main.bounds.width
-            print(xPos)
             imageView.frame = CGRect (x: xPos, y: 0, width: imageWidth, height: sliderScrollView.frame.size.height)
             sliderScrollView.contentSize.width = UIScreen.main.bounds.width*CGFloat(i+1)
             sliderScrollView.showsHorizontalScrollIndicator = false
@@ -118,8 +117,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func showProductList(){
-        let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
-        navigationController?.pushViewController(nextViewController, animated: true)
+//        let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
+//        navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     @objc func timerRunning() {

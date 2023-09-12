@@ -37,6 +37,8 @@ enum APIServices{
     //All Possible Requests
     case userRegister(param: [String:Any])
     case userLogin(param: [String:Any])
+    case updatePass(param: [String:Any])
+    case forgotPass(param: [String:Any])
     case fetchUser
     case updateUser(param: [String:Any])
     case fetchProductsList(param: [String:Any])
@@ -60,6 +62,10 @@ enum APIServices{
             urlPath = "users/register"
         case .userLogin:
             urlPath = "users/login"
+        case .updatePass:
+            urlPath = "users/change"
+        case .forgotPass:
+            urlPath = "users/forgot"
         case .fetchUser:
             urlPath = "users/getUserData"
         case .updateUser:
@@ -92,7 +98,7 @@ enum APIServices{
         // Setting HTTP Method
         var httpMethod: String {
             switch self {
-            case .userLogin,.userRegister,.updateUser,.setRatings,.addToCart,.updateCart,.deleteCart,.placeOrder:
+            case .userLogin,.userRegister,.updateUser,.setRatings,.addToCart,.updateCart,.deleteCart,.placeOrder,.updatePass,.forgotPass:
                 return "POST"
             default:
                 return "GET"
@@ -102,7 +108,7 @@ enum APIServices{
         // Param to pass in HTTPBody of URL
         var param: [String:Any]? {
             switch self {
-            case .userRegister(param: let param), .userLogin(let param),.updateUser(param: let param),.fetchProductsList(param: let param),.fetchProductsDetails(param: let param),.setRatings(param: let param),.addToCart(param: let param),.updateCart(param: let param),.deleteCart(param: let param),.placeOrder(param: let param),.getOrderDetail(param: let param):
+            case .userRegister(param: let param), .userLogin(let param),.updateUser(param: let param),.fetchProductsList(param: let param),.fetchProductsDetails(param: let param),.setRatings(param: let param),.addToCart(param: let param),.updateCart(param: let param),.deleteCart(param: let param),.placeOrder(param: let param),.getOrderDetail(param: let param),.updatePass(param: let param),.forgotPass(param: let param):
                 return param
             default:
                 return nil

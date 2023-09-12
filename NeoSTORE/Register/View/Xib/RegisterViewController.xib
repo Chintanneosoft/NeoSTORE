@@ -379,10 +379,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="Ztd-Av-xM9" secondAttribute="trailing" constant="10" id="uGf-oB-M2O"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVJ-pN-1lh">
-                                            <rect key="frame" x="34" y="621" width="325" height="43"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVJ-pN-1lh">
+                                            <rect key="frame" x="34" y="621" width="325" height="34"/>
                                             <color key="backgroundColor" name="Primary Foreground"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="REGISTER">
                                                 <color key="titleColor" name="Primary Background"/>

@@ -37,6 +37,7 @@ class LoginViewModel{
                     print(value)
                     if (value.0 != nil){
                         UserDefaults.standard.set(value.0!.data?.access_token ?? "", forKey: "accessToken")
+                        UserDefaults.standard.set(value.0!.data?.first_name ?? "" ,forKey: "userFirstName")
                         self.loginViewModelDelegate?.showAlert(msg: "LoggedIn Successfully")
                     }
                     else{
@@ -51,6 +52,18 @@ class LoginViewModel{
         }
         else{
             self.loginViewModelDelegate?.showAlert(msg: validationResult.1)
+        }
+    }
+    func callForgotPass(email: String){
+        loginAPIService.forgotPass(email: email){ (response) in
+            switch response{
+            case .success(let value):
+                self.loginViewModelDelegate?.showAlert(msg: value.user_msg ?? "")
+            case .failure(let error):
+                print(error)
+                self.loginViewModelDelegate?.showAlert(msg: error.localizedDescription)
+            }
+            
         }
     }
 }

@@ -22,9 +22,11 @@ class CartViewModel: NSObject {
     //APIService Object
     private let cartAPIService = CartAPIService()
     
+    //properties
     var myCart : Cart?
     var cartList: [CartData]?
     
+    //MARK: - Functions
     func callFetchCart(){
         cartAPIService.getCartDetails{
             response in

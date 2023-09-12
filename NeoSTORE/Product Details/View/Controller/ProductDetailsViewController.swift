@@ -11,20 +11,20 @@ import UIKit
 //MARK: - ProductDetailsViewController
 class ProductDetailsViewController: UIViewController {
 
+    //MARK: - IBOutlets
     @IBOutlet weak var productsDetailsTableView: UITableView!
-    
     @IBOutlet weak var btnBuyNow: UIButton!
-    
     @IBOutlet weak var btnRate: UIButton!
-    //    private var productsDetails: ProductDetails?
     
-    
+    //Viewmodel Object
     let productDetailsViewModel = ProductDetailsViewModel()
     
+    //properties
     var productId : Int?
     var productCategory : String?
     var loaderView: UIView?
     
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -32,12 +32,14 @@ class ProductDetailsViewController: UIViewController {
         setUpUI()
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUpNavBar()
         callViewModelFetchProductDetails()
     }
     
+    //MARK: - Functions
     private func setUpUI(){
         btnRate.layer.cornerRadius = 5
         btnBuyNow.layer.cornerRadius = 5
@@ -56,24 +58,26 @@ class ProductDetailsViewController: UIViewController {
             
             // navigation bar back image
             navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-            
-        
     }
+    
     private func setDelegates(){
         productsDetailsTableView.delegate = self
         productsDetailsTableView.dataSource = self
     }
+    
     private func xibRegister(){
         productsDetailsTableView.register(UINib(nibName: "ProductsNameCell", bundle: nil), forCellReuseIdentifier: "ProductsNameCell")
         productsDetailsTableView.register(UINib(nibName: "ProductsDetailCell", bundle: nil), forCellReuseIdentifier: "ProductsDetailCell")
         productsDetailsTableView.register(UINib(nibName: "ProductBottomCell", bundle: nil), forCellReuseIdentifier: "ProductBottomCell")
     }
+    
     private func callViewModelFetchProductDetails(){
         self.showLoader()
         productDetailsViewModel.productDetailsViewModelDelegate = self
         productDetailsViewModel.callProductDetails(productId: productId ?? 0)
     }
     
+    //MARK: - IBActions
     @IBAction func btnRateTapped(_ sender: UIButton) {
         let ratingPopUpUIView = RatingPopUiViewController(nibName: "RatingPopUiViewController", bundle: nil)
         ratingPopUpUIView.ratingUpdateDataDelegate = self
@@ -83,6 +87,7 @@ class ProductDetailsViewController: UIViewController {
         ratingPopUpUIView.productImgURL = productDetailsViewModel.productsDetails?.data?.productImages?[0].image
         self.navigationController?.present(ratingPopUpUIView, animated: false)
     }
+    
     @IBAction func btnBuyNowTapped(_ sender: UIButton) {
         let enterQuantityView = EnterQuantityViewController(nibName: "EnterQuantityViewController", bundle: nil)
         enterQuantityView.modalPresentationStyle = .overCurrentContext
@@ -91,12 +96,12 @@ class ProductDetailsViewController: UIViewController {
         enterQuantityView.productImgURL = productDetailsViewModel.productsDetails?.data?.productImages?[0].image
         self.navigationController?.present(enterQuantityView, animated: false)
     }
-    
 
 }
 
 //MARK: - TableView Delegate and DataSource
 extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSource{
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -124,7 +129,6 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    
 }
 
 
@@ -147,6 +151,7 @@ extension ProductDetailsViewController: ProductDetailsViewModelDelegate{
     
 }
 
+//MARK: - RatingUpdateData
 extension ProductDetailsViewController: RatingUpdateData{
     func updateData() {
         callViewModelFetchProductDetails()

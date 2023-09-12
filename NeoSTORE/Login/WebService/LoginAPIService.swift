@@ -42,4 +42,29 @@ class LoginAPIService: NSObject {
             
         }
     }
+    
+    func forgotPass(email: String, completion: @escaping(Result<UserFailure,Error>) -> Void){
+        let params = ["email": email]
+        
+        APIManager.shared.callRequest(apiCallType: .forgotPass(param: params)){ (response) in
+            
+            switch response {
+            
+            case .success(let value):
+                do {
+                    let responseData = try JSONDecoder().decode(UserFailure.self, from: value)
+                    completion(.success(responseData))
+                } catch {
+                        completion(.failure(error))
+                }
+                
+            case .failure(let error):
+                print("In Failure")
+                debugPrint(error.localizedDescription)
+                print("Wrong pass")
+                completion(.failure(error))
+            }
+            
+        }
+    }
 }

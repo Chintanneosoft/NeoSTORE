@@ -78,6 +78,20 @@ class Validation{
         return (true,"Enter your valid password")
     }
     
+    func resetPassValidation(oldPass: String, newPass: String, confirmPass: String ) -> (Bool,String){
+        guard oldPass != "" && newPass != "" && confirmPass != "" else {
+//            validationDelegate?.resultMsg(msg: "Please fill the required fields")
+            return (false,"Please fill the required fields")
+        }
+        
+        guard newPass.count >= 2 && containsOnlyAllowedCharacters(newPass) == true && containsOneNumberAndOneSpecialChar(newPass) == true && newPass == confirmPass else {
+//            validationDelegate?.resultMsg(msg: "Enter your valid password")
+            return (false,"Enter your valid password")
+        }
+        
+        return (true,"Validation SuccessFull")
+    }
+    
     func updateUserValidation(fname: String, lname: String, email: String, dob:String,profilePic:String,phone:String) -> (Bool,String){
         guard fname != "" && lname != "" && email != "" && dob != "" && profilePic != "" && phone != "" else {
 //            validationDelegate?.resultMsg(msg: "Please fill the required fields")
@@ -91,6 +105,9 @@ class Validation{
         }
         return (true,"Validation SuccessFull")
     }
+    
+    
+    
     func containsOnlyCharacters(_ input: String) -> Bool {
         let characterSet = CharacterSet.letters
         return input.rangeOfCharacter(from: characterSet.inverted) == nil

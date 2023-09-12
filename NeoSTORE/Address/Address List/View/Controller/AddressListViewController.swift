@@ -6,21 +6,25 @@
 //
 
 import UIKit
-
+//MARK: - AddressListViewController
 class AddressListViewController: UIViewController {
 
+    //MARK: - IBOutlets
     @IBOutlet weak var lblShippingAddress: UILabel!
     @IBOutlet weak var btnPlaceOrder: UIButton!
     @IBOutlet weak var addressListTableView: UITableView!
     
+    //ViewModel Object
     var addressListViewModel = AddressListViewModel()
     
+    //properties
     var btnSelected: Int?
     var btnCancel: Int?
-
     var loaderView: UIView?
     var address: [String?] = []
     var selectedAddress: String?
+    
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -35,6 +39,7 @@ class AddressListViewController: UIViewController {
         addressListTableView.reloadData()
     }
     
+    //MARK: - Functions
     private func setDelegates(){
         addressListTableView.dataSource = self
         addressListTableView.delegate = self
@@ -49,6 +54,7 @@ class AddressListViewController: UIViewController {
         address += [UserDefaults.standard.string(forKey: "userAddress")]
         btnSelected = nil
     }
+    
     private func setUpNavBar(){
         //Navigation bar
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
@@ -66,34 +72,32 @@ class AddressListViewController: UIViewController {
         btnPlaceOrder.layer.cornerRadius = 5
         btnPlaceOrder.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
     }
+    
+    //MARK: - @objc Funtions
     @objc func addAddress(){
         let nextViewController = AddAddressViewController(nibName: "AddAddressViewController", bundle: nil)
         navigationController?.pushViewController(nextViewController, animated: true)
     }
     
+    //MARK: - IBActions
     @IBAction func btnPlaceOrder(_ sender: UIButton) {
         if btnSelected != nil{
             addressListViewModel.addressListViewModelDelegate = self
             self.showLoader()
-            self.addressListViewModel.placeOrder(address: address[0] ?? "")
+            if address.count > 0{
+                self.addressListViewModel.placeOrder(address: address[0] ?? "")
+            }
         }
         else{
             self.showAlert(title: "Alert", msg: "Select Address")
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+//MARK: - TableView Delegate and Datasource
 extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return address.count
     }
@@ -103,14 +107,7 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
         
         cell.addressListCellDelegate = self
         
-        let addressWords = address[0]?.components(separatedBy: " ")
-
-            // Check if there are any words in the address
-            if let firstWord = addressWords?.first {
-                cell.lblTitle.text = firstWord
-            } else {
-                cell.lblTitle.text = "No Address"
-            }
+        cell.lblTitle.text = UserDefaults.standard.string(forKey: "userFirstName")
 
         cell.lblAddress.text = address[0] ?? "Please Add Address"
         
@@ -131,7 +128,10 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
 }
+
+//MARK: - AddressListCellDelegate
 extension AddressListViewController: AddressListCellDelegate{
+    
     func btnCancelTapped(btnTag: Int) {
         
         let indexPath = IndexPath(row: btnTag, section: 0)
@@ -145,7 +145,9 @@ extension AddressListViewController: AddressListCellDelegate{
     }
 }
 
+//MARK: - AddressListViewModelDelegate
 extension AddressListViewController: AddressListViewModelDelegate{
+    
     func successAddress(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader()

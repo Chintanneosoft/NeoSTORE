@@ -8,47 +8,43 @@
 import UIKit
 import SDWebImage
 
+//MARK: - ProductsDetailCell
 class ProductsDetailCell: UITableViewCell {
     
+    //MARK: - IBOutlets
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblOutOfStock: UILabel!
-    
+    @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblTextDescription: UILabel!
     @IBOutlet weak var productImage: UIImageView!
-    
     @IBOutlet weak var btnShare: UIButton!
-    
     @IBOutlet weak var productImageCollection: UICollectionView!
     
-    @IBOutlet weak var lblDescription: UILabel!
-    
-    @IBOutlet weak var lblTextDescription: UILabel!
-    
+    //Properties
     var selectState = true
-    
     var productImagesData: [ProductImage]?
     var productImgURLs: [String] = []
+    
+    //MARK: - AwakeFromNib
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         setDelegates()
         xibRegister()
         setUpUI()
-//        setSelectedCell()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
+    //MARK: - Functions
     private func setUpUI(){
         containerView.layer.cornerRadius = 5
-        
         lblDescription.font = UIFont(name: Font.fontRegular.rawValue, size: 15)
         lblTextDescription.font = UIFont(name: Font.fontThin.rawValue, size: 10)
     }
+    
     private func setDelegates(){
         productImageCollection.delegate = self
         productImageCollection.dataSource = self
@@ -68,7 +64,6 @@ class ProductsDetailCell: UITableViewCell {
         changeSelectedCellUI(idx: 0, s: true)
     }
     
-    
     private func setImages(){
         for p in self.productImagesData!{
             productImgURLs += [p.image ?? ""]
@@ -76,6 +71,7 @@ class ProductsDetailCell: UITableViewCell {
     }
 }
 
+//MARK: - CollectionView Delegate and DataSource
 extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -83,13 +79,16 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = productImageCollection.dequeueReusableCell(withReuseIdentifier: "ProductImageCollectionViewCell", for: indexPath) as! ProductImageCollectionViewCell
         let imgUrl = productImgURLs[indexPath.row]
         cell.setImg(url: imgUrl)
+        let borderColor: CGColor?
+        
         if indexPath.row == 0{
             productImage.sd_setImage(with: URL(string: imgUrl))
         }
-        let borderColor: CGColor?
+        
         if selectState{
             borderColor = changeSelectedCellUI(idx: indexPath.row, s: selectState)
             selectState = false
@@ -97,8 +96,10 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
         else{
             borderColor = changeSelectedCellUI(idx: indexPath.row, s: false)
         }
+        
         cell.layer.borderColor = borderColor
         cell.layer.borderWidth = 0.5
+        
         return cell
     }
     
@@ -126,6 +127,7 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
         cell.layer.borderColor = UIColor.black.cgColor
     }
 }
+
 //MARK: - CollectionView DelegateFlowLayout
 extension ProductsDetailCell: UICollectionViewDelegateFlowLayout{
     

@@ -27,11 +27,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileScrollView: UIScrollView!
     
     
-    //properties
+    //MARK: - properties
     private var datePicker: UIDatePicker!
     
     var userData : FetchUser?
-    var userImg : String?
+    var userImg: String = UserDefaults.standard.string(forKey: "accessToken") ?? ""
     var userImgData : Data?
     
     var extraHeight = 0
@@ -44,12 +44,12 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setDelegates()
         setDatePicker()
+        setUpUI()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setUpUI()
         setUpNavBar()
     }
     
@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController {
         
     }
     
-    //Navbar
+    //MARK: - Navbar
     private func setUpNavBar(){
         
         navigationController?.navigationBar.isHidden = false
@@ -78,7 +78,7 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
     }
     
-    //Set Up UI
+    //MARK: - Set Up UI
     private func setUpUI(){
         
         //Views
@@ -122,13 +122,15 @@ class ProfileViewController: UIViewController {
         if let img = userData?.data?.user_data?.profile_pic{
             profileImg.sd_setImage(with: URL(string: img))
         }
+        
         //MARK: - Locally Saved Image Fetch
-        profileImg.image = loadProfileImage(imageName: "profile_picture")
+        profileImg.image = loadProfileImage(imageName: UserDefaults.standard.string(forKey: "accessToken") ?? "")
         
         profileImg.layer.cornerRadius = profileImg.bounds.width/2
         let imgTap = UITapGestureRecognizer(target: self, action: #selector(imgTapped))
         profileImg.addGestureRecognizer(imgTap)
         
+        //Buttons
         btnEditProflie.layer.cornerRadius = 5
         btnEditProflie.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
         btnRestPassword.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
@@ -143,7 +145,7 @@ class ProfileViewController: UIViewController {
     }
     
     
-    //Date Picker
+    //MARK: - Date Picker
     func setDatePicker(){
         
         datePicker = UIDatePicker()
@@ -176,7 +178,7 @@ class ProfileViewController: UIViewController {
     func callUpdateUser(){
         showLoader()
         profileViewModel.profileViewModelDelegate = self
-        profileViewModel.callValidations(fname: tfFirstName.text ?? "", lname: tfLastName.text ?? "", email: tfEmail.text ?? "", dob: tfDOB.text ?? "" , profilePic: userImg ?? "", phone: tfPhone.text ?? "")
+        profileViewModel.callValidations(fname: tfFirstName.text ?? "", lname: tfLastName.text ?? "", email: tfEmail.text ?? "", dob: tfDOB.text ?? "" , profilePic: userImg , phone: tfPhone.text ?? "")
     }
     
     func actionOptions(){
@@ -344,7 +346,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 
                 //MARK: - Locally Saved Image
                 let imageToSave = UIImage(data: data)!
-                let imageName = "profile_picture.jpg"
+                let imageName = (UserDefaults.standard.string(forKey: "accessToken") ?? "") + ".jpg"
                 saveImage(image: imageToSave, withName: imageName)
             }
             

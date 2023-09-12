@@ -6,23 +6,25 @@
 //
 
 import UIKit
-
+//MARK: - CartViewController
 class CartViewController: UIViewController {
     
+    //MARK: - IBOutlets
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var btnOrderNow: UIButton!
-    
     @IBOutlet weak var quantityPickerView: UIPickerView!
-    var quantityArr = ["1","2","3","4","5","6","7"]
     
+    //ViewModel Object
     let cartViewModel = CartViewModel()
     
+    //properties
+    var quantityArr = ["1","2","3","4","5","6","7"]
     var dropDownState: Bool = false
     var loaderView : UIView?
-    
     var currProductId = 0
     var currQuantity = 0
     
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -38,10 +40,13 @@ class CartViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         
     }
+    
+    //MARK: - Functions
     private func setUpUI(){
         btnOrderNow.layer.cornerRadius = 5
         btnOrderNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
     }
+    
     private func setUpNavBar() {
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "My Cart"
@@ -50,13 +55,11 @@ class CartViewController: UIViewController {
         navigationItem.backBarButtonItem = backButton
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        
     }
     
     private func setDelegates(){
         cartTableView.delegate = self
         cartTableView.dataSource = self
-        
         quantityPickerView.delegate = self
         quantityPickerView.dataSource = self
     }
@@ -72,28 +75,21 @@ class CartViewController: UIViewController {
         cartViewModel.callFetchCart()
     }
     
+    //MARK: - IBActions
     @IBAction func btnOrderNowTapped(_ sender: UIButton) {
         let nextViewController = AddressListViewController(nibName: "AddressListViewController", bundle: nil)
         navigationController?.pushViewController(nextViewController, animated: true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
+//MARK: - TableView Delegate and Datasource
 extension CartViewController: UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1{
             return 1
@@ -109,6 +105,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
             cell.selectionStyle = .none
             return cell
         }
+        
         let cell = cartTableView.dequeueReusableCell(withIdentifier: "TotalCell", for: indexPath) as! TotalCell
         cell.setDetails(totalPrice: cartViewModel.myCart?.total ?? 0)
         cell.selectionStyle = .none
@@ -119,15 +116,6 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
         return true
     }
 
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete && indexPath.section == 0 {
-//            // Handle the delete action for "cartList" items
-//            cartViewModel.cartList?.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            // Update your total calculation if necessary
-//        }
-//
-//    }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if indexPath.section == 0 {
             
@@ -152,7 +140,9 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
 
 }
 
+//MARK: - PickerView Delegate and Datasource
 extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -160,6 +150,7 @@ extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return quantityArr.count
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return quantityArr[row] // Replace with data from your data source array
     }
@@ -172,17 +163,9 @@ extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
         cartViewModel.callUpdateCart(productId: currProductId, quantity: currQuantity)
     }
     
-//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-//        // Create a custom view for the row, which can be a UILabel or any other UIView
-//        let label = UILabel()
-//        label.text = quantityArr[row]// Your data for this row
-//        label.textAlignment = .center
-//        label.font = UIFont.systemFont(ofSize: 18)
-//        return label
-//    }
-    
 }
 
+//MARK: - CartViewModelDelegate
 extension CartViewController: CartViewModelDelegate{
     func setCart() {
         DispatchQueue.main.async {
@@ -208,6 +191,7 @@ extension CartViewController: CartViewModelDelegate{
         
 }
 
+//MARK: - UpdateQuantity
 extension CartViewController: UpdateQuantity{
     
     func changeDropDownState(productId: Int) {

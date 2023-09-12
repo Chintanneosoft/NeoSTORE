@@ -6,8 +6,10 @@
 //
 
 import UIKit
-
+//MARK: - AddressListAPIService
 class AddressListAPIService: NSObject {
+    
+    //MARK: - API Functions
     func placeOrder(addess: String,completion: @escaping(Result<OrderList,Error>) -> Void){
         let param = ["address":addess]
         APIManager.shared.callRequest(apiCallType: .placeOrder(param: param)){ (response) in

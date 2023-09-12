@@ -56,7 +56,7 @@ class DrawerHeaderTableViewCell: UITableViewCell {
         lblName.text = name
         lblEmail.text = email
         profileImg.sd_setImage(with: URL(string: imgName))
-        profileImg.image = loadProfileImage(imageName: "profile_picture")
+        profileImg.image = loadProfileImage(imageName: UserDefaults.standard.string(forKey: "accessToken") ?? "")
     }
     
     @objc func profileTapped(){

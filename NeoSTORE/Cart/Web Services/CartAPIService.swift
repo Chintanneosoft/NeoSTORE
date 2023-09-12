@@ -6,8 +6,10 @@
 //
 
 import UIKit
-
+//MARK: - CartAPIService
 class CartAPIService: NSObject {
+    
+    //MARK: - Api Functions
     func getCartDetails(completion: @escaping(Result<(Cart?,UserFailure?),Error>) -> Void){
         
         APIManager.shared.callRequest(apiCallType: .getCart){ (response) in
@@ -61,6 +63,7 @@ class CartAPIService: NSObject {
             
         }
     }
+    
     func deleteCart(productId: Int,completion: @escaping(Result<CartUpdate,Error>)-> Void){
         let param = ["product_id":productId]
         APIManager.shared.callRequest(apiCallType: .deleteCart(param: param)){ (response) in

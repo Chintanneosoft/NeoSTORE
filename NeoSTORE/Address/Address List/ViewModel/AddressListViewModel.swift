@@ -22,6 +22,7 @@ class AddressListViewModel: NSObject {
     //APIService Object
     private let addressListAPIService = AddressListAPIService()
     
+    //API Function
     func placeOrder(address: String){
         addressListAPIService.placeOrder(addess: address){
             response in

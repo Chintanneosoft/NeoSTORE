@@ -8,56 +8,61 @@
 import UIKit
 import SDWebImage
 
-
+//MARK: - RatingUpdateData protocol
 protocol RatingUpdateData:NSObject{
     func updateData()
 }
 
+//MARK: - RatingPopUiViewController
 class RatingPopUiViewController: UIViewController {
     
+    //MARK: - IBOutlets
     @IBOutlet var superView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var lblProductName: UILabel!
-    
     @IBOutlet weak var imgProduct: UIImageView!
-    
     @IBOutlet var starImgs: [UIImageView]!
-    
     @IBOutlet weak var star1: UIImageView!
     @IBOutlet weak var star2: UIImageView!
     @IBOutlet weak var star3: UIImageView!
     @IBOutlet weak var star4: UIImageView!
     @IBOutlet weak var star5: UIImageView!
-    
-    
-    
-    var imgtapped: Int?
-    
     @IBOutlet weak var btnRateNow: UIButton!
+    
+    //MARK: - RatingUpdateData object
     weak var ratingUpdateDataDelegate : RatingUpdateData?
     
+    //properties
+    var imgtapped: Int?
     var productImgURL: String?
     var productName: String?
     var productId: Int?
     var rating:Int = 0
     
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUpUI()
-        setDelegates()
     }
-    private func setDelegates(){
-    }
+    
+    //MARK: - Functions
     private func setUpUI(){
+        
+        //image
         imgProduct.sd_setImage(with: URL(string: productImgURL ?? ""))
+        
+        //label
         lblProductName.text = productName
         
+        //View
         containerView.layer.cornerRadius = 10
         
-        btnRateNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 25)
+        //button
+        btnRateNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
         btnRateNow.layer.cornerRadius = 5
         
+        //Tap Gestures
         let img1Tap = UITapGestureRecognizer(target: self, action: #selector(handleOneStar))
         let img2Tap = UITapGestureRecognizer(target: self, action: #selector(handleTwoStar))
         let img3Tap = UITapGestureRecognizer(target: self, action: #selector(handleThreeStar))
@@ -76,6 +81,7 @@ class RatingPopUiViewController: UIViewController {
         star5.addGestureRecognizer(img5Tap)
         
     }
+    
     func setRating(rate: Int) {
            for i in 1...5 {
                if i <= rate {
@@ -86,10 +92,8 @@ class RatingPopUiViewController: UIViewController {
                }
            }
        }
-    @IBAction func btnRemoveTapped(_ sender: UIButton) {
-        self.dismiss(animated: false)
-    }
     
+    //MARK: - @objc
     @objc func handleOneStar() {
         if rating == 1{
             setRating(rate: 0)
@@ -117,9 +121,11 @@ class RatingPopUiViewController: UIViewController {
             rating = 5
         }
         
-        
+    //MARK: - IBActions
+    @IBAction func btnRemoveTapped(_ sender: UIButton) {
+        self.dismiss(animated: false)
+    }
 
-    
     @IBAction func btnRateNowTapped(_ sender: UIButton) {
         let ratingPopUpViewModel = RatingPopUpViewModel()
         ratingPopUpViewModel.ratingPopUpViewModelDelegate = self
@@ -128,9 +134,9 @@ class RatingPopUiViewController: UIViewController {
     
 }
 
+//MARK: - RatingPopUpViewModelDelegate
 extension RatingPopUiViewController: RatingPopUpViewModelDelegate{
-    
-    
+
     func ratingResult(title: String,msg: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
@@ -143,6 +149,5 @@ extension RatingPopUiViewController: RatingPopUpViewModelDelegate{
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
     
 }

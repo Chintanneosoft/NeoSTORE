@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -25,38 +25,38 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v59-wS-yeq">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cl9-9O-tc8">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lA-IQ-qBT">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rit-es-Cxb">
-                                            <rect key="frame" x="36.666666666666657" y="157" width="320" height="445"/>
+                                            <rect key="frame" x="27.5" y="111" width="320" height="445"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRd-cH-s0L">
-                                                    <rect key="frame" x="105" y="33" width="109.66666666666669" height="20.333333333333329"/>
+                                                    <rect key="frame" x="105" y="33" width="110" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O5d-hi-o2p">
-                                                    <rect key="frame" x="48" y="86.333333333333314" width="224" height="147"/>
+                                                    <rect key="frame" x="48" y="86.5" width="224" height="147"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Enter Qty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbM-Wb-4o5">
-                                                    <rect key="frame" x="118.66666666666669" y="266.33333333333331" width="82.666666666666686" height="24"/>
+                                                    <rect key="frame" x="118.5" y="266.5" width="83" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hrd-xo-DAw">
-                                                    <rect key="frame" x="104" y="312.33333333333337" width="112" height="43"/>
+                                                    <rect key="frame" x="104" y="312.5" width="112" height="43"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="43" id="2JK-0S-d96"/>
                                                         <constraint firstAttribute="width" constant="112" id="f6a-nq-KDT"/>
@@ -64,13 +64,16 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DR9-vM-xf4" userLabel="Submit">
-                                                    <rect key="frame" x="80" y="377.33333333333337" width="160" height="34.333333333333314"/>
+                                                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DR9-vM-xf4" userLabel="Submit">
+                                                    <rect key="frame" x="80" y="377.5" width="160" height="50"/>
                                                     <color key="backgroundColor" name="Primary Background"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="BUY NOW">
-                                                        <color key="baseForegroundColor" name="Primary Foreground"/>
-                                                    </buttonConfiguration>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="XKM-4n-Swh"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="BUY NOW">
+                                                        <color key="titleColor" name="Primary Foreground"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="btnSubmitTapped:" destination="-1" eventType="touchUpInside" id="ACM-cv-2Wb"/>
                                                     </connections>
@@ -151,7 +154,6 @@
             <color key="backgroundColor" white="0.0" alpha="0.38732617106658734" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="v59-wS-yeq" secondAttribute="trailing" id="C6X-Mm-gyJ"/>
-                <constraint firstItem="v59-wS-yeq" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="80" id="Xf7-h5-ope"/>
                 <constraint firstItem="v59-wS-yeq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="dQK-PI-7pC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="v59-wS-yeq" secondAttribute="bottom" id="qNa-Cm-5ck"/>
                 <constraint firstItem="v59-wS-yeq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="uQa-qu-qMN"/>

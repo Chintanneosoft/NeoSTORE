@@ -116,8 +116,9 @@ extension NSObject{
     }
     
     func loadProfileImage(imageName: String) -> UIImage? {
-        let imageName = "profile_picture.jpg"
-        let fileURL = getDocumentsDirectory().appendingPathComponent(imageName)
+        let imgName = imageName + ".jpg"
+        let fileURL = getDocumentsDirectory().appendingPathComponent(imgName)
+        print(fileURL.path)
         return UIImage(contentsOfFile: fileURL.path)
     }
 }

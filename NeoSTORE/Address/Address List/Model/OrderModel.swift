@@ -36,12 +36,3 @@ struct OrderData: Codable {
     let cost: Double
     let created: String
 }
-//struct Welcome: Codable {
-//    let status: Int
-//    let message, userMsg: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case status, message
-//        case userMsg = "user_msg"
-//    }
-//}
