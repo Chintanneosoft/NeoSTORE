@@ -1,10 +1,3 @@
-//
-//  HomeContainerViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 20/08/23.
-//
-
 import UIKit
 
 //MARK: - HomeContainerViewController
@@ -17,6 +10,7 @@ class HomeContainerViewController: UIViewController {
     }
 
     private var drawerState: DrawerState = .closed
+    
     let drawerVC = DrawerViewController()
     let homeVC = HomeViewController()
     var navVC: UINavigationController?
@@ -70,11 +64,9 @@ extension HomeContainerViewController: HomeViewControllerDelegate, DrawerViewCon
         // Shows Drawer
         switch drawerState{
         case .closed:
-            // open it
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,initialSpringVelocity: 0,options: .curveEaseInOut){
                 self.navVC?.view.frame.origin.x = self.homeVC.view.frame.size.width - 80
                 self.homeVC.view.backgroundColor = UIColor(named: "Black Background")
-//                self.homeVC.view.isUserInteractionEnabled = false
                 self.homeVC.view.addGestureRecognizer(self.tapGesture as! UITapGestureRecognizer)
             } completion: { [weak self] done in
                 if done{
@@ -82,11 +74,9 @@ extension HomeContainerViewController: HomeViewControllerDelegate, DrawerViewCon
                 }
             }
         case .opened:
-            // close it
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,initialSpringVelocity: 0,options: .curveEaseInOut){
                 self.navVC?.view.frame.origin.x = 0
                 self.homeVC.view.backgroundColor = UIColor(named: "Primary Background")
-//                self.homeVC.view.isUserInteractionEnabled = true
                 self.homeVC.view.removeGestureRecognizer(self.tapGesture as! UITapGestureRecognizer)
             } completion: { [weak self] done in
                 if done{

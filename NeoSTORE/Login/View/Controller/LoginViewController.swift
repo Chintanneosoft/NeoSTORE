@@ -1,14 +1,7 @@
-//
-//  LoginViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 17/08/23.
-//
-
 import UIKit
 
 //MARK: - LoginViewController
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
     //MARK: - IBOutlets
     @IBOutlet weak var lblHeading: UILabel!
@@ -22,27 +15,22 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var btnAddUserTapped: UIButton!
     @IBOutlet weak var backImg: UIImageView!
     
-    
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setDelegates()
         setUpUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.navigationController?.navigationBar.isHidden = true
     }
     
     //MARK: - Functions
-    
     private func setDelegates(){
         tfUsername.delegate = self
         tfPassword.delegate = self
-        
     }
     
     //MARK: - SetUpUI
@@ -58,8 +46,6 @@ class LoginViewController: UIViewController {
             v.layer.borderWidth = 1.0
             v.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
         }
-        
-        
         
         //TextFields
         tfUsername.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
@@ -82,6 +68,8 @@ class LoginViewController: UIViewController {
         let backImgTap = UITapGestureRecognizer(target: self, action:#selector(forgotPassTapped) )
         backImg.addGestureRecognizer(backImgTap)
         backImg.isUserInteractionEnabled = true
+        
+        setTapGestures()
     }
     
     //MARK: - Send Validations
@@ -112,8 +100,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-
-    
+    //MARK: - @objc
     @objc func forgotPassTapped(){
         changeUI()
     }
@@ -137,7 +124,6 @@ class LoginViewController: UIViewController {
         let nextViewController = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
         navigationController?.pushViewController(nextViewController, animated: true)
     }
-    
 }
 
 //MARK: - TextField Delegate
@@ -145,59 +131,41 @@ extension LoginViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Wrong
-        if textField == tfUsername{
+        switch textField{
+        case tfUsername:
             textField.resignFirstResponder()
             tfPassword.becomeFirstResponder()
-        }
-        
-        if textField == tfPassword{
+        case tfPassword:
             textField.resignFirstResponder()
+        default:
+            return false
         }
-        
         return true
     }
-    
 }
 
 //MARK: - LoginViewModelDelegate
 extension LoginViewController: LoginViewModelDelegate{
+    
     //wrong
     func showAlert(msg:String) {
-        
         DispatchQueue.main.async {
             self.hideLoader()
-            
-                let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-            
             if self.btnLogin.titleLabel?.text == "SUBMIT"{
-                let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.showSingleButtonAlert(title: "Alert", msg: msg) {
                     self.changeUI()
-                    self.dismiss(animated: true, completion: nil)
                 }
-                alert.addAction(action)
-
-            }
-            else{
-                
+            } else {
                 if msg == "LoggedIn Successfully"{
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                         let windows = windowScene.windows
                         windows.first?.rootViewController = UINavigationController(rootViewController: HomeContainerViewController())
                         windows.first?.makeKeyAndVisible()
                     }
-                    
-                    
                 } else {
-                    
-                    let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    alert.addAction(action)
+                    self.showSingleButtonAlert(title: "Alert", msg: msg, okClosure: nil)
                 }
-                
-                            }
-            self.present(alert, animated: true, completion: nil)
-
+            }
         }
     }
 }

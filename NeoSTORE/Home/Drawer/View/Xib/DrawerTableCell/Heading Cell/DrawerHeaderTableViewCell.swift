@@ -1,19 +1,15 @@
-//
-//  DrawerHeaderTableViewCell.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 21/08/23.
-//
-
 import UIKit
 import SDWebImage
 
+//MARK: - DrawerHeaderTableViewCellDelegate
 protocol DrawerHeaderTableViewCellDelegate: NSObject{
     func goToProfile()
 }
 
+//MARK: - DrawerHeaderTableViewCell
 class DrawerHeaderTableViewCell: UITableViewCell {
 
+    //MARK: - IBOutlets
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
@@ -22,14 +18,8 @@ class DrawerHeaderTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         setUpUI()
     }
-    
-//    func getDocumentsDirectory() -> URL {
-//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//        return paths[0]
-//    }
     
     private func setUpUI(){
         
@@ -37,15 +27,15 @@ class DrawerHeaderTableViewCell: UITableViewCell {
         lblEmail.font = UIFont(name:Font.fontThin.rawValue,size: 13)
         
         //wrong
-        let tap1 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
-        lblName.addGestureRecognizer(tap1)
-        lblName.isUserInteractionEnabled = true
-        let tap2 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
-        lblEmail.addGestureRecognizer(tap2)
-        lblEmail.isUserInteractionEnabled = true
-        let tap3 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
-        profileImg.addGestureRecognizer(tap3)
-        profileImg.isUserInteractionEnabled = true
+//        let tap1 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
+//        lblName.addGestureRecognizer(tap1)
+//        lblName.isUserInteractionEnabled = true
+//        let tap2 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
+//        lblEmail.addGestureRecognizer(tap2)
+//        lblEmail.isUserInteractionEnabled = true
+//        let tap3 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
+//        profileImg.addGestureRecognizer(tap3)
+//        profileImg.isUserInteractionEnabled = true
         
         profileImg.layer.cornerRadius = profileImg.bounds.width/2
         profileImg.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
@@ -63,14 +53,4 @@ class DrawerHeaderTableViewCell: UITableViewCell {
     @objc func profileTapped(){
         drawerHeaderTableViewCellDelegate?.goToProfile()
     }
-    
-    
-
-//    // In your ProfileViewController, set the profile image:
-//    if let profileImage = loadProfileImage() {
-//        profileImg.image = profileImage
-//    } else {
-//        // Handle the case where the image couldn't be loaded
-//        // You can set a default profile picture or show an error message.
-//    }
 }

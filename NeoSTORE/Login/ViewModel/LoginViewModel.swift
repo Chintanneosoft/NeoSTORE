@@ -1,10 +1,3 @@
-//
-//  LoginViewModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 21/08/23.
-//
-
 import UIKit
 
 //MARK: - LoginViewModelDelegate Protocol
@@ -28,10 +21,8 @@ class LoginViewModel{
         let validationResult = validation.loginValidation( email: email, password: pass)
         //wrong
         if validationResult == "Validation successfull"{
-            
-           
+        
             loginAPIService.loginUser(email: email, pass: pass){ (response) in
-                
                 switch response{
                 case .success(let value):
                     print(value)
@@ -47,7 +38,6 @@ class LoginViewModel{
                     print(error)
                     self.loginViewModelDelegate?.showAlert(msg: error.localizedDescription)
                 }
-                
             }
         } else {
             self.loginViewModelDelegate?.showAlert(msg: validationResult)
@@ -63,7 +53,6 @@ class LoginViewModel{
                 print(error)
                 self.loginViewModelDelegate?.showAlert(msg: error.localizedDescription)
             }
-            
         }
     }
 }

@@ -1,10 +1,3 @@
-//
-//  HomeViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 17/08/23.
-//
-
 import UIKit
 
 //MARK: - HomeViewControllerDelegate Protocol
@@ -27,11 +20,13 @@ class HomeViewController: UIViewController {
     private var timer: Timer!
     private var currImg: Int = 0
     //wrong
-    private var sliderImages = ["slider_img1","slider_img2","slider_img3","slider_img4"]
+//    private var sliderImages = ["slider_img1","slider_img2","slider_img3","slider_img4"]
+    
     private var drawerViewController: DrawerViewController!
+    var homeViewModel = HomeViewModel()
     
     //wrong
-    private var furnitureData:[[String:Any]] = [["name":"Table","lblPosition":Positions.topRight,"imgName":"table","imgPosition":Positions.bottomLeft], ["name":"Sofas","lblPosition":Positions.bottomLeft,"imgName":"sofa","imgPosition":Positions.topRight],["name":"Chairs","lblPosition":Positions.topLeft,"imgName":"chair","imgPosition":Positions.bottomRight],["name":"Cupboards","lblPosition":Positions.bottomRight,"imgName":"cupboard","imgPosition":Positions.topLeft]]
+//    private var furnitureData:[[String:Any]] = [["name":"Table","lblPosition":Positions.topRight,"imgName":"table","imgPosition":Positions.bottomLeft], ["name":"Sofas","lblPosition":Positions.bottomLeft,"imgName":"sofa","imgPosition":Positions.topRight],["name":"Chairs","lblPosition":Positions.topLeft,"imgName":"chair","imgPosition":Positions.bottomRight],["name":"Cupboards","lblPosition":Positions.bottomRight,"imgName":"cupboard","imgPosition":Positions.topLeft]]
     
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -39,7 +34,6 @@ class HomeViewController: UIViewController {
         xibRegister()
         setDelegates()
         setUpUI()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +50,6 @@ class HomeViewController: UIViewController {
     //MARK: - Functions
     private func setUpUI(){
         setUpNavBar()
-        
         setSliderScrollView()
     }
     private func setUpNavBar(){
@@ -93,7 +86,7 @@ class HomeViewController: UIViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = scrollView.contentOffset.x / scrollView.frame.width
-        sliderPageControl.numberOfPages = sliderImages.count
+        sliderPageControl.numberOfPages = homeViewModel.sliderImages.count
         sliderPageControl.currentPage = Int(page)
     }
     
@@ -115,7 +108,6 @@ class HomeViewController: UIViewController {
         sliderCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         currImg = current
     }
-    
 }
 
 //MARK: - CollectionView Delegate & DataSource
@@ -125,18 +117,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == furnitureCollectionView{
             return 4
         }
-        return sliderImages.count
+        return homeViewModel.sliderImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == furnitureCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
             //wrong
-            cell.setContraints(lblname: furnitureData[indexPath.row]["name"] as! String, lblPosition: furnitureData[indexPath.row]["lblPosition"] as! Positions, imgName: furnitureData[indexPath.row]["imgName"] as! String, imgPosition: furnitureData[indexPath.row]["imgPosition"] as! Positions)
+            cell.setContraints(lblname: homeViewModel.furnitureData[indexPath.row]["name"] as! String, lblPosition: homeViewModel.furnitureData[indexPath.row]["lblPosition"] as! Positions, imgName: homeViewModel.furnitureData[indexPath.row]["imgName"] as! String, imgPosition: homeViewModel.furnitureData[indexPath.row]["imgPosition"] as! Positions)
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSliderCell", for: indexPath) as! ImageSliderCell
-        cell.sliderImage.image = UIImage(named: sliderImages[indexPath.row])
+        cell.sliderImage.image = UIImage(named: homeViewModel.sliderImages[indexPath.row])
         return cell
     }
     
@@ -179,5 +171,4 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
         }
         return UIEdgeInsets.zero
     }
-    
 }

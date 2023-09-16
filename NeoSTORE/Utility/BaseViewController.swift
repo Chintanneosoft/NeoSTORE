@@ -13,8 +13,6 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setTapGestures()
-//        addObservers()
     }
     
     func addObservers(){
@@ -29,7 +27,6 @@ class BaseViewController: UIViewController {
     
     
     //MARK: - @objc
-    
     @objc func dismissKeyboard(){
         view.endEditing(true)
     }

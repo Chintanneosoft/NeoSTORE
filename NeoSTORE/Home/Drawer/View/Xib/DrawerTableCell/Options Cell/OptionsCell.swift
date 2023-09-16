@@ -1,24 +1,16 @@
-//
-//  OptionsCell.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 20/08/23.
-//
-
 import UIKit
 import SDWebImage
-class OptionsCell: UITableViewCell {
 
+//MARK: - OptionsCell
+class OptionsCell: UITableViewCell {
     
+    //MARK: - IBOutlets
     @IBOutlet weak var optionImg: UIImageView!
-    
     @IBOutlet weak var lblOption: UILabel!
-    
     @IBOutlet weak var lblNotification: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         setUpUI()
     }
 
@@ -42,8 +34,5 @@ class OptionsCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
 }

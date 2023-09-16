@@ -42,16 +42,17 @@ extension UIViewController{
     
     //MARK: - Alert
     func showAlert(title: String,msg :String){
+        
+    }
+    
+    func showSingleButtonAlert(title: String,msg :String, okClosure: (()->Void)?){
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
+            okClosure?()
         }
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    func showSingleButtonAlert(){
-        
     }
     func showDualButtonAlert(title: String, msg: String, okClosure: (()->Void)?, cancelClosure:(()->Void)? ){
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)

@@ -1,10 +1,3 @@
-//
-//  DrawerViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 20/08/23.
-//
-
 import UIKit
 
 //MARK: - DrawerViewControllerDelegate Protocol

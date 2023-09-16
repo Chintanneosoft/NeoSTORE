@@ -1,15 +1,8 @@
-//
-//  RegisterViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 17/08/23.
-//
-
 import UIKit
 
 //MARK: - RegisterViewController
-class RegisterViewController: UIViewController {
-
+class RegisterViewController: BaseViewController {
+    
     //MARK: - IBOutlets
     @IBOutlet weak var lblHeading: UILabel!
     @IBOutlet weak var lblTermsAndConditions: UILabel!
@@ -24,11 +17,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var btnFemale: UIButton!
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var termsAndCondition: UIButton!
-    
     @IBOutlet weak var registerScrollView: UIScrollView!
-    
-    var loaderView: UIView?
-    var genderSelected: Bool?
     
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -61,8 +50,6 @@ class RegisterViewController: UIViewController {
             v.layer.borderWidth = 1.0
             v.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
         }
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
         
         //TextFields
         tfFirstName.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
@@ -87,46 +74,35 @@ class RegisterViewController: UIViewController {
         //Buttons
         btnRegister.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 26)
         btnRegister.layer.cornerRadius = 5.0
-    
         
+        setTapGestures()
+        addObservers()
     }
     
     private func setDelegates(){
-        
         tfFirstName.delegate = self
         tfLastName.delegate = self
         tfEmail.delegate = self
         tfPassword.delegate = self
         tfConfirmPassword.delegate = self
         tfPhoneNumber.delegate = self
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func sendValidations(){
-        
         let registerViewModel = RegisterViewModel()
         registerViewModel.registerViewModelDelegate = self
         registerViewModel.callValidations(fname: tfFirstName.text ?? "", lname: tfLastName.text ?? "", email: tfEmail.text ?? "", pass: tfPassword.text ?? "", cpass: tfConfirmPassword.text ?? "", phone: tfPhoneNumber.text ?? "", btnSelected:btnMale.isSelected ? "Male" : (btnFemale.isSelected ? "Female" : ""), termsAndCondition: termsAndCondition.isSelected)
-        
     }
     
     //MARK: - @objc Functions
     @objc func leftBarButtonTapped(){
         navigationController?.popViewController(animated: true)
-       }
-    
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
     }
     
     //MARK: - IBActions
     @IBAction func btnRadioTapped(_ sender: UIButton) {
-        btnMale.isSelected = false
-        btnFemale.isSelected = false
-        sender.isSelected = true
-        
+        btnMale.isSelected = sender == btnMale
+        btnFemale.isSelected = sender == btnFemale
     }
     
     @IBAction func btnCheckBoxTapped(_ sender: UIButton) {
@@ -138,56 +114,35 @@ class RegisterViewController: UIViewController {
         self.showLoader()
         sendValidations()
     }
-    
 }
 
 
 //MARK: - TextField Delegate
 extension RegisterViewController: UITextFieldDelegate{
     
-    
     //wrong
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == tfFirstName{
+        switch textField{
+        case tfFirstName:
             textField.resignFirstResponder()
             tfLastName.becomeFirstResponder()
-        }
-        if textField == tfLastName{
+        case tfLastName:
             textField.resignFirstResponder()
             tfEmail.becomeFirstResponder()
-        }
-        if textField == tfEmail{
+        case tfEmail:
             textField.resignFirstResponder()
             tfPassword.becomeFirstResponder()
-        }
-        if textField == tfPassword{
+        case tfPassword:
             textField.resignFirstResponder()
             tfConfirmPassword.becomeFirstResponder()
-        }
-        if textField == tfConfirmPassword{
+        case tfConfirmPassword:
             textField.resignFirstResponder()
-        }
-        if textField == tfPhoneNumber{
+        case tfPhoneNumber:
             textField.resignFirstResponder()
+        default:
+            return false
         }
         return true
-    }
-    
-    @objc func keyboardWillShow(notification:NSNotification) {
-
-        guard let userInfo = notification.userInfo else { return }
-        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-
-        var contentInset:UIEdgeInsets = self.registerScrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 20
-        registerScrollView.contentInset = contentInset
-    }
-
-    @objc func keyboardWillHide(notification:NSNotification) {
-
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        registerScrollView.contentInset = contentInset
     }
 }
 
@@ -195,27 +150,16 @@ extension RegisterViewController: UITextFieldDelegate{
 extension RegisterViewController: RegisterViewModelDelegate{
     //wronng
     func showAlert(msg:String) {
-        
         DispatchQueue.main.async {
-            
             self.hideLoader()
-            let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
             if msg == "Registered Successfully"{
-                
-                
-                let nextViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
-                self.navigationController?.pushViewController(nextViewController, animated: true)
-                
-            }  else {
-                
-                let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.dismiss(animated: true, completion: nil)
+                self.showSingleButtonAlert(title: "Alert", msg: msg) {
+                    let nextViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+                    self.navigationController?.pushViewController(nextViewController, animated: true)
                 }
-                
-                alert.addAction(action)
+            }  else {
+                self.showSingleButtonAlert(title: "Alert", msg: msg, okClosure: nil)
             }
-            
-            self.present(alert, animated: true, completion: nil)
         }
     }
 }

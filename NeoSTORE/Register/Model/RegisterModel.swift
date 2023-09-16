@@ -1,10 +1,3 @@
-//
-//  RegisterModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 22/08/23.
-//
-
 import UIKit
 
 //MARK: - User
@@ -21,7 +14,6 @@ struct User: Codable {
         case user_msg = "user_msg"
     }
 }
-
 
 //MARK: - UserData
 struct UserData: Codable {
@@ -58,27 +50,7 @@ struct UserData: Codable {
         case dob = "dob"
         case profile_pic = "profile_pic"
     }
-    init(from decoder: Decoder) throws {
-        
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decodeIfPresent(Int.self, forKey: .id)
-        role_id = try values.decodeIfPresent(Int.self, forKey: .role_id)
-        first_name = try values.decodeIfPresent(String.self, forKey: .first_name)
-        last_name = try values.decodeIfPresent(String.self, forKey: .last_name)
-        email = try values.decodeIfPresent(String.self, forKey: .email)
-        username = try values.decodeIfPresent(String.self, forKey: .username)
-        profile_pic = try values.decodeIfPresent(String.self, forKey: .profile_pic)
-        country_id = try values.decodeIfPresent(String.self, forKey: .country_id)
-        gender = try values.decodeIfPresent(String.self, forKey: .gender)
-        phone_no = try values.decodeIfPresent(String.self, forKey: .phone_no)
-        dob = try values.decodeIfPresent(String.self, forKey: .dob)
-        is_active = try values.decodeIfPresent(Bool.self, forKey: .is_active)
-        created = try values.decodeIfPresent(String.self, forKey: .created)
-        modified = try values.decodeIfPresent(String.self, forKey: .modified)
-        access_token = try values.decodeIfPresent(String.self, forKey: .access_token)
-    }
 }
-
 
 //MARK: - UserFailure
 struct UserFailure : Codable {

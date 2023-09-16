@@ -1,10 +1,3 @@
-//
-//  LoginAPIService.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 23/08/23.
-//
-
 import UIKit
 
 //MARK: - LoginAPIService
@@ -16,9 +9,7 @@ class LoginAPIService: NSObject {
         let params = ["email": email, "password": pass]
         
         APIManager.shared.callRequest(apiCallType: .userLogin(param: params)){ (response) in
-            
             switch response {
-            
             case .success(let value):
                 do {
                     let responseData = try JSONDecoder().decode(User.self, from: value)
@@ -32,24 +23,21 @@ class LoginAPIService: NSObject {
                         completion(.failure(error))
                     }
                 }
-                
             case .failure(let error):
                 print("In Failure")
                 debugPrint(error.localizedDescription)
                 print("Wrong pass")
                 completion(.failure(error))
             }
-            
         }
     }
     
     func forgotPass(email: String, completion: @escaping(Result<UserFailure,Error>) -> Void){
+        
         let params = ["email": email]
         
         APIManager.shared.callRequest(apiCallType: .forgotPass(param: params)){ (response) in
-            
             switch response {
-            
             case .success(let value):
                 do {
                     let responseData = try JSONDecoder().decode(UserFailure.self, from: value)
@@ -57,14 +45,12 @@ class LoginAPIService: NSObject {
                 } catch {
                         completion(.failure(error))
                 }
-                
             case .failure(let error):
                 print("In Failure")
                 debugPrint(error.localizedDescription)
                 print("Wrong pass")
                 completion(.failure(error))
             }
-            
         }
     }
 }

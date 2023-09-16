@@ -1,19 +1,13 @@
-//
-//  DrawerAPIService.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 01/09/23.
-//
-
 import UIKit
 
+//MARK: - DrawerAPIService
 class DrawerAPIService: NSObject {
+    
+    //APIRequest Function Call
     func fetchUser(completion: @escaping(Result<(FetchUser?,UserFailure?),Error>) -> Void){
         
         APIManager.shared.callRequest(apiCallType: .fetchUser){ (response) in
-            
             switch response {
-                
             case .success(let value):
                 do {
                     let responseData = try JSONDecoder().decode(FetchUser.self, from: value)
@@ -27,15 +21,12 @@ class DrawerAPIService: NSObject {
                         completion(.failure(error))
                     }
                 }
-                
             case .failure(let error):
                 print("In Failure")
                 debugPrint(error.localizedDescription)
                 print("Wrong pass")
                 completion(.failure(error))
             }
-            
         }
     }
-
 }
