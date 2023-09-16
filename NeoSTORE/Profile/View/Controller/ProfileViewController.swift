@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 
 
 //MARK: - ProfileViewController
-class ProfileViewController: UIViewController {
+class ProfileViewController: BaseViewController {
     
     //MARK: - IBOutlets
     @IBOutlet weak var profileImg: UIImageView!
@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var tfDOB: UITextField!
     @IBOutlet weak var btnEditProflie: UIButton!
     @IBOutlet weak var btnRestPassword: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var profileScrollView: UIScrollView!
     
     
@@ -38,6 +39,9 @@ class ProfileViewController: UIViewController {
     var editState = false
     
     let profileViewModel = ProfileViewModel()
+    
+    //MARK: - Locally Saved Image
+    let imageName = (UserDefaults.standard.string(forKey: "accessToken") ?? "") + ".jpg"
     
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -134,13 +138,14 @@ class ProfileViewController: UIViewController {
         btnEditProflie.layer.cornerRadius = 5
         btnEditProflie.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
         btnRestPassword.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
+        btnCancel.layer.cornerRadius = 5
+        btnCancel.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
+        btnCancel.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
         
         //Keyboard
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+    
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        addObservers()
         
     }
     
@@ -196,13 +201,14 @@ class ProfileViewController: UIViewController {
     }
     
     func openCamera(){
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
-            let image = UIImagePickerController()
-            image.allowsEditing = true
-            image.sourceType = .camera
-            image.mediaTypes = [UTType.image.identifier]
-            self.present(image,animated: true,completion:nil)
-        }
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                   let image = UIImagePickerController()
+                   image.allowsEditing = true
+                   image.sourceType = .camera
+                   //image.mediaTypes = [kUTTypeImage as String]
+                   image.delegate = self
+                   self.present(image, animated: true, completion: nil)
+               }
     }
     
     func openGallery(){
@@ -214,29 +220,44 @@ class ProfileViewController: UIViewController {
         }
     }
    
-
+    func changeState(_ sender: UIButton){
+        
+        editState = !editState
+        if editState {
+            tfDOB.isEnabled = true
+            tfEmail.isEnabled = true
+            tfPhone.isEnabled = true
+            tfLastName.isEnabled = true
+            tfFirstName.isEnabled = true
+            btnRestPassword.isHidden = true
+            profileImg.isUserInteractionEnabled = true
+            btnCancel.isHidden = false
+            tfFirstName.becomeFirstResponder()
+            // sender.titleLabel?.text = "SUBMIT"
+            btnEditProflie.setTitle("SUBMIT", for: .normal)
+            // navigationItem.title = "Edit Profile"
+        }
+        else {
+            tfDOB.isEnabled = false
+            tfEmail.isEnabled = false
+            tfPhone.isEnabled = false
+            tfLastName.isEnabled = false
+            tfFirstName.isEnabled = false
+            btnRestPassword.isHidden = false
+            profileImg.isUserInteractionEnabled = false
+            btnCancel.isHidden = true
+            btnEditProflie.setTitle("EDIT PROFILE", for: .normal)
+            //   navigationItem.title = "My Account"
+            if sender == btnEditProflie{
+                saveImage(image: profileImg.image!, withName: imageName)
+                callUpdateUser()
+            }
+            else{
+                profileImg.image = loadProfileImage(imageName: imageName)
+            }
+        }
+    }
     //MARK: - @objc Functions
-    @objc func keyboardWillShow(notification:NSNotification) {
-        
-        guard let userInfo = notification.userInfo else { return }
-        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        
-        var contentInset:UIEdgeInsets = self.profileScrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 20 + CGFloat(extraHeight)
-        profileScrollView.contentInset = contentInset
-    }
-    
-    @objc func keyboardWillHide(notification:NSNotification) {
-        
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        profileScrollView.contentInset = contentInset
-    }
-    
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
-    
     @objc func imgTapped(){
         tfFirstName.resignFirstResponder()
         actionOptions()
@@ -252,39 +273,19 @@ class ProfileViewController: UIViewController {
     
     //MARK: - IBActions
     @IBAction func btnEditProfileTapped(_ sender: UIButton) {
-        editState = !editState
-        
-        if editState {
-            tfDOB.isEnabled = true
-            tfEmail.isEnabled = true
-            tfPhone.isEnabled = true
-            tfLastName.isEnabled = true
-            tfFirstName.isEnabled = true
-            btnRestPassword.isHidden = true
-            profileImg.isUserInteractionEnabled = true
-            tfFirstName.becomeFirstResponder()
-            // sender.titleLabel?.text = "SUBMIT"
-            btnEditProflie.setTitle("SUBMIT", for: .normal)
-            // navigationItem.title = "Edit Profile"
-        }
-        else {
-            tfDOB.isEnabled = false
-            tfEmail.isEnabled = false
-            tfPhone.isEnabled = false
-            tfLastName.isEnabled = false
-            tfFirstName.isEnabled = false
-            btnRestPassword.isHidden = false
-            profileImg.isUserInteractionEnabled = false
-            btnEditProflie.setTitle("EDIT PROFILE", for: .normal)
-            //   navigationItem.title = "My Account"
-            callUpdateUser()
-        }
+        changeState(sender)
     }
     
     @IBAction func btnResetPasswordTapped(_ sender: UIButton) {
         let profileViewController = ResetPasswordViewController(nibName: "ResetPasswordViewController", bundle: nil)
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
+    
+    @IBAction func btnCancelTapped(_ sender: UIButton) {
+        changeState(sender)
+        setUpUI()
+    }
+    
     
 }
 
@@ -295,6 +296,7 @@ extension ProfileViewController: UITextFieldDelegate{
             extraHeight = 60
         }
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == tfDOB{
             extraHeight = 0
@@ -338,16 +340,13 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 self.userImgData = imgData
                 self.userImg = base64String
             }
-//            uploadImage()
-            if let data = Data(base64Encoded: userImg ?? "") {
+            
+            if let data = Data(base64Encoded: userImg ) {
                 if let image = UIImage(data: data) {
                     self.profileImg.image = image
                 }
                 
-                //MARK: - Locally Saved Image
-                let imageToSave = UIImage(data: data)!
-                let imageName = (UserDefaults.standard.string(forKey: "accessToken") ?? "") + ".jpg"
-                saveImage(image: imageToSave, withName: imageName)
+                
             }
             
         }

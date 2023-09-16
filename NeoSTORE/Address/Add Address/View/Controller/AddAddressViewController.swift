@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddAddressViewController: UIViewController {
+class AddAddressViewController: BaseViewController {
 
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblCity1: UILabel!
@@ -26,12 +26,13 @@ class AddAddressViewController: UIViewController {
     
     @IBOutlet weak var addAddressScrollView: UIScrollView!
     
-    var loaderView: UIView?
     
     let addAddressViewModel = AddAddressViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
+        addObservers()
+        setTapGestures()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -48,50 +49,28 @@ class AddAddressViewController: UIViewController {
         tfZipCode.delegate = self
         tfLandmark.delegate = self
     }
+    
     private func setUpUI(){
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        mainScrollView = addAddressScrollView
         
         btnSaveAddress.layer.cornerRadius = 5
         btnSaveAddress.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
     }
+    
     private func setUpNavBar(){
         //Navigation bar
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "Add Address"
         
         let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
+        backButton.title = ""
         navigationItem.backBarButtonItem = backButton
         
     }
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
-    @objc func keyboardWillShow(notification:NSNotification) {
-
-        guard let userInfo = notification.userInfo else { return }
-        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-
-        var contentInset:UIEdgeInsets = self.addAddressScrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 20
-        addAddressScrollView.contentInset = contentInset
-    }
-
-    @objc func keyboardWillHide(notification:NSNotification) {
-
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        addAddressScrollView.contentInset = contentInset
-    }
-    
+       
     
     @IBAction func btnSaveAddressTapped(_ sender: UIButton) {
-        if tvAddress.text == "" && tfLandmark.text == "" && tfCity.text == "" && tfState.text == "" && tfCountry.text == "" && tfZipCode.text == ""{
+        if tvAddress.text == "" || tfLandmark.text == "" || tfCity.text == "" || tfState.text == "" || tfCountry.text == "" || tfZipCode.text == ""{
             self.showAlert(title: "Alert", msg: "Fill all the Fields")
         }
         else {
@@ -110,16 +89,6 @@ class AddAddressViewController: UIViewController {
 
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

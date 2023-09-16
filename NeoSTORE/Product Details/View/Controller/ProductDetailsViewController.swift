@@ -77,6 +77,23 @@ class ProductDetailsViewController: UIViewController {
         productDetailsViewModel.callProductDetails(productId: productId ?? 0)
     }
     
+    func shareContent(productImg: UIImage) {
+        let text = URL(string: "https://www.neosofttech.com/")
+        
+        let name = productDetailsViewModel.productsDetails?.data?.name
+        
+        let image = productImg
+
+        let itemsToShare = [name ?? "", text ?? "", image] as [Any]
+
+          let activityViewController = UIActivityViewController(activityItems: itemsToShare, applicationActivities: nil)
+
+          // Customize the UIActivityViewController as needed
+          activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop]
+
+          self.present(activityViewController, animated: true, completion: nil)
+      }
+    
     //MARK: - IBActions
     @IBAction func btnRateTapped(_ sender: UIButton) {
         let ratingPopUpUIView = RatingPopUiViewController(nibName: "RatingPopUiViewController", bundle: nil)
@@ -120,6 +137,7 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
         case 1:
             let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductsDetailCell", for: indexPath) as! ProductsDetailCell
             cell.setDetails(productImages: productDetailsViewModel.productsDetails?.data?.productImages ?? [], productDescription: productDetailsViewModel.productsDetails?.data?.dataDescription ?? "", price: productDetailsViewModel.productsDetails?.data?.cost ?? 0)
+            cell.productDetailCellDelegate = self
             cell.selectionStyle = .none
             return cell
         default:
@@ -155,5 +173,12 @@ extension ProductDetailsViewController: ProductDetailsViewModelDelegate{
 extension ProductDetailsViewController: RatingUpdateData{
     func updateData() {
         callViewModelFetchProductDetails()
+    }
+}
+
+//MARK: -
+extension ProductDetailsViewController: ProductDetailCellDelegate{
+    func shareTapped(productImg: UIImage) {
+        shareContent(productImg: productImg)
     }
 }

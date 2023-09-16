@@ -15,7 +15,6 @@ class OrderDetailsViewController: UIViewController {
     
     var orderId: Int?
     
-    var loaderView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -20,10 +20,10 @@ class DrawerViewController: UIViewController {
     weak var drawerViewControllerDelegate: DrawerViewControllerDelegate?
     
     //MARK: - Properties
+    //wrong
     private var optionImgs = ["shoppingcart_icon","table","sofa","chair","cupboard","username_icon","storelocator_icon","myorders_icon","logout_icon"]
     private var optionNames = ["My Cart","Tables","Sofas","Chairs","Cupboards","My Account","Store Locator","My Orders","Logout"]
     
-    var loaderView : UIView?
     let drawerViewModel = DrawerViewModel()
    
     private var noOfNotifications: Int?
@@ -48,9 +48,14 @@ class DrawerViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .updateCart, object: nil)
         NotificationCenter.default.removeObserver(self, name: .updateDrawer, object: nil)
     }
+    
     //MARK: - Functions
     private func setUpUI(){
 //        callUserData()
+        addObservers()
+    }
+    
+    private func addObservers(){
         NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(updateCartCount(_:)),
@@ -71,12 +76,10 @@ class DrawerViewController: UIViewController {
     }
     
     private func xibRegister(){
-        //        drawerTableView?.registerCell(of: HeaderCell.self)
-        //        drawerTableView?.registerCell(of: OptionsCell.self)
-        
         drawerTableView?.register(UINib(nibName: "DrawerHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "DrawerHeaderTableViewCell")
         drawerTableView?.register(UINib(nibName: "OptionsCell", bundle: nil), forCellReuseIdentifier: "OptionsCell")
     }
+    
     private func callUserData(){
         self.showLoader()
         drawerViewModel.drawerViewModelDelegate = self
@@ -95,15 +98,6 @@ class DrawerViewController: UIViewController {
     @objc func updateDrawer(_ notification: Notification) {
         callUserData()
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 
@@ -122,11 +116,12 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
             return optionImgs.count
         }
     }
-    
+    //wrong
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0{
+        if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DrawerHeaderTableViewCell") as! DrawerHeaderTableViewCell
             cell.drawerHeaderTableViewCellDelegate = self
+            //wrong
             cell.setDetails(imgName: drawerViewModel.userData?.data?.user_data?.profile_pic ?? "", name: ((drawerViewModel.userData?.data?.user_data?.first_name ?? "") + " " + (drawerViewModel.userData?.data?.user_data?.last_name ?? "")), email: drawerViewModel.userData?.data?.user_data?.email ?? "")
             cell.selectionStyle = .none
             return cell
@@ -156,7 +151,7 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        //wrong
         switch indexPath.section{
         case 0:
             drawerViewControllerDelegate?.showDrawer()

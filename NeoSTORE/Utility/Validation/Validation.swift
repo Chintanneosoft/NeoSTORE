@@ -55,27 +55,27 @@ class Validation{
         return (true,msg: "Validation successfull")
     }
     
-    func loginValidation(email: String?, password: String?) -> (Bool,String){
+    func loginValidation(email: String?, password: String?) -> String{
         
         guard email != "" && password != "" else {
 //            validationDelegate?.resultMsg(msg: "Please fill the required fields")
-            return (false,"Please fill the required fields")
+            return "Please fill the required fields"
         }
         
         if email != "" {
             guard validateEmail(email ?? "") == true else {
 //                validationDelegate?.resultMsg( msg:"Enter your valid email id")
-                return (false,"Enter your valid email id")
+                return "Enter your valid email id"
             }
         }
         
         guard password!.count >= 2 && containsOnlyAllowedCharacters(password!) == true && containsOneNumberAndOneSpecialChar(password!) == true else {
 //            validationDelegate?.resultMsg(msg: "Enter your valid password")
-            return (false,"Enter your valid password")
+            return "Enter your valid password"
         }
         
 //        validationDelegate?.resultMsg(msg: "Validation successfull")
-        return (true,"Enter your valid password")
+        return "Validation successfull"
     }
     
     func resetPassValidation(oldPass: String, newPass: String, confirmPass: String ) -> (Bool,String){

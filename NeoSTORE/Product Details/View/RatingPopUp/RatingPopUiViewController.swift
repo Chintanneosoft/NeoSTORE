@@ -12,7 +12,7 @@ import SDWebImage
 protocol RatingUpdateData:NSObject{
     func updateData()
 }
-
+//Wrong
 //MARK: - RatingPopUiViewController
 class RatingPopUiViewController: UIViewController {
     
@@ -21,19 +21,14 @@ class RatingPopUiViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var imgProduct: UIImageView!
-    @IBOutlet var starImgs: [UIImageView]!
-    @IBOutlet weak var star1: UIImageView!
-    @IBOutlet weak var star2: UIImageView!
-    @IBOutlet weak var star3: UIImageView!
-    @IBOutlet weak var star4: UIImageView!
-    @IBOutlet weak var star5: UIImageView!
+    @IBOutlet weak var starCollectionView: UICollectionView!
+    
     @IBOutlet weak var btnRateNow: UIButton!
     
     //MARK: - RatingUpdateData object
     weak var ratingUpdateDataDelegate : RatingUpdateData?
     
     //properties
-    var imgtapped: Int?
     var productImgURL: String?
     var productName: String?
     var productId: Int?
@@ -44,9 +39,16 @@ class RatingPopUiViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUpUI()
+        setCollectionView()
     }
     
     //MARK: - Functions
+    
+    private func setCollectionView(){
+        starCollectionView.delegate = self
+        starCollectionView.dataSource = self
+        starCollectionView.register(UINib(nibName: "StarCell", bundle: nil), forCellWithReuseIdentifier: "StarCell")
+    }
     private func setUpUI(){
         
         //image
@@ -61,66 +63,9 @@ class RatingPopUiViewController: UIViewController {
         //button
         btnRateNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
         btnRateNow.layer.cornerRadius = 5
-        
-        //Tap Gestures
-        let img1Tap = UITapGestureRecognizer(target: self, action: #selector(handleOneStar))
-        let img2Tap = UITapGestureRecognizer(target: self, action: #selector(handleTwoStar))
-        let img3Tap = UITapGestureRecognizer(target: self, action: #selector(handleThreeStar))
-        let img4Tap = UITapGestureRecognizer(target: self, action: #selector(handleFourStar))
-        let img5Tap = UITapGestureRecognizer(target: self, action: #selector(handleFiveStar))
-        
-        star1.isUserInteractionEnabled = true
-        star1.addGestureRecognizer(img1Tap)
-        star2.isUserInteractionEnabled = true
-        star2.addGestureRecognizer(img2Tap)
-        star3.isUserInteractionEnabled = true
-        star3.addGestureRecognizer(img3Tap)
-        star4.isUserInteractionEnabled = true
-        star4.addGestureRecognizer(img4Tap)
-        star5.isUserInteractionEnabled = true
-        star5.addGestureRecognizer(img5Tap)
-        
+    
     }
     
-    func setRating(rate: Int) {
-           for i in 1...5 {
-               if i <= rate {
-                   starImgs[i-1].image = UIImage(named: "star_check")
-               }
-               else {
-                   starImgs[i-1].image = UIImage(named: "star_unchek")
-               }
-           }
-       }
-    
-    //MARK: - @objc
-    @objc func handleOneStar() {
-        if rating == 1{
-            setRating(rate: 0)
-            rating = 0
-        }
-        else {
-            setRating(rate: 1)
-            rating = 1
-        }
-        }
-        @objc func handleTwoStar() {
-            setRating(rate: 2)
-            rating = 2
-        }
-        @objc func handleThreeStar() {
-            setRating(rate: 3)
-            rating = 3
-        }
-        @objc func handleFourStar() {
-            setRating(rate: 4)
-            rating = 4
-        }
-        @objc func handleFiveStar() {
-            setRating(rate: 5)
-            rating = 5
-        }
-        
     //MARK: - IBActions
     @IBAction func btnRemoveTapped(_ sender: UIButton) {
         self.dismiss(animated: false)
@@ -150,4 +95,41 @@ extension RatingPopUiViewController: RatingPopUpViewModelDelegate{
         }
     }
     
+}
+
+extension RatingPopUiViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = starCollectionView.dequeueReusableCell(withReuseIdentifier: "StarCell", for: indexPath) as! StarCell
+        cell.setStar(selected: false)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var tempRating = 0
+        for i in 0...4{
+            let cell = collectionView.cellForItem(at: IndexPath(item: i, section: 0)) as! StarCell
+            if indexPath.row == 0 && rating == 1{
+                cell.setStar(selected: false)
+                break
+            } else {
+                if i<=indexPath.row{
+                    cell.setStar(selected: true)
+                    tempRating = tempRating + 1
+                }
+                else{
+                    cell.setStar(selected: false)
+                }
+            }
+        }
+        rating = tempRating
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = collectionView.bounds.width/5 - 10
+        return CGSize(width: cellWidth, height: cellWidth)
+    }
 }

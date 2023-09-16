@@ -24,12 +24,12 @@ class LoginViewModel{
     
     //MARK: - Functions
     func callValidations(email:String, pass:String) {
-        
+
         let validationResult = validation.loginValidation( email: email, password: pass)
-        
-        if validationResult.0{
+        //wrong
+        if validationResult == "Validation successfull"{
             
-            print(email,pass)
+           
             loginAPIService.loginUser(email: email, pass: pass){ (response) in
                 
                 switch response{
@@ -49,11 +49,11 @@ class LoginViewModel{
                 }
                 
             }
-        }
-        else{
-            self.loginViewModelDelegate?.showAlert(msg: validationResult.1)
+        } else {
+            self.loginViewModelDelegate?.showAlert(msg: validationResult)
         }
     }
+    
     func callForgotPass(email: String){
         loginAPIService.forgotPass(email: email){ (response) in
             switch response{

@@ -19,8 +19,11 @@ class AddressListViewController: UIViewController {
     
     //properties
     var btnSelected: Int?
+    //wrong
     var btnCancel: Int?
     var loaderView: UIView?
+    
+   //wrong
     var address: [String?] = []
     var selectedAddress: String?
     
@@ -112,6 +115,7 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
         print(cell.lblTitle.text)
         cell.lblAddress.text = address[0] ?? "Please Add Address"
         
+        //wrong
         if btnSelected == indexPath.row{
             cell.btnSelect.isSelected = true
         }
@@ -135,12 +139,18 @@ extension AddressListViewController: AddressListCellDelegate{
     
     func btnCancelTapped(btnTag: Int) {
         
-        let indexPath = IndexPath(row: btnTag, section: 0)
-        address.remove(at: indexPath.row)
-        addressListTableView.deleteRows(at: [indexPath], with: .fade)
+        self.showDualButtonAlert(title: "Alert", msg: "Do you want to delete the row", okClosure: {
+            let indexPath = IndexPath(row: btnTag, section: 0)
+            self.address.remove(at: indexPath.row)
+            self.addressListTableView.deleteRows(at: [indexPath], with: .fade)
+        }, cancelClosure: {
+            self.dismiss(animated: true)
+        })
     }
     
     func btnSelectTapped(btnTag: Int) {
+        
+        //wrong validation
         btnSelected = btnTag
         addressListTableView.reloadData()
     }
@@ -152,6 +162,7 @@ extension AddressListViewController: AddressListViewModelDelegate{
     func successAddress(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader()
+            NotificationCenter.default.post(name: .updateDrawer, object: nil)
             let alert = UIAlertController(title: "Success", message: msg, preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)

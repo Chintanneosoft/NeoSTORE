@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -51,8 +52,8 @@
                                                 <constraint firstAttribute="width" constant="50" id="b3Z-QA-gMD"/>
                                             </constraints>
                                         </imageView>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Chintan@gmail.com" placeholder="Username" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="tVG-9r-AfK">
-                                            <rect key="frame" x="65" y="0.0" width="260" height="50"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="tVG-9r-AfK">
+                                            <rect key="frame" x="65" y="0.0" width="250" height="50"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" name="Primary Foreground"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -63,10 +64,9 @@
                                     <constraints>
                                         <constraint firstItem="tVG-9r-AfK" firstAttribute="top" secondItem="sWy-wk-Qs5" secondAttribute="top" id="DyI-kA-8Ic"/>
                                         <constraint firstAttribute="bottom" secondItem="HNp-AM-3ZP" secondAttribute="bottom" constant="10" id="JIL-s9-Ndg"/>
-                                        <constraint firstAttribute="trailing" secondItem="tVG-9r-AfK" secondAttribute="trailing" id="Mx4-La-aSU"/>
+                                        <constraint firstAttribute="trailing" secondItem="tVG-9r-AfK" secondAttribute="trailing" constant="10" id="Mx4-La-aSU"/>
                                         <constraint firstItem="HNp-AM-3ZP" firstAttribute="leading" secondItem="sWy-wk-Qs5" secondAttribute="leading" constant="5" id="PUl-8N-Mo5"/>
                                         <constraint firstAttribute="bottom" secondItem="tVG-9r-AfK" secondAttribute="bottom" id="gE0-ak-ha4"/>
-                                        <constraint firstItem="tVG-9r-AfK" firstAttribute="leading" secondItem="HNp-AM-3ZP" secondAttribute="trailing" constant="10" id="lyu-8e-hrO"/>
                                         <constraint firstItem="tVG-9r-AfK" firstAttribute="leading" secondItem="HNp-AM-3ZP" secondAttribute="trailing" constant="10" id="pgI-C6-HGc"/>
                                         <constraint firstItem="HNp-AM-3ZP" firstAttribute="top" secondItem="sWy-wk-Qs5" secondAttribute="top" constant="10" id="rjs-WI-Evc"/>
                                     </constraints>
@@ -80,8 +80,8 @@
                                                 <constraint firstAttribute="width" constant="50" id="V6F-eb-9Kg"/>
                                             </constraints>
                                         </imageView>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Chintan@123" placeholder="Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="nW0-le-7Kv">
-                                            <rect key="frame" x="65" y="0.0" width="260" height="50"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="nW0-le-7Kv">
+                                            <rect key="frame" x="65" y="0.0" width="250" height="50"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" name="Primary Foreground"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -90,11 +90,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="nW0-le-7Kv" firstAttribute="leading" secondItem="OKA-ye-E6R" secondAttribute="trailing" constant="10" id="6CP-gM-8vw"/>
                                         <constraint firstAttribute="bottom" secondItem="OKA-ye-E6R" secondAttribute="bottom" constant="10" id="FZt-rA-w87"/>
                                         <constraint firstItem="OKA-ye-E6R" firstAttribute="top" secondItem="YrO-fe-fQ2" secondAttribute="top" constant="10" id="IJO-3L-odQ"/>
                                         <constraint firstItem="OKA-ye-E6R" firstAttribute="leading" secondItem="YrO-fe-fQ2" secondAttribute="leading" constant="5" id="R8C-8h-rgc"/>
-                                        <constraint firstAttribute="trailing" secondItem="nW0-le-7Kv" secondAttribute="trailing" id="XfA-FD-WLX"/>
+                                        <constraint firstAttribute="trailing" secondItem="nW0-le-7Kv" secondAttribute="trailing" constant="10" id="XfA-FD-WLX"/>
                                         <constraint firstItem="nW0-le-7Kv" firstAttribute="top" secondItem="YrO-fe-fQ2" secondAttribute="top" id="iSV-bk-tkz"/>
                                         <constraint firstAttribute="bottom" secondItem="nW0-le-7Kv" secondAttribute="bottom" id="xjH-e5-vnS"/>
                                         <constraint firstItem="nW0-le-7Kv" firstAttribute="leading" secondItem="OKA-ye-E6R" secondAttribute="trailing" constant="10" id="zY7-Q8-7kB"/>

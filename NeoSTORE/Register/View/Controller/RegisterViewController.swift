@@ -28,6 +28,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var registerScrollView: UIScrollView!
     
     var loaderView: UIView?
+    var genderSelected: Bool?
     
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -122,15 +123,9 @@ class RegisterViewController: UIViewController {
     
     //MARK: - IBActions
     @IBAction func btnRadioTapped(_ sender: UIButton) {
-        
-        if sender == btnMale{
-            btnMale.isSelected = true
-            btnFemale.isSelected = false
-        }
-        else{
-            btnMale.isSelected = false
-            btnFemale.isSelected = true
-        }
+        btnMale.isSelected = false
+        btnFemale.isSelected = false
+        sender.isSelected = true
         
     }
     
@@ -139,6 +134,7 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func btnRegisterTapped(_ sender: UIButton) {
+        //wrong
         self.showLoader()
         sendValidations()
     }
@@ -149,6 +145,8 @@ class RegisterViewController: UIViewController {
 //MARK: - TextField Delegate
 extension RegisterViewController: UITextFieldDelegate{
     
+    
+    //wrong
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == tfFirstName{
             textField.resignFirstResponder()
@@ -195,7 +193,7 @@ extension RegisterViewController: UITextFieldDelegate{
 
 //MARK: - RegisterViewModelDelegate
 extension RegisterViewController: RegisterViewModelDelegate{
-    
+    //wronng
     func showAlert(msg:String) {
         
         DispatchQueue.main.async {

@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0E862955-337B-48CA-9697-4EAD68A7BC37"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NeoSTORE/Product Details/View/RatingPopUp/RatingPopUPUIViewController.swift"

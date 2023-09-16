@@ -8,6 +8,11 @@
 import UIKit
 import SDWebImage
 
+//MARK: - ProductDetailCellDelegate
+protocol ProductDetailCellDelegate:NSObject{
+    func shareTapped(productImg: UIImage)
+}
+
 //MARK: - ProductsDetailCell
 class ProductsDetailCell: UITableViewCell {
     
@@ -20,6 +25,8 @@ class ProductsDetailCell: UITableViewCell {
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var btnShare: UIButton!
     @IBOutlet weak var productImageCollection: UICollectionView!
+    
+    weak var productDetailCellDelegate: ProductDetailCellDelegate?
     
     //Properties
     var selectState = true
@@ -61,7 +68,6 @@ class ProductsDetailCell: UITableViewCell {
         self.lblDescription.text = "DESCRIPTION"
         self.productImageCollection.reloadData()
         setImages()
-        changeSelectedCellUI(idx: 0, s: true)
     }
     
     private func setImages(){
@@ -69,6 +75,11 @@ class ProductsDetailCell: UITableViewCell {
             productImgURLs += [p.image ?? ""]
         }
     }
+    @IBAction func btnShareTapped(_ sender: UIButton) {
+        self.productDetailCellDelegate?.shareTapped(productImg: productImage.image!) 
+    }
+    
+    
 }
 
 //MARK: - CollectionView Delegate and DataSource

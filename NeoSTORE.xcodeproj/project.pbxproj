@@ -11,10 +11,17 @@
 		4A2D84642A94F17E00DD0D8B /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2D84632A94F17E00DD0D8B /* RegisterModel.swift */; };
 		4A3416D52AAAEEBD00DC326D /* ProfileAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3416D42AAAEEBC00DC326D /* ProfileAPIService.swift */; };
 		4A3416D72AAB1E0800DC326D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3416D62AAB1E0800DC326D /* ProfileViewModel.swift */; };
+		4A4C83512AB423AF009D2F9D /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C834F2AB423AF009D2F9D /* UICollectionView+Extension.swift */; };
+		4A4C83522AB423AF009D2F9D /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C83502AB423AF009D2F9D /* UITableView+Extension.swift */; };
+		4A4C83542AB42F0C009D2F9D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C83532AB42F0B009D2F9D /* BaseViewController.swift */; };
+		4A4C835C2AB4702B009D2F9D /* StarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C835A2AB4702B009D2F9D /* StarCell.swift */; };
+		4A4C835D2AB4702B009D2F9D /* StarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4C835B2AB4702B009D2F9D /* StarCell.xib */; };
+		4A4C83602AB47EBF009D2F9D /* ImageSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C835E2AB47EBF009D2F9D /* ImageSliderCell.swift */; };
+		4A4C83612AB47EBF009D2F9D /* ImageSliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4C835F2AB47EBF009D2F9D /* ImageSliderCell.xib */; };
+		4A5DCE952AB3095A00489711 /* StoreLocatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5DCE932AB3095A00489711 /* StoreLocatorViewController.swift */; };
+		4A5DCE962AB3095A00489711 /* StoreLocatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5DCE942AB3095A00489711 /* StoreLocatorViewController.xib */; };
 		4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A711FCC2A8E551D00C1348D /* HomeViewController.swift */; };
 		4A711FCF2A8E551D00C1348D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A711FCD2A8E551D00C1348D /* HomeViewController.xib */; };
-		4A7390632A8E1602004E12A3 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7390612A8E1602004E12A3 /* UICollectionView+Extension.swift */; };
-		4A7390642A8E1602004E12A3 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7390622A8E1602004E12A3 /* UITableView+Extension.swift */; };
 		4A73906D2A8E20A9004E12A3 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A73906B2A8E20A9004E12A3 /* LoginViewController.xib */; };
 		4A7390712A8E2205004E12A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A7390702A8E2205004E12A3 /* Main.storyboard */; };
 		4A7390742A8E2715004E12A3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7390722A8E2715004E12A3 /* RegisterViewController.swift */; };
@@ -149,10 +156,17 @@
 		4A2D84632A94F17E00DD0D8B /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		4A3416D42AAAEEBC00DC326D /* ProfileAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAPIService.swift; sourceTree = "<group>"; };
 		4A3416D62AAB1E0800DC326D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		4A4C834F2AB423AF009D2F9D /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		4A4C83502AB423AF009D2F9D /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		4A4C83532AB42F0B009D2F9D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		4A4C835A2AB4702B009D2F9D /* StarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarCell.swift; sourceTree = "<group>"; };
+		4A4C835B2AB4702B009D2F9D /* StarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StarCell.xib; sourceTree = "<group>"; };
+		4A4C835E2AB47EBF009D2F9D /* ImageSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCell.swift; sourceTree = "<group>"; };
+		4A4C835F2AB47EBF009D2F9D /* ImageSliderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSliderCell.xib; sourceTree = "<group>"; };
+		4A5DCE932AB3095A00489711 /* StoreLocatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewController.swift; sourceTree = "<group>"; };
+		4A5DCE942AB3095A00489711 /* StoreLocatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreLocatorViewController.xib; sourceTree = "<group>"; };
 		4A711FCC2A8E551D00C1348D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4A711FCD2A8E551D00C1348D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
-		4A7390612A8E1602004E12A3 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICollectionView+Extension.swift"; path = "../../../../../../Downloads/UICollectionView+Extension.swift"; sourceTree = "<group>"; };
-		4A7390622A8E1602004E12A3 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Extension.swift"; path = "../../../../../../Downloads/UITableView+Extension.swift"; sourceTree = "<group>"; };
 		4A73906B2A8E20A9004E12A3 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		4A7390702A8E2205004E12A3 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4A7390722A8E2715004E12A3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -413,11 +427,69 @@
 			path = Xib;
 			sourceTree = "<group>";
 		};
+		4A4C83552AB46EAA009D2F9D /* StarCell */ = {
+			isa = PBXGroup;
+			children = (
+				4A4C835A2AB4702B009D2F9D /* StarCell.swift */,
+				4A4C835B2AB4702B009D2F9D /* StarCell.xib */,
+			);
+			path = StarCell;
+			sourceTree = "<group>";
+		};
+		4A5DCE8D2AB308F400489711 /* Store Locator */ = {
+			isa = PBXGroup;
+			children = (
+				4A5DCE902AB3091C00489711 /* Model */,
+				4A5DCE8F2AB3091000489711 /* View Model */,
+				4A5DCE8E2AB3090800489711 /* View */,
+			);
+			path = "Store Locator";
+			sourceTree = "<group>";
+		};
+		4A5DCE8E2AB3090800489711 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A5DCE922AB3092C00489711 /* Controller */,
+				4A5DCE912AB3092600489711 /* Xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A5DCE8F2AB3091000489711 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		4A5DCE902AB3091C00489711 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A5DCE912AB3092600489711 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				4A5DCE942AB3095A00489711 /* StoreLocatorViewController.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		4A5DCE922AB3092C00489711 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A5DCE932AB3095A00489711 /* StoreLocatorViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		4A7390602A8E15D3004E12A3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4A7390612A8E1602004E12A3 /* UICollectionView+Extension.swift */,
-				4A7390622A8E1602004E12A3 /* UITableView+Extension.swift */,
+				4A4C834F2AB423AF009D2F9D /* UICollectionView+Extension.swift */,
+				4A4C83502AB423AF009D2F9D /* UITableView+Extension.swift */,
 				4A8E94A82A976FE00067306F /* Common Functions.swift */,
 			);
 			path = Extensions;
@@ -468,7 +540,7 @@
 				4A933CAE2AA889A1001652CC /* MyOrders */,
 				4A933CC52AA89CBC001652CC /* Order Details */,
 				4A9B95142A9B521F00CD724D /* Profile */,
-				4A7390602A8E15D3004E12A3 /* Extensions */,
+				4A5DCE8D2AB308F400489711 /* Store Locator */,
 				4A7FD2D72A8DFCA200AEF0CB /* Utility */,
 				4A7FD2A82A8DEA1300AEF0CB /* Application */,
 				4A7FD2AB2A8DEA7B00AEF0CB /* StoryBoards */,
@@ -545,8 +617,10 @@
 		4A7FD2D72A8DFCA200AEF0CB /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				4A7390602A8E15D3004E12A3 /* Extensions */,
 				4A91ED122A93315900915A0A /* Validation */,
 				4A7FD2D82A8DFCC300AEF0CB /* Constants.swift */,
+				4A4C83532AB42F0B009D2F9D /* BaseViewController.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -610,13 +684,15 @@
 			path = "Web Service";
 			sourceTree = "<group>";
 		};
-		4A91ED202A93644C00915A0A /* HomeBottomViewCell */ = {
+		4A91ED202A93644C00915A0A /* HomeCells */ = {
 			isa = PBXGroup;
 			children = (
 				4A91ED312A93673B00915A0A /* HomeCollectionViewCell.swift */,
 				4A91ED322A93673B00915A0A /* HomeCollectionViewCell.xib */,
+				4A4C835E2AB47EBF009D2F9D /* ImageSliderCell.swift */,
+				4A4C835F2AB47EBF009D2F9D /* ImageSliderCell.xib */,
 			);
-			path = HomeBottomViewCell;
+			path = HomeCells;
 			sourceTree = "<group>";
 		};
 		4A91ED262A93655900915A0A /* ViewModel */ = {
@@ -638,6 +714,7 @@
 		4A91ED282A93657D00915A0A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A91ED202A93644C00915A0A /* HomeCells */,
 				4A7390652A8E1BC5004E12A3 /* Xibs */,
 				4A7FD2AA2A8DEA5500AEF0CB /* Controllers */,
 			);
@@ -1202,7 +1279,6 @@
 				4A91ED282A93657D00915A0A /* View */,
 				4A91ED272A93657500915A0A /* Model */,
 				4A91ED262A93655900915A0A /* ViewModel */,
-				4A91ED202A93644C00915A0A /* HomeBottomViewCell */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1388,6 +1464,7 @@
 		4AF66A4F2A98D50200F65CDA /* RatingPopUp */ = {
 			isa = PBXGroup;
 			children = (
+				4A4C83552AB46EAA009D2F9D /* StarCell */,
 				4A933CAC2AA8652D001652CC /* RatingPopUiViewController.xib */,
 				4A930B9F2AA08E3C00EF3D9D /* RatingPopUiViewController.swift */,
 			);
@@ -1416,6 +1493,7 @@
 				4A7FD2722A8DE9D600AEF0CB /* Frameworks */,
 				4A7FD2732A8DE9D600AEF0CB /* Resources */,
 				7D3508ACC826617F586A9103 /* [CP] Embed Pods Frameworks */,
+				EE09993B1F9379B0DF29424A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1454,6 +1532,7 @@
 				4A7FD2922A8DE9D900AEF0CB /* Frameworks */,
 				4A7FD2932A8DE9D900AEF0CB /* Resources */,
 				C17A0FDB340C94D668564299 /* [CP] Embed Pods Frameworks */,
+				E56F7005CFCB046DB7FE01E7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1516,6 +1595,7 @@
 				4A9A6C042A923DC000250B79 /* CartViewController.xib in Resources */,
 				4A7390712A8E2205004E12A3 /* Main.storyboard in Resources */,
 				4A933CBD2AA88A5E001652CC /* MyOrderCell.xib in Resources */,
+				4A4C835D2AB4702B009D2F9D /* StarCell.xib in Resources */,
 				4AF66A412A98C4F800F65CDA /* ResetPasswordViewController.xib in Resources */,
 				4A91ED1C2A93364E00915A0A /* DrawerHeaderTableViewCell.xib in Resources */,
 				4A7FD2E32A8E05DF00AEF0CB /* Gotham-Book.otf in Resources */,
@@ -1534,6 +1614,7 @@
 				4A950FA22AA1C9B700EF3FB3 /* CartCell.xib in Resources */,
 				4A930BA62AA0BAEC00EF3D9D /* EnterQuantityViewController.xib in Resources */,
 				4A9A6C102A923E2B00250B79 /* AddAddressViewController.xib in Resources */,
+				4A5DCE962AB3095A00489711 /* StoreLocatorViewController.xib in Resources */,
 				4AF66A462A98D04C00F65CDA /* ProductsNameCell.xib in Resources */,
 				4A933CD42AA89D5D001652CC /* OrderDetailsViewController.xib in Resources */,
 				4A7FD2822A8DE9D800AEF0CB /* Assets.xcassets in Resources */,
@@ -1541,6 +1622,7 @@
 				4A91ED342A93673B00915A0A /* HomeCollectionViewCell.xib in Resources */,
 				4AF66A4A2A98D07100F65CDA /* ProductsDetailCell.xib in Resources */,
 				4A7FD2E22A8E05DF00AEF0CB /* Gotham-Medium.otf in Resources */,
+				4A4C83612AB47EBF009D2F9D /* ImageSliderCell.xib in Resources */,
 				4A9CCA292A9223550088A036 /* DrawerViewController.xib in Resources */,
 				4A933CAD2AA8652D001652CC /* RatingPopUiViewController.xib in Resources */,
 				4A7390752A8E2715004E12A3 /* RegisterViewController.xib in Resources */,
@@ -1666,6 +1748,40 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE-NeoSTOREUITests/Pods-NeoSTORE-NeoSTOREUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E56F7005CFCB046DB7FE01E7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE-NeoSTOREUITests/Pods-NeoSTORE-NeoSTOREUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE-NeoSTOREUITests/Pods-NeoSTORE-NeoSTOREUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE-NeoSTOREUITests/Pods-NeoSTORE-NeoSTOREUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE09993B1F9379B0DF29424A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE/Pods-NeoSTORE-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE/Pods-NeoSTORE-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NeoSTORE/Pods-NeoSTORE-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1673,10 +1789,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A7390632A8E1602004E12A3 /* UICollectionView+Extension.swift in Sources */,
 				4A9A251A2A949B6900892EB0 /* RegisterViewModel.swift in Sources */,
 				4A90275B2AA5F46300D3BB81 /* AddAddressAPIService.swift in Sources */,
 				4A933CCE2AA89D24001652CC /* OrderDetailsModel.swift in Sources */,
+				4A4C835C2AB4702B009D2F9D /* StarCell.swift in Sources */,
 				4A933CD32AA89D5D001652CC /* OrderDetailsViewController.swift in Sources */,
 				4A9C3B6C2AAF125C00816FB7 /* ResetPasswordViewModel.swift in Sources */,
 				4A950F972AA1A06200EF3FB3 /* DrawerModel.swift in Sources */,
@@ -1689,6 +1805,8 @@
 				4A8E94A52A9750FA0067306F /* Product.swift in Sources */,
 				4A9A251D2A949BAF00892EB0 /* RegisterAPIService.swift in Sources */,
 				4A7390742A8E2715004E12A3 /* RegisterViewController.swift in Sources */,
+				4A5DCE952AB3095A00489711 /* StoreLocatorViewController.swift in Sources */,
+				4A4C83512AB423AF009D2F9D /* UICollectionView+Extension.swift in Sources */,
 				4A933CC42AA89677001652CC /* MyOrderViewModel.swift in Sources */,
 				4A9027582AA5F43B00D3BB81 /* AddAddressViewModel.swift in Sources */,
 				4A933CD82AA89DF1001652CC /* OrderDetailsCell.swift in Sources */,
@@ -1716,6 +1834,7 @@
 				4AF66A492A98D07100F65CDA /* ProductsDetailCell.swift in Sources */,
 				4A9A6C092A923E0100250B79 /* AddressListViewController.swift in Sources */,
 				4A8E94A02A973E540067306F /* ProductListViewModel.swift in Sources */,
+				4A4C83522AB423AF009D2F9D /* UITableView+Extension.swift in Sources */,
 				4A933CBC2AA88A5E001652CC /* MyOrderCell.swift in Sources */,
 				4A9A6C0F2A923E2B00250B79 /* AddAddressViewController.swift in Sources */,
 				4A9C3B6F2AAF17F700816FB7 /* ResetPasswordAPIService.swift in Sources */,
@@ -1733,13 +1852,14 @@
 				4A91ED2C2A93664200915A0A /* HomeViewModel.swift in Sources */,
 				4A91ED142A93319600915A0A /* Validation.swift in Sources */,
 				4AF66A452A98D04C00F65CDA /* ProductsNameCell.swift in Sources */,
-				4A7390642A8E1602004E12A3 /* UITableView+Extension.swift in Sources */,
 				4A9027532AA5C21500D3BB81 /* AddressListCell.swift in Sources */,
 				4AF66A402A98C4F800F65CDA /* ResetPasswordViewController.swift in Sources */,
 				4A91ED1F2A935E3700915A0A /* LoginViewModel.swift in Sources */,
+				4A4C83542AB42F0C009D2F9D /* BaseViewController.swift in Sources */,
 				4A91ED2A2A9365D700915A0A /* HomeModel.swift in Sources */,
 				4A3416D52AAAEEBD00DC326D /* ProfileAPIService.swift in Sources */,
 				4A8E94A92A976FE00067306F /* Common Functions.swift in Sources */,
+				4A4C83602AB47EBF009D2F9D /* ImageSliderCell.swift in Sources */,
 				4A91ED332A93673B00915A0A /* HomeCollectionViewCell.swift in Sources */,
 				4A97B3322A9A1DD300DC11B6 /* ProductDetailsAPIService.swift in Sources */,
 				4A930BA92AA0BC7200EF3D9D /* EnterQuantityViewAPIService.swift in Sources */,
@@ -1922,11 +2042,13 @@
 				DEVELOPMENT_TEAM = JDQM4MDQ97;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeoSTORE/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Chintan NeoStore";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1953,11 +2075,13 @@
 				DEVELOPMENT_TEAM = JDQM4MDQ97;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeoSTORE/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Chintan NeoStore";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

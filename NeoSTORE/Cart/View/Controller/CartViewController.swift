@@ -12,12 +12,15 @@ class CartViewController: UIViewController {
     //MARK: - IBOutlets
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var btnOrderNow: UIButton!
+    
+    //wrong
     @IBOutlet weak var quantityPickerView: UIPickerView!
     
     //ViewModel Object
     let cartViewModel = CartViewModel()
     
     //properties
+    //wrong
     var quantityArr = ["1","2","3","4","5","6","7"]
     var dropDownState: Bool = false
     var loaderView : UIView?
@@ -38,13 +41,15 @@ class CartViewController: UIViewController {
         super.viewWillAppear(animated)
         callMyCart()
         navigationController?.navigationBar.isHidden = false
-        
     }
     
     //MARK: - Functions
     private func setUpUI(){
         btnOrderNow.layer.cornerRadius = 5
         btnOrderNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(pickerHide))
+        self.view.addGestureRecognizer(tap)
     }
     
     private func setUpNavBar() {
@@ -73,6 +78,11 @@ class CartViewController: UIViewController {
         cartViewModel.cartViewModelDelegate = self
         self.showLoader()
         cartViewModel.callFetchCart()
+    }
+    
+    @objc func pickerHide(){
+        quantityPickerView.isHidden = true
+        dropDownState = false
     }
     
     //MARK: - IBActions
@@ -118,19 +128,25 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if indexPath.section == 0 {
-            
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completionHandler) in
-                self.showLoader()
-                self.cartViewModel.callDeleteCart(productId: self.cartViewModel.cartList?[indexPath.row].productID ?? 0)
-                self.cartViewModel.cartList?.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+                self.showDualButtonAlert(title: "Alert", msg: "Do you want to delete the row", okClosure: {
+                    self.showLoader()
+                    self.cartViewModel.callDeleteCart(productId: self.cartViewModel.cartList?[indexPath.row].productID ?? 0)
+                    self.cartViewModel.cartList?.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    NotificationCenter.default.post(name: .updateDrawer, object: nil)
+                }, cancelClosure: {
+                    self.dismiss(animated: true)
+                })
+                
+               
                 completionHandler(true)
             }
-            
+
             deleteAction.image = UIImage(named: "delete")
             deleteAction.backgroundColor = .white
             let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
-            
             return swipeConfiguration
         }
         else{
@@ -151,7 +167,7 @@ extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
         return quantityArr.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? { //wrong: next time se seedha vc delete
         return quantityArr[row] // Replace with data from your data source array
     }
 
@@ -194,8 +210,9 @@ extension CartViewController: CartViewModelDelegate{
 //MARK: - UpdateQuantity
 extension CartViewController: UpdateQuantity{
     
-    func changeDropDownState(productId: Int) {
+    func changeDropDownState(productId: Int, quantity: String) {
         currProductId = productId
+        quantityPickerView.selectRow( quantityArr.firstIndex(of: quantity) ?? 0, inComponent: 0, animated: true)
         changeState()
     }
     

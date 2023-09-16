@@ -8,7 +8,8 @@ target 'NeoSTORE' do
   # Pods for NeoSTORE
   pod 'SDWebImage'
   pod 'SwiftLoader'
-
+  pod 'GoogleMaps'
+  
   target 'NeoSTORETests' do
     inherit! :search_paths
     # Pods for testing

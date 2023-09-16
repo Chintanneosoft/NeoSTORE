@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -80,20 +81,20 @@
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MUMBAI" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klh-k1-NAm">
-                                    <rect key="frame" x="30" y="308" width="144" height="34"/>
+                                <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CITY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klh-k1-NAm">
+                                    <rect key="frame" x="30" y="308" width="145" height="34"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="030-dP-YB6">
-                                    <rect key="frame" x="204" y="278" width="49" height="20"/>
+                                    <rect key="frame" x="205" y="278" width="49" height="20"/>
                                     <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MAHARASHTRA" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mji-he-Wpp">
-                                    <rect key="frame" x="204" y="308" width="159" height="34"/>
+                                <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="STATE" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mji-he-Wpp">
+                                    <rect key="frame" x="205" y="308" width="158" height="34"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -104,20 +105,20 @@
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="110006" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Y2-61-pEa">
-                                    <rect key="frame" x="30" y="399" width="144" height="34"/>
+                                <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ZIP Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Y2-61-pEa">
+                                    <rect key="frame" x="30" y="399" width="145" height="34"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COUNTRY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRw-Dl-sFk">
-                                    <rect key="frame" x="204" y="369" width="81.666666666666686" height="20"/>
+                                    <rect key="frame" x="205" y="369" width="81.666666666666686" height="20"/>
                                     <fontDescription key="fontDescription" name="Gotham-Medium" family="Gotham" pointSize="17"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="INDIA" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qqe-Lp-4mp">
-                                    <rect key="frame" x="204" y="399" width="159" height="34"/>
+                                <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="COUNTRY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qqe-Lp-4mp">
+                                    <rect key="frame" x="205" y="399" width="158" height="34"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="13"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -148,26 +149,26 @@
                                 <constraint firstItem="9Y2-61-pEa" firstAttribute="trailing" secondItem="klh-k1-NAm" secondAttribute="trailing" id="Ara-KV-GPo"/>
                                 <constraint firstItem="tqW-YC-g9o" firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" id="BJK-NT-3wz"/>
                                 <constraint firstItem="jMn-3W-tsA" firstAttribute="leading" secondItem="4Vr-9J-qUs" secondAttribute="leading" id="DbZ-UE-Ord"/>
-                                <constraint firstItem="nRw-Dl-sFk" firstAttribute="leading" secondItem="030-dP-YB6" secondAttribute="leading" id="EK2-Y8-W6f"/>
                                 <constraint firstItem="jMn-3W-tsA" firstAttribute="top" secondItem="klh-k1-NAm" secondAttribute="bottom" constant="27" id="Hqe-Em-btD"/>
                                 <constraint firstItem="Qqe-Lp-4mp" firstAttribute="top" secondItem="9Y2-61-pEa" secondAttribute="top" id="Ihe-Zu-SYf"/>
                                 <constraint firstItem="9so-iv-hqL" firstAttribute="top" secondItem="Ooq-pb-clb" secondAttribute="bottom" constant="10" id="KV7-2b-YGe"/>
-                                <constraint firstItem="030-dP-YB6" firstAttribute="top" secondItem="4Vr-9J-qUs" secondAttribute="top" id="LTN-Db-PRi"/>
                                 <constraint firstItem="Lde-fP-a6i" firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" id="Lkc-RS-jCq"/>
                                 <constraint firstItem="tqW-YC-g9o" firstAttribute="leading" secondItem="9so-iv-hqL" secondAttribute="leading" id="MON-WT-Uqh"/>
+                                <constraint firstItem="030-dP-YB6" firstAttribute="centerX" secondItem="P9U-gR-7dE" secondAttribute="centerX" constant="33" id="Q2U-iM-G20"/>
                                 <constraint firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" constant="30" id="RBv-34-Nyi"/>
                                 <constraint firstItem="nRw-Dl-sFk" firstAttribute="top" secondItem="jMn-3W-tsA" secondAttribute="top" id="RIR-wg-3wc"/>
+                                <constraint firstItem="Mji-he-Wpp" firstAttribute="leading" secondItem="030-dP-YB6" secondAttribute="leading" id="XZr-xU-Uao"/>
+                                <constraint firstItem="nRw-Dl-sFk" firstAttribute="leading" secondItem="030-dP-YB6" secondAttribute="leading" id="Z2W-qU-LbH"/>
                                 <constraint firstItem="4Vr-9J-qUs" firstAttribute="leading" secondItem="Ooq-pb-clb" secondAttribute="leading" id="ZAz-16-azp"/>
                                 <constraint firstItem="Qqe-Lp-4mp" firstAttribute="trailing" secondItem="Mji-he-Wpp" secondAttribute="trailing" id="bzj-nK-rwa"/>
                                 <constraint firstItem="klh-k1-NAm" firstAttribute="leading" secondItem="9so-iv-hqL" secondAttribute="leading" id="duh-9J-Ypo"/>
-                                <constraint firstAttribute="trailing" secondItem="030-dP-YB6" secondAttribute="trailing" constant="140" id="e3n-B0-Jyz"/>
                                 <constraint firstItem="4Vr-9J-qUs" firstAttribute="top" secondItem="Lde-fP-a6i" secondAttribute="bottom" constant="27" id="eFT-l0-9GP"/>
                                 <constraint firstItem="Mji-he-Wpp" firstAttribute="leading" secondItem="klh-k1-NAm" secondAttribute="trailing" constant="30" id="fou-mw-oT2"/>
                                 <constraint firstItem="tqW-YC-g9o" firstAttribute="top" secondItem="9Y2-61-pEa" secondAttribute="bottom" constant="27" id="hBh-x1-g4A"/>
                                 <constraint firstItem="Mji-he-Wpp" firstAttribute="trailing" secondItem="9so-iv-hqL" secondAttribute="trailing" id="jOW-38-aMd"/>
+                                <constraint firstItem="030-dP-YB6" firstAttribute="top" secondItem="4Vr-9J-qUs" secondAttribute="top" id="kTK-iE-ZXV"/>
                                 <constraint firstItem="Ooq-pb-clb" firstAttribute="top" secondItem="P9U-gR-7dE" secondAttribute="top" constant="50" id="o5v-A2-wS2"/>
                                 <constraint firstItem="l3z-Vf-qbi" firstAttribute="leading" secondItem="Ooq-pb-clb" secondAttribute="leading" id="pFC-V6-5hG"/>
-                                <constraint firstItem="Mji-he-Wpp" firstAttribute="leading" secondItem="030-dP-YB6" secondAttribute="leading" id="sbK-Dq-7EF"/>
                                 <constraint firstItem="9Y2-61-pEa" firstAttribute="leading" secondItem="jMn-3W-tsA" secondAttribute="leading" id="se6-4y-joy"/>
                                 <constraint firstItem="l3z-Vf-qbi" firstAttribute="top" secondItem="9so-iv-hqL" secondAttribute="bottom" constant="27" id="uYt-Ug-u96"/>
                                 <constraint firstItem="Lde-fP-a6i" firstAttribute="top" secondItem="l3z-Vf-qbi" secondAttribute="bottom" constant="10" id="wKZ-Kz-51Z"/>

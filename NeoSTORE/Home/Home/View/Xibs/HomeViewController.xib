@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,8 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="NeoSTORE" customModuleProvider="target">
             <connections>
                 <outlet property="furnitureCollectionView" destination="lUE-V4-Q2s" id="mjR-gT-BrV"/>
+                <outlet property="sliderCollectionView" destination="lkI-kv-kGh" id="YSD-vf-DII"/>
                 <outlet property="sliderPageControl" destination="arV-Bw-dmk" id="iV2-3C-WAM"/>
-                <outlet property="sliderScrollView" destination="N9B-nl-mHP" id="fwM-uh-uTr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,9 +29,16 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Flv-JC-2ZE">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="275.33333333333331"/>
                             <subviews>
-                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9B-nl-mHP">
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lkI-kv-kGh">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="275.33333333333331"/>
-                                </scrollView>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ODY-kw-ab6">
+                                        <size key="itemSize" width="128" height="128"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                </collectionView>
                                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="arV-Bw-dmk">
                                     <rect key="frame" x="120.33333333333333" y="235.33333333333331" width="134.33333333333337" height="26"/>
                                     <constraints>
@@ -45,14 +53,12 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="lkI-kv-kGh" secondAttribute="bottom" id="CGH-7b-jbR"/>
                                 <constraint firstAttribute="bottom" secondItem="arV-Bw-dmk" secondAttribute="bottom" constant="14" id="Ezy-SU-LCr"/>
-                                <constraint firstItem="N9B-nl-mHP" firstAttribute="top" secondItem="Flv-JC-2ZE" secondAttribute="top" id="JLe-Et-mF0"/>
                                 <constraint firstItem="arV-Bw-dmk" firstAttribute="centerX" secondItem="Flv-JC-2ZE" secondAttribute="centerX" id="PsN-LV-qKe"/>
-                                <constraint firstItem="N9B-nl-mHP" firstAttribute="width" secondItem="Flv-JC-2ZE" secondAttribute="width" id="cAx-cN-CWI"/>
-                                <constraint firstAttribute="bottom" secondItem="N9B-nl-mHP" secondAttribute="bottom" id="chb-SJ-dd3"/>
-                                <constraint firstItem="N9B-nl-mHP" firstAttribute="height" secondItem="Flv-JC-2ZE" secondAttribute="height" id="d41-iu-cY7"/>
-                                <constraint firstItem="N9B-nl-mHP" firstAttribute="leading" secondItem="Flv-JC-2ZE" secondAttribute="leading" id="jXZ-Ha-hd5"/>
-                                <constraint firstAttribute="trailing" secondItem="N9B-nl-mHP" secondAttribute="trailing" id="ocr-IF-UVD"/>
+                                <constraint firstAttribute="trailing" secondItem="lkI-kv-kGh" secondAttribute="trailing" id="jCy-bJ-dVm"/>
+                                <constraint firstItem="lkI-kv-kGh" firstAttribute="leading" secondItem="Flv-JC-2ZE" secondAttribute="leading" id="nfJ-SI-56o"/>
+                                <constraint firstItem="lkI-kv-kGh" firstAttribute="top" secondItem="Flv-JC-2ZE" secondAttribute="top" id="uZy-SL-kRd"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRg-oX-8bh">

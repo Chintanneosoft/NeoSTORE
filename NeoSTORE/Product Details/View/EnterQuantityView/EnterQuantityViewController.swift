@@ -8,7 +8,7 @@
 import UIKit
 
 //MARK: - EnterQuantityViewController
-class EnterQuantityViewController: UIViewController {
+class EnterQuantityViewController: BaseViewController {
     
     //MARK: - IBOutlets
     @IBOutlet var superView: UIView!
@@ -29,6 +29,8 @@ class EnterQuantityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        setTapGestures()
+        addObservers()
         // Do any additional setup after loading the view.
     }
 
@@ -45,34 +47,21 @@ class EnterQuantityViewController: UIViewController {
         tfEnterQty.becomeFirstResponder()
         tfEnterQty.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        self.mainScrollView = enterQuantityScrollView
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
     
     //MARK: - @objc Functions
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
-    
-    @objc func keyboardWillShow(notification:NSNotification) {
-
+    @objc override func keyboardWillShow(notification:NSNotification) {
         guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-
-        var contentInset:UIEdgeInsets = self.enterQuantityScrollView.contentInset
+        var contentInset:UIEdgeInsets = self.mainScrollView?.contentInset ?? UIEdgeInsets.zero
         contentInset.bottom = keyboardFrame.size.height + 20
-        enterQuantityScrollView.contentInset = contentInset
-        enterQuantityScrollView.contentSize = CGSize(width: enterQuantityScrollView.bounds.width, height: enterQuantityScrollView.bounds.height - 100)
-    }
-
-    @objc func keyboardWillHide(notification:NSNotification) {
-
-        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-        enterQuantityScrollView.contentInset = contentInset
+        mainScrollView?.contentInset = contentInset
+        mainScrollView?.contentSize = CGSize(width: mainScrollView?.bounds.width ?? 0, height: (mainScrollView?.bounds.height ?? 0) - 100)
     }
    
     
@@ -92,7 +81,7 @@ class EnterQuantityViewController: UIViewController {
 
 //MARK: - EnterQuantityViewModelDelegate
 extension EnterQuantityViewController: EnterQuantityViewModelDelegate{
-    
+    //wrong
     func ratingResult(cartCount: Int,title: String,msg: String) {
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .updateCart, object: nil, userInfo: ["cartCount":cartCount])
@@ -107,8 +96,6 @@ extension EnterQuantityViewController: EnterQuantityViewModelDelegate{
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
-    
 }
 
 //MARK: - TextField Delegate

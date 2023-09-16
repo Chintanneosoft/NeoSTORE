@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var lblForgotPassword: UILabel!
     @IBOutlet weak var lblDontHaveAccount: UILabel!
     @IBOutlet var containerViews: [UIView]!
+    //wrong
     @IBOutlet weak var tfUsername: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var btnLogin: UIButton!
@@ -57,8 +58,8 @@ class LoginViewController: UIViewController {
             v.layer.borderWidth = 1.0
             v.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
         }
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        
+        
         
         //TextFields
         tfUsername.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
@@ -73,7 +74,7 @@ class LoginViewController: UIViewController {
         btnLogin.layer.cornerRadius = 5.0
         
         navigationItem.backButtonTitle = ""
-        
+        //wrong
         let tap = UITapGestureRecognizer(target: self, action: #selector(forgotPassTapped))
         lblForgotPassword.addGestureRecognizer(tap)
         lblForgotPassword.isUserInteractionEnabled = true
@@ -111,10 +112,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    //MARK: - @objc
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
+
     
     @objc func forgotPassTapped(){
         changeUI()
@@ -122,11 +120,11 @@ class LoginViewController: UIViewController {
     
     //MARK: - IBActions
     @IBAction func btnLoginTapped(_ sender: UIButton) {
+        //wrong
         if btnLogin.titleLabel?.text == "SUBMIT"{
             self.showLoader()
             callForgotPass()
-        }
-        else{
+        } else {
             self.showLoader()
             sendValidations()
         }
@@ -146,7 +144,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+        // Wrong
         if textField == tfUsername{
             textField.resignFirstResponder()
             tfPassword.becomeFirstResponder()
@@ -163,7 +161,7 @@ extension LoginViewController: UITextFieldDelegate{
 
 //MARK: - LoginViewModelDelegate
 extension LoginViewController: LoginViewModelDelegate{
-    
+    //wrong
     func showAlert(msg:String) {
         
         DispatchQueue.main.async {
@@ -203,5 +201,3 @@ extension LoginViewController: LoginViewModelDelegate{
         }
     }
 }
-
-

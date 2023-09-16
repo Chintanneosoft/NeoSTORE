@@ -14,6 +14,7 @@ class ProductListViewController: UIViewController {
     @IBOutlet weak var productListTableView: UITableView!
     @IBOutlet weak var productsViewed: UILabel!
     @IBOutlet weak var tfsearch: UITextField!
+    @IBOutlet weak var productListStackView: UIStackView!
     
     //properties
     let productListViewModel = ProductListViewModel()
@@ -22,6 +23,7 @@ class ProductListViewController: UIViewController {
     var productsData: [ProductsData] = []
     var productCategoryId: Int?
     var productImg: UIImage?
+    var tapGesture: (Any)? = nil
     
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -54,11 +56,17 @@ class ProductListViewController: UIViewController {
     }
     
     private func setUpUI(){
-        //        callViewModelFetchProductList()
+        
         tfsearch.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
         let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         tfsearch.leftView = leftPaddingView
         tfsearch.leftViewMode = .always
+        
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     
     private func setUpNavBar() {
@@ -75,6 +83,7 @@ class ProductListViewController: UIViewController {
         navigationItem.rightBarButtonItem = searchButton
     }
     
+    //wrong
     private func getTitle(categoryID: Int) -> String {
         if categoryID == 1 {
             return "Tables"
@@ -91,6 +100,10 @@ class ProductListViewController: UIViewController {
     }
     
     private func toogleSearchState(){
+        
+//        tfsearch.isHidden = !tfsearch.isHidden
+        
+        //wrong
         if tfsearch.isHidden == true{
             tfsearch.isHidden = false
             tfsearch.becomeFirstResponder()
@@ -109,8 +122,31 @@ class ProductListViewController: UIViewController {
         productListViewModel.callFetchProductList(productCategory: productCategoryId ?? 0)
     }
     
+    //MARK: - @objc Functions
     @objc func searchIconTapped(){
         toogleSearchState()
+    }
+    
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(notification:NSNotification) {
+        self.view.addGestureRecognizer(self.tapGesture as! UITapGestureRecognizer)
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.productListTableView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 20
+        productListTableView.contentInset = contentInset
+        
+    }
+
+    @objc func keyboardWillHide(notification:NSNotification) {
+        self.view.removeGestureRecognizer(self.tapGesture as! UITapGestureRecognizer)
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        productListTableView.contentInset = contentInset
     }
 }
 
@@ -123,6 +159,7 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListCell
+        //wrong
         cell.setDetails(productImgName:productsDataCopy[indexPath.row].productImages ?? "", productName: productsDataCopy[indexPath.row].name ?? "", producerName: productsDataCopy[indexPath.row].producer ?? "", price: productsDataCopy[indexPath.row].cost ?? 0,rating: productsDataCopy[indexPath.row].rating ?? 0)
         cell.selectionStyle = .none
         return cell
@@ -130,7 +167,7 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextViewController = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
-        nextViewController.productId = productListViewModel.productsData?.data?[indexPath.row].id
+        nextViewController.productId = productsDataCopy[indexPath.row].id
         nextViewController.productCategory = getTitle(categoryID: productCategoryId ?? 0)
         navigationController?.pushViewController(nextViewController, animated: true)
     }
@@ -177,6 +214,6 @@ extension ProductListViewController: UITextFieldDelegate{
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         toogleSearchState()
-        return true
+        return false
     }
 }

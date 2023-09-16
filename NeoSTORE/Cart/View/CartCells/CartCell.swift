@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 protocol UpdateQuantity: NSObject{
-    func changeDropDownState(productId: Int)
+    func changeDropDownState(productId: Int,quantity: String)
 }
 class CartCell: UITableViewCell {
 
@@ -40,9 +40,11 @@ class CartCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     @objc func imgTapped(){
-        updateQuantityDelegate?.changeDropDownState(productId: productId ?? 0)
+        updateQuantityDelegate?.changeDropDownState(productId: productId ?? 0, quantity: lblQunatity.text ?? "")
     }
+    
     func setDetails(imgUrl: String, productName: String, productCategory: String, price: Int,quantity:Int,productID:Int){
         lblPrice.text = "₹" + String(price)
         lblProductName.text = productName

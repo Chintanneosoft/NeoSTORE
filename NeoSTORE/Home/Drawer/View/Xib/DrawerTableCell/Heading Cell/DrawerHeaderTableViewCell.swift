@@ -36,6 +36,7 @@ class DrawerHeaderTableViewCell: UITableViewCell {
         lblName.font = UIFont(name:Font.fontRegular.rawValue,size: 23)
         lblEmail.font = UIFont(name:Font.fontThin.rawValue,size: 13)
         
+        //wrong
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
         lblName.addGestureRecognizer(tap1)
         lblName.isUserInteractionEnabled = true

@@ -13,8 +13,6 @@ class MyOrdersViewController: UIViewController {
     
     let myOrderViewModel = MyOrderViewModel()
     
-    var loaderView: UIView?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -97,7 +95,5 @@ extension MyOrdersViewController: MyOrderViewModelDelegate{
             self.hideLoader()
             self.showAlert(title: "Error", msg: msg)
         }
-    }
-    
-    
+    } 
 }

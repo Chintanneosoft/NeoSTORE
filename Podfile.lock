@@ -1,22 +1,30 @@
 PODS:
+  - GoogleMaps (8.2.0):
+    - GoogleMaps/Maps (= 8.2.0)
+  - GoogleMaps/Base (8.2.0)
+  - GoogleMaps/Maps (8.2.0):
+    - GoogleMaps/Base
   - SDWebImage (5.17.0):
     - SDWebImage/Core (= 5.17.0)
   - SDWebImage/Core (5.17.0)
   - SwiftLoader (1.0.0)
 
 DEPENDENCIES:
+  - GoogleMaps
   - SDWebImage
   - SwiftLoader
 
 SPEC REPOS:
   trunk:
+    - GoogleMaps
     - SDWebImage
     - SwiftLoader
 
 SPEC CHECKSUMS:
+  GoogleMaps: 081f2547b60a1c0870a8f49166a653900e5055d5
   SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
   SwiftLoader: f12f3a6fb42576862a3a5eb80c7e59fc881b6982
 
-PODFILE CHECKSUM: b037e195e19cbf30835353b346c94cd08b2441f0
+PODFILE CHECKSUM: 1b7e98051a914c04bffd6971072459d60699a71b
 
 COCOAPODS: 1.12.1

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -10,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="NeoSTORE" customModuleProvider="target">
             <connections>
+                <outlet property="btnCancel" destination="GFT-bs-LgV" id="ruK-qk-PkG"/>
                 <outlet property="btnEditProflie" destination="haP-LK-weg" id="KyV-tl-QDI"/>
                 <outlet property="btnRestPassword" destination="4IK-ln-3KB" id="9ix-XN-U4V"/>
                 <outlet property="profileImg" destination="b57-Qm-FEG" id="JFE-Fx-FRf"/>
@@ -212,6 +214,21 @@
                                             </state>
                                             <connections>
                                                 <action selector="btnEditProfileTapped:" destination="-1" eventType="touchUpInside" id="cQK-LK-6yg"/>
+                                            </connections>
+                                        </button>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFT-bs-LgV">
+                                            <rect key="frame" x="0.0" y="365" width="325" height="40"/>
+                                            <color key="backgroundColor" name="Primary Foreground"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="X8X-LE-Syv"/>
+                                                <constraint firstAttribute="height" constant="40" id="yHL-c5-Y06"/>
+                                            </constraints>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="CANCEL">
+                                                <color key="titleColor" name="Primary Background"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="btnCancelTapped:" destination="-1" eventType="touchUpInside" id="27a-N0-qA1"/>
                                             </connections>
                                         </button>
                                     </subviews>
