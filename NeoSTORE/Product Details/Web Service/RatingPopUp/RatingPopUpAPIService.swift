@@ -1,13 +1,9 @@
-//
-//  RatingPopUpAPIService.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 31/08/23.
-//
-
 import UIKit
 
+//MARK: - RatingPopUpAPIService
 class RatingPopUpAPIService: NSObject {
+    
+    //API Call
     func postRating(productId: Int,rating: Int,completion: @escaping(Result<(ProductRating?,ProductRatingFailure?),Error>) -> Void){
         
         let param = ["product_id":productId,"rating": rating]

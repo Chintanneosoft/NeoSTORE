@@ -1,10 +1,3 @@
-//
-//  CartViewModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 01/09/23.
-//
-
 import UIKit
 
 //MARK: - CartViewModelDelegate Protocol
@@ -25,14 +18,22 @@ class CartViewModel: NSObject {
     //properties
     var myCart : Cart?
     var cartList: [CartData]?
+    var quantityArr:[String] {
+        var arr:[String] = []
+        for i in 1...7{
+            arr += [String(i)]
+        }
+        return arr
+    }
     
     //MARK: - Functions
+    
+    //API Calls
     func callFetchCart(){
         cartAPIService.getCartDetails{
             response in
             switch response{
             case .success(let value):
-                print(value)
                 if (value.0 != nil){
                     self.myCart = value.0
                     self.cartList = self.myCart?.data
@@ -42,7 +43,6 @@ class CartViewModel: NSObject {
                     self.cartViewModelDelegate?.failureCart(msg: value.1!.user_msg!)
                 }
             case .failure(let error):
-                print(error)
                 self.cartViewModelDelegate?.failureCart(msg: error.localizedDescription)
             }
         }
@@ -53,7 +53,6 @@ class CartViewModel: NSObject {
             response in
             switch response{
             case .success(let value):
-                print(value)
                 if value.data {
                     self.callFetchCart()
                 }
@@ -61,7 +60,6 @@ class CartViewModel: NSObject {
                     self.cartViewModelDelegate?.failureCart(msg: value.user_msg)
                 }
             case .failure(let error):
-                print(error)
                 self.cartViewModelDelegate?.failureCart(msg: error.localizedDescription)
             }
         }
@@ -72,7 +70,6 @@ class CartViewModel: NSObject {
             response in
             switch response{
             case .success(let value):
-                print(value)
                 if value.data {
                     self.callFetchCart()
                 }
@@ -80,7 +77,6 @@ class CartViewModel: NSObject {
                     self.cartViewModelDelegate?.failureCart(msg: value.user_msg)
                 }
             case .failure(let error):
-                print(error)
                 self.cartViewModelDelegate?.failureCart(msg: error.localizedDescription)
             }
         }

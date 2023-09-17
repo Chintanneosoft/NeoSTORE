@@ -1,10 +1,3 @@
-//
-//  RatingPopUiViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 31/08/23.
-//
-
 import UIKit
 import SDWebImage
 
@@ -12,6 +5,7 @@ import SDWebImage
 protocol RatingUpdateData:NSObject{
     func updateData()
 }
+
 //Wrong
 //MARK: - RatingPopUiViewController
 class RatingPopUiViewController: UIViewController {
@@ -22,7 +16,6 @@ class RatingPopUiViewController: UIViewController {
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var imgProduct: UIImageView!
     @IBOutlet weak var starCollectionView: UICollectionView!
-    
     @IBOutlet weak var btnRateNow: UIButton!
     
     //MARK: - RatingUpdateData object
@@ -37,7 +30,6 @@ class RatingPopUiViewController: UIViewController {
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setUpUI()
         setCollectionView()
     }
@@ -49,21 +41,15 @@ class RatingPopUiViewController: UIViewController {
         starCollectionView.dataSource = self
         starCollectionView.register(UINib(nibName: "StarCell", bundle: nil), forCellWithReuseIdentifier: "StarCell")
     }
+    
     private func setUpUI(){
-        
-        //image
         imgProduct.sd_setImage(with: URL(string: productImgURL ?? ""))
         
-        //label
         lblProductName.text = productName
         
-        //View
         containerView.layer.cornerRadius = 10
-        
-        //button
         btnRateNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
         btnRateNow.layer.cornerRadius = 5
-    
     }
     
     //MARK: - IBActions
@@ -76,27 +62,20 @@ class RatingPopUiViewController: UIViewController {
         ratingPopUpViewModel.ratingPopUpViewModelDelegate = self
         ratingPopUpViewModel.callPostRating(productId:productId ?? 0 , rating: rating)
     }
-    
 }
 
 //MARK: - RatingPopUpViewModelDelegate
 extension RatingPopUiViewController: RatingPopUpViewModelDelegate{
-
     func ratingResult(title: String,msg: String) {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.ratingUpdateDataDelegate?.updateData()
-                    self.dismiss(animated: false, completion: nil)
-                    self.dismiss(animated: false)
-                }
-                alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            self.showSingleButtonAlert(title: title, msg: msg) {
+                self.dismiss(animated: false,completion: nil)
+            }
         }
     }
-    
 }
 
+//MARK: - Star CollectionViewDelegate
 extension RatingPopUiViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5

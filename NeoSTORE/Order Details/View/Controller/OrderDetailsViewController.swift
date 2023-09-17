@@ -94,7 +94,7 @@ extension OrderDetailsViewController: OrderDetailsViewModelDelegate{
     func failureOrderDetails(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader()
-            self.showAlert(title: "Error", msg: msg)
+            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
         }
     }
     

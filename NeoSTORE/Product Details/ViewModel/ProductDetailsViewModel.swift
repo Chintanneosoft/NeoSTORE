@@ -1,10 +1,3 @@
-//
-//  ProductDetailsViewModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 26/08/23.
-//
-
 import UIKit
 
 //MARK: - ProductDetailsViewModel Protocol
@@ -24,6 +17,7 @@ class ProductDetailsViewModel: NSObject {
     
     var productsDetails: ProductDetails?
     
+    //API call
     func callProductDetails(productId: Int){
         productDetailsAPIService.fetchProductsDetails(productId: productId){
             (response) in

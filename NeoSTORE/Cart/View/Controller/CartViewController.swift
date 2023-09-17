@@ -1,10 +1,3 @@
-//
-//  CartViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 20/08/23.
-//
-
 import UIKit
 //MARK: - CartViewController
 class CartViewController: UIViewController {
@@ -21,9 +14,7 @@ class CartViewController: UIViewController {
     
     //properties
     //wrong
-    var quantityArr = ["1","2","3","4","5","6","7"]
     var dropDownState: Bool = false
-    var loaderView : UIView?
     var currProductId = 0
     var currQuantity = 0
     
@@ -164,21 +155,19 @@ extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return quantityArr.count
+        return cartViewModel.quantityArr.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? { //wrong: next time se seedha vc delete
-        return quantityArr[row] // Replace with data from your data source array
+        return cartViewModel.quantityArr[row]
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // Handle row selection if needed
-        currQuantity = Int(quantityArr[row]) ?? 0
+        currQuantity = Int(cartViewModel.quantityArr[row]) ?? 0
         changeState()
         self.showLoader()
         cartViewModel.callUpdateCart(productId: currProductId, quantity: currQuantity)
     }
-    
 }
 
 //MARK: - CartViewModelDelegate
@@ -187,12 +176,7 @@ extension CartViewController: CartViewModelDelegate{
         DispatchQueue.main.async {
             self.hideLoader()
             self.cartTableView.reloadData()
-            if self.cartViewModel.cartList?.count != nil {
-                self.btnOrderNow.isEnabled = true
-            }
-            else {
-                self.btnOrderNow.isEnabled = false
-            }
+            self.btnOrderNow.isEnabled = (self.cartViewModel.cartList?.count != nil)
         }
     }
     
@@ -200,11 +184,9 @@ extension CartViewController: CartViewModelDelegate{
         DispatchQueue.main.async {
             self.hideLoader()
             self.cartTableView.reloadData()
-            self.showAlert(title: "Error", msg: msg)
-            
+            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
         }
     }
-        
 }
 
 //MARK: - UpdateQuantity
@@ -212,17 +194,12 @@ extension CartViewController: UpdateQuantity{
     
     func changeDropDownState(productId: Int, quantity: String) {
         currProductId = productId
-        quantityPickerView.selectRow( quantityArr.firstIndex(of: quantity) ?? 0, inComponent: 0, animated: true)
+        quantityPickerView.selectRow( cartViewModel.quantityArr.firstIndex(of: quantity) ?? 0, inComponent: 0, animated: true)
         changeState()
     }
     
     func changeState(){
-        if dropDownState{
-            quantityPickerView.isHidden = true
-            dropDownState = false
-        } else {
-            quantityPickerView.isHidden = false
-            dropDownState = true
-        }
+        quantityPickerView.isHidden = dropDownState
+        dropDownState = !dropDownState
     }
 }

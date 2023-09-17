@@ -92,7 +92,7 @@ class AddressListViewController: UIViewController {
             }
         }
         else{
-            self.showAlert(title: "Alert", msg: "Select Address")
+            self.showSingleButtonAlert(title: "Alert", msg: "Select Address", okClosure: nil)
         }
     }
 
@@ -183,7 +183,7 @@ extension AddressListViewController: AddressListViewModelDelegate{
     func failureAddress(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader()
-            self.showAlert(title: "Error", msg: msg)
+            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
         }
     }
 }

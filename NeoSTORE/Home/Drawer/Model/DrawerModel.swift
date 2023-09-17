@@ -1,12 +1,4 @@
-//
-//  DrawerModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 01/09/23.
-//
-
 import UIKit
-
 import Foundation
 
 // MARK: - FetchUser
@@ -23,6 +15,7 @@ struct FetchUser: Codable {
         case user_msg = "user_msg"
     }
 }
+
 // MARK: - Profile
 struct Profile : Codable {
     var user_data: UserData?

@@ -1,10 +1,3 @@
-//
-//  ProductDetailsModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 28/08/23.
-//
-
 import UIKit
 import Foundation
 
@@ -72,7 +65,6 @@ struct ProductRatingData: Codable {
     let rating : Double?
         let viewCount: Int?
     let created, modified: String?
-//    let productImages: String?
     let cost: Int?
     
     enum CodingKeys: String, CodingKey {
@@ -83,7 +75,6 @@ struct ProductRatingData: Codable {
         case cost, rating
         case viewCount = "view_count"
         case created, modified
-//        case productImages = "product_images"
     }
 }
 

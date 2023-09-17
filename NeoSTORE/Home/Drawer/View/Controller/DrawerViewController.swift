@@ -14,12 +14,13 @@ class DrawerViewController: UIViewController {
     
     //MARK: - Properties
     //wrong
-    private var optionImgs = ["shoppingcart_icon","table","sofa","chair","cupboard","username_icon","storelocator_icon","myorders_icon","logout_icon"]
-    private var optionNames = ["My Cart","Tables","Sofas","Chairs","Cupboards","My Account","Store Locator","My Orders","Logout"]
+//    private var optionImgs = ["shoppingcart_icon","table","sofa","chair","cupboard","username_icon","storelocator_icon","myorders_icon","logout_icon"]
+//    private var optionNames = ["My Cart","Tables","Sofas","Chairs","Cupboards","My Account","Store Locator","My Orders","Logout"]
     
     let drawerViewModel = DrawerViewModel()
-   
+    
     private var noOfNotifications: Int?
+    
     //MARK: - IBOutlets
     @IBOutlet weak var drawerTableView: UITableView?
     
@@ -30,8 +31,8 @@ class DrawerViewController: UIViewController {
         xibRegister()
         setUpUI()
         callUserData()
-        // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
@@ -44,7 +45,6 @@ class DrawerViewController: UIViewController {
     
     //MARK: - Functions
     private func setUpUI(){
-//        callUserData()
         addObservers()
     }
     
@@ -55,7 +55,6 @@ class DrawerViewController: UIViewController {
                 name: .updateCart,
                 object: nil
             )
-        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateDrawer),
@@ -63,6 +62,7 @@ class DrawerViewController: UIViewController {
             object: nil
         )
     }
+    
     private func setDelegates(){
         drawerTableView?.delegate = self
         drawerTableView?.dataSource = self
@@ -83,6 +83,7 @@ class DrawerViewController: UIViewController {
         drawerViewControllerDelegate?.showDrawer()
     }
     
+    //MARK: - @objc
     @objc func updateCartCount(_ notification: Notification){
         noOfNotifications = notification.userInfo?["cartCount"] as? Int
         drawerTableView?.reloadData()
@@ -106,7 +107,7 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
             return 1
         }
         else{
-            return optionImgs.count
+            return drawerViewModel.drawerOptions.count
         }
     }
     //wrong
@@ -123,13 +124,13 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "OptionsCell") as! OptionsCell
             switch indexPath.row{
             case 0:
-                cell.setDetails(optionImg: optionImgs[indexPath.row], optionName: optionNames[indexPath.row], noOfNotifications: noOfNotifications ?? 0)
+                cell.setDetails(optionImg: drawerViewModel.drawerOptions["option"+String(indexPath.row)]?[1] ?? "", optionName: drawerViewModel.drawerOptions["option"+String(indexPath.row)]?[0] ?? "", noOfNotifications: noOfNotifications ?? 0)
             case 1...4:
-                cell.setDetails(optionImg:optionImgs[indexPath.row], optionName:  drawerViewModel.userData?.data?.product_categories?[indexPath.row-1].name ?? "", noOfNotifications: 0)
+                cell.setDetails(optionImg:drawerViewModel.drawerOptions["option"+String(indexPath.row)]?[1] ?? "", optionName:  drawerViewModel.drawerOptions["option"+String(indexPath.row)]?[0] ?? "", noOfNotifications: 0)
             case 7:
-                cell.setDetails(optionImg: optionImgs[indexPath.row], optionName: optionNames[indexPath.row], noOfNotifications: drawerViewModel.userData?.data?.total_orders ?? 0)
+                cell.setDetails(optionImg: drawerViewModel.drawerOptions["option"+String(indexPath.row)]?[1] ?? "", optionName: drawerViewModel.drawerOptions["option"+String(indexPath.row)]?[0] ?? "", noOfNotifications: drawerViewModel.userData?.data?.total_orders ?? 0)
             default:
-                cell.setDetails(optionImg: optionImgs[indexPath.row], optionName: optionNames[indexPath.row], noOfNotifications: 0)
+                cell.setDetails(optionImg: drawerViewModel.drawerOptions["option"+String(indexPath.row)]?[1] ?? "", optionName: drawerViewModel.drawerOptions["option"+String(indexPath.row)]?[0] ?? "", noOfNotifications: 0)
             }
             cell.selectionStyle = .none
             return cell
@@ -209,10 +210,8 @@ extension DrawerViewController: DrawerViewModelDelegate{
     }
     
     func failureDrawer(msg: String) {
-        print(msg)
         DispatchQueue.main.async {
-            self.showAlert(title: "Error", msg: msg)
+            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
         }
     }
-    
 }

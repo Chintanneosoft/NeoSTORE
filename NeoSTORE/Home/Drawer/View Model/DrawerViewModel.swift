@@ -12,6 +12,8 @@ class DrawerViewModel:NSObject {
     //MARK: - ProductListViewModelDelegate Object Declare
     weak var drawerViewModelDelegate: DrawerViewModelDelegate?
     
+    var drawerOptions = ["option0":["My Cart","shoppingcart_icon"],"option1":["Tables","table"],"option2":["Sofas","sofa"],"option3":["Chairs","chair"],"option4":["Cupboards","cupboard"],"option5":["My Account","username_icon"],"option6":["Store Locator","storelocator_icon"],"option7":["My Orders","myorders_icon"],"option8":["Logout","logout_icon"]]
+    
     //APIService Object
     private let drawerAPIService = DrawerAPIService()
     

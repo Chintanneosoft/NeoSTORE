@@ -75,7 +75,7 @@ class RegisterViewController: BaseViewController {
         btnRegister.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 26)
         btnRegister.layer.cornerRadius = 5.0
         
-        setTapGestures()
+        setTapGesturesRemoveable()
         addObservers()
     }
     

@@ -1,13 +1,9 @@
-//
-//  EnterQuantityViewAPIService.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 31/08/23.
-//
-
 import UIKit
 
+//MARK: - EnterQuantityViewAPIService
 class EnterQuantityViewAPIService: NSObject {
+    
+    //API call
     func addToCart(productId: Int,quantity: Int,completion: @escaping(Result<(AddToCart?,ProductRatingFailure?),Error>) -> Void){
         
         let param = ["product_id":productId,"quantity": quantity]

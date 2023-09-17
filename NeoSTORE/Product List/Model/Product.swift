@@ -1,10 +1,3 @@
-//
-//  Product.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 24/08/23.
-//
-
 import Foundation
 
 // MARK: - Products

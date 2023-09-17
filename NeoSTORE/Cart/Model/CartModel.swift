@@ -1,10 +1,3 @@
-//
-//  CartModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 02/09/23.
-//
-
 import UIKit
 import Foundation
 

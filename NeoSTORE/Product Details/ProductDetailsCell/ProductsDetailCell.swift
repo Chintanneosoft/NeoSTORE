@@ -1,10 +1,3 @@
-//
-//  ProductsDetailCell.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 25/08/23.
-//
-
 import UIKit
 import SDWebImage
 
@@ -75,11 +68,10 @@ class ProductsDetailCell: UITableViewCell {
             productImgURLs += [p.image ?? ""]
         }
     }
+    
     @IBAction func btnShareTapped(_ sender: UIButton) {
         self.productDetailCellDelegate?.shareTapped(productImg: productImage.image!) 
     }
-    
-    
 }
 
 //MARK: - CollectionView Delegate and DataSource
@@ -100,13 +92,8 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
             productImage.sd_setImage(with: URL(string: imgUrl))
         }
         
-        if selectState{
-            borderColor = changeSelectedCellUI(idx: indexPath.row, s: selectState)
-            selectState = false
-        }
-        else{
-            borderColor = changeSelectedCellUI(idx: indexPath.row, s: false)
-        }
+        borderColor =  selectState ? changeSelectedCellUI(idx: indexPath.row, s: selectState) : changeSelectedCellUI(idx: indexPath.row, s: false)
+        selectState = false
         
         cell.layer.borderColor = borderColor
         cell.layer.borderWidth = 0.5
@@ -119,19 +106,12 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
         let imgUrl = URL(string: productImgURLs[indexPath.row] )
         productImage.sd_setImage(with: imgUrl)
         cell.layer.borderColor = UIColor(named: "Primary Background")?.cgColor
-        if indexPath.row != 0{
-            collectionView.cellForItem(at: IndexPath(row: 0, section: 0))?.layer.borderColor = UIColor.black.cgColor
-        }
+        collectionView.cellForItem(at: IndexPath(row: 0, section: 0))?.layer.borderColor = indexPath.row == 0 ? UIColor(named: "Primary Background")?.cgColor : UIColor.black.cgColor
         productImageCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     func changeSelectedCellUI(idx: Int,s: Bool) -> CGColor{
-        if s{
-            return UIColor(named: "Primary Background")?.cgColor ?? UIColor.black.cgColor
-        }
-        else{
-            return  UIColor.black.cgColor
-        }
+        return s ? (UIColor(named: "Primary Background")?.cgColor ?? UIColor.black.cgColor) : UIColor.black.cgColor
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -145,14 +125,11 @@ extension ProductsDetailCell: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = collectionView.bounds.width
-        _ = collectionView.bounds.height
         let cellWidth = availableWidth / 2.5
         return CGSize(width: cellWidth, height: 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        // Define your section insets (space between cells and leading/trailing edges)
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
-    
 }

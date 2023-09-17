@@ -71,7 +71,7 @@ class AddAddressViewController: BaseViewController {
     
     @IBAction func btnSaveAddressTapped(_ sender: UIButton) {
         if tvAddress.text == "" || tfLandmark.text == "" || tfCity.text == "" || tfState.text == "" || tfCountry.text == "" || tfZipCode.text == ""{
-            self.showAlert(title: "Alert", msg: "Fill all the Fields")
+            self.showSingleButtonAlert(title: "Alert", msg: "Fill all the Fields", okClosure: nil)
         }
         else {
             let address1 = tvAddress.text + " " + (tfLandmark.text ?? "") + " "

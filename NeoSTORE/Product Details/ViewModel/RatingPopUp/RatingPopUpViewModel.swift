@@ -1,10 +1,3 @@
-//
-//  RatingPopUpViewModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 31/08/23.
-//
-
 import UIKit
 
 //MARK: - RatingPopUpViewModelDelegate Protocol
@@ -20,9 +13,9 @@ class RatingPopUpViewModel: NSObject {
     
     private let ratingPopUpAPIService = RatingPopUpAPIService()
     
+    //API call
     func callPostRating(productId: Int,rating: Int){
-        ratingPopUpAPIService.postRating(productId: productId, rating: rating){
-            (response) in
+        ratingPopUpAPIService.postRating(productId: productId, rating: rating){ (response) in
             switch response{
             case .success(let value):
                 if (value.0 != nil) {
@@ -36,5 +29,4 @@ class RatingPopUpViewModel: NSObject {
             }
         }
     }
-    
 }

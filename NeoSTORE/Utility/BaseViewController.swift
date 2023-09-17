@@ -10,6 +10,7 @@ import UIKit
 class BaseViewController: UIViewController {
 
     var mainScrollView: UIScrollView?
+    var tapGesture: (Any)? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +21,14 @@ class BaseViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func setTapGestures(){
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+    func setTapGesturesRemoveable(){
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     }
     
+    func setTapGestures(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
     
     //MARK: - @objc
     @objc func dismissKeyboard(){
@@ -37,10 +41,12 @@ class BaseViewController: UIViewController {
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         var contentInset:UIEdgeInsets = self.mainScrollView?.contentInset ?? UIEdgeInsets.zero
         contentInset.bottom = keyboardFrame.size.height + 20
+        view.addGestureRecognizer(tapGesture as! UIGestureRecognizer)
     }
 
     @objc func keyboardWillHide(notification:NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         mainScrollView?.contentInset = contentInset
+        view.removeGestureRecognizer(tapGesture as! UIGestureRecognizer)
     }
 }

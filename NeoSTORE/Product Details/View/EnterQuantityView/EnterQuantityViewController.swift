@@ -1,10 +1,3 @@
-//
-//  EnterQuantityView.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 26/08/23.
-//
-
 import UIKit
 
 //MARK: - EnterQuantityViewController
@@ -29,9 +22,8 @@ class EnterQuantityViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
-        setTapGestures()
+        setTapGesturesRemoveable()
         addObservers()
-        // Do any additional setup after loading the view.
     }
 
     //MARK: - Functions
@@ -48,9 +40,6 @@ class EnterQuantityViewController: BaseViewController {
         tfEnterQty.delegate = self
         
         self.mainScrollView = enterQuantityScrollView
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
     }
     
     //MARK: - @objc Functions
@@ -62,6 +51,7 @@ class EnterQuantityViewController: BaseViewController {
         contentInset.bottom = keyboardFrame.size.height + 20
         mainScrollView?.contentInset = contentInset
         mainScrollView?.contentSize = CGSize(width: mainScrollView?.bounds.width ?? 0, height: (mainScrollView?.bounds.height ?? 0) - 100)
+        view.addGestureRecognizer(tapGesture as! UIGestureRecognizer)
     }
    
     
@@ -75,25 +65,21 @@ class EnterQuantityViewController: BaseViewController {
         enterQuantityViewModel.enterQuantityViewModelDelegate = self
         enterQuantityViewModel.callAddToCart(productId:productId ?? 0 , quantity: Int(tfEnterQty.text ?? "0") ?? 0)
     }
-
 }
-
 
 //MARK: - EnterQuantityViewModelDelegate
 extension EnterQuantityViewController: EnterQuantityViewModelDelegate{
     //wrong
-    func ratingResult(cartCount: Int,title: String,msg: String) {
+    func updateQuantity(cartCount: Int,title: String,msg: String) {
         DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .updateCart, object: nil, userInfo: ["cartCount":cartCount])
-            let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                    if msg == "Added to cart"{
-                        self.dismiss(animated: false, completion: nil)
-                    }
+            if msg == "Added to cart"{
+                NotificationCenter.default.post(name: .updateCart, object: nil, userInfo: ["cartCount":cartCount])
+                self.showSingleButtonAlert(title: title, msg: msg) {
+                    self.dismiss(animated: false, completion: nil)
                 }
-            
-                alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            } else {
+                self.showSingleButtonAlert(title: title, msg: msg, okClosure: nil)
+            }
         }
     }
 }
@@ -101,7 +87,7 @@ extension EnterQuantityViewController: EnterQuantityViewModelDelegate{
 //MARK: - TextField Delegate
 extension EnterQuantityViewController: UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if (textField.text?.count ?? 0) + string.count <= 2 {
+        if (textField.text?.count ?? 0) + string.count <= 1 {
             return true
         }
         return false

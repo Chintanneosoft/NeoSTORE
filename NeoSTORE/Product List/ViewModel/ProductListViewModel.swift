@@ -1,10 +1,3 @@
-//
-//  ProductListViewModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 24/08/23.
-//
-
 import UIKit
 
 //MARK: - ProductListViewModelDelegate Protocol
@@ -23,7 +16,9 @@ class ProductListViewModel:NSObject {
     private let productListAPIService = ProductListAPIService()
     
     var productsData : Products?
+    var productsDataCopy: [ProductsData] = []
     
+    //API call
     func callFetchProductList(productCategory: Int){
         productListAPIService.fetchProductsList(productCategoryId: productCategory){
             response in
@@ -36,6 +31,21 @@ class ProductListViewModel:NSObject {
                 print(error)
                 self.productListViewModelDelegate?.failureProductList(msg: error.localizedDescription)
             }
+        }
+    }
+    
+    func getTitle(categoryID: Int) -> String {
+        if categoryID == 1 {
+            return "Tables"
+        }
+        else if categoryID == 2 {
+            return "Chairs"
+        }
+        else if categoryID == 3 {
+            return "Sofas"
+        }
+        else {
+            return "Cupboards"
         }
     }
 }

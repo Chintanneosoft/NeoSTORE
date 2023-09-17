@@ -1,10 +1,3 @@
-//
-//  ProductsNameCell.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 25/08/23.
-//
-
 import UIKit
 //MARK: - ProductsNameCell
 class ProductsNameCell: UITableViewCell {
@@ -18,14 +11,11 @@ class ProductsNameCell: UITableViewCell {
     //MARK: - AwakefromNib
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         setUpUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     //MARK: - Functions
