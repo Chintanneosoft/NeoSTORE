@@ -29,13 +29,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M73-zp-7fY">
-                                <rect key="frame" x="129.66666666666666" y="149" width="61" height="27"/>
+                                <rect key="frame" x="129.66666666666666" y="141" width="61" height="27"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                 <color key="textColor" name="Primary Foreground"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3i-4E-v3i">
-                                <rect key="frame" x="143.66666666666666" y="180" width="32.666666666666657" height="13"/>
+                                <rect key="frame" x="143.66666666666666" y="172" width="32.666666666666657" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" name="Primary Foreground"/>
                                 <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="M73-zp-7fY" firstAttribute="top" secondItem="7ad-0Q-c0H" secondAttribute="bottom" constant="18" id="5DP-MB-pQG"/>
+                            <constraint firstItem="M73-zp-7fY" firstAttribute="top" secondItem="7ad-0Q-c0H" secondAttribute="bottom" constant="10" id="5DP-MB-pQG"/>
                             <constraint firstAttribute="bottom" secondItem="R3i-4E-v3i" secondAttribute="bottom" constant="15" id="AoB-9w-ADb"/>
                             <constraint firstItem="M73-zp-7fY" firstAttribute="centerX" secondItem="mDJ-JQ-MOe" secondAttribute="centerX" id="B1g-tc-i33"/>
                             <constraint firstItem="7ad-0Q-c0H" firstAttribute="centerX" secondItem="mDJ-JQ-MOe" secondAttribute="centerX" id="PqK-wR-Htz"/>

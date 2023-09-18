@@ -11,8 +11,8 @@ class HomeContainerViewController: UIViewController {
 
     private var drawerState: DrawerState = .closed
     
-    let drawerVC = DrawerViewController()
-    let homeVC = HomeViewController()
+    let drawerVC = DrawerViewController.loadFromNib() as! DrawerViewController
+    let homeVC = HomeViewController.loadFromNib() as! HomeViewController
     var navVC: UINavigationController?
     
     var tapGesture: (Any)? = nil
@@ -28,6 +28,10 @@ class HomeContainerViewController: UIViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return HomeContainerViewController()
+    }
+    
     private func addChildVCs() {
         //Drawer
         drawerVC.drawerViewControllerDelegate = self

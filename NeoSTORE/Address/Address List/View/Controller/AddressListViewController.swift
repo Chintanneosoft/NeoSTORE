@@ -1,10 +1,3 @@
-//
-//  AddressListViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 20/08/23.
-//
-
 import UIKit
 //MARK: - AddressListViewController
 class AddressListViewController: UIViewController {
@@ -18,10 +11,7 @@ class AddressListViewController: UIViewController {
     var addressListViewModel = AddressListViewModel()
     
     //properties
-    var btnSelected: Int?
-    //wrong
-    var btnCancel: Int?
-    var loaderView: UIView?
+    var selectedIndex: Int?
     
    //wrong
     var address: [String?] = []
@@ -43,6 +33,10 @@ class AddressListViewController: UIViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return AddressListViewController(nibName: "AddressListViewController", bundle: nil)
+    }
+    
     private func setDelegates(){
         addressListTableView.dataSource = self
         addressListTableView.delegate = self
@@ -55,7 +49,7 @@ class AddressListViewController: UIViewController {
     private func setAddress(){
         address = []
         address += [UserDefaults.standard.string(forKey: "userAddress")]
-        btnSelected = nil
+        selectedIndex = nil
     }
     
     private func setUpNavBar(){
@@ -78,13 +72,13 @@ class AddressListViewController: UIViewController {
     
     //MARK: - @objc Funtions
     @objc func addAddress(){
-        let nextViewController = AddAddressViewController(nibName: "AddAddressViewController", bundle: nil)
+        let nextViewController = AddAddressViewController.loadFromNib()
         navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     //MARK: - IBActions
     @IBAction func btnPlaceOrder(_ sender: UIButton) {
-        if btnSelected != nil{
+        if selectedIndex != nil{
             addressListViewModel.addressListViewModelDelegate = self
             self.showLoader()
             if address.count > 0{
@@ -108,27 +102,26 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = addressListTableView.dequeueReusableCell(withIdentifier: "AddressListCell", for: indexPath) as! AddressListCell
-        
         cell.addressListCellDelegate = self
-        
+
         cell.lblTitle.text = UserDefaults.standard.string(forKey: "userFirstName")
-        print(cell.lblTitle.text)
         cell.lblAddress.text = address[0] ?? "Please Add Address"
         
         //wrong
-        if btnSelected == indexPath.row{
-            cell.btnSelect.isSelected = true
-        }
-        else{
-            cell.btnSelect.isSelected = false
-        }
+//        if selectedIndex == indexPath.row{
+//            cell.btnSelect.isSelected = true
+//        }
+//        else{
+//            cell.btnSelect.isSelected = false
+//        }
+        cell.btnSelect.isSelected = (selectedIndex == indexPath.row)
         cell.btnSelect.tag = indexPath.row
         cell.btnCancel.tag = indexPath.row
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        btnSelected = indexPath.row
+        selectedIndex = indexPath.row
         addressListTableView.reloadData()
     }
     
@@ -151,7 +144,7 @@ extension AddressListViewController: AddressListCellDelegate{
     func btnSelectTapped(btnTag: Int) {
         
         //wrong validation
-        btnSelected = btnTag
+        selectedIndex = btnTag
         addressListTableView.reloadData()
     }
 }
@@ -163,9 +156,7 @@ extension AddressListViewController: AddressListViewModelDelegate{
         DispatchQueue.main.async {
             self.hideLoader()
             NotificationCenter.default.post(name: .updateDrawer, object: nil)
-            let alert = UIAlertController(title: "Success", message: msg, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
+            self.showSingleButtonAlert(title: "Success", msg: msg) {
                 if let navigationController = self.navigationController {
                     for viewController in navigationController.viewControllers {
                         if viewController is HomeContainerViewController {
@@ -175,8 +166,6 @@ extension AddressListViewController: AddressListViewModelDelegate{
                     }
                 }
             }
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
         }
     }
 

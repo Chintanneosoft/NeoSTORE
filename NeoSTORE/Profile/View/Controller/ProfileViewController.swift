@@ -1,10 +1,3 @@
-//
-//  ProfileViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 27/08/23.
-//
-
 import UIKit
 import SDWebImage
 import MobileCoreServices
@@ -30,14 +23,11 @@ class ProfileViewController: BaseViewController {
     
     //MARK: - properties
     private var datePicker: UIDatePicker!
-    
     var userData : FetchUser?
     var userImg: String = UserDefaults.standard.string(forKey: "accessToken") ?? ""
     var userImgData : Data?
-    
     var extraHeight = 0
     var editState = false
-    
     let profileViewModel = ProfileViewModel()
     
     //MARK: - Locally Saved Image
@@ -49,7 +39,6 @@ class ProfileViewController: BaseViewController {
         setDelegates()
         setDatePicker()
         setUpUI()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,14 +47,16 @@ class ProfileViewController: BaseViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+    }
+    
     private func setDelegates(){
-        
         tfDOB.delegate = self
         tfEmail.delegate = self
         tfPhone.delegate = self
         tfLastName.delegate = self
         tfFirstName.delegate = self
-        
     }
     
     //MARK: - Navbar
@@ -142,11 +133,7 @@ class ProfileViewController: BaseViewController {
         btnCancel.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
         btnCancel.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
         
-        //Keyboard
-    
-        
-        addObservers()
-        
+        mainScrollView = profileScrollView
     }
     
     
@@ -172,7 +159,7 @@ class ProfileViewController: BaseViewController {
     
     func updateDate() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy" // Set the desired date format
+        dateFormatter.dateFormat = "dd-MM-yyyy"
         
         let selectedDate = datePicker.date
         let formattedDate = dateFormatter.string(from: selectedDate)
@@ -195,20 +182,19 @@ class ProfileViewController: BaseViewController {
             self.openGallery()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .default,handler: { handler in
-            
+            self.dismiss(animated: true)
         }))
         self.present(alert, animated: true)
     }
     
     func openCamera(){
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                   let image = UIImagePickerController()
-                   image.allowsEditing = true
-                   image.sourceType = .camera
-                   //image.mediaTypes = [kUTTypeImage as String]
-                   image.delegate = self
-                   self.present(image, animated: true, completion: nil)
-               }
+            let image = UIImagePickerController()
+            image.allowsEditing = true
+            image.sourceType = .camera
+            image.delegate = self
+            self.present(image, animated: true, completion: nil)
+        }
     }
     
     func openGallery(){
@@ -219,35 +205,22 @@ class ProfileViewController: BaseViewController {
             self.present(image, animated: true,completion:nil)
         }
     }
-   
+    
     func changeState(_ sender: UIButton){
-        
         editState = !editState
-        if editState {
-            tfDOB.isEnabled = true
-            tfEmail.isEnabled = true
-            tfPhone.isEnabled = true
-            tfLastName.isEnabled = true
-            tfFirstName.isEnabled = true
-            btnRestPassword.isHidden = true
-            profileImg.isUserInteractionEnabled = true
-            btnCancel.isHidden = false
-            tfFirstName.becomeFirstResponder()
-            // sender.titleLabel?.text = "SUBMIT"
-            btnEditProflie.setTitle("SUBMIT", for: .normal)
-            // navigationItem.title = "Edit Profile"
-        }
-        else {
-            tfDOB.isEnabled = false
-            tfEmail.isEnabled = false
-            tfPhone.isEnabled = false
-            tfLastName.isEnabled = false
-            tfFirstName.isEnabled = false
-            btnRestPassword.isHidden = false
-            profileImg.isUserInteractionEnabled = false
-            btnCancel.isHidden = true
-            btnEditProflie.setTitle("EDIT PROFILE", for: .normal)
-            //   navigationItem.title = "My Account"
+        
+        tfDOB.isEnabled = editState
+        tfEmail.isEnabled = editState
+        tfPhone.isEnabled = editState
+        tfLastName.isEnabled = editState
+        tfFirstName.isEnabled = editState
+        btnRestPassword.isHidden = editState
+        profileImg.isUserInteractionEnabled = editState
+        btnCancel.isHidden = !editState
+        editState ? btnEditProflie.setTitle("SUBMIT", for: .normal) :
+        btnEditProflie.setTitle("EDIT PROFILE", for: .normal)
+        
+        if !editState {
             if sender == btnEditProflie{
                 saveImage(image: profileImg.image!, withName: imageName)
                 callUpdateUser()
@@ -257,6 +230,7 @@ class ProfileViewController: BaseViewController {
             }
         }
     }
+    
     //MARK: - @objc Functions
     @objc func imgTapped(){
         tfFirstName.resignFirstResponder()
@@ -285,8 +259,6 @@ class ProfileViewController: BaseViewController {
         changeState(sender)
         setUpUI()
     }
-    
-    
 }
 
 //MARK: - TextFieldDelegate
@@ -304,24 +276,22 @@ extension ProfileViewController: UITextFieldDelegate{
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == tfFirstName{
+        switch textField{
+        case tfFirstName:
             textField.resignFirstResponder()
             tfLastName.becomeFirstResponder()
-        }
-        if textField == tfLastName{
+        case tfLastName:
             textField.resignFirstResponder()
             tfEmail.becomeFirstResponder()
-        }
-        if textField == tfEmail{
+        case tfEmail:
             textField.resignFirstResponder()
             tfPhone.becomeFirstResponder()
-        }
-        if textField == tfPhone{
+        case tfPhone:
             textField.resignFirstResponder()
             tfDOB.becomeFirstResponder()
+        default :
+            return false
         }
-
-        
         return true
     }
 }
@@ -330,10 +300,7 @@ extension ProfileViewController: UITextFieldDelegate{
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print(info)
-        
         if let editingImg = info[.editedImage] as? UIImage{
-            print(editingImg)
             
             if let imgData = editingImg.jpegData(compressionQuality: 0.8){
                 let base64String = imgData.base64EncodedString()
@@ -345,10 +312,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 if let image = UIImage(data: data) {
                     self.profileImg.image = image
                 }
-                
-                
             }
-            
         }
         picker.dismiss(animated: true)
     }
@@ -356,20 +320,16 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true)
     }
-    
-
 }
 
 //MARK: - ProfileViewModelDelegate
 extension ProfileViewController: ProfileViewModelDelegate{
-    
     func setUserData() {
         DispatchQueue.main.async {
             self.hideLoader()
             NotificationCenter.default.post(name: .updateDrawer, object: nil)
         }
     }
-    
     func failureUser(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader()

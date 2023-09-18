@@ -28,6 +28,10 @@ class LoginViewController: BaseViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return LoginViewController(nibName: "LoginViewController", bundle: nil)
+    }
+    
     private func setDelegates(){
         tfUsername.delegate = self
         tfPassword.delegate = self
@@ -68,8 +72,6 @@ class LoginViewController: BaseViewController {
         let backImgTap = UITapGestureRecognizer(target: self, action:#selector(forgotPassTapped) )
         backImg.addGestureRecognizer(backImgTap)
         backImg.isUserInteractionEnabled = true
-        
-        setTapGestures()
     }
     
     //MARK: - Send Validations
@@ -159,7 +161,7 @@ extension LoginViewController: LoginViewModelDelegate{
                 if msg == "LoggedIn Successfully"{
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                         let windows = windowScene.windows
-                        windows.first?.rootViewController = UINavigationController(rootViewController: HomeContainerViewController())
+                        windows.first?.rootViewController = UINavigationController(rootViewController: HomeContainerViewController.loadFromNib())
                         windows.first?.makeKeyAndVisible()
                     }
                 } else {

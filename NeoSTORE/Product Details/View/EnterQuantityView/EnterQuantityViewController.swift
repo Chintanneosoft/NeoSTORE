@@ -22,11 +22,13 @@ class EnterQuantityViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
-        setTapGesturesRemoveable()
-        addObservers()
     }
 
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return EnterQuantityViewController(nibName: "EnterQuantityViewController", bundle: nil)
+    }
+    
     private func setUpUI(){
         imgProduct.sd_setImage(with: URL(string: productImgURL ?? ""))
         lblProductName.text = productName

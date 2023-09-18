@@ -18,7 +18,7 @@ class ResetPasswordViewModel{
     //MARK: - Functions
     func callValidations(oldPass: String, newPass: String, confirmPass: String ) {
         let validationResult = validation.resetPassValidation(oldPass: oldPass, newPass: newPass, confirmPass: confirmPass)
-        if validationResult.0{
+        if validationResult == nil{
             resetAPIService.resetPass(oldPass: oldPass, newPass: newPass, confirmPass: confirmPass){ (response) in
                 switch response{
                 case .success(let value):
@@ -30,7 +30,7 @@ class ResetPasswordViewModel{
             }
         }
         else{
-            self.resetPasswordViewModelDelegate?.showAlert(msg: validationResult.1)
+            self.resetPasswordViewModelDelegate?.showAlert(msg: validationResult ?? "")
         }
     }
 }

@@ -1,10 +1,3 @@
-//
-//  OrderModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 05/09/23.
-//
-
 import UIKit
 
 //MARK: - Order

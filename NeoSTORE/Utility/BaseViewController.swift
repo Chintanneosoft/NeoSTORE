@@ -1,19 +1,17 @@
-//
-//  BaseViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 15/09/23.
-//
-
 import UIKit
 
+//MARK: - BaseViewController
 class BaseViewController: UIViewController {
 
+    //properties
     var mainScrollView: UIScrollView?
     var tapGesture: (Any)? = nil
     
+    //MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        addObservers()
+        setTapGesturesRemoveable()
     }
     
     func addObservers(){
@@ -23,11 +21,6 @@ class BaseViewController: UIViewController {
     
     func setTapGesturesRemoveable(){
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-    }
-    
-    func setTapGestures(){
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
     }
     
     //MARK: - @objc
@@ -41,6 +34,7 @@ class BaseViewController: UIViewController {
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         var contentInset:UIEdgeInsets = self.mainScrollView?.contentInset ?? UIEdgeInsets.zero
         contentInset.bottom = keyboardFrame.size.height + 20
+        mainScrollView?.contentInset = contentInset
         view.addGestureRecognizer(tapGesture as! UIGestureRecognizer)
     }
 

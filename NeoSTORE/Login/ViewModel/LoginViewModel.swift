@@ -20,7 +20,7 @@ class LoginViewModel{
 
         let validationResult = validation.loginValidation( email: email, password: pass)
         //wrong
-        if validationResult == "Validation successfull"{
+        if validationResult == nil{
         
             loginAPIService.loginUser(email: email, pass: pass){ (response) in
                 switch response{
@@ -40,7 +40,7 @@ class LoginViewModel{
                 }
             }
         } else {
-            self.loginViewModelDelegate?.showAlert(msg: validationResult)
+            self.loginViewModelDelegate?.showAlert(msg: validationResult ?? "")
         }
     }
     

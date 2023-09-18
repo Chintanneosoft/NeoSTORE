@@ -44,6 +44,10 @@ class DrawerViewController: UIViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return DrawerViewController(nibName: "DrawerViewController", bundle: nil)
+    }
+    
     private func setUpUI(){
         addObservers()
     }
@@ -138,10 +142,7 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 1{
-            return 60
-        }
-        return 220
+        return (indexPath.section == 1) ? 60 : 200
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -149,35 +150,38 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
         switch indexPath.section{
         case 0:
             drawerViewControllerDelegate?.showDrawer()
-            let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            let profileViewController = ProfileViewController.loadFromNib() as! ProfileViewController
             profileViewController.userData = drawerViewModel.userData
             self.navigationController?.pushViewController(profileViewController, animated: true)
         case 1:
             switch indexPath.row{
             case 0:
                 drawerViewControllerDelegate?.showDrawer()
-                let nextViewController = CartViewController(nibName: "CartViewController", bundle: nil)
+                let nextViewController = CartViewController.loadFromNib() as! CartViewController
                 self.navigationController?.pushViewController(nextViewController, animated: true)
             case 1...4:
                 drawerViewControllerDelegate?.showDrawer()
-                let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
+                let nextViewController = ProductListViewController.loadFromNib() as! ProductListViewController
                 nextViewController.productCategoryId = indexPath.row
-                
                 self.navigationController?.pushViewController(nextViewController, animated: true)
             case 5:
                 drawerViewControllerDelegate?.showDrawer()
-                let profileViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+                let profileViewController = ProfileViewController.loadFromNib() as! ProfileViewController
                 profileViewController.userData = drawerViewModel.userData
                 self.navigationController?.pushViewController(profileViewController, animated: true)
+            case 6:
+                drawerViewControllerDelegate?.showDrawer()
+                let nextViewController = StoreLocatorViewController.loadFromNib() as! StoreLocatorViewController
+                self.navigationController?.pushViewController(nextViewController, animated: true)
             case 7:
                 drawerViewControllerDelegate?.showDrawer()
-                let nextViewController = MyOrdersViewController(nibName: "MyOrdersViewController", bundle: nil)
+                let nextViewController = MyOrdersViewController.loadFromNib() as! MyOrdersViewController
                 self.navigationController?.pushViewController(nextViewController, animated: true)
             case 8:
                 UserDefaults.standard.set("", forKey: "accessToken")
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                     let windows = windowScene.windows
-                    windows.first?.rootViewController = UINavigationController(rootViewController: LoginViewController(nibName: "LoginViewController", bundle: nil))
+                    windows.first?.rootViewController = UINavigationController(rootViewController: LoginViewController.loadFromNib() as! LoginViewController)
                     windows.first?.makeKeyAndVisible()
                 }
             default:
@@ -193,7 +197,7 @@ extension DrawerViewController: UITableViewDelegate, UITableViewDataSource{
 extension DrawerViewController: DrawerHeaderTableViewCellDelegate{
     func goToProfile() {
         drawerViewControllerDelegate?.showDrawer()
-        let nextViewController = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        let nextViewController = ProfileViewController.loadFromNib() as! ProfileViewController
         nextViewController.userData = drawerViewModel.userData
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }

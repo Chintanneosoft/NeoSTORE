@@ -1,14 +1,9 @@
-//
-//  AddAddressViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 20/08/23.
-//
-
 import UIKit
 
+//MARK: - AddAddressViewController
 class AddAddressViewController: BaseViewController {
 
+    //MARK: - IBOutlets
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblCity1: UILabel!
     @IBOutlet weak var lblCity2: UILabel!
@@ -21,24 +16,24 @@ class AddAddressViewController: BaseViewController {
     @IBOutlet weak var tfState: UITextField!
     @IBOutlet weak var tfZipCode: UITextField!
     @IBOutlet weak var tfCountry: UITextField!
-    
     @IBOutlet weak var btnSaveAddress: UIButton!
-    
     @IBOutlet weak var addAddressScrollView: UIScrollView!
     
-    
-    let addAddressViewModel = AddAddressViewModel()
+    //MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        addObservers()
-        setTapGestures()
-        // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUpUI()
         setUpNavBar()
+    }
+    
+    //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return AddAddressViewController(nibName: "AddAddressViewController", bundle: nil)
     }
     
     private func setDelegates(){
@@ -65,10 +60,9 @@ class AddAddressViewController: BaseViewController {
         let backButton = UIBarButtonItem()
         backButton.title = ""
         navigationItem.backBarButtonItem = backButton
-        
     }
        
-    
+    //MARK: - IBActions
     @IBAction func btnSaveAddressTapped(_ sender: UIButton) {
         if tvAddress.text == "" || tfLandmark.text == "" || tfCity.text == "" || tfState.text == "" || tfCountry.text == "" || tfZipCode.text == ""{
             self.showSingleButtonAlert(title: "Alert", msg: "Fill all the Fields", okClosure: nil)
@@ -79,36 +73,34 @@ class AddAddressViewController: BaseViewController {
             let address3 = (tfState.text ?? "") + " " + (tfCountry.text ?? "")
             let address = address1 + address2 + address3
             UserDefaults.standard.set(address, forKey: "userAddress")
-            let alert = UIAlertController(title: "Success", message: "Your Address is Saved Successfully", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
+            showSingleButtonAlert(title: "Success", msg: "our Address is Saved Successfully") {
                 self.navigationController?.popViewController(animated: true)
             }
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
-
         }
     }
-
 }
 
+//MARK: - TextField Delegate and Datasource
 extension AddAddressViewController: UITextViewDelegate,UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == tfLandmark{
+        switch textField{
+        case tfLandmark:
             tfLandmark.resignFirstResponder()
             tfCity.becomeFirstResponder()
-        } else if textField == tfCity{
+        case tfCity:
             tfCity.resignFirstResponder()
             tfState.becomeFirstResponder()
-        } else if textField == tfState{
+        case tfState:
             tfState.resignFirstResponder()
             tfZipCode.becomeFirstResponder()
-        } else if textField == tfZipCode{
+        case tfZipCode:
             tfZipCode.resignFirstResponder()
             tfCountry.becomeFirstResponder()
-        } else if textField == tfCountry{
+        case tfCountry:
             tfCountry.resignFirstResponder()
+        default:
+            return false
         }
         return true
     }

@@ -1,10 +1,3 @@
-//
-//  MyOrderViewModel.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 06/09/23.
-//
-
 import UIKit
 
 //MARK: - OrderDetailsViewModelDelegate Protocol
@@ -24,20 +17,17 @@ class OrderDetailsViewModel: NSObject {
     
     var orderDetails: OrderDetails?
     
+    //API call
     func getOrderDetails(orderId: Int){
         orderDetailsAPIService.getOrderDetails(orderId:orderId){
             response in
             switch response{
             case .success(let value):
-                print(value)
                 self.orderDetails = value
                 self.orderDetailsViewModelDelegate?.successOrderDetails()
-                
             case .failure(let error):
-                print(error)
                 self.orderDetailsViewModelDelegate?.failureOrderDetails(msg: error.localizedDescription)
             }
         }
     }
-    
 }

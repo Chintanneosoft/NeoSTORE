@@ -1,113 +1,98 @@
-//
-//  Validation.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 21/08/23.
-//
-
 import Foundation
 import UIKit
+
+//MARK: - ValidationDelegate Protocol
 protocol ValidationDelegate:AnyObject{
     func resultMsg(msg:String)
 }
+
+//MARK: - Validation
 class Validation{
     
+    //MARK: - validationDelegate object
     weak var validationDelegate:ValidationDelegate?
 
-    func registerValidation(firstName: String?, lastName: String?, email: String?, password: String?, confirmPassword: String?, mobileNumber: String?) -> (Bool,String){
+    //MARK: - Register validation
+    func registerValidation(firstName: String?, lastName: String?, email: String?, password: String?, confirmPassword: String?, mobileNumber: String?) -> String?{
         
         guard firstName != "" && lastName != "" && password != "" && confirmPassword != "" && email != "" && mobileNumber != "" else {
-//            validationDelegate?.resultMsg(msg: "Please fill the required fields")
-            return (false,"Please fill the required fields")
+            return "Please fill the required fields"
         }
         
         guard firstName!.count > 3 && containsOnlyCharacters(firstName!) == true else {
-//            validationDelegate?.resultMsg(msg: "Enter your valid first name")
-            return (false,"Enter your valid first name")
+            return "Enter your valid first name"
         }
         
         guard lastName!.count > 3 && containsOnlyCharacters(lastName!) == true else {
-//            validationDelegate?.resultMsg( msg:"Enter your valid last name")
-            return (false,"Enter your valid last name")
+            return "Enter your valid last name"
         }
         
         if email != "" {
             guard validateEmail(email ?? "") == true else {
-//                validationDelegate?.resultMsg( msg:"Enter your valid email id")
-                return (false,"Enter your valid email id")
+                return "Enter your valid email id"
             }
         }
         
         guard password!.count >= 2 && containsOnlyAllowedCharacters(password!) == true && containsOneNumberAndOneSpecialChar(password!) == true && password! == confirmPassword! else {
-//            validationDelegate?.resultMsg(msg: "Enter your valid password")
-            return (false,"Enter your valid password")
+            return "Enter your valid password"
         }
         
         if mobileNumber != "" {
             guard mobileNumber!.count == 10 && containsOnlyNumbers(mobileNumber!) == true else {
-//                validationDelegate?.resultMsg(msg:"Enter your valid mobile number")
-                return (false,"Enter your valid mobile number")
+                return "Enter your valid mobile number"
             }
         }
         
-        
-//        validationDelegate?.resultMsg(msg: "Validation successfull")
-        return (true,msg: "Validation successfull")
+        return nil
     }
     
-    func loginValidation(email: String?, password: String?) -> String{
+    //MARK: - Login validation
+    func loginValidation(email: String?, password: String?) -> String?{
         
         guard email != "" && password != "" else {
-//            validationDelegate?.resultMsg(msg: "Please fill the required fields")
             return "Please fill the required fields"
         }
         
         if email != "" {
             guard validateEmail(email ?? "") == true else {
-//                validationDelegate?.resultMsg( msg:"Enter your valid email id")
                 return "Enter your valid email id"
             }
         }
         
         guard password!.count >= 2 && containsOnlyAllowedCharacters(password!) == true && containsOneNumberAndOneSpecialChar(password!) == true else {
-//            validationDelegate?.resultMsg(msg: "Enter your valid password")
             return "Enter your valid password"
         }
         
-//        validationDelegate?.resultMsg(msg: "Validation successfull")
-        return "Validation successfull"
+        return nil
     }
     
-    func resetPassValidation(oldPass: String, newPass: String, confirmPass: String ) -> (Bool,String){
+    //MARK: - Reset Password Validation
+    func resetPassValidation(oldPass: String, newPass: String, confirmPass: String ) -> String? {
         guard oldPass != "" && newPass != "" && confirmPass != "" else {
-//            validationDelegate?.resultMsg(msg: "Please fill the required fields")
-            return (false,"Please fill the required fields")
+            return "Please fill the required fields"
         }
         
         guard newPass.count >= 2 && containsOnlyAllowedCharacters(newPass) == true && containsOneNumberAndOneSpecialChar(newPass) == true && newPass == confirmPass else {
-//            validationDelegate?.resultMsg(msg: "Enter your valid password")
-            return (false,"Enter your valid password")
+            return "Enter your valid password"
         }
         
-        return (true,"Validation SuccessFull")
+        return nil
     }
     
-    func updateUserValidation(fname: String, lname: String, email: String, dob:String,profilePic:String,phone:String) -> (Bool,String){
+    //MARK: - UpdateUser Validation
+    func updateUserValidation(fname: String, lname: String, email: String, dob:String,profilePic:String,phone:String) -> String?{
         guard fname != "" && lname != "" && email != "" && dob != "" && profilePic != "" && phone != "" else {
-//            validationDelegate?.resultMsg(msg: "Please fill the required fields")
-            return (false,"Please fill the required fields")
+            return "Please fill the required fields"
         }
         if email != "" {
             guard validateEmail(email ) == true else {
-//                validationDelegate?.resultMsg( msg:"Enter your valid email id")
-                return (false,"Enter your valid email id")
+                return "Enter your valid email id"
             }
         }
-        return (true,"Validation SuccessFull")
+        return nil
     }
     
-    
-    
+    //MARK: - Functions for validations
     func containsOnlyCharacters(_ input: String) -> Bool {
         let characterSet = CharacterSet.letters
         return input.rangeOfCharacter(from: characterSet.inverted) == nil

@@ -24,6 +24,10 @@ class ResetPasswordViewController: BaseViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return ResetPasswordViewController(nibName: "ResetPasswordViewController", bundle: nil)
+    }
+    
     private func setDelegates(){
         tfNewPassword.delegate = self
         tfConfirmPassword.delegate = self
@@ -60,7 +64,6 @@ class ResetPasswordViewController: BaseViewController {
         btnResetPassword.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 18)
         btnResetPassword.layer.cornerRadius = 5.0
         
-        setTapGestures()
     }
     
     //MARK: - IBActions

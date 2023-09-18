@@ -31,6 +31,10 @@ class ProductDetailsViewController: UIViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
+    }
+    
     private func setUpUI(){
         btnRate.layer.cornerRadius = 5
         btnBuyNow.layer.cornerRadius = 5
@@ -82,7 +86,7 @@ class ProductDetailsViewController: UIViewController {
     
     //MARK: - IBActions
     @IBAction func btnRateTapped(_ sender: UIButton) {
-        let ratingPopUpUIView = RatingPopUiViewController(nibName: "RatingPopUiViewController", bundle: nil)
+        let ratingPopUpUIView = RatingPopUiViewController.loadFromNib() as! RatingPopUiViewController
         ratingPopUpUIView.ratingUpdateDataDelegate = self
         ratingPopUpUIView.modalPresentationStyle = .overCurrentContext
         ratingPopUpUIView.productId = productId
@@ -92,7 +96,7 @@ class ProductDetailsViewController: UIViewController {
     }
     
     @IBAction func btnBuyNowTapped(_ sender: UIButton) {
-        let enterQuantityView = EnterQuantityViewController(nibName: "EnterQuantityViewController", bundle: nil)
+        let enterQuantityView = EnterQuantityViewController.loadFromNib() as! EnterQuantityViewController
         enterQuantityView.modalPresentationStyle = .overCurrentContext
         enterQuantityView.productId = productId
         enterQuantityView.productName = productDetailsViewModel.productsDetails?.data?.name

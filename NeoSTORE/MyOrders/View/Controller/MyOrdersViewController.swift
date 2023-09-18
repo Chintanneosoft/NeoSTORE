@@ -1,30 +1,29 @@
-//
-//  MyOrdersViewController.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 06/09/23.
-//
-
 import UIKit
 
+//MARK: - MyOrdersViewController
 class MyOrdersViewController: UIViewController {
-
+    
     @IBOutlet weak var myOrdersTableView: UITableView!
     
     let myOrderViewModel = MyOrderViewModel()
     
+    //MARK: - ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
         xibRegister()
         setUpNavBar()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         callMyOrderList()
         navigationController?.navigationBar.isHidden = false
+    }
+    
+    //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return MyOrdersViewController(nibName: "MyOrdersViewController", bundle: nil)
     }
     
     private func setDelegates(){
@@ -35,34 +34,27 @@ class MyOrdersViewController: UIViewController {
     private func xibRegister(){
         myOrdersTableView.register(UINib(nibName: "MyOrderCell", bundle: nil), forCellReuseIdentifier: "MyOrderCell")
     }
+    
     private func setUpNavBar() {
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "My Orders"
         let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
+        backButton.title = ""
         navigationItem.backBarButtonItem = backButton
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        
     }
+    
     private func callMyOrderList(){
         myOrderViewModel.myOrderViewModelDelegate = self
         showLoader()
         myOrderViewModel.placeOrder()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
+//MARK: - TableView Delegate and Datasource
 extension MyOrdersViewController: UITableViewDelegate, UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myOrderViewModel.orderList?.data.count ?? 0
     }
@@ -75,13 +67,14 @@ extension MyOrdersViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nextViewController = OrderDetailsViewController(nibName: "OrderDetailsViewController", bundle: nil)
+        let nextViewController = OrderDetailsViewController.loadFromNib() as! OrderDetailsViewController
         nextViewController.orderId = myOrderViewModel.orderList?.data[indexPath.row].id
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
 }
 
+//MARK: - MyOrderViewModelDelegate
 extension MyOrdersViewController: MyOrderViewModelDelegate{
     func successOrderList() {
         DispatchQueue.main.async {

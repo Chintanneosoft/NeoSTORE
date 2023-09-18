@@ -1,41 +1,34 @@
-//
-//  AddressListCell.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 04/09/23.
-//
-
 import UIKit
 
+//MARK: - AddressListCellDelegate Protocol
 protocol AddressListCellDelegate: NSObject{
     func btnSelectTapped(btnTag: Int)
     func btnCancelTapped(btnTag: Int)
 }
 
+//MARK: - AddressListCell
 class AddressListCell: UITableViewCell {
 
+    //MARK: - IBOutlets
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var btnSelect: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
-    
     @IBOutlet weak var containerView: UIView!
     
+    //addressListCell Delegate
     weak var addressListCellDelegate: AddressListCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         setUpUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
+    
     private func setUpUI(){
-        
         lblTitle.font = UIFont(name: Font.fontRegular.rawValue, size: 22)
         lblAddress.font = UIFont(name: Font.fontThin.rawValue, size: 15)
         containerView.layer.cornerRadius = 5

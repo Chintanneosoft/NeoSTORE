@@ -27,6 +27,10 @@ class RegisterViewController: BaseViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return RegisterViewController(nibName: "RegisterViewController", bundle: nil)
+    }
+    
     private func setUpUI(){
         //Navigation bar\
         self.navigationController?.navigationBar.isHidden = false
@@ -74,9 +78,6 @@ class RegisterViewController: BaseViewController {
         //Buttons
         btnRegister.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 26)
         btnRegister.layer.cornerRadius = 5.0
-        
-        setTapGesturesRemoveable()
-        addObservers()
     }
     
     private func setDelegates(){
@@ -154,7 +155,7 @@ extension RegisterViewController: RegisterViewModelDelegate{
             self.hideLoader()
             if msg == "Registered Successfully"{
                 self.showSingleButtonAlert(title: "Alert", msg: msg) {
-                    let nextViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+                    let nextViewController = LoginViewController.loadFromNib()
                     self.navigationController?.pushViewController(nextViewController, animated: true)
                 }
             }  else {

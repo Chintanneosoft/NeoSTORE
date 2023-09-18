@@ -35,6 +35,9 @@ class RatingPopUiViewController: UIViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return RatingPopUiViewController(nibName: "RatingPopUiViewController", bundle: nil)
+    }
     
     private func setCollectionView(){
         starCollectionView.delegate = self

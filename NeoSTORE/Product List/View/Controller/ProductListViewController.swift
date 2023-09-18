@@ -31,6 +31,10 @@ class ProductListViewController: BaseViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return ProductListViewController(nibName: "ProductListViewController", bundle: nil)
+    }
+    
     private func setDelegates(){
         productListTableView.delegate = self
         productListTableView.dataSource = self
@@ -48,8 +52,7 @@ class ProductListViewController: BaseViewController {
         tfsearch.leftView = leftPaddingView
         tfsearch.leftViewMode = .always
         
-        addObservers()
-        setTapGesturesRemoveable()
+        mainScrollView = productListTableView
     }
     
     private func setUpNavBar() {
@@ -127,7 +130,7 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nextViewController = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
+        let nextViewController = ProductDetailsViewController.loadFromNib() as! ProductDetailsViewController
         nextViewController.productId = productListViewModel.productsDataCopy[indexPath.row].id
         nextViewController.productCategory = productListViewModel.getTitle(categoryID: productCategoryId ?? 0)
         navigationController?.pushViewController(nextViewController, animated: true)

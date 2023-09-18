@@ -28,7 +28,7 @@ class RegisterViewModel: NSObject {
         
         let validitionResult = validation.registerValidation(firstName: fname, lastName: lname, email: email, password: pass, confirmPassword: cpass, mobileNumber: phone)
         
-        if validitionResult.0{
+        if validitionResult == nil {
             self.registerAPIService.registerUser(fname: fname, lname: lname, email: email, pass: pass, cpass: cpass, gender: btnSelected, phone: phone){
                 (response) in
                 switch response {
@@ -45,7 +45,7 @@ class RegisterViewModel: NSObject {
             }
         }
         else{
-            self.registerViewModelDelegate?.showAlert(msg: validitionResult.1)
+            self.registerViewModelDelegate?.showAlert(msg: validitionResult ?? "")
         }
     }
 }

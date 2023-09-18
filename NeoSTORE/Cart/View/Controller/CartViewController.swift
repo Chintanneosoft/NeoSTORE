@@ -25,7 +25,6 @@ class CartViewController: UIViewController {
         xibRegister()
         setUpNavBar()
         setUpUI()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +34,10 @@ class CartViewController: UIViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return CartViewController(nibName: "CartViewController", bundle: nil)
+    }
+    
     private func setUpUI(){
         btnOrderNow.layer.cornerRadius = 5
         btnOrderNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
@@ -47,7 +50,7 @@ class CartViewController: UIViewController {
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "My Cart"
         let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
+        backButton.title = ""
         navigationItem.backBarButtonItem = backButton
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
@@ -78,10 +81,9 @@ class CartViewController: UIViewController {
     
     //MARK: - IBActions
     @IBAction func btnOrderNowTapped(_ sender: UIButton) {
-        let nextViewController = AddressListViewController(nibName: "AddressListViewController", bundle: nil)
+        let nextViewController = AddressListViewController.loadFromNib() as! AddressListViewController
         navigationController?.pushViewController(nextViewController, animated: true)
     }
-
 }
 
 //MARK: - TableView Delegate and Datasource
@@ -92,10 +94,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 1{
-            return 1
-        }
-        return cartViewModel.cartList?.count ?? 0
+        return section == 1 ? 1 : cartViewModel.cartList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -130,8 +129,6 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
                 }, cancelClosure: {
                     self.dismiss(animated: true)
                 })
-                
-               
                 completionHandler(true)
             }
 

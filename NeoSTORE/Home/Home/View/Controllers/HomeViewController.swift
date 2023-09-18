@@ -48,6 +48,10 @@ class HomeViewController: UIViewController {
     }
     
     //MARK: - Functions
+    static func loadFromNib() -> UIViewController {
+        return HomeViewController(nibName: "HomeViewController", bundle: nil)
+    }
+    
     private func setUpUI(){
         setUpNavBar()
         setSliderScrollView()
@@ -59,11 +63,13 @@ class HomeViewController: UIViewController {
         navigationItem.title = "NeoSTORE"
         
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon"), style: .plain, target: self, action: #selector(showDrawer))
-        // Set the left bar button item
         navigationItem.leftBarButtonItem = menuButton
         
+        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart.fill"), style: .plain, target: self, action: #selector(goToCart))
+        navigationItem.rightBarButtonItem = cartButton
+        
         let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
+        backButton.title = ""
         navigationItem.backBarButtonItem = backButton
     }
     
@@ -95,6 +101,11 @@ class HomeViewController: UIViewController {
         homeViewDelegate?.showDrawer()
     }
 
+    @objc func goToCart(){
+        let nextViewController = CartViewController.loadFromNib()
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
     @objc func showNextImage() {
         currImg = (currImg == 3) ? 0 : (currImg+1)
         let indexPath = IndexPath(item: currImg, section: 0)
@@ -134,8 +145,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == furnitureCollectionView{
-            let nextViewController = ProductListViewController(nibName: "ProductListViewController", bundle: nil)
+            let nextViewController = ProductListViewController.loadFromNib() as! ProductListViewController
             //wrong
+            
             nextViewController.productCategoryId = indexPath.row + 1
 //            let vc = ProductListViewController.loadFormNib()
 //            vc.title =
