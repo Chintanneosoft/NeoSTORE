@@ -15,6 +15,8 @@ class LoginViewModel{
     //MARK: - LoginViewModelDelegate Object Declare
     weak var loginViewModelDelegate: LoginViewModelDelegate?
     
+    var txtFieldData = [["Username","username_icon"],["Password","password_icon"]]
+    
     //MARK: - Functions
     func callValidations(email:String, pass:String) {
 

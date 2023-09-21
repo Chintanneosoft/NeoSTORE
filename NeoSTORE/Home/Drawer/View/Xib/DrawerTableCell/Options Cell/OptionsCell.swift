@@ -15,8 +15,8 @@ class OptionsCell: UITableViewCell {
     }
 
     private func setUpUI(){
-        lblOption.font = UIFont(name:Font.fontRegular.rawValue,size: 16)
-        lblNotification.font = UIFont(name:Font.fontThin.rawValue,size: 13)
+        lblOption.font = UIFont.customFont(Font.fontRegular, size: 16)
+        lblNotification.font = UIFont.customFont(Font.fontThin, size: 13)
         lblNotification.layer.cornerRadius = lblNotification.bounds.width/2
     }
     

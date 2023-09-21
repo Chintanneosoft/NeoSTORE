@@ -1,26 +1,12 @@
-//
-//  File.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 24/08/23.
-//
-
 import Foundation
 import UIKit
 import SwiftLoader
+
+//MARK: - UIViewController
 extension UIViewController{
     
     //MARK: - Loader
     func showLoader() {
-        let parentView = UIView(frame: UIScreen.main.bounds)
-        parentView.isUserInteractionEnabled = false
-        
-        //        let ai = UIActivityIndicatorView(style: .large)
-        //        let ai = ActivityIndicatorView(isVisible: false, type: .arcs(count: 4, lineWidth: 2))
-        //        ai.type = .arcs(count: 4, lineWidth: 2)
-        //        ai.color = .black
-        //        ai.startAnimating()
-        //        ai.center = parentView.center
         var config : SwiftLoader.Config = SwiftLoader.Config()
         config.size = 60
         config.backgroundColor = .systemGray6
@@ -28,23 +14,13 @@ extension UIViewController{
         config.spinnerLineWidth = 2
         SwiftLoader.setConfig(config)
         SwiftLoader.show(animated: true)
-        //        parentView.addSubview(ai)
-        //        view.addSubview(parentView)
-        
-        // Assign view
-        //        aicView = parentView
     }
     
     func hideLoader() {
-        //        viewLoaderScreen?.isHidden = true
         SwiftLoader.hide()
     }
     
     //MARK: - Alert
-    func showAlert(title: String,msg :String){
-        
-    }
-    
     func showSingleButtonAlert(title: String,msg :String, okClosure: (()->Void)?){
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -54,6 +30,7 @@ extension UIViewController{
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
+    
     func showDualButtonAlert(title: String, msg: String, okClosure: (()->Void)?, cancelClosure:(()->Void)? ){
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -78,13 +55,17 @@ extension UIViewController{
         ]
         navigationController?.navigationBar.standardAppearance = navigationBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
-        
-        // Optionally, set other navigation bar properties
         navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
         
+        let backButton = UIBarButtonItem()
+        backButton.title = "" // Set an empty title
+        navigationItem.backBarButtonItem = backButton
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
     }
 }
 
+//MARK: - Notification
 extension Notification.Name {
     static let updateCart = Notification.Name("updateCart")
     static let updateDrawer = Notification.Name("UpdateDrawerNotification")
@@ -110,11 +91,41 @@ extension NSObject{
         }
     }
     
-    
     func loadProfileImage(imageName: String) -> UIImage? {
         let imgName = imageName + ".jpg"
         let fileURL = getDocumentsDirectory().appendingPathComponent(imgName)
         print(fileURL.path)
         return UIImage(contentsOfFile: fileURL.path)
+    }
+}
+
+//MARK: - UITextField
+extension UITextField {
+    func setIcon(_ image: UIImage) {
+        let iconView = UIImageView(frame:
+                                    CGRect(x: 20, y: 0, width: 15, height: 20))
+        iconView.image = image
+        let iconContainerView: UIView = UIView(frame:
+                                                CGRect(x: 10, y: 0, width: 50, height: 30))
+        iconContainerView.addSubview(iconView)
+        NSLayoutConstraint.activate([
+            iconView.leadingAnchor.constraint(equalTo: iconContainerView.leadingAnchor),
+            iconView.trailingAnchor.constraint(equalTo: iconContainerView.trailingAnchor,constant: -30),
+            iconView.topAnchor.constraint(equalTo: iconContainerView.topAnchor),
+            iconView.bottomAnchor.constraint(equalTo: iconContainerView.bottomAnchor)
+        ])
+        leftView = iconContainerView
+        leftViewMode = .always
+    }
+    
+    func setPlaceholder(_ placeholder: String){
+        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
+    }
+}
+
+//MARK: - UIFont
+extension UIFont {
+    static func customFont(_ font: Font, size: CGFloat) -> UIFont {
+        return UIFont(name: font.rawValue, size: size) ?? UIFont.systemFont(ofSize: size)
     }
 }

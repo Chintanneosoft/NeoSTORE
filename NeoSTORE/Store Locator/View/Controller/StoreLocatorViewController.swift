@@ -7,7 +7,7 @@ import CoreLocation
 class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     
     //MARK: - IBOUTLETS
-    @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var mapViewContainer: UIView!
     
     @IBOutlet weak var storeLocatorTableView: UITableView!
     
@@ -15,15 +15,16 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     let locationManager = CLLocationManager()
     let apiKey = "AIzaSyDu8Jcaz3rWu-e9I8xP2y2hSWnXYnW6IfY" // Replace with your actual API key
     var storeData:[String] = []
+    var mapView: GMSMapView!
     
     //MARK: - ViewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
         checkLocationAuthorization()
-        setMapViewDelegates()
         setTableViewDelegates()
         setupMapView(with: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194))
+        setMapViewDelegates()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +85,15 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
         let camera = GMSCameraPosition.camera(withTarget: initialCoordinate, zoom: 15)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+               mapViewContainer.addSubview(mapView)
+               
+               NSLayoutConstraint.activate([
+                   mapView.leadingAnchor.constraint(equalTo: mapViewContainer.leadingAnchor),
+                   mapView.trailingAnchor.constraint(equalTo: mapViewContainer.trailingAnchor),
+                   mapView.topAnchor.constraint(equalTo: mapViewContainer.topAnchor),
+                   mapView.bottomAnchor.constraint(equalTo: mapViewContainer.bottomAnchor)
+               ])
     }
 
     func captureMapSnapshot() {

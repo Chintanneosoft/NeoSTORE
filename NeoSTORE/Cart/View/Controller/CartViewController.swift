@@ -1,20 +1,19 @@
 import UIKit
 //MARK: - CartViewController
-class CartViewController: UIViewController {
+class CartViewController: BaseViewController {
     
     //MARK: - IBOutlets
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var btnOrderNow: UIButton!
-    
+    @IBOutlet weak var lblEmptyCart: UILabel!
     //wrong
-    @IBOutlet weak var quantityPickerView: UIPickerView!
-    
+    let quantityPickerView = UIPickerView()
+        
     //ViewModel Object
     let cartViewModel = CartViewModel()
     
     //properties
     //wrong
-    var dropDownState: Bool = false
     var currProductId = 0
     var currQuantity = 0
     
@@ -40,20 +39,13 @@ class CartViewController: UIViewController {
     
     private func setUpUI(){
         btnOrderNow.layer.cornerRadius = 5
-        btnOrderNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(pickerHide))
-        self.view.addGestureRecognizer(tap)
+        btnOrderNow.titleLabel?.font = UIFont.customFont(Font.fontBold, size: 20)
+        mainScrollView = cartTableView
     }
     
     private func setUpNavBar() {
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "My Cart"
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        navigationItem.backBarButtonItem = backButton
-        navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
     }
     
     private func setDelegates(){
@@ -74,11 +66,6 @@ class CartViewController: UIViewController {
         cartViewModel.callFetchCart()
     }
     
-    @objc func pickerHide(){
-        quantityPickerView.isHidden = true
-        dropDownState = false
-    }
-    
     //MARK: - IBActions
     @IBAction func btnOrderNowTapped(_ sender: UIButton) {
         let nextViewController = AddressListViewController.loadFromNib() as! AddressListViewController
@@ -90,18 +77,25 @@ class CartViewController: UIViewController {
 extension CartViewController: UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 1 ? 1 : cartViewModel.cartList?.count ?? 0
+        if cartViewModel.cartList?.count ?? 0 == 0{
+            lblEmptyCart.isHidden = false
+            return 0
+        }
+        lblEmptyCart.isHidden = true
+        return (cartViewModel.cartList?.count ?? 0) + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0{
+        if indexPath.row < cartViewModel.cartList?.count ?? 0{
             let cell = cartTableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartCell
             cell.setDetails(imgUrl: cartViewModel.cartList?[indexPath.row].product.productImages ?? "", productName: cartViewModel.cartList?[indexPath.row].product.name ?? "", productCategory: cartViewModel.cartList?[indexPath.row].product.productCategory ?? "", price: cartViewModel.cartList?[indexPath.row].product.cost ?? 0, quantity: cartViewModel.cartList?[indexPath.row].quantity ?? 0, productID: cartViewModel.cartList?[indexPath.row].productID ?? 0)
             cell.updateQuantityDelegate = self
+            cell.txtQuantity.inputView = quantityPickerView
+            quantityPickerView.selectRow(cartViewModel.quantityArr.firstIndex(of: String(cartViewModel.cartList?[indexPath.row].quantity ?? 1)) ?? 0, inComponent: 0, animated: true)
             cell.selectionStyle = .none
             return cell
         }
@@ -161,7 +155,6 @@ extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         currQuantity = Int(cartViewModel.quantityArr[row]) ?? 0
-        changeState()
         self.showLoader()
         cartViewModel.callUpdateCart(productId: currProductId, quantity: currQuantity)
     }
@@ -181,22 +174,17 @@ extension CartViewController: CartViewModelDelegate{
         DispatchQueue.main.async {
             self.hideLoader()
             self.cartTableView.reloadData()
-            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
+            if msg == "Cart empty."{
+                self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
+            }
         }
     }
 }
 
 //MARK: - UpdateQuantity
 extension CartViewController: UpdateQuantity{
-    
     func changeDropDownState(productId: Int, quantity: String) {
         currProductId = productId
-        quantityPickerView.selectRow( cartViewModel.quantityArr.firstIndex(of: quantity) ?? 0, inComponent: 0, animated: true)
-        changeState()
-    }
-    
-    func changeState(){
-        quantityPickerView.isHidden = dropDownState
-        dropDownState = !dropDownState
+        quantityPickerView.selectRow((Int(quantity) ?? 2)-1, inComponent: 0, animated: true)
     }
 }

@@ -15,7 +15,7 @@ class TotalCell: UITableViewCell {
     }
     
     private func setUpUI(){
-        lblTotal.font = UIFont(name: Font.fontRegular.rawValue, size: 20)
+        lblTotal.font = UIFont.customFont(Font.fontRegular, size: 20)
     }
     
     func setDetails(totalPrice: Int){

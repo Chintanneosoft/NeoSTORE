@@ -17,6 +17,7 @@ class ProfileViewModel: NSObject {
     
     let validation = Validation()
     var userData : User?
+    var txtFieldData = [["First Name","username_icon"],["Last Name","username_icon"],["Email","email_icon"],["Phone Number","cellphone_icon"],["DOB","dob_icon"]]
     
     //API call
     func callUpdateUser(fname: String, lname: String, email: String, dob:String,profilePic:String,phone:String){

@@ -20,7 +20,7 @@ class CartViewModel: NSObject {
     var cartList: [CartData]?
     var quantityArr:[String] {
         var arr:[String] = []
-        for i in 1...7{
+        for i in 1...8{
             arr += [String(i)]
         }
         return arr

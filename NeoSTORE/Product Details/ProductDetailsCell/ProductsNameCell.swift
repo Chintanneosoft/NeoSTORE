@@ -20,9 +20,9 @@ class ProductsNameCell: UITableViewCell {
     
     //MARK: - Functions
     func setUpUI(){
-        lblProductName.font = UIFont(name: Font.fontRegular.rawValue, size: 19)
-        lblCategory.font = UIFont(name: Font.fontThin.rawValue, size: 16)
-        lblProducer.font = UIFont(name: Font.fontRegular.rawValue, size: 10)
+        lblProductName.font = UIFont.customFont(Font.fontRegular, size: 19)
+        lblCategory.font = UIFont.customFont(Font.fontThin, size: 16)
+        lblProducer.font = UIFont.customFont(Font.fontRegular, size: 10)
     }
     
     func setDetails(productName: String, producerName: String, category: String, rating: Int){

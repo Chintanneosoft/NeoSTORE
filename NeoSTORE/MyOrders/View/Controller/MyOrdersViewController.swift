@@ -38,11 +38,6 @@ class MyOrdersViewController: UIViewController {
     private func setUpNavBar() {
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "My Orders"
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        navigationItem.backBarButtonItem = backButton
-        navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
     }
     
     private func callMyOrderList(){

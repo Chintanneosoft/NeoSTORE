@@ -51,7 +51,7 @@ class RatingPopUiViewController: UIViewController {
         lblProductName.text = productName
         
         containerView.layer.cornerRadius = 10
-        btnRateNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
+        btnRateNow.titleLabel?.font = UIFont.customFont(Font.fontBold, size: 20)
         btnRateNow.layer.cornerRadius = 5
     }
     

@@ -35,7 +35,7 @@ class EnterQuantityViewController: BaseViewController {
         
         containerView.layer.cornerRadius = 10
         
-        btnSubmit.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
+        btnSubmit.titleLabel?.font = UIFont.customFont(Font.fontBold, size: 20)
         btnSubmit.layer.cornerRadius = 5
         
         tfEnterQty.becomeFirstResponder()

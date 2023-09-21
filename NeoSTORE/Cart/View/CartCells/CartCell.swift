@@ -16,12 +16,13 @@ class CartCell: UITableViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblQunatity: UILabel!
     @IBOutlet weak var imgDropdown: UIImageView!
-    
+    @IBOutlet weak var txtQuantity: UITextField!
     weak var updateQuantityDelegate: UpdateQuantity?
     var productId: Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        txtQuantity.delegate = self
         let tap = UITapGestureRecognizer(target: self, action: #selector(imgTapped) )
         imgDropdown.addGestureRecognizer(tap)
         imgDropdown.isUserInteractionEnabled = true
@@ -36,11 +37,22 @@ class CartCell: UITableViewCell {
         lblProductName.text = productName
         lblProductCategory.text = "(" + productCategory + ")"
         productImg.sd_setImage(with: URL(string: imgUrl))
-        lblQunatity.text = String(quantity)
+        txtQuantity.text = String(quantity)
         productId = productID
     }
     
     @objc func imgTapped(){
-        updateQuantityDelegate?.changeDropDownState(productId: productId ?? 0, quantity: lblQunatity.text ?? "")
+        txtQuantity.becomeFirstResponder()
+        updateQuantityDelegate?.changeDropDownState(productId: productId ?? 0, quantity: txtQuantity.text ?? "")
+    }
+}
+
+extension CartCell: UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        updateQuantityDelegate?.changeDropDownState(productId: productId ?? 0, quantity: txtQuantity.text ?? "")
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        txtQuantity.resignFirstResponder()
+        return true
     }
 }

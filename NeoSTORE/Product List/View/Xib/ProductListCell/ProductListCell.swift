@@ -21,9 +21,9 @@ class ProductListCell: UITableViewCell {
     }
     
     func setUpUI(){
-        lblProductName.font = UIFont(name: Font.fontRegular.rawValue, size: 15)
-        lblProducer.font = UIFont(name: Font.fontThin.rawValue, size: 10)
-        lblPrice.font = UIFont(name: Font.fontRegular.rawValue, size: 20)
+        lblProductName.font =  UIFont.customFont(Font.fontRegular, size: 15)
+        lblProducer.font = UIFont.customFont(Font.fontThin, size: 10)
+        lblPrice.font = UIFont.customFont(Font.fontRegular, size: 20)
     }
     
     func setDetails(productImgName: String, productName: String, producerName: String, price: Int, rating: Int){

@@ -23,8 +23,8 @@ class DrawerHeaderTableViewCell: UITableViewCell {
     
     private func setUpUI(){
         
-        lblName.font = UIFont(name:Font.fontRegular.rawValue,size: 23)
-        lblEmail.font = UIFont(name:Font.fontThin.rawValue,size: 13)
+        lblName.font = UIFont.customFont(Font.fontRegular, size: 23)
+        lblEmail.font = UIFont.customFont(Font.fontThin, size: 13)
         
         //wrong
 //        let tap1 = UITapGestureRecognizer(target: self, action: #selector(profileTapped))

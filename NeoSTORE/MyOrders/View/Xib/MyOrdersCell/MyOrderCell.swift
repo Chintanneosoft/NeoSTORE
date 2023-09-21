@@ -18,9 +18,9 @@ class MyOrderCell: UITableViewCell {
     }
     
     func setUpUI(){
-        lblOrderID.font = UIFont(name: Font.fontThin.rawValue, size: 17)
-        lblOrderDate.font = UIFont(name: Font.fontThin.rawValue, size: 12)
-        lblPrice.font = UIFont(name: Font.fontThin.rawValue, size: 20)
+        lblOrderID.font = UIFont.customFont(Font.fontThin, size: 17)
+        lblOrderDate.font = UIFont.customFont(Font.fontThin, size: 12)
+        lblPrice.font = UIFont.customFont(Font.fontThin, size: 20)
     }
     
     func setDetails(orderId: Int,orderDate: String, orderPrice: Int){

@@ -1,10 +1,3 @@
-//
-//  Constants.swift
-//  NeoSTORE
-//
-//  Created by Neosoft1 on 17/08/23.
-//
-
 import Foundation
 import UIKit
 
@@ -13,10 +6,30 @@ struct AppFont {
 }
 
 enum Font : String {
-    
     case fontBold = "Gotham-Bold"
     case fontRegular = "Gotham-Medium"
     case fontThin = "Gotham-Book"
+}
+
+enum Color{
     
 }
 
+enum ScreenText{
+    enum Login{
+        static let submitButton = "SUBMIT"
+        static let loginButton = "LOGIN"
+        static let submitbtn = "SUBMIT"
+    }
+    enum Register{
+//        static let
+    }
+}
+
+enum AlertText{
+    enum Title{
+        static let success = "Success"
+        static let error = "Error"
+        static let alert = "Alert"
+    }
+}

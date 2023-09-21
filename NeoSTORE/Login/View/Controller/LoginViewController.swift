@@ -7,13 +7,15 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var lblHeading: UILabel!
     @IBOutlet weak var lblForgotPassword: UILabel!
     @IBOutlet weak var lblDontHaveAccount: UILabel!
-    @IBOutlet var containerViews: [UIView]!
+    @IBOutlet var txtContainerViews: [UITextField]!
     //wrong
     @IBOutlet weak var tfUsername: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnAddUserTapped: UIButton!
     @IBOutlet weak var backImg: UIImageView!
+    
+    let loginViewModel = LoginViewModel()
     
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -41,26 +43,22 @@ class LoginViewController: BaseViewController {
     private func setUpUI(){
         
         //Labels
-        lblHeading.font = UIFont(name: Font.fontBold.rawValue, size: 45)
-        lblForgotPassword.font = UIFont(name: Font.fontBold.rawValue, size: 18)
-        lblDontHaveAccount.font = UIFont(name: Font.fontBold.rawValue, size: 16)
+        lblHeading.font = UIFont.customFont(Font.fontBold, size: 45)
+        lblForgotPassword.font = UIFont.customFont(Font.fontBold, size: 18)
+        lblDontHaveAccount.font = UIFont.customFont(Font.fontBold, size: 16)
         
-        //Views
-        for v in containerViews{
-            v.layer.borderWidth = 1.0
-            v.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+        //TextFields Views
+        for (index,txtv) in txtContainerViews.enumerated(){
+            txtv.layer.borderWidth = 1.0
+            txtv.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+            txtv.font = UIFont.customFont(Font.fontRegular, size: 18)
+            txtv.textColor = UIColor(named: "Primary Foreground")
+            txtv.setPlaceholder(loginViewModel.txtFieldData[index][0])
+            txtv.setIcon(UIImage(named: loginViewModel.txtFieldData[index][1])!)
         }
         
-        //TextFields
-        tfUsername.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfUsername.textColor = UIColor(named: "Primary Foreground")
-        tfUsername.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        tfPassword.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfPassword.textColor = UIColor(named: "Primary Foreground")
-        tfPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        
         //Buttons
-        btnLogin.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 26)
+        btnLogin.titleLabel?.font = UIFont.customFont(Font.fontRegular,size: 26)
         btnLogin.layer.cornerRadius = 5.0
         
         navigationItem.backButtonTitle = ""
@@ -82,7 +80,6 @@ class LoginViewController: BaseViewController {
     }
     
     private func callForgotPass(){
-        let loginViewModel = LoginViewModel()
         loginViewModel.loginViewModelDelegate = self
         loginViewModel.callForgotPass(email: tfUsername.text ?? "")
     }
@@ -90,15 +87,15 @@ class LoginViewController: BaseViewController {
     //Change UI to/from forgot and login screen
     private func changeUI(){
         if lblForgotPassword.isHidden == false{
-            containerViews[1].isHidden = true
+            tfPassword.isHidden = true
             lblForgotPassword.isHidden = true
             backImg.isHidden = false
-            btnLogin.setTitle("SUBMIT", for:.normal)
+            btnLogin.setTitle(ScreenText.Login.submitButton, for:.normal)
         } else {
             lblForgotPassword.isHidden = false
-            containerViews[1].isHidden = false
+            tfPassword.isHidden = false
             backImg.isHidden = true
-            btnLogin.setTitle("LOGIN", for:.normal)
+            btnLogin.setTitle(ScreenText.Login.loginButton, for:.normal)
         }
     }
     
@@ -110,7 +107,7 @@ class LoginViewController: BaseViewController {
     //MARK: - IBActions
     @IBAction func btnLoginTapped(_ sender: UIButton) {
         //wrong
-        if btnLogin.titleLabel?.text == "SUBMIT"{
+        if btnLogin.titleLabel?.text == ScreenText.Login.submitButton{
             self.showLoader()
             callForgotPass()
         } else {
@@ -153,8 +150,8 @@ extension LoginViewController: LoginViewModelDelegate{
     func showAlert(msg:String) {
         DispatchQueue.main.async {
             self.hideLoader()
-            if self.btnLogin.titleLabel?.text == "SUBMIT"{
-                self.showSingleButtonAlert(title: "Alert", msg: msg) {
+            if self.btnLogin.titleLabel?.text == ScreenText.Login.submitButton{
+                self.showSingleButtonAlert(title: AlertText.Title.alert, msg: msg) {
                     self.changeUI()
                 }
             } else {
@@ -165,7 +162,7 @@ extension LoginViewController: LoginViewModelDelegate{
                         windows.first?.makeKeyAndVisible()
                     }
                 } else {
-                    self.showSingleButtonAlert(title: "Alert", msg: msg, okClosure: nil)
+                    self.showSingleButtonAlert(title: AlertText.Title.alert, msg: msg, okClosure: nil)
                 }
             }
         }

@@ -65,9 +65,9 @@ class AddressListViewController: UIViewController {
         backButton.title = "" // Set an empty title
         navigationItem.backBarButtonItem = backButton
         
-        lblShippingAddress.font = UIFont(name: Font.fontThin.rawValue, size: 18)
+        lblShippingAddress.font = UIFont.customFont(Font.fontThin, size: 18)
         btnPlaceOrder.layer.cornerRadius = 5
-        btnPlaceOrder.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
+        btnPlaceOrder.titleLabel?.font = UIFont.customFont(Font.fontBold, size: 20)
     }
     
     //MARK: - @objc Funtions

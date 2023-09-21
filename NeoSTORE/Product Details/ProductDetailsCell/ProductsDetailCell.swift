@@ -41,8 +41,8 @@ class ProductsDetailCell: UITableViewCell {
     //MARK: - Functions
     private func setUpUI(){
         containerView.layer.cornerRadius = 5
-        lblDescription.font = UIFont(name: Font.fontRegular.rawValue, size: 15)
-        lblTextDescription.font = UIFont(name: Font.fontThin.rawValue, size: 10)
+        lblDescription.font = UIFont.customFont(Font.fontRegular, size: 15)
+        lblTextDescription.font = UIFont.customFont(Font.fontThin, size: 10)
     }
     
     private func setDelegates(){

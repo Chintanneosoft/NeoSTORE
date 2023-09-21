@@ -30,11 +30,6 @@ class OrderDetailsViewController: UIViewController {
     private func setUpNavBar() {
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "Order ID: "  + String(describing: (orderId ?? 0))
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
     }
     
     private func setDelegates(){

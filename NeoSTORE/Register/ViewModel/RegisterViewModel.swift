@@ -12,6 +12,8 @@ class RegisterViewModel: NSObject {
     private let registerAPIService = RegisterAPIService()
     private let validation = Validation()
     
+    var txtFieldData = [["First Name","username_icon"],["Last Name","username_icon"],["Email","email_icon"],["Password","password_icon"],["Confirm Password","password_icon"],["Phone Number","cellphone_icon"]]
+    
     //MARK: - RegisterViewModelDelegate Object Declare
     weak var registerViewModelDelegate: RegisterViewModelDelegate?
     

@@ -6,7 +6,7 @@ class RegisterViewController: BaseViewController {
     //MARK: - IBOutlets
     @IBOutlet weak var lblHeading: UILabel!
     @IBOutlet weak var lblTermsAndConditions: UILabel!
-    @IBOutlet var containerView: [UIView]!
+    @IBOutlet var genderView: UIView!
     @IBOutlet weak var tfFirstName: UITextField!
     @IBOutlet weak var tfLastName: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
@@ -18,6 +18,9 @@ class RegisterViewController: BaseViewController {
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var termsAndCondition: UIButton!
     @IBOutlet weak var registerScrollView: UIScrollView!
+    @IBOutlet var txtCollection: [UITextField]!
+    
+    let registerViewModel = RegisterViewModel()
     
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -38,45 +41,25 @@ class RegisterViewController: BaseViewController {
         
         navigationItem.title = "Register"
         
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        
-        
         //Labels
-        lblHeading.font = UIFont(name: Font.fontBold.rawValue, size: 45)
-        lblTermsAndConditions.font = UIFont(name: Font.fontBold.rawValue, size: 13)
-        
-        //Views
-        for v in containerView{
-            v.layer.borderWidth = 1.0
-            v.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
-        }
+        lblHeading.font = UIFont.customFont(Font.fontBold, size: 45)
+        lblTermsAndConditions.font = UIFont.customFont(Font.fontBold, size: 13)
         
         //TextFields
-        tfFirstName.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfFirstName.textColor = UIColor(named: "Primary Foreground")
-        tfFirstName.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        tfLastName.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfLastName.textColor = UIColor(named: "Primary Foreground")
-        tfLastName.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        tfEmail.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfEmail.textColor = UIColor(named: "Primary Foreground")
-        tfEmail.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        tfPassword.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfPassword.textColor = UIColor(named: "Primary Foreground")
-        tfPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        tfConfirmPassword.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfConfirmPassword.textColor = UIColor(named: "Primary Foreground")
-        tfConfirmPassword.attributedPlaceholder = NSAttributedString(string: "Confirm Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        tfPhoneNumber.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfPhoneNumber.textColor = UIColor(named: "Primary Foreground")
-        tfPhoneNumber.attributedPlaceholder = NSAttributedString(string: "Phone Number", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
+        for (index,txtv) in txtCollection.enumerated(){
+            txtv.layer.borderWidth = 1.0
+            txtv.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+            txtv.font = UIFont.customFont(Font.fontRegular, size: 18)
+            txtv.textColor = UIColor(named: "Primary Foreground")
+            txtv.setPlaceholder(registerViewModel.txtFieldData[index][0])
+            txtv.setIcon(UIImage(named: registerViewModel.txtFieldData[index][1])!)
+        }
+        
+        genderView.layer.borderWidth = 1.0
+        genderView.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
         
         //Buttons
-        btnRegister.titleLabel?.font =  UIFont(name: Font.fontRegular.rawValue, size: 26)
+        btnRegister.titleLabel?.font = UIFont.customFont(Font.fontRegular, size: 26)
         btnRegister.layer.cornerRadius = 5.0
     }
     

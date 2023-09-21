@@ -3,13 +3,11 @@ import SDWebImage
 import MobileCoreServices
 import UniformTypeIdentifiers
 
-
 //MARK: - ProfileViewController
 class ProfileViewController: BaseViewController {
     
     //MARK: - IBOutlets
     @IBOutlet weak var profileImg: UIImageView!
-    @IBOutlet var containerViews: [UIView]!
     @IBOutlet weak var tfFirstName: UITextField!
     @IBOutlet weak var tfLastName: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
@@ -19,6 +17,7 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var btnRestPassword: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var profileScrollView: UIScrollView!
+    @IBOutlet var txtCollection: [UITextField]!
     
     
     //MARK: - properties
@@ -65,53 +64,27 @@ class ProfileViewController: BaseViewController {
         navigationController?.navigationBar.isHidden = false
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         navigationItem.title = "My Account"
-        
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
     }
     
     //MARK: - Set Up UI
     private func setUpUI(){
         
-        //Views
-        for v in containerViews{
-            v.layer.borderWidth = 1.0
-            v.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+        //Text Fields
+        for (index,txtv) in txtCollection.enumerated(){
+            txtv.layer.borderWidth = 1.0
+            txtv.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+            txtv.isEnabled = false
+            txtv.font = UIFont.customFont(Font.fontRegular, size: 18)
+            txtv.setPlaceholder(profileViewModel.txtFieldData[index][0])
+            txtv.textColor = UIColor(named: "Primary Foreground")
+            txtv.setIcon(UIImage(named: profileViewModel.txtFieldData[index][1])!)
         }
         
-        //Text Fields
         tfFirstName.text = userData?.data?.user_data?.first_name
         tfLastName.text = userData?.data?.user_data?.last_name
         tfEmail.text = userData?.data?.user_data?.email
         tfPhone.text = userData?.data?.user_data?.phone_no
         tfDOB.text = userData?.data?.user_data?.dob
-        
-        tfDOB.isEnabled = false
-        tfEmail.isEnabled = false
-        tfPhone.isEnabled = false
-        tfLastName.isEnabled = false
-        tfFirstName.isEnabled = false
-        
-        tfDOB.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfPhone.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfEmail.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfLastName.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        tfFirstName.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        
-        tfDOB.attributedPlaceholder = NSAttributedString(string: "DOB", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        tfPhone.attributedPlaceholder = NSAttributedString(string: "Phone Number", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        tfEmail.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        tfLastName.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        tfFirstName.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
-        
-        tfDOB.textColor = UIColor(named: "Primary Foreground")
-        tfEmail.textColor = UIColor(named: "Primary Foreground")
-        tfPhone.textColor = UIColor(named: "Primary Foreground")
-        tfLastName.textColor = UIColor(named: "Primary Foreground")
-        tfFirstName.textColor = UIColor(named: "Primary Foreground")
         
         //Image
         if let img = userData?.data?.user_data?.profile_pic{
@@ -127,11 +100,10 @@ class ProfileViewController: BaseViewController {
         
         //Buttons
         btnEditProflie.layer.cornerRadius = 5
-        btnEditProflie.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        btnRestPassword.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
+        btnEditProflie.titleLabel?.font = UIFont.customFont(Font.fontRegular, size: 18)
+        btnRestPassword.titleLabel?.font = UIFont.customFont(Font.fontRegular, size: 18)
         btnCancel.layer.cornerRadius = 5
-        btnCancel.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
-        btnCancel.titleLabel?.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
+        btnCancel.titleLabel?.font = UIFont.customFont(Font.fontRegular, size: 18)
         
         mainScrollView = profileScrollView
     }
@@ -160,10 +132,8 @@ class ProfileViewController: BaseViewController {
     func updateDate() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
-        
         let selectedDate = datePicker.date
         let formattedDate = dateFormatter.string(from: selectedDate)
-        
         tfDOB.text = formattedDate
     }
     
@@ -251,7 +221,7 @@ class ProfileViewController: BaseViewController {
     }
     
     @IBAction func btnResetPasswordTapped(_ sender: UIButton) {
-        let profileViewController = ResetPasswordViewController(nibName: "ResetPasswordViewController", bundle: nil)
+        let profileViewController = ResetPasswordViewController.loadFromNib()
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     

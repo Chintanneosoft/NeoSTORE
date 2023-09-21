@@ -13,7 +13,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpUI(){
-        lbl.font = UIFont(name: Font.fontRegular.rawValue, size: 23)
+        lbl.font = UIFont.customFont(Font.fontRegular, size: 23)
     }
     
     func setContraints(lblname: String,lblPosition:Positions,imgName: String,imgPosition:Positions){

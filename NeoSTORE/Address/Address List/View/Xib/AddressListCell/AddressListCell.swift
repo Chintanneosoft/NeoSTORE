@@ -29,8 +29,8 @@ class AddressListCell: UITableViewCell {
     }
     
     private func setUpUI(){
-        lblTitle.font = UIFont(name: Font.fontRegular.rawValue, size: 22)
-        lblAddress.font = UIFont(name: Font.fontThin.rawValue, size: 15)
+        lblTitle.font = UIFont.customFont(Font.fontRegular, size: 22)
+        lblAddress.font = UIFont.customFont(Font.fontThin, size: 15)
         containerView.layer.cornerRadius = 5
         containerView.layer.borderWidth = 0.1
     }

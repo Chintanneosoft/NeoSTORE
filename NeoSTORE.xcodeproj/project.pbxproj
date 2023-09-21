@@ -22,7 +22,6 @@
 		4A5DCE962AB3095A00489711 /* StoreLocatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5DCE942AB3095A00489711 /* StoreLocatorViewController.xib */; };
 		4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A711FCC2A8E551D00C1348D /* HomeViewController.swift */; };
 		4A711FCF2A8E551D00C1348D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A711FCD2A8E551D00C1348D /* HomeViewController.xib */; };
-		4A73906D2A8E20A9004E12A3 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A73906B2A8E20A9004E12A3 /* LoginViewController.xib */; };
 		4A7390712A8E2205004E12A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A7390702A8E2205004E12A3 /* Main.storyboard */; };
 		4A7390742A8E2715004E12A3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7390722A8E2715004E12A3 /* RegisterViewController.swift */; };
 		4A7390752A8E2715004E12A3 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A7390732A8E2715004E12A3 /* RegisterViewController.xib */; };
@@ -128,6 +127,9 @@
 		4AF66A492A98D07100F65CDA /* ProductsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF66A472A98D07100F65CDA /* ProductsDetailCell.swift */; };
 		4AF66A4A2A98D07100F65CDA /* ProductsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF66A482A98D07100F65CDA /* ProductsDetailCell.xib */; };
 		789B8DE97A977ED5B74BE826 /* Pods_NeoSTORE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E02CC93B97DD9DC88229445 /* Pods_NeoSTORE.framework */; };
+		928578582ABC092B0053B452 /* StoreLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928578572ABC092B0053B452 /* StoreLocatorViewModel.swift */; };
+		9285785B2ABC09660053B452 /* StoreLocatorAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9285785A2ABC09660053B452 /* StoreLocatorAPIService.swift */; };
+		92B01B352ABB349300DD4B28 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B01B342ABB349300DD4B28 /* LoginViewController.xib */; };
 		DA1371B13BDABA37FD650F58 /* Pods_NeoSTORETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC83DFAD0C3B0555542676E0 /* Pods_NeoSTORETests.framework */; };
 /* End PBXBuildFile section */
 
@@ -167,7 +169,6 @@
 		4A5DCE942AB3095A00489711 /* StoreLocatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreLocatorViewController.xib; sourceTree = "<group>"; };
 		4A711FCC2A8E551D00C1348D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4A711FCD2A8E551D00C1348D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
-		4A73906B2A8E20A9004E12A3 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		4A7390702A8E2205004E12A3 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4A7390722A8E2715004E12A3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4A7390732A8E2715004E12A3 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -279,6 +280,9 @@
 		6D032C117B534D972C7A3592 /* Pods-NeoSTORETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORETests.release.xcconfig"; path = "Target Support Files/Pods-NeoSTORETests/Pods-NeoSTORETests.release.xcconfig"; sourceTree = "<group>"; };
 		8274638D5B9ECF38D689ECBF /* Pods-NeoSTORETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORETests.debug.xcconfig"; path = "Target Support Files/Pods-NeoSTORETests/Pods-NeoSTORETests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E02CC93B97DD9DC88229445 /* Pods_NeoSTORE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeoSTORE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		928578572ABC092B0053B452 /* StoreLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewModel.swift; sourceTree = "<group>"; };
+		9285785A2ABC09660053B452 /* StoreLocatorAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorAPIService.swift; sourceTree = "<group>"; };
+		92B01B342ABB349300DD4B28 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		A6B9332F07094AF4F250DF32 /* Pods-NeoSTORE-NeoSTOREUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORE-NeoSTOREUITests.release.xcconfig"; path = "Target Support Files/Pods-NeoSTORE-NeoSTOREUITests/Pods-NeoSTORE-NeoSTOREUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC83DFAD0C3B0555542676E0 /* Pods_NeoSTORETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeoSTORETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -422,7 +426,7 @@
 		4A368CE82A8F4C2300C0D7BD /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				4A73906B2A8E20A9004E12A3 /* LoginViewController.xib */,
+				92B01B342ABB349300DD4B28 /* LoginViewController.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -439,6 +443,7 @@
 		4A5DCE8D2AB308F400489711 /* Store Locator */ = {
 			isa = PBXGroup;
 			children = (
+				928578592ABC093F0053B452 /* Web Services */,
 				4A5DCE902AB3091C00489711 /* Model */,
 				4A5DCE8F2AB3091000489711 /* View Model */,
 				4A5DCE8E2AB3090800489711 /* View */,
@@ -458,6 +463,7 @@
 		4A5DCE8F2AB3091000489711 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				928578572ABC092B0053B452 /* StoreLocatorViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -1479,6 +1485,14 @@
 			path = RatingPopUp;
 			sourceTree = "<group>";
 		};
+		928578592ABC093F0053B452 /* Web Services */ = {
+			isa = PBXGroup;
+			children = (
+				9285785A2ABC09660053B452 /* StoreLocatorAPIService.swift */,
+			);
+			path = "Web Services";
+			sourceTree = "<group>";
+		};
 		C926CFBCB25439DBA87CA4F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1625,9 +1639,9 @@
 				4A9A6C102A923E2B00250B79 /* AddAddressViewController.xib in Resources */,
 				4A5DCE962AB3095A00489711 /* StoreLocatorViewController.xib in Resources */,
 				4AF66A462A98D04C00F65CDA /* ProductsNameCell.xib in Resources */,
+				92B01B352ABB349300DD4B28 /* LoginViewController.xib in Resources */,
 				4A933CD42AA89D5D001652CC /* OrderDetailsViewController.xib in Resources */,
 				4A7FD2822A8DE9D800AEF0CB /* Assets.xcassets in Resources */,
-				4A73906D2A8E20A9004E12A3 /* LoginViewController.xib in Resources */,
 				4A91ED342A93673B00915A0A /* HomeCollectionViewCell.xib in Resources */,
 				4AF66A4A2A98D07100F65CDA /* ProductsDetailCell.xib in Resources */,
 				4A7FD2E22A8E05DF00AEF0CB /* Gotham-Medium.otf in Resources */,
@@ -1801,6 +1815,7 @@
 				4A9A251A2A949B6900892EB0 /* RegisterViewModel.swift in Sources */,
 				4A90275B2AA5F46300D3BB81 /* AddAddressAPIService.swift in Sources */,
 				4A933CCE2AA89D24001652CC /* OrderDetailsModel.swift in Sources */,
+				928578582ABC092B0053B452 /* StoreLocatorViewModel.swift in Sources */,
 				4A4C835C2AB4702B009D2F9D /* StarCell.swift in Sources */,
 				4A933CD32AA89D5D001652CC /* OrderDetailsViewController.swift in Sources */,
 				4A9C3B6C2AAF125C00816FB7 /* ResetPasswordViewModel.swift in Sources */,
@@ -1839,6 +1854,7 @@
 				4A711FCE2A8E551D00C1348D /* HomeViewController.swift in Sources */,
 				4A91ED0C2A932CDC00915A0A /* ProductListViewController.swift in Sources */,
 				4AF66A492A98D07100F65CDA /* ProductsDetailCell.swift in Sources */,
+				9285785B2ABC09660053B452 /* StoreLocatorAPIService.swift in Sources */,
 				4A9A6C092A923E0100250B79 /* AddressListViewController.swift in Sources */,
 				4A8E94A02A973E540067306F /* ProductListViewModel.swift in Sources */,
 				4A4C83522AB423AF009D2F9D /* UITableView+Extension.swift in Sources */,

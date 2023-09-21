@@ -47,7 +47,7 @@ class ProductListViewController: BaseViewController {
     }
     
     private func setUpUI(){
-        tfsearch.font = UIFont(name: Font.fontRegular.rawValue, size: 18)
+        tfsearch.font = UIFont.customFont(Font.fontRegular, size: 18)
         let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         tfsearch.leftView = leftPaddingView
         tfsearch.leftViewMode = .always
@@ -58,12 +58,6 @@ class ProductListViewController: BaseViewController {
     private func setUpNavBar() {
         setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
         navigationItem.title = productListViewModel.getTitle(categoryID: productCategoryId ?? 0)
-        
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
         
         let searchButton = UIBarButtonItem(image: UIImage(named: "search_icon"), style: .plain, target: self, action: #selector(searchIconTapped))
         navigationItem.rightBarButtonItem = searchButton

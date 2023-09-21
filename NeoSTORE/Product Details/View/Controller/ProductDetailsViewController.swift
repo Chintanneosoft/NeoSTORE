@@ -38,20 +38,14 @@ class ProductDetailsViewController: UIViewController {
     private func setUpUI(){
         btnRate.layer.cornerRadius = 5
         btnBuyNow.layer.cornerRadius = 5
-        btnRate.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
-        btnBuyNow.titleLabel?.font = UIFont(name: Font.fontBold.rawValue, size: 20)
+        btnRate.titleLabel?.font = UIFont.customFont(Font.fontBold, size: 20)
+        btnBuyNow.titleLabel?.font = UIFont.customFont(Font.fontBold, size: 20)
     }
     
     private func setUpNavBar(){
         
         setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
         navigationItem.title = productDetailsViewModel.productsDetails?.data?.name
-        
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        navigationItem.backBarButtonItem = backButton
-        
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
     }
     
     private func setDelegates(){
