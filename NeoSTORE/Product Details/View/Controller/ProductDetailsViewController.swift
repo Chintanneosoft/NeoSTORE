@@ -32,7 +32,7 @@ class ProductDetailsViewController: UIViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
+        return ProductDetailsViewController(nibName: ViewControllerString.ProductDetails.rawValue, bundle: nil)
     }
     
     private func setUpUI(){
@@ -43,7 +43,6 @@ class ProductDetailsViewController: UIViewController {
     }
     
     private func setUpNavBar(){
-        
         setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
         navigationItem.title = productDetailsViewModel.productsDetails?.data?.name
     }
@@ -54,9 +53,8 @@ class ProductDetailsViewController: UIViewController {
     }
     
     private func xibRegister(){
-        productsDetailsTableView.register(UINib(nibName: "ProductsNameCell", bundle: nil), forCellReuseIdentifier: "ProductsNameCell")
-        productsDetailsTableView.register(UINib(nibName: "ProductsDetailCell", bundle: nil), forCellReuseIdentifier: "ProductsDetailCell")
-        productsDetailsTableView.register(UINib(nibName: "ProductBottomCell", bundle: nil), forCellReuseIdentifier: "ProductBottomCell")
+        productsDetailsTableView.register(UINib(nibName: Cells.ProductsNameCell.rawValue, bundle: nil), forCellReuseIdentifier: Cells.ProductsNameCell.rawValue)
+        productsDetailsTableView.register(UINib(nibName: Cells.ProductsDetailCell.rawValue, bundle: nil), forCellReuseIdentifier: Cells.ProductsDetailCell.rawValue)
     }
     
     private func callViewModelFetchProductDetails(){
@@ -114,12 +112,12 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
-            let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductsNameCell", for: indexPath) as! ProductsNameCell
+            let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: Cells.ProductsNameCell.rawValue, for: indexPath) as! ProductsNameCell
             cell.setDetails(productName: productDetailsViewModel.productsDetails?.data?.name ?? "", producerName: productDetailsViewModel.productsDetails?.data?.producer ?? "", category: productCategory ?? "", rating: productDetailsViewModel.productsDetails?.data?.rating ?? 0)
             cell.selectionStyle = .none
             return cell
         case 1:
-            let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductsDetailCell", for: indexPath) as! ProductsDetailCell
+            let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: Cells.ProductsDetailCell.rawValue, for: indexPath) as! ProductsDetailCell
             cell.setDetails(productImages: productDetailsViewModel.productsDetails?.data?.productImages ?? [], productDescription: productDetailsViewModel.productsDetails?.data?.dataDescription ?? "", price: productDetailsViewModel.productsDetails?.data?.cost ?? 0)
             cell.productDetailCellDelegate = self
             cell.selectionStyle = .none
@@ -127,7 +125,7 @@ extension ProductDetailsViewController: UITableViewDelegate, UITableViewDataSour
         default:
             print("")
         }
-        let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: "ProductsNameCell", for: indexPath)
+        let cell = productsDetailsTableView.dequeueReusableCell(withIdentifier: Cells.ProductsNameCell.rawValue, for: indexPath)
         return cell
     }
 }
@@ -144,9 +142,8 @@ extension ProductDetailsViewController: ProductDetailsViewModelDelegate{
     }
     
     func failureProductDetails(msg: String) {
-        print(msg)
         DispatchQueue.main.async {
-            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
+            self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
         }
     }
 }

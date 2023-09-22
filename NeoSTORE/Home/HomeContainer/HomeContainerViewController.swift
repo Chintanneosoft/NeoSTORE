@@ -8,7 +8,7 @@ class HomeContainerViewController: UIViewController {
         case opened
         case closed
     }
-
+    
     private var drawerState: DrawerState = .closed
     
     let drawerVC = DrawerViewController.loadFromNib() as! DrawerViewController
@@ -70,21 +70,21 @@ extension HomeContainerViewController: HomeViewControllerDelegate, DrawerViewCon
         case .closed:
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,initialSpringVelocity: 0,options: .curveEaseInOut){
                 self.navVC?.view.frame.origin.x = self.homeVC.view.frame.size.width - 80
-                self.homeVC.view.backgroundColor = UIColor(named: "Black Background")
+                self.homeVC.view.backgroundColor = UIColor.customColor(Color.blackBackground)
                 self.homeVC.view.addGestureRecognizer(self.tapGesture as! UITapGestureRecognizer)
-            } completion: { [weak self] done in
+            } completion: {  done in
                 if done{
-                    self?.drawerState = .opened
+                    self.drawerState = .opened
                 }
             }
         case .opened:
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8,initialSpringVelocity: 0,options: .curveEaseInOut){
                 self.navVC?.view.frame.origin.x = 0
-                self.homeVC.view.backgroundColor = UIColor(named: "Primary Background")
+                self.homeVC.view.backgroundColor = UIColor.customColor(Color.primaryBackground)
                 self.homeVC.view.removeGestureRecognizer(self.tapGesture as! UITapGestureRecognizer)
-            } completion: { [weak self] done in
+            } completion: {  done in
                 if done{
-                    self?.drawerState = .closed
+                    self.drawerState = .closed
                 }
             }
         }

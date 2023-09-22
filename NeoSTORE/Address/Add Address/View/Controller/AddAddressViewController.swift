@@ -33,7 +33,7 @@ class AddAddressViewController: BaseViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return AddAddressViewController(nibName: "AddAddressViewController", bundle: nil)
+        return AddAddressViewController(nibName: ViewControllerString.AddAddress.rawValue, bundle: nil)
     }
     
     private func setDelegates(){
@@ -55,25 +55,21 @@ class AddAddressViewController: BaseViewController {
     private func setUpNavBar(){
         //Navigation bar
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
-        navigationItem.title = "Add Address"
-        
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        navigationItem.backBarButtonItem = backButton
+        navigationItem.title = ScreenText.AddAddress.navTitle.rawValue
     }
        
     //MARK: - IBActions
     @IBAction func btnSaveAddressTapped(_ sender: UIButton) {
         if tvAddress.text == "" || tfLandmark.text == "" || tfCity.text == "" || tfState.text == "" || tfCountry.text == "" || tfZipCode.text == ""{
-            self.showSingleButtonAlert(title: "Alert", msg: "Fill all the Fields", okClosure: nil)
+            self.showSingleButtonAlert(title: AlertText.Title.alert.rawValue, msg: AlertText.Message.emptyFields.rawValue, okClosure: nil)
         }
         else {
             let address1 = tvAddress.text + " " + (tfLandmark.text ?? "") + " "
             let address2 = (tfCity.text ?? "") + " " + (tfZipCode.text ?? "") + " "
             let address3 = (tfState.text ?? "") + " " + (tfCountry.text ?? "")
             let address = address1 + address2 + address3
-            UserDefaults.standard.set(address, forKey: "userAddress")
-            showSingleButtonAlert(title: "Success", msg: "our Address is Saved Successfully") {
+            UserDefaults.standard.set(address, forKey: UserDefaultsKeys.userAddress.rawValue)
+            showSingleButtonAlert(title: AlertText.Title.success.rawValue, msg: AlertText.Message.addAddressSuccess.rawValue) {
                 self.navigationController?.popViewController(animated: true)
             }
         }

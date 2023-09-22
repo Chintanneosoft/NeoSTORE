@@ -34,7 +34,7 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return StoreLocatorViewController(nibName: "StoreLocatorViewController", bundle: nil)
+        return StoreLocatorViewController(nibName: ViewControllerString.StoreLocator.rawValue, bundle: nil)
     }
     
     private func setUpUI(){
@@ -62,7 +62,7 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
         storeLocatorTableView.delegate = self
         storeLocatorTableView.dataSource = self
         
-        storeLocatorTableView.register(UINib(nibName: "StoreLocatorCell", bundle: nil), forCellReuseIdentifier: "StoreLocatorCell")
+        storeLocatorTableView.register(UINib(nibName: Cells.StoreLocatorCell.rawValue, bundle: nil), forCellReuseIdentifier: Cells.StoreLocatorCell.rawValue)
     }
     
     private func checkLocationAuthorization() {
@@ -200,7 +200,7 @@ extension StoreLocatorViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = storeLocatorTableView.dequeueReusableCell(withIdentifier: "StoreLocatorCell", for: indexPath) as! StoreLocatorCell
+        let cell = storeLocatorTableView.dequeueReusableCell(withIdentifier: Cells.StoreLocatorCell.rawValue, for: indexPath) as! StoreLocatorCell
         cell.lblLocatorName.text = storeData[indexPath.row]
         return cell
     }

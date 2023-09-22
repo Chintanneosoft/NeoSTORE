@@ -19,6 +19,6 @@ class TotalCell: UITableViewCell {
     }
     
     func setDetails(totalPrice: Int){
-        ltlTotalPrice.text = "₹" + String(totalPrice)
+        ltlTotalPrice.text = ScreenText.Common.rupees.rawValue + String(totalPrice)
     }
 }

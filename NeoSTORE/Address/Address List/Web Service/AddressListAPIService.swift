@@ -4,7 +4,7 @@ class AddressListAPIService: NSObject {
     
     //MARK: - API Functions
     func placeOrder(addess: String,completion: @escaping(Result<OrderList,Error>) -> Void){
-        let param = ["address":addess]
+        let param = [APIServiceText.address.rawValue:addess]
         APIManager.shared.callRequest(apiCallType: .placeOrder(param: param)){ (response) in
             switch response {
             case .success(let value):

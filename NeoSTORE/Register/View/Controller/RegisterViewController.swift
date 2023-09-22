@@ -31,7 +31,7 @@ class RegisterViewController: BaseViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return RegisterViewController(nibName: "RegisterViewController", bundle: nil)
+        return RegisterViewController(nibName: ViewControllerString.Register.rawValue, bundle: nil)
     }
     
     private func setUpUI(){
@@ -39,7 +39,7 @@ class RegisterViewController: BaseViewController {
         self.navigationController?.navigationBar.isHidden = false
         setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
         
-        navigationItem.title = "Register"
+        navigationItem.title = ScreenText.Register.navTitle.rawValue
         
         //Labels
         lblHeading.font = UIFont.customFont(Font.fontBold, size: 45)
@@ -48,15 +48,15 @@ class RegisterViewController: BaseViewController {
         //TextFields
         for (index,txtv) in txtCollection.enumerated(){
             txtv.layer.borderWidth = 1.0
-            txtv.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+            txtv.layer.borderColor = UIColor.customColor(Color.primaryForeground).cgColor
             txtv.font = UIFont.customFont(Font.fontRegular, size: 18)
-            txtv.textColor = UIColor(named: "Primary Foreground")
+            txtv.textColor = UIColor.customColor(Color.primaryForeground)
             txtv.setPlaceholder(registerViewModel.txtFieldData[index][0])
             txtv.setIcon(UIImage(named: registerViewModel.txtFieldData[index][1])!)
         }
         
         genderView.layer.borderWidth = 1.0
-        genderView.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+        genderView.layer.borderColor = UIColor.customColor(Color.primaryForeground).cgColor
         
         //Buttons
         btnRegister.titleLabel?.font = UIFont.customFont(Font.fontRegular, size: 26)
@@ -75,7 +75,7 @@ class RegisterViewController: BaseViewController {
     private func sendValidations(){
         let registerViewModel = RegisterViewModel()
         registerViewModel.registerViewModelDelegate = self
-        registerViewModel.callValidations(fname: tfFirstName.text ?? "", lname: tfLastName.text ?? "", email: tfEmail.text ?? "", pass: tfPassword.text ?? "", cpass: tfConfirmPassword.text ?? "", phone: tfPhoneNumber.text ?? "", btnSelected:btnMale.isSelected ? "Male" : (btnFemale.isSelected ? "Female" : ""), termsAndCondition: termsAndCondition.isSelected)
+        registerViewModel.callValidations(fname: tfFirstName.text ?? "", lname: tfLastName.text ?? "", email: tfEmail.text ?? "", pass: tfPassword.text ?? "", cpass: tfConfirmPassword.text ?? "", phone: tfPhoneNumber.text ?? "", btnSelected:btnMale.isSelected ? ScreenText.Register.male.rawValue : (btnFemale.isSelected ? ScreenText.Register.female.rawValue : ""), termsAndCondition: termsAndCondition.isSelected)
     }
     
     //MARK: - @objc Functions
@@ -133,16 +133,16 @@ extension RegisterViewController: UITextFieldDelegate{
 //MARK: - RegisterViewModelDelegate
 extension RegisterViewController: RegisterViewModelDelegate{
     //wronng
-    func showAlert(msg:String) {
+    func showAlert(result:Bool,msg:String) {
         DispatchQueue.main.async {
             self.hideLoader()
-            if msg == "Registered Successfully"{
-                self.showSingleButtonAlert(title: "Alert", msg: msg) {
+            if result{
+                self.showSingleButtonAlert(title: AlertText.Title.success.rawValue, msg: msg) {
                     let nextViewController = LoginViewController.loadFromNib()
                     self.navigationController?.pushViewController(nextViewController, animated: true)
                 }
             }  else {
-                self.showSingleButtonAlert(title: "Alert", msg: msg, okClosure: nil)
+                self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
             }
         }
     }

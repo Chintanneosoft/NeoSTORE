@@ -31,7 +31,7 @@ class CartViewModel: NSObject {
     //API Calls
     func callFetchCart(){
         cartAPIService.getCartDetails{
-            response in
+             response in
             switch response{
             case .success(let value):
                 if (value.0 != nil){
@@ -50,7 +50,7 @@ class CartViewModel: NSObject {
     
     func callUpdateCart(productId:Int,quantity:Int){
         cartAPIService.updateCart(productId:productId,quantity:quantity){
-            response in
+             response in
             switch response{
             case .success(let value):
                 if value.data {
@@ -67,7 +67,7 @@ class CartViewModel: NSObject {
     
     func callDeleteCart(productId: Int){
         cartAPIService.deleteCart(productId: productId){
-            response in
+             response in
             switch response{
             case .success(let value):
                 if value.data {

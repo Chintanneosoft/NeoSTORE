@@ -31,7 +31,7 @@ class LoginViewController: BaseViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return LoginViewController(nibName: "LoginViewController", bundle: nil)
+        return LoginViewController(nibName: ViewControllerString.Login.rawValue, bundle: nil)
     }
     
     private func setDelegates(){
@@ -50,9 +50,9 @@ class LoginViewController: BaseViewController {
         //TextFields Views
         for (index,txtv) in txtContainerViews.enumerated(){
             txtv.layer.borderWidth = 1.0
-            txtv.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+            txtv.layer.borderColor = UIColor.customColor(Color.primaryForeground).cgColor
             txtv.font = UIFont.customFont(Font.fontRegular, size: 18)
-            txtv.textColor = UIColor(named: "Primary Foreground")
+            txtv.textColor = UIColor.customColor(Color.primaryForeground)
             txtv.setPlaceholder(loginViewModel.txtFieldData[index][0])
             txtv.setIcon(UIImage(named: loginViewModel.txtFieldData[index][1])!)
         }
@@ -90,12 +90,12 @@ class LoginViewController: BaseViewController {
             tfPassword.isHidden = true
             lblForgotPassword.isHidden = true
             backImg.isHidden = false
-            btnLogin.setTitle(ScreenText.Login.submitButton, for:.normal)
+            btnLogin.setTitle(ScreenText.Login.submitButton.rawValue, for:.normal)
         } else {
             lblForgotPassword.isHidden = false
             tfPassword.isHidden = false
             backImg.isHidden = true
-            btnLogin.setTitle(ScreenText.Login.loginButton, for:.normal)
+            btnLogin.setTitle(ScreenText.Login.loginButton.rawValue, for:.normal)
         }
     }
     
@@ -107,7 +107,7 @@ class LoginViewController: BaseViewController {
     //MARK: - IBActions
     @IBAction func btnLoginTapped(_ sender: UIButton) {
         //wrong
-        if btnLogin.titleLabel?.text == ScreenText.Login.submitButton{
+        if btnLogin.titleLabel?.text == ScreenText.Login.submitButton.rawValue{
             self.showLoader()
             callForgotPass()
         } else {
@@ -120,7 +120,7 @@ class LoginViewController: BaseViewController {
         if lblForgotPassword.isHidden == true{
             changeUI()
         }
-        let nextViewController = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
+        let nextViewController = RegisterViewController.loadFromNib()
         navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
@@ -147,22 +147,22 @@ extension LoginViewController: UITextFieldDelegate{
 extension LoginViewController: LoginViewModelDelegate{
     
     //wrong
-    func showAlert(msg:String) {
+    func showAlert(result: Bool,msg:String) {
         DispatchQueue.main.async {
             self.hideLoader()
-            if self.btnLogin.titleLabel?.text == ScreenText.Login.submitButton{
-                self.showSingleButtonAlert(title: AlertText.Title.alert, msg: msg) {
+            if self.btnLogin.titleLabel?.text == ScreenText.Login.submitButton.rawValue{
+                self.showSingleButtonAlert(title: AlertText.Title.alert.rawValue, msg: msg) {
                     self.changeUI()
                 }
             } else {
-                if msg == "LoggedIn Successfully"{
+                if result{
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                         let windows = windowScene.windows
                         windows.first?.rootViewController = UINavigationController(rootViewController: HomeContainerViewController.loadFromNib())
                         windows.first?.makeKeyAndVisible()
                     }
                 } else {
-                    self.showSingleButtonAlert(title: AlertText.Title.alert, msg: msg, okClosure: nil)
+                    self.showSingleButtonAlert(title: AlertText.Title.alert.rawValue, msg: msg, okClosure: nil)
                 }
             }
         }

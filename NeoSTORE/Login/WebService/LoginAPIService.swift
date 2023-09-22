@@ -6,7 +6,7 @@ class LoginAPIService: NSObject {
     //APIRequest Function Call
     func loginUser(email: String, pass: String, completion: @escaping(Result<(User?,UserFailure?),Error>) -> Void){
         
-        let params = ["email": email, "password": pass]
+        let params = [APIServiceText.email.rawValue: email,APIServiceText.password.rawValue: pass]
         
         APIManager.shared.callRequest(apiCallType: .userLogin(param: params)){ (response) in
             switch response {
@@ -24,9 +24,6 @@ class LoginAPIService: NSObject {
                     }
                 }
             case .failure(let error):
-                print("In Failure")
-                debugPrint(error.localizedDescription)
-                print("Wrong pass")
                 completion(.failure(error))
             }
         }
@@ -34,7 +31,7 @@ class LoginAPIService: NSObject {
     
     func forgotPass(email: String, completion: @escaping(Result<UserFailure,Error>) -> Void){
         
-        let params = ["email": email]
+        let params = [APIServiceText.email.rawValue: email]
         
         APIManager.shared.callRequest(apiCallType: .forgotPass(param: params)){ (response) in
             switch response {
@@ -46,9 +43,6 @@ class LoginAPIService: NSObject {
                         completion(.failure(error))
                 }
             case .failure(let error):
-                print("In Failure")
-                debugPrint(error.localizedDescription)
-                print("Wrong pass")
                 completion(.failure(error))
             }
         }

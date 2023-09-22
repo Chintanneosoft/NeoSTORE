@@ -33,7 +33,7 @@ class CartCell: UITableViewCell {
     }
     
     func setDetails(imgUrl: String, productName: String, productCategory: String, price: Int,quantity:Int,productID:Int){
-        lblPrice.text = "₹" + String(price)
+        lblPrice.text = ScreenText.Common.rupees.rawValue + String(price)
         lblProductName.text = productName
         lblProductCategory.text = "(" + productCategory + ")"
         productImg.sd_setImage(with: URL(string: imgUrl))

@@ -20,14 +20,12 @@ class ProductDetailsViewModel: NSObject {
     //API call
     func callProductDetails(productId: Int){
         productDetailsAPIService.fetchProductsDetails(productId: productId){
-            (response) in
+             (response) in
             switch response{
             case .success(let value):
-                print(value)
                 self.productsDetails = value
                 self.productDetailsViewModelDelegate?.setProductDetails()
             case .failure(let error):
-                print(error)
                 self.productDetailsViewModelDelegate?.failureProductDetails(msg: error.localizedDescription)
             }
         }

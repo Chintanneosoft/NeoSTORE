@@ -5,5 +5,4 @@ class ImageSliderCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
 }

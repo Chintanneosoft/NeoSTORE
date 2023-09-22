@@ -24,8 +24,8 @@ class MyOrderCell: UITableViewCell {
     }
     
     func setDetails(orderId: Int,orderDate: String, orderPrice: Int){
-        lblOrderID.text = "Order ID : " + String(orderId)
-        lblOrderDate.text = "Ordered Date: " + orderDate
-        lblPrice.text = "₹" + String(orderPrice)
+        lblOrderID.text = ScreenText.MyOrders.orderID.rawValue + String(orderId)
+        lblOrderDate.text = ScreenText.MyOrders.orderDate.rawValue + orderDate
+        lblPrice.text = ScreenText.Common.rupees.rawValue + String(orderPrice)
     }
 }

@@ -10,8 +10,6 @@ class ProductListViewController: BaseViewController {
     
     //properties
     let productListViewModel = ProductListViewModel()
-    //    var productsDataCopy: [ProductsData] = []
-    //    var productsData: [ProductsData] = []
     var productCategoryId: Int?
     var productImg: UIImage?
     
@@ -32,18 +30,17 @@ class ProductListViewController: BaseViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return ProductListViewController(nibName: "ProductListViewController", bundle: nil)
+        return ProductListViewController(nibName: ViewControllerString.ProductList.rawValue, bundle: nil)
     }
     
     private func setDelegates(){
         productListTableView.delegate = self
         productListTableView.dataSource = self
-        
         tfsearch.delegate = self
     }
     
     private func xibRegister(){
-        productListTableView.register(UINib(nibName: "ProductListCell", bundle: nil), forCellReuseIdentifier: "ProductListCell")
+        productListTableView.register(UINib(nibName: Cells.ProductListCell.rawValue, bundle: nil), forCellReuseIdentifier: Cells.ProductListCell.rawValue)
     }
     
     private func setUpUI(){
@@ -59,10 +56,9 @@ class ProductListViewController: BaseViewController {
         setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
         navigationItem.title = productListViewModel.getTitle(categoryID: productCategoryId ?? 0)
         
-        let searchButton = UIBarButtonItem(image: UIImage(named: "search_icon"), style: .plain, target: self, action: #selector(searchIconTapped))
+        let searchButton = UIBarButtonItem(image: UIImage(named: ImageNames.search.rawValue), style: .plain, target: self, action: #selector(searchIconTapped))
         navigationItem.rightBarButtonItem = searchButton
     }
-    
     //wrong
     //    private func getTitle(categoryID: Int) -> String {
     //        if categoryID == 1 {
@@ -116,7 +112,7 @@ extension ProductListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.ProductListCell.rawValue, for: indexPath) as! ProductListCell
         //wrong
         cell.setDetails(productImgName:productListViewModel.productsDataCopy[indexPath.row].productImages ?? "", productName: productListViewModel.productsDataCopy[indexPath.row].name ?? "", producerName: productListViewModel.productsDataCopy[indexPath.row].producer ?? "", price: productListViewModel.productsDataCopy[indexPath.row].cost ?? 0,rating: productListViewModel.productsDataCopy[indexPath.row].rating ?? 0)
         cell.selectionStyle = .none
@@ -141,9 +137,8 @@ extension ProductListViewController: ProductListViewModelDelegate{
         }
     }
     func failureProductList(msg: String) {
-        print(msg)
         DispatchQueue.main.async {
-            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
+            self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
         }
     }
 }

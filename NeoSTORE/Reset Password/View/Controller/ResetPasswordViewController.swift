@@ -27,7 +27,7 @@ class ResetPasswordViewController: BaseViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return ResetPasswordViewController(nibName: "ResetPasswordViewController", bundle: nil)
+        return ResetPasswordViewController(nibName: ViewControllerString.ResetPassword.rawValue, bundle: nil)
     }
     
     private func setDelegates(){
@@ -38,7 +38,7 @@ class ResetPasswordViewController: BaseViewController {
     
     private func setUpNavBar(){
         setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
-        navigationItem.title = "Reset Password"
+        navigationItem.title = ScreenText.ResetPassword.navTitle.rawValue
     }
     
     private func setUpUI(){
@@ -47,11 +47,11 @@ class ResetPasswordViewController: BaseViewController {
         
         for (index,txtv) in txtCollection.enumerated(){
             txtv.layer.borderWidth = 1.0
-            txtv.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+            txtv.layer.borderColor = UIColor.customColor(Color.primaryForeground).cgColor
             txtv.font = UIFont.customFont(Font.fontRegular, size: 18)
-            txtv.textColor = UIColor(named: "Primary Foreground")
-            txtv.setPlaceholder(resetPasswordViewModel.txtFieldData[index][0])
-            txtv.setIcon(UIImage(named: resetPasswordViewModel.txtFieldData[index][1])!)
+            txtv.textColor = UIColor.customColor(Color.primaryForeground)
+            txtv.setPlaceholder(resetPasswordViewModel.txtFieldData[index][0] as! String)
+            txtv.setIcon(UIImage(named: resetPasswordViewModel.txtFieldData[index][1] as! String)!)
         }
         
         btnResetPassword.titleLabel?.font = UIFont.customFont(Font.fontRegular, size: 18)
@@ -90,15 +90,15 @@ extension ResetPasswordViewController: UITextFieldDelegate{
 //MARK: - ResetPasswordViewModelDelegate
 extension ResetPasswordViewController: ResetPasswordViewModelDelegate{
     
-    func showAlert(msg:String) {
+    func showAlert(result:Bool,msg:String) {
         DispatchQueue.main.async {
             self.hideLoader()
-            if msg == "Password updated successfully"{
-                self.showSingleButtonAlert(title: "Alert", msg: msg) {
+            if result{
+                self.showSingleButtonAlert(title: AlertText.Title.success.rawValue, msg: msg) {
                     self.navigationController?.popViewController(animated: true)
                 }
             } else {
-                self.showSingleButtonAlert(title: "Alert", msg: msg, okClosure: nil)
+                self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
             }
         }
     }

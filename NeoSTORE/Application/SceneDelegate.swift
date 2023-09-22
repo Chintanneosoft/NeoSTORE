@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewController : UIViewController
         // Create your view controller
         if UserDefaults.standard.string(forKey: "accessToken") == nil || UserDefaults.standard.string(forKey: "accessToken") == ""{
-            viewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            viewController = LoginViewController(nibName: ViewControllerString.Login.rawValue, bundle: nil)
         } else {
             viewController = HomeContainerViewController()
         }

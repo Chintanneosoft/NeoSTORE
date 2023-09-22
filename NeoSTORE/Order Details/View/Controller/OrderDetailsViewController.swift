@@ -24,12 +24,12 @@ class OrderDetailsViewController: UIViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return OrderDetailsViewController(nibName: "OrderDetailsViewController", bundle: nil)
+        return OrderDetailsViewController(nibName: ViewControllerString.OrderDetails.rawValue, bundle: nil)
     }
     
     private func setUpNavBar() {
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
-        navigationItem.title = "Order ID: "  + String(describing: (orderId ?? 0))
+        navigationItem.title = ScreenText.MyOrders.orderID.rawValue  + String(describing: (orderId ?? 0))
     }
     
     private func setDelegates(){
@@ -38,8 +38,8 @@ class OrderDetailsViewController: UIViewController {
     }
 
     private func xibRegister(){
-        orderDetailsTableView.register(UINib(nibName: "OrderDetailsCell", bundle: nil), forCellReuseIdentifier: "OrderDetailsCell")
-        orderDetailsTableView.register(UINib(nibName: "TotalCell", bundle: nil), forCellReuseIdentifier: "TotalCell")
+        orderDetailsTableView.register(UINib(nibName: Cells.OrderDetailsCell.rawValue, bundle: nil), forCellReuseIdentifier: Cells.OrderDetailsCell.rawValue)
+        orderDetailsTableView.register(UINib(nibName: Cells.TotalCell.rawValue, bundle: nil), forCellReuseIdentifier: Cells.TotalCell.rawValue)
     }
     
     private func callOrderDetails(){
@@ -62,13 +62,13 @@ extension OrderDetailsViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = orderDetailsTableView.dequeueReusableCell(withIdentifier: "OrderDetailsCell", for: indexPath) as! OrderDetailsCell
+            let cell = orderDetailsTableView.dequeueReusableCell(withIdentifier: Cells.OrderDetailsCell.rawValue, for: indexPath) as! OrderDetailsCell
             cell.setDetails(imgURL: orderDetailsViewModel.orderDetails?.data?.orderDetails[indexPath.row].prodImage ?? "", productName: orderDetailsViewModel.orderDetails?.data?.orderDetails[indexPath.row].prodName ?? "", productCategory: orderDetailsViewModel.orderDetails?.data?.orderDetails[indexPath.row].prodCatName ?? "", quantity: orderDetailsViewModel.orderDetails?.data?.orderDetails[indexPath.row].quantity ?? 0, price: orderDetailsViewModel.orderDetails?.data?.orderDetails[indexPath.row].total ?? 0)
             cell.selectionStyle = .none
             return cell
         }
         
-        let cell = orderDetailsTableView.dequeueReusableCell(withIdentifier: "TotalCell", for: indexPath) as! TotalCell
+        let cell = orderDetailsTableView.dequeueReusableCell(withIdentifier: Cells.TotalCell.rawValue, for: indexPath) as! TotalCell
         cell.setDetails(totalPrice: orderDetailsViewModel.orderDetails?.data?.cost ?? 0)
         cell.selectionStyle = .none
         return cell
@@ -87,7 +87,7 @@ extension OrderDetailsViewController: OrderDetailsViewModelDelegate{
     func failureOrderDetails(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader()
-            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
+            self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
         }
     }
 }

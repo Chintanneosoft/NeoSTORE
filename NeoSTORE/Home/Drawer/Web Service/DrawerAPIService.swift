@@ -22,9 +22,6 @@ class DrawerAPIService: NSObject {
                     }
                 }
             case .failure(let error):
-                print("In Failure")
-                debugPrint(error.localizedDescription)
-                print("Wrong pass")
                 completion(.failure(error))
             }
         }

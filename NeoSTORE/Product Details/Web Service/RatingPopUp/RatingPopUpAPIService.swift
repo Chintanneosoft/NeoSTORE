@@ -6,7 +6,7 @@ class RatingPopUpAPIService: NSObject {
     //API Call
     func postRating(productId: Int,rating: Int,completion: @escaping(Result<(ProductRating?,ProductRatingFailure?),Error>) -> Void){
         
-        let param = ["product_id":productId,"rating": rating]
+        let param = [APIServiceText.productId.rawValue:productId,APIServiceText.rating.rawValue: rating]
         APIManager.shared.callRequest(apiCallType: .setRatings(param: param)){
             (response) in
             switch response{

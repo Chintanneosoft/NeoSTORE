@@ -21,10 +21,9 @@ class DrawerViewModel:NSObject {
     
     func callFetchUser(){
         drawerAPIService.fetchUser{
-            (response) in
+             (response) in
             switch response{
             case .success(let value):
-                print(value)
                 if (value.0 != nil){
                     self.userData = value.0
                     self.drawerViewModelDelegate?.setDrawer()
@@ -33,7 +32,6 @@ class DrawerViewModel:NSObject {
                     self.drawerViewModelDelegate?.failureDrawer(msg: value.1!.user_msg!)
                 }
             case .failure(let error):
-                print(error)
                 self.drawerViewModelDelegate?.failureDrawer(msg: error.localizedDescription)
             }
         }

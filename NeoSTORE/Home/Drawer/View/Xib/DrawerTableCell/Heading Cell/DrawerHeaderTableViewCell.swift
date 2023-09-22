@@ -38,7 +38,7 @@ class DrawerHeaderTableViewCell: UITableViewCell {
 //        profileImg.isUserInteractionEnabled = true
         
         profileImg.layer.cornerRadius = profileImg.bounds.width/2
-        profileImg.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+        profileImg.layer.borderColor = UIColor.customColor(Color.primaryForeground).cgColor
         profileImg.layer.borderWidth = 2
         
     }
@@ -47,7 +47,7 @@ class DrawerHeaderTableViewCell: UITableViewCell {
         lblName.text = name
         lblEmail.text = email
         profileImg.sd_setImage(with: URL(string: imgName))
-        profileImg.image = loadProfileImage(imageName: UserDefaults.standard.string(forKey: "accessToken") ?? "")
+        profileImg.image = loadProfileImage(imageName: UserDefaults.standard.string(forKey: UserDefaultsKeys.accessToken.rawValue) ?? "")
     }
     
     @objc func profileTapped(){

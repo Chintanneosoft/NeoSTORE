@@ -8,7 +8,7 @@ class CartViewController: BaseViewController {
     @IBOutlet weak var lblEmptyCart: UILabel!
     //wrong
     let quantityPickerView = UIPickerView()
-        
+    
     //ViewModel Object
     let cartViewModel = CartViewModel()
     
@@ -34,7 +34,7 @@ class CartViewController: BaseViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return CartViewController(nibName: "CartViewController", bundle: nil)
+        return CartViewController(nibName: ViewControllerString.Cart.rawValue, bundle: nil)
     }
     
     private func setUpUI(){
@@ -45,7 +45,7 @@ class CartViewController: BaseViewController {
     
     private func setUpNavBar() {
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
-        navigationItem.title = "My Cart"
+        navigationItem.title = ScreenText.Cart.navTitle.rawValue
     }
     
     private func setDelegates(){
@@ -56,8 +56,8 @@ class CartViewController: BaseViewController {
     }
     
     private func xibRegister(){
-        cartTableView.register(UINib(nibName: "CartCell", bundle: nil), forCellReuseIdentifier: "CartCell")
-        cartTableView.register(UINib(nibName: "TotalCell", bundle: nil),forCellReuseIdentifier: "TotalCell")
+        cartTableView.register(UINib(nibName: Cells.CartCell.rawValue, bundle: nil), forCellReuseIdentifier: Cells.CartCell.rawValue)
+        cartTableView.register(UINib(nibName: Cells.TotalCell.rawValue, bundle: nil),forCellReuseIdentifier: Cells.TotalCell.rawValue)
     }
     
     private func callMyCart(){
@@ -76,10 +76,6 @@ class CartViewController: BaseViewController {
 //MARK: - TableView Delegate and Datasource
 extension CartViewController: UITableViewDelegate, UITableViewDataSource{
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if cartViewModel.cartList?.count ?? 0 == 0{
             lblEmptyCart.isHidden = false
@@ -91,51 +87,53 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < cartViewModel.cartList?.count ?? 0{
-            let cell = cartTableView.dequeueReusableCell(withIdentifier: "CartCell", for: indexPath) as! CartCell
+            let cell = cartTableView.dequeueReusableCell(withIdentifier: Cells.CartCell.rawValue, for: indexPath) as! CartCell
             cell.setDetails(imgUrl: cartViewModel.cartList?[indexPath.row].product.productImages ?? "", productName: cartViewModel.cartList?[indexPath.row].product.name ?? "", productCategory: cartViewModel.cartList?[indexPath.row].product.productCategory ?? "", price: cartViewModel.cartList?[indexPath.row].product.cost ?? 0, quantity: cartViewModel.cartList?[indexPath.row].quantity ?? 0, productID: cartViewModel.cartList?[indexPath.row].productID ?? 0)
             cell.updateQuantityDelegate = self
             cell.txtQuantity.inputView = quantityPickerView
             quantityPickerView.selectRow(cartViewModel.quantityArr.firstIndex(of: String(cartViewModel.cartList?[indexPath.row].quantity ?? 1)) ?? 0, inComponent: 0, animated: true)
             cell.selectionStyle = .none
             return cell
+        } else {
+            let cell = cartTableView.dequeueReusableCell(withIdentifier: Cells.TotalCell.rawValue, for: indexPath) as! TotalCell
+            cell.setDetails(totalPrice: cartViewModel.myCart?.total ?? 0)
+            cell.selectionStyle = .none
+            return cell
         }
-        
-        let cell = cartTableView.dequeueReusableCell(withIdentifier: "TotalCell", for: indexPath) as! TotalCell
-        cell.setDetails(totalPrice: cartViewModel.myCart?.total ?? 0)
-        cell.selectionStyle = .none
-        return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if indexPath.section == 0 {
+        if indexPath.row < (cartViewModel.cartList?.count ?? 0){
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { (action, view, completionHandler) in
                 
-                self.showDualButtonAlert(title: "Alert", msg: "Do you want to delete the row", okClosure: {
+                self.showDualButtonAlert(title: AlertText.Title.alert.rawValue, msg: AlertText.Message.deleteConfirmation.rawValue, okClosure: {
                     self.showLoader()
-                    self.cartViewModel.callDeleteCart(productId: self.cartViewModel.cartList?[indexPath.row].productID ?? 0)
+                    self.cartViewModel.callDeleteCart(productId:self.cartViewModel.cartList?[indexPath.row].productID ?? 0)
                     self.cartViewModel.cartList?.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    if self.cartViewModel.cartList?.count == 0{
+                        tableView.reloadData()
+                    } else {
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    }
                     NotificationCenter.default.post(name: .updateDrawer, object: nil)
                 }, cancelClosure: {
                     self.dismiss(animated: true)
                 })
                 completionHandler(true)
             }
-
-            deleteAction.image = UIImage(named: "delete")
+            
+            deleteAction.image = UIImage(named: ImageNames.delete.rawValue)
             deleteAction.backgroundColor = .white
             let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
             return swipeConfiguration
         }
-        else{
-            return nil
-        }
+        let swipeConfiguration = UISwipeActionsConfiguration()
+        return swipeConfiguration
     }
-
 }
 
 //MARK: - PickerView Delegate and Datasource
@@ -152,7 +150,7 @@ extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? { //wrong: next time se seedha vc delete
         return cartViewModel.quantityArr[row]
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         currQuantity = Int(cartViewModel.quantityArr[row]) ?? 0
         self.showLoader()
@@ -174,8 +172,8 @@ extension CartViewController: CartViewModelDelegate{
         DispatchQueue.main.async {
             self.hideLoader()
             self.cartTableView.reloadData()
-            if msg == "Cart empty."{
-                self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
+            if msg != ScreenText.Cart.cartEmpty.rawValue{
+                self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
             }
         }
     }

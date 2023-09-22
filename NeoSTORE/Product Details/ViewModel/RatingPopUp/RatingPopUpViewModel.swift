@@ -15,17 +15,17 @@ class RatingPopUpViewModel: NSObject {
     
     //API call
     func callPostRating(productId: Int,rating: Int){
-        ratingPopUpAPIService.postRating(productId: productId, rating: rating){ (response) in
+        ratingPopUpAPIService.postRating(productId: productId, rating: rating){  (response) in
             switch response{
             case .success(let value):
                 if (value.0 != nil) {
-                    self.ratingPopUpViewModelDelegate?.ratingResult(title: "Success",msg: value.0?.userMsg ?? "")
+                    self.ratingPopUpViewModelDelegate?.ratingResult(title: AlertText.Title.success.rawValue,msg: value.0?.userMsg ?? "")
                 }
                 else{
-                    self.ratingPopUpViewModelDelegate?.ratingResult(title: "Error",msg: value.1?.userMsg ?? "")
+                    self.ratingPopUpViewModelDelegate?.ratingResult(title: AlertText.Title.error.rawValue,msg: value.1?.userMsg ?? "")
                 }
             case .failure(let error):
-                self.ratingPopUpViewModelDelegate?.ratingResult(title: "Error",msg: error.localizedDescription)
+                self.ratingPopUpViewModelDelegate?.ratingResult(title: AlertText.Title.error.rawValue,msg: error.localizedDescription)
             }
         }
     }

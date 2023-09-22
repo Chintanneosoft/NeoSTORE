@@ -26,7 +26,7 @@ class EnterQuantityViewController: BaseViewController {
 
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return EnterQuantityViewController(nibName: "EnterQuantityViewController", bundle: nil)
+        return EnterQuantityViewController(nibName: ViewControllerString.EnterQuantity.rawValue, bundle: nil)
     }
     
     private func setUpUI(){
@@ -63,6 +63,7 @@ class EnterQuantityViewController: BaseViewController {
     }
     
     @IBAction func btnSubmitTapped(_ sender: UIButton) {
+        showLoader()
         let enterQuantityViewModel = EnterQuantityViewModel()
         enterQuantityViewModel.enterQuantityViewModelDelegate = self
         enterQuantityViewModel.callAddToCart(productId:productId ?? 0 , quantity: Int(tfEnterQty.text ?? "0") ?? 0)
@@ -74,8 +75,10 @@ extension EnterQuantityViewController: EnterQuantityViewModelDelegate{
     //wrong
     func updateQuantity(cartCount: Int,title: String,msg: String) {
         DispatchQueue.main.async {
-            if msg == "Added to cart"{
-                NotificationCenter.default.post(name: .updateCart, object: nil, userInfo: ["cartCount":cartCount])
+            self.hideLoader()
+            print(title)
+            if title == AlertText.Title.success.rawValue{
+                NotificationCenter.default.post(name: .updateCart, object: nil, userInfo: [ScreenText.Drawer.cartCount.rawValue:cartCount])
                 self.showSingleButtonAlert(title: title, msg: msg) {
                     self.dismiss(animated: false, completion: nil)
                 }

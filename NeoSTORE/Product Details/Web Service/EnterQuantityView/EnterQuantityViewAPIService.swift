@@ -6,7 +6,7 @@ class EnterQuantityViewAPIService: NSObject {
     //API call
     func addToCart(productId: Int,quantity: Int,completion: @escaping(Result<(AddToCart?,ProductRatingFailure?),Error>) -> Void){
         
-        let param = ["product_id":productId,"quantity": quantity]
+        let param = [APIServiceText.productId.rawValue:productId,APIServiceText.quantity.rawValue: quantity]
         APIManager.shared.callRequest(apiCallType: .addToCart(param: param)){
             (response) in
             switch response{

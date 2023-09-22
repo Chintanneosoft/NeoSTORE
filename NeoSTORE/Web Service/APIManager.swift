@@ -52,7 +52,6 @@ class APIManager {
             }
             guard let content = data else {
                 completion(.failure(error!))
-                print("No data")
                 return
             }
 

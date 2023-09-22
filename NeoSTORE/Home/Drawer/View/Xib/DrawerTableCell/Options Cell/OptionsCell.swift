@@ -22,12 +22,7 @@ class OptionsCell: UITableViewCell {
     
     func setDetails(optionImg: String,optionName: String,noOfNotifications: Int){
         lblOption.text = optionName
-        if noOfNotifications > 0{
-            lblNotification.isHidden = false
-        }
-        else{
-            lblNotification.isHidden = true
-        }
+        lblNotification.isHidden = !(noOfNotifications > 0)
         lblNotification.text = String(noOfNotifications)
         self.optionImg.image = UIImage(named: optionImg)
     }

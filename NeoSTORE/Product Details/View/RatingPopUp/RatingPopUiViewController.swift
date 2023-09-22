@@ -36,13 +36,13 @@ class RatingPopUiViewController: UIViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return RatingPopUiViewController(nibName: "RatingPopUiViewController", bundle: nil)
+        return RatingPopUiViewController(nibName: ViewControllerString.RatingPopUP.rawValue, bundle: nil)
     }
     
     private func setCollectionView(){
         starCollectionView.delegate = self
         starCollectionView.dataSource = self
-        starCollectionView.register(UINib(nibName: "StarCell", bundle: nil), forCellWithReuseIdentifier: "StarCell")
+        starCollectionView.register(UINib(nibName: Cells.StarCell.rawValue, bundle: nil), forCellWithReuseIdentifier: Cells.StarCell.rawValue)
     }
     
     private func setUpUI(){
@@ -85,7 +85,7 @@ extension RatingPopUiViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = starCollectionView.dequeueReusableCell(withReuseIdentifier: "StarCell", for: indexPath) as! StarCell
+        let cell = starCollectionView.dequeueReusableCell(withReuseIdentifier: Cells.StarCell.rawValue, for: indexPath) as! StarCell
         cell.setStar(selected: false)
         return cell
     }

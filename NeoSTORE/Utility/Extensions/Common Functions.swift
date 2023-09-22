@@ -51,11 +51,11 @@ extension UIViewController{
         navigationBarAppearance.backgroundColor = UIColor(named: "Primary Background")
         navigationBarAppearance.titleTextAttributes = [
             NSAttributedString.Key.font: UIFont(name: fontName, size: CGFloat(fontSize))!,
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!
+            NSAttributedString.Key.foregroundColor: UIColor.customColor(Color.primaryForeground)
         ]
         navigationController?.navigationBar.standardAppearance = navigationBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
-        navigationController?.navigationBar.tintColor = UIColor(named: "Primary Foreground")
+        navigationController?.navigationBar.tintColor = UIColor.customColor(Color.primaryForeground)
         
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title
@@ -119,7 +119,7 @@ extension UITextField {
     }
     
     func setPlaceholder(_ placeholder: String){
-        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Primary Foreground")!])
+        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.customColor(Color.primaryForeground)])
     }
 }
 
@@ -127,5 +127,12 @@ extension UITextField {
 extension UIFont {
     static func customFont(_ font: Font, size: CGFloat) -> UIFont {
         return UIFont(name: font.rawValue, size: size) ?? UIFont.systemFont(ofSize: size)
+    }
+}
+
+//MARK: - UIColor
+extension UIColor {
+    static func customColor(_ color: Color) -> UIColor{
+        return UIColor(named: color.rawValue) ?? UIColor.black
     }
 }

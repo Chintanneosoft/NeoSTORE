@@ -22,8 +22,8 @@ class OrderDetailsCell: UITableViewCell {
     func setDetails(imgURL: String,productName: String,productCategory: String, quantity:Int, price: Int){
         lblproductName.text = productName
         lblProductCategory.text = productCategory
-        lblQuantity.text = "QTY :" + String(quantity)
-        lblProductPrice.text = "₹" + String(price)
+        lblQuantity.text = ScreenText.MyOrders.qty.rawValue + String(quantity)
+        lblProductPrice.text = ScreenText.Common.rupees.rawValue + String(price)
         productImg.sd_setImage(with: URL(string: imgURL))
     }
 }

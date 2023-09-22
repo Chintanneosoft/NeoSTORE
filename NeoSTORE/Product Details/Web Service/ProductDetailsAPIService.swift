@@ -6,7 +6,7 @@ class ProductDetailsAPIService: NSObject {
     //API call
     func fetchProductsDetails(productId: Int,completion: @escaping(Result<ProductDetails,Error>) -> Void){
         
-        let params = ["product_id" : productId]
+        let params = [APIServiceText.productId.rawValue : productId]
         APIManager.shared.callRequest(apiCallType: .fetchProductsDetails(param: params)){ (response) in
             switch response {
             case .success(let value):

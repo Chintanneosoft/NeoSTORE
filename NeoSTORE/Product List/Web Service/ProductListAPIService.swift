@@ -6,7 +6,7 @@ class ProductListAPIService: NSObject {
     
     //API Call Function
     func fetchProductsList(productCategoryId: Int,completion: @escaping(Result<Products,Error>) -> Void){
-        let params = ["product_category_id" : productCategoryId]
+        let params = [APIServiceText.productCategoryId.rawValue : productCategoryId]
         APIManager.shared.callRequest(apiCallType: .fetchProductsList(param: params)){ (response) in
             switch response {
             case .success(let value):
@@ -17,9 +17,6 @@ class ProductListAPIService: NSObject {
                     completion(.failure(error))
                 }
             case .failure(let error):
-                print("In Failure")
-                debugPrint(error.localizedDescription)
-                print("Wrong pass")
                 completion(.failure(error))
             }
         }

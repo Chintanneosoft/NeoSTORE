@@ -4,7 +4,7 @@ import UIKit
 class OrderDetailsAPIService: NSObject {
     //API call
     func getOrderDetails(orderId: Int,completion: @escaping(Result<OrderDetails,Error>) -> Void){
-        let param = ["order_id": orderId]
+        let param = [APIServiceText.orderId.rawValue: orderId]
         APIManager.shared.callRequest(apiCallType: .getOrderDetail(param: param)){ (response) in
             switch response {
             case .success(let value):

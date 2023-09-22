@@ -2,7 +2,7 @@ import UIKit
 
 //MARK: - LoginViewModelDelegate Protocol
 protocol LoginViewModelDelegate:AnyObject{
-    func showAlert(msg:String)
+    func showAlert(result:Bool,msg:String)
 }
 
 //MARK: - LoginViewModel
@@ -15,7 +15,7 @@ class LoginViewModel{
     //MARK: - LoginViewModelDelegate Object Declare
     weak var loginViewModelDelegate: LoginViewModelDelegate?
     
-    var txtFieldData = [["Username","username_icon"],["Password","password_icon"]]
+    var txtFieldData = [[ScreenText.Login.userName.rawValue,ImageNames.user.rawValue],[ScreenText.Login.password.rawValue,ImageNames.password.rawValue]]
     
     //MARK: - Functions
     func callValidations(email:String, pass:String) {
@@ -24,25 +24,26 @@ class LoginViewModel{
         //wrong
         if validationResult == nil{
         
-            loginAPIService.loginUser(email: email, pass: pass){ (response) in
+            loginAPIService.loginUser(email: email, pass: pass){
+                 (response) in
                 switch response{
                 case .success(let value):
                     print(value)
                     if (value.0 != nil){
-                        UserDefaults.standard.set(value.0!.data?.access_token ?? "", forKey: "accessToken")
-                        UserDefaults.standard.set(value.0!.data?.first_name ?? "" ,forKey: "userFirstName")
-                        self.loginViewModelDelegate?.showAlert(msg: "LoggedIn Successfully")
+                        UserDefaults.standard.set(value.0!.data?.access_token ?? "", forKey: UserDefaultsKeys.accessToken.rawValue)
+                        UserDefaults.standard.set(value.0!.data?.first_name ?? "" ,forKey: UserDefaultsKeys.userFirstName.rawValue)
+                        self.loginViewModelDelegate?.showAlert(result: true,msg: value.1!.user_msg!)
                     }
                     else{
-                        self.loginViewModelDelegate?.showAlert(msg: value.1!.user_msg!)
+                        self.loginViewModelDelegate?.showAlert(result: false, msg: value.1!.user_msg!)
                     }
                 case .failure(let error):
                     print(error)
-                    self.loginViewModelDelegate?.showAlert(msg: error.localizedDescription)
+                    self.loginViewModelDelegate?.showAlert(result: false, msg: error.localizedDescription)
                 }
             }
         } else {
-            self.loginViewModelDelegate?.showAlert(msg: validationResult ?? "")
+            self.loginViewModelDelegate?.showAlert(result: false, msg: validationResult ?? "")
         }
     }
     
@@ -50,10 +51,10 @@ class LoginViewModel{
         loginAPIService.forgotPass(email: email){ (response) in
             switch response{
             case .success(let value):
-                self.loginViewModelDelegate?.showAlert(msg: value.user_msg ?? "")
+                self.loginViewModelDelegate?.showAlert(result: true, msg: value.user_msg ?? "")
             case .failure(let error):
                 print(error)
-                self.loginViewModelDelegate?.showAlert(msg: error.localizedDescription)
+                self.loginViewModelDelegate?.showAlert(result: false, msg: error.localizedDescription)
             }
         }
     }

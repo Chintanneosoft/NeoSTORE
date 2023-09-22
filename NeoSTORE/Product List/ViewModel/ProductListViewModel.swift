@@ -21,14 +21,12 @@ class ProductListViewModel:NSObject {
     //API call
     func callFetchProductList(productCategory: Int){
         productListAPIService.fetchProductsList(productCategoryId: productCategory){
-            response in
+             response in
             switch response{
             case .success(let value):
-                print(value)
                 self.productsData = value
                 self.productListViewModelDelegate?.setProductsList()
             case .failure(let error):
-                print(error)
                 self.productListViewModelDelegate?.failureProductList(msg: error.localizedDescription)
             }
         }
@@ -36,16 +34,16 @@ class ProductListViewModel:NSObject {
     
     func getTitle(categoryID: Int) -> String {
         if categoryID == 1 {
-            return "Tables"
+            return ScreenText.ProductList.tables.rawValue
         }
         else if categoryID == 2 {
-            return "Chairs"
+            return ScreenText.ProductList.chairs.rawValue
         }
         else if categoryID == 3 {
-            return "Sofas"
+            return ScreenText.ProductList.sofas.rawValue
         }
         else {
-            return "Cupboards"
+            return ScreenText.ProductList.cupboards.rawValue
         }
     }
 }

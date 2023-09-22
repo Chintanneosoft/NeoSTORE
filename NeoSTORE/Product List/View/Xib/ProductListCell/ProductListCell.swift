@@ -28,7 +28,7 @@ class ProductListCell: UITableViewCell {
     
     func setDetails(productImgName: String, productName: String, producerName: String, price: Int, rating: Int){
         lblProductName.text = productName
-        lblPrice.text = "Rs: " + String(price)
+        lblPrice.text = ScreenText.Common.rupees.rawValue + String(price)
         lblProducer.text = producerName
         setRatings(rating: rating)
         setImage(url: URL(string: productImgName)!)

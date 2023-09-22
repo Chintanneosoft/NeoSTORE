@@ -34,7 +34,7 @@ class AddressListViewController: UIViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return AddressListViewController(nibName: "AddressListViewController", bundle: nil)
+        return AddressListViewController(nibName: ViewControllerString.AddressList.rawValue, bundle: nil)
     }
     
     private func setDelegates(){
@@ -43,27 +43,22 @@ class AddressListViewController: UIViewController {
     }
     
     private func xibRegister(){
-        addressListTableView.register(UINib(nibName: "AddressListCell", bundle: nil), forCellReuseIdentifier: "AddressListCell")
+        addressListTableView.register(UINib(nibName: Cells.AddressListCell.rawValue, bundle: nil), forCellReuseIdentifier: Cells.AddressListCell.rawValue)
     }
     
     private func setAddress(){
         address = []
-        address += [UserDefaults.standard.string(forKey: "userAddress")]
+        address += [UserDefaults.standard.string(forKey: UserDefaultsKeys.userAddress.rawValue)]
         selectedIndex = nil
     }
     
     private func setUpNavBar(){
         //Navigation bar
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
-        navigationItem.title = "Address List"
+        navigationItem.title = ScreenText.AddressList.navTitle.rawValue
        
-        let plusButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addAddress))
-        // Set the left bar button item
+        let plusButton = UIBarButtonItem(image: UIImage(systemName: ImageNames.plus.rawValue), style: .plain, target: self, action: #selector(addAddress))
         navigationItem.rightBarButtonItem = plusButton
-        
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
         
         lblShippingAddress.font = UIFont.customFont(Font.fontThin, size: 18)
         btnPlaceOrder.layer.cornerRadius = 5
@@ -86,7 +81,7 @@ class AddressListViewController: UIViewController {
             }
         }
         else{
-            self.showSingleButtonAlert(title: "Alert", msg: "Select Address", okClosure: nil)
+            self.showSingleButtonAlert(title: AlertText.Title.alert.rawValue, msg: AlertText.Message.selectAddress.rawValue, okClosure: nil)
         }
     }
 
@@ -101,11 +96,11 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = addressListTableView.dequeueReusableCell(withIdentifier: "AddressListCell", for: indexPath) as! AddressListCell
+        let cell = addressListTableView.dequeueReusableCell(withIdentifier: Cells.AddressListCell.rawValue, for: indexPath) as! AddressListCell
         cell.addressListCellDelegate = self
 
-        cell.lblTitle.text = UserDefaults.standard.string(forKey: "userFirstName")
-        cell.lblAddress.text = address[0] ?? "Please Add Address"
+        cell.lblTitle.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.userFirstName.rawValue)
+        cell.lblAddress.text = address[0] ?? ""
         
         //wrong
 //        if selectedIndex == indexPath.row{
@@ -124,7 +119,6 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
         selectedIndex = indexPath.row
         addressListTableView.reloadData()
     }
-    
 }
 
 //MARK: - AddressListCellDelegate
@@ -132,7 +126,7 @@ extension AddressListViewController: AddressListCellDelegate{
     
     func btnCancelTapped(btnTag: Int) {
         
-        self.showDualButtonAlert(title: "Alert", msg: "Do you want to delete the row", okClosure: {
+        self.showDualButtonAlert(title: AlertText.Title.alert.rawValue, msg: AlertText.Message.deleteConfirmation.rawValue, okClosure: {
             let indexPath = IndexPath(row: btnTag, section: 0)
             self.address.remove(at: indexPath.row)
             self.addressListTableView.deleteRows(at: [indexPath], with: .fade)
@@ -142,8 +136,6 @@ extension AddressListViewController: AddressListCellDelegate{
     }
     
     func btnSelectTapped(btnTag: Int) {
-        
-        //wrong validation
         selectedIndex = btnTag
         addressListTableView.reloadData()
     }
@@ -156,7 +148,7 @@ extension AddressListViewController: AddressListViewModelDelegate{
         DispatchQueue.main.async {
             self.hideLoader()
             NotificationCenter.default.post(name: .updateDrawer, object: nil)
-            self.showSingleButtonAlert(title: "Success", msg: msg) {
+            self.showSingleButtonAlert(title: AlertText.Title.success.rawValue, msg: msg) {
                 if let navigationController = self.navigationController {
                     for viewController in navigationController.viewControllers {
                         if viewController is HomeContainerViewController {
@@ -172,7 +164,7 @@ extension AddressListViewController: AddressListViewModelDelegate{
     func failureAddress(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader()
-            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
+            self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
         }
     }
 }

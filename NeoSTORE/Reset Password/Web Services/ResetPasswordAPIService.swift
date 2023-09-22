@@ -5,7 +5,7 @@ class ResetPasswordAPIService: NSObject {
     
     //APIRequest Function Call
     func resetPass(oldPass: String, newPass: String, confirmPass:String ,completion: @escaping(Result<UserFailure,Error>) -> Void){
-        let params = ["old_password": oldPass, "password": newPass,"confirm_password": confirmPass]
+        let params = [APIServiceText.oldPassword.rawValue: oldPass, APIServiceText.password.rawValue: newPass,APIServiceText.confirmPassword.rawValue: confirmPass]
         APIManager.shared.callRequest(apiCallType: .updatePass(param: params)){ (response) in
             switch response {
             case .success(let value):

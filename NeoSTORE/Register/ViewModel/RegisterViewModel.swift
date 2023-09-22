@@ -2,7 +2,7 @@ import UIKit
 
 //MARK: - RegisterViewModelDelegate Protocol
 protocol RegisterViewModelDelegate:NSObject {
-    func showAlert(msg:String)
+    func showAlert(result: Bool,msg:String)
 }
 
 //MARK: - RegisterViewModel
@@ -12,7 +12,7 @@ class RegisterViewModel: NSObject {
     private let registerAPIService = RegisterAPIService()
     private let validation = Validation()
     
-    var txtFieldData = [["First Name","username_icon"],["Last Name","username_icon"],["Email","email_icon"],["Password","password_icon"],["Confirm Password","password_icon"],["Phone Number","cellphone_icon"]]
+    var txtFieldData = [[ScreenText.Register.firstName.rawValue,ImageNames.user.rawValue],[ScreenText.Register.lastName.rawValue,ImageNames.user.rawValue],[ScreenText.Register.email.rawValue,ImageNames.email.rawValue],[ScreenText.Register.password.rawValue,ImageNames.password.rawValue],[ScreenText.Register.confirmPassword.rawValue,ImageNames.password.rawValue],[ScreenText.Register.phoneNo.rawValue,ImageNames.phoneNo.rawValue]]
     
     //MARK: - RegisterViewModelDelegate Object Declare
     weak var registerViewModelDelegate: RegisterViewModelDelegate?
@@ -21,33 +21,33 @@ class RegisterViewModel: NSObject {
     func callValidations( fname:String, lname:String, email:String, pass:String, cpass:String, phone:String, btnSelected:String, termsAndCondition:Bool ){
         
         if btnSelected == "" {
-            registerViewModelDelegate?.showAlert(msg: "Select Gender")
+            registerViewModelDelegate?.showAlert(result: false,msg: AlertText.Message.genderAlert.rawValue)
         }
         
         if !termsAndCondition{
-            registerViewModelDelegate?.showAlert(msg: "Agree with terms and conditions")
+            registerViewModelDelegate?.showAlert(result: false, msg: AlertText.Message.termsAndConditions.rawValue)
         }
         
         let validitionResult = validation.registerValidation(firstName: fname, lastName: lname, email: email, password: pass, confirmPassword: cpass, mobileNumber: phone)
         
         if validitionResult == nil {
             self.registerAPIService.registerUser(fname: fname, lname: lname, email: email, pass: pass, cpass: cpass, gender: btnSelected, phone: phone){
-                (response) in
+                 (response) in
                 switch response {
                 case .success(let value):
                     if value.status == 200{
-                        self.registerViewModelDelegate?.showAlert(msg: "Registered Successfully")
+                        self.registerViewModelDelegate?.showAlert(result: true, msg: value.user_msg!)
                     }
                     else{
-                        self.registerViewModelDelegate?.showAlert(msg: value.user_msg!)
+                        self.registerViewModelDelegate?.showAlert(result: false, msg: value.user_msg!)
                     }
                 case .failure(let error):
-                    self.registerViewModelDelegate?.showAlert(msg: String(error.localizedDescription))
+                    self.registerViewModelDelegate?.showAlert(result: false, msg: String(error.localizedDescription))
                 }
             }
         }
         else{
-            self.registerViewModelDelegate?.showAlert(msg: validitionResult ?? "")
+            self.registerViewModelDelegate?.showAlert(result: false, msg: validitionResult ?? "")
         }
     }
 }

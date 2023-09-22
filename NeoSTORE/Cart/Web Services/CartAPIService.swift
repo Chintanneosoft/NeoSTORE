@@ -27,7 +27,7 @@ class CartAPIService: NSObject {
     }
     
     func updateCart(productId: Int,quantity: Int,completion: @escaping(Result<CartUpdate,Error>)-> Void){
-        let param = ["product_id":productId,"quantity":quantity]
+        let param = [APIServiceText.productId.rawValue:productId,APIServiceText.quantity.rawValue:quantity]
         APIManager.shared.callRequest(apiCallType: .updateCart(param: param)){ (response) in
             switch response {
             case .success(let value):
@@ -44,7 +44,7 @@ class CartAPIService: NSObject {
     }
     
     func deleteCart(productId: Int,completion: @escaping(Result<CartUpdate,Error>)-> Void){
-        let param = ["product_id":productId]
+        let param = [APIServiceText.productId.rawValue:productId]
         APIManager.shared.callRequest(apiCallType: .deleteCart(param: param)){ (response) in
             switch response {
             case .success(let value):

@@ -23,14 +23,14 @@ class ProfileViewController: BaseViewController {
     //MARK: - properties
     private var datePicker: UIDatePicker!
     var userData : FetchUser?
-    var userImg: String = UserDefaults.standard.string(forKey: "accessToken") ?? ""
+    var userImg: String = UserDefaults.standard.string(forKey: UserDefaultsKeys.accessToken.rawValue) ?? ""
     var userImgData : Data?
     var extraHeight = 0
     var editState = false
     let profileViewModel = ProfileViewModel()
     
     //MARK: - Locally Saved Image
-    let imageName = (UserDefaults.standard.string(forKey: "accessToken") ?? "") + ".jpg"
+    let imageName = (UserDefaults.standard.string(forKey: UserDefaultsKeys.accessToken.rawValue) ?? "") + ".jpg"
     
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ class ProfileViewController: BaseViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        return ProfileViewController(nibName: ViewControllerString.Profile.rawValue, bundle: nil)
     }
     
     private func setDelegates(){
@@ -63,7 +63,7 @@ class ProfileViewController: BaseViewController {
         
         navigationController?.navigationBar.isHidden = false
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
-        navigationItem.title = "My Account"
+        navigationItem.title = ScreenText.Profile.navTitle.rawValue
     }
     
     //MARK: - Set Up UI
@@ -72,12 +72,12 @@ class ProfileViewController: BaseViewController {
         //Text Fields
         for (index,txtv) in txtCollection.enumerated(){
             txtv.layer.borderWidth = 1.0
-            txtv.layer.borderColor = UIColor(named: "Primary Foreground")?.cgColor
+            txtv.layer.borderColor = UIColor.customColor(Color.primaryForeground).cgColor
             txtv.isEnabled = false
             txtv.font = UIFont.customFont(Font.fontRegular, size: 18)
             txtv.setPlaceholder(profileViewModel.txtFieldData[index][0])
-            txtv.textColor = UIColor(named: "Primary Foreground")
-            txtv.setIcon(UIImage(named: profileViewModel.txtFieldData[index][1])!)
+            txtv.textColor = UIColor.customColor(Color.primaryForeground)
+            txtv.setIcon((UIImage(named: profileViewModel.txtFieldData[index][1]) ?? UIImage(systemName: "user"))!)
         }
         
         tfFirstName.text = userData?.data?.user_data?.first_name
@@ -92,7 +92,7 @@ class ProfileViewController: BaseViewController {
         }
         
         //MARK: - Locally Saved Image Fetch
-        profileImg.image = loadProfileImage(imageName: UserDefaults.standard.string(forKey: "accessToken") ?? "")
+        profileImg.image = loadProfileImage(imageName: UserDefaults.standard.string(forKey: UserDefaultsKeys.accessToken.rawValue) ?? "")
         
         profileImg.layer.cornerRadius = profileImg.bounds.width/2
         let imgTap = UITapGestureRecognizer(target: self, action: #selector(imgTapped))
@@ -121,7 +121,7 @@ class ProfileViewController: BaseViewController {
         toolbar.barStyle = .default
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        let doneButton = UIBarButtonItem(title: ScreenText.Profile.done.rawValue, style: .done, target: self, action: #selector(doneButtonTapped))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.setItems([flexibleSpace, doneButton], animated: false)
         
@@ -144,14 +144,14 @@ class ProfileViewController: BaseViewController {
     }
     
     func actionOptions(){
-        let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default,handler: { handler in
+        let alert = UIAlertController(title: ScreenText.Profile.chooseOption.rawValue, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: ScreenText.Profile.camera.rawValue, style: .default,handler: { handler in
             self.openCamera()
         }))
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default,handler: { handler in
+        alert.addAction(UIAlertAction(title: ScreenText.Profile.gallery.rawValue, style: .default,handler: { handler in
             self.openGallery()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default,handler: { handler in
+        alert.addAction(UIAlertAction(title: ScreenText.Profile.cancel.rawValue, style: .default,handler: { handler in
             self.dismiss(animated: true)
         }))
         self.present(alert, animated: true)
@@ -187,8 +187,8 @@ class ProfileViewController: BaseViewController {
         btnRestPassword.isHidden = editState
         profileImg.isUserInteractionEnabled = editState
         btnCancel.isHidden = !editState
-        editState ? btnEditProflie.setTitle("SUBMIT", for: .normal) :
-        btnEditProflie.setTitle("EDIT PROFILE", for: .normal)
+        editState ? btnEditProflie.setTitle(ScreenText.Profile.submit.rawValue, for: .normal) :
+        btnEditProflie.setTitle(ScreenText.Profile.editProfile.rawValue, for: .normal)
         
         if !editState {
             if sender == btnEditProflie{
@@ -303,7 +303,7 @@ extension ProfileViewController: ProfileViewModelDelegate{
     func failureUser(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader()
-            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
+            self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
         }
     }
 }

@@ -5,7 +5,7 @@ class RegisterAPIService {
     
     //APIRequest Function Call
     func registerUser(fname: String, lname: String, email: String, pass: String, cpass: String, gender: String, phone: String,completion: @escaping(Result<User,Error>) -> Void){
-        let params = ["first_name": fname, "last_name": lname, "email": email, "password": pass, "confirm_password": cpass,"gender": gender, "phone_no": phone]
+        let params = [APIServiceText.firstName.rawValue: fname, APIServiceText.lastName.rawValue: lname, APIServiceText.email.rawValue: email, APIServiceText.password.rawValue: pass, APIServiceText.confirmPassword.rawValue: cpass,APIServiceText.gender.rawValue: gender, APIServiceText.phoneNo.rawValue: phone] 
         APIManager.shared.callRequest(apiCallType: .userRegister(param: params)){ (response) in
             switch response {
             case .success(let value):

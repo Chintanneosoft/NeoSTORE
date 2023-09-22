@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return HomeViewController(nibName: "HomeViewController", bundle: nil)
+        return HomeViewController(nibName: ViewControllerString.Home.rawValue, bundle: nil)
     }
     
     private func setUpUI(){
@@ -60,17 +60,13 @@ class HomeViewController: UIViewController {
         
         //Navigation bar
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
-        navigationItem.title = "NeoSTORE"
+        navigationItem.title = ScreenText.Home.navTitle.rawValue
         
-        let menuButton = UIBarButtonItem(image: UIImage(named: "menu_icon"), style: .plain, target: self, action: #selector(showDrawer))
+        let menuButton = UIBarButtonItem(image: UIImage(named: ImageNames.menu.rawValue), style: .plain, target: self, action: #selector(showDrawer))
         navigationItem.leftBarButtonItem = menuButton
         
-        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart.fill"), style: .plain, target: self, action: #selector(goToCart))
+        let cartButton = UIBarButtonItem(image: UIImage(systemName: ImageNames.cart.rawValue), style: .plain, target: self, action: #selector(goToCart))
         navigationItem.rightBarButtonItem = cartButton
-        
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        navigationItem.backBarButtonItem = backButton
     }
     
     private func setDelegates(){
@@ -81,8 +77,8 @@ class HomeViewController: UIViewController {
     }
 
     private func xibRegister(){
-        furnitureCollectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCollectionViewCell")
-        sliderCollectionView.register(UINib(nibName: "ImageSliderCell", bundle: nil), forCellWithReuseIdentifier: "ImageSliderCell")
+        furnitureCollectionView.register(UINib(nibName: Cells.HomeCollectionViewCell.rawValue, bundle: nil), forCellWithReuseIdentifier: Cells.HomeCollectionViewCell.rawValue)
+        sliderCollectionView.register(UINib(nibName: Cells.ImageSliderCell.rawValue, bundle: nil), forCellWithReuseIdentifier: Cells.ImageSliderCell.rawValue)
     }
     
     //wrong
@@ -133,12 +129,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == furnitureCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.HomeCollectionViewCell.rawValue, for: indexPath) as! HomeCollectionViewCell
             //wrong
             cell.setContraints(lblname: homeViewModel.furnitureData[indexPath.row]["name"] as! String, lblPosition: homeViewModel.furnitureData[indexPath.row]["lblPosition"] as! Positions, imgName: homeViewModel.furnitureData[indexPath.row]["imgName"] as! String, imgPosition: homeViewModel.furnitureData[indexPath.row]["imgPosition"] as! Positions)
             return cell
         }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSliderCell", for: indexPath) as! ImageSliderCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.ImageSliderCell.rawValue, for: indexPath) as! ImageSliderCell
         cell.sliderImage.image = UIImage(named: homeViewModel.sliderImages[indexPath.row])
         return cell
     }

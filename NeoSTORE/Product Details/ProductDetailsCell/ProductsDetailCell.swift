@@ -51,14 +51,14 @@ class ProductsDetailCell: UITableViewCell {
     }
     
     private func xibRegister(){
-        productImageCollection.register(UINib(nibName: "ProductImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductImageCollectionViewCell")
+        productImageCollection.register(UINib(nibName: Cells.ProductImageCollectionViewCell.rawValue, bundle: nil), forCellWithReuseIdentifier: Cells.ProductImageCollectionViewCell.rawValue)
     }
     
     func setDetails(productImages: [ProductImage],productDescription: String, price: Int){
-        lblPrice.text = "Rs: " + String(price)
+        lblPrice.text = ScreenText.Common.rupees.rawValue + String(price)
         self.productImagesData = productImages
         self.lblTextDescription.text = productDescription
-        self.lblDescription.text = "DESCRIPTION"
+        self.lblDescription.text = ScreenText.ProductDetails.description.rawValue
         self.productImageCollection.reloadData()
         setImages()
     }
@@ -83,7 +83,7 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = productImageCollection.dequeueReusableCell(withReuseIdentifier: "ProductImageCollectionViewCell", for: indexPath) as! ProductImageCollectionViewCell
+        let cell = productImageCollection.dequeueReusableCell(withReuseIdentifier: Cells.ProductImageCollectionViewCell.rawValue, for: indexPath) as! ProductImageCollectionViewCell
         let imgUrl = productImgURLs[indexPath.row]
         cell.setImg(url: imgUrl)
         let borderColor: CGColor?
@@ -105,13 +105,13 @@ extension ProductsDetailCell: UICollectionViewDelegate,UICollectionViewDataSourc
         let cell = collectionView.cellForItem(at: indexPath)!
         let imgUrl = URL(string: productImgURLs[indexPath.row] )
         productImage.sd_setImage(with: imgUrl)
-        cell.layer.borderColor = UIColor(named: "Primary Background")?.cgColor
-        collectionView.cellForItem(at: IndexPath(row: 0, section: 0))?.layer.borderColor = indexPath.row == 0 ? UIColor(named: "Primary Background")?.cgColor : UIColor.black.cgColor
+        cell.layer.borderColor = UIColor.customColor(Color.primaryBackground).cgColor
+        collectionView.cellForItem(at: IndexPath(row: 0, section: 0))?.layer.borderColor = indexPath.row == 0 ? UIColor.customColor(Color.primaryBackground).cgColor : UIColor.black.cgColor
         productImageCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     func changeSelectedCellUI(idx: Int,s: Bool) -> CGColor{
-        return s ? (UIColor(named: "Primary Background")?.cgColor ?? UIColor.black.cgColor) : UIColor.black.cgColor
+        return s ? (UIColor.customColor(Color.primaryBackground).cgColor ?? UIColor.black.cgColor) : UIColor.black.cgColor
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

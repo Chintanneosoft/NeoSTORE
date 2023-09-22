@@ -23,7 +23,7 @@ class MyOrdersViewController: UIViewController {
     
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
-        return MyOrdersViewController(nibName: "MyOrdersViewController", bundle: nil)
+        return MyOrdersViewController(nibName: ViewControllerString.MyOrder.rawValue, bundle: nil)
     }
     
     private func setDelegates(){
@@ -32,12 +32,12 @@ class MyOrdersViewController: UIViewController {
     }
     
     private func xibRegister(){
-        myOrdersTableView.register(UINib(nibName: "MyOrderCell", bundle: nil), forCellReuseIdentifier: "MyOrderCell")
+        myOrdersTableView.register(UINib(nibName: Cells.MyOrderCell.rawValue, bundle: nil), forCellReuseIdentifier: Cells.MyOrderCell.rawValue)
     }
     
     private func setUpNavBar() {
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
-        navigationItem.title = "My Orders"
+        navigationItem.title = ScreenText.MyOrders.navTitle.rawValue
     }
     
     private func callMyOrderList(){
@@ -55,7 +55,7 @@ extension MyOrdersViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = myOrdersTableView.dequeueReusableCell(withIdentifier: "MyOrderCell", for: indexPath) as! MyOrderCell
+        let cell = myOrdersTableView.dequeueReusableCell(withIdentifier: Cells.MyOrderCell.rawValue, for: indexPath) as! MyOrderCell
         cell.setDetails(orderId: myOrderViewModel.orderList?.data[indexPath.row].id ?? 0, orderDate: myOrderViewModel.orderList?.data[indexPath.row].created ?? "", orderPrice: myOrderViewModel.orderList?.data[indexPath.row].cost ?? 0)
         cell.selectionStyle = .none
         return cell
@@ -81,7 +81,7 @@ extension MyOrdersViewController: MyOrderViewModelDelegate{
     func failureOrderList(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader()
-            self.showSingleButtonAlert(title: "Error", msg: msg, okClosure: nil)
+            self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
         }
     } 
 }
