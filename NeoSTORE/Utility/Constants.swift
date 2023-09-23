@@ -98,7 +98,7 @@ enum ImageNames: String{
     case user = "username_icon"
     case password = "password_icon"
     case email = "email_icon"
-    case phoneNo = "cell_icon"
+    case phoneNo = "cellphone_icon"
     case menu = "menu_icon"
     case cart = "cart.fill"
     case search = "search_icon"

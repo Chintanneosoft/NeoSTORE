@@ -15,7 +15,7 @@ class ResetPasswordViewModel{
     //MARK: - LoginViewModelDelegate Object Declare
     weak var resetPasswordViewModelDelegate: ResetPasswordViewModelDelegate?
     
-    var txtFieldData = [[ScreenText.ResetPassword.currentPassword,ImageNames.password.rawValue],[ScreenText.ResetPassword.newPassword,ImageNames.password.rawValue],[ScreenText.ResetPassword.confirmPassword,ImageNames.password.rawValue]]
+    var txtFieldData = [[ScreenText.ResetPassword.currentPassword.rawValue,ImageNames.password.rawValue],[ScreenText.ResetPassword.newPassword.rawValue,ImageNames.password.rawValue],[ScreenText.ResetPassword.confirmPassword.rawValue,ImageNames.password.rawValue]]
     //MARK: - Functions
     func callValidations(oldPass: String, newPass: String, confirmPass: String ) {
         let validationResult = validation.resetPassValidation(oldPass: oldPass, newPass: newPass, confirmPass: confirmPass)

@@ -23,12 +23,10 @@ class LoginViewModel{
         let validationResult = validation.loginValidation( email: email, password: pass)
         //wrong
         if validationResult == nil{
-        
             loginAPIService.loginUser(email: email, pass: pass){
                  (response) in
                 switch response{
                 case .success(let value):
-                    print(value)
                     if (value.0 != nil){
                         UserDefaults.standard.set(value.0!.data?.access_token ?? "", forKey: UserDefaultsKeys.accessToken.rawValue)
                         UserDefaults.standard.set(value.0!.data?.first_name ?? "" ,forKey: UserDefaultsKeys.userFirstName.rawValue)

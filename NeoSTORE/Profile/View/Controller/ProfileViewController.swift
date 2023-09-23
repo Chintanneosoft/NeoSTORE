@@ -77,7 +77,7 @@ class ProfileViewController: BaseViewController {
             txtv.font = UIFont.customFont(Font.fontRegular, size: 18)
             txtv.setPlaceholder(profileViewModel.txtFieldData[index][0])
             txtv.textColor = UIColor.customColor(Color.primaryForeground)
-            txtv.setIcon((UIImage(named: profileViewModel.txtFieldData[index][1]) ?? UIImage(systemName: "user"))!)
+            txtv.setIcon((UIImage(named: profileViewModel.txtFieldData[index][1]) ?? UIImage(systemName: "person"))!)
         }
         
         tfFirstName.text = userData?.data?.user_data?.first_name

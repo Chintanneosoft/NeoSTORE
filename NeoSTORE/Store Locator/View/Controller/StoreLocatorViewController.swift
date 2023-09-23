@@ -8,7 +8,6 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     
     //MARK: - IBOUTLETS
     @IBOutlet weak var mapViewContainer: UIView!
-    
     @IBOutlet weak var storeLocatorTableView: UITableView!
     
     //Properties
@@ -30,6 +29,7 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+        setUpNavbar()
     }
     
     //MARK: - Functions
@@ -42,6 +42,7 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     }
     
     private func setUpNavbar(){
+        navigationController?.isNavigationBarHidden = false
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
         title = "Store Locator"
     }
@@ -153,6 +154,7 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
                                         marker.icon = UIImage(named: "red_pin")
                                         marker.map = self.mapView
                                         self.storeData.append(name)
+                                        self.storeLocatorTableView.reloadData()
                                     } else {
                                         let marker = GMSMarker()
                                         marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lng)

@@ -50,8 +50,8 @@ class ResetPasswordViewController: BaseViewController {
             txtv.layer.borderColor = UIColor.customColor(Color.primaryForeground).cgColor
             txtv.font = UIFont.customFont(Font.fontRegular, size: 18)
             txtv.textColor = UIColor.customColor(Color.primaryForeground)
-            txtv.setPlaceholder(resetPasswordViewModel.txtFieldData[index][0] as! String)
-            txtv.setIcon(UIImage(named: resetPasswordViewModel.txtFieldData[index][1] as! String)!)
+            txtv.setPlaceholder(resetPasswordViewModel.txtFieldData[index][0])
+            txtv.setIcon(UIImage(named: resetPasswordViewModel.txtFieldData[index][1])!)
         }
         
         btnResetPassword.titleLabel?.font = UIFont.customFont(Font.fontRegular, size: 18)

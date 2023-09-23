@@ -68,7 +68,7 @@ class CartViewController: BaseViewController {
     
     //MARK: - IBActions
     @IBAction func btnOrderNowTapped(_ sender: UIButton) {
-        let nextViewController = AddressListViewController.loadFromNib() as! AddressListViewController
+        let nextViewController = AddressListViewController.loadFromNib()
         navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
@@ -77,12 +77,11 @@ class CartViewController: BaseViewController {
 extension CartViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if cartViewModel.cartList?.count ?? 0 == 0{
-            lblEmptyCart.isHidden = false
-            return 0
-        }
-        lblEmptyCart.isHidden = true
-        return (cartViewModel.cartList?.count ?? 0) + 1
+        let boolCondition = (cartViewModel.cartList?.count ?? 0 == 0)
+        lblEmptyCart.isHidden = !boolCondition
+        btnOrderNow.isEnabled = !boolCondition
+        btnOrderNow.alpha = boolCondition ? 0.3 : 1
+        return boolCondition ? 0 : (cartViewModel.cartList?.count ?? 0) + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -11,7 +11,6 @@ class StoreLocatorCell: UITableViewCell {
 
     @IBOutlet weak var locatorImg: UIImageView!
     @IBOutlet weak var lblLocatorName: UILabel!
-    @IBOutlet weak var lblProducer: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
