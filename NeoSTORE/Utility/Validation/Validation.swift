@@ -20,26 +20,30 @@ class Validation{
         }
         
         guard firstName!.count > 3 && containsOnlyCharacters(firstName!) == true else {
-            return "Enter your valid first name"
+            return "Enter a valid first name"
         }
         
         guard lastName!.count > 3 && containsOnlyCharacters(lastName!) == true else {
-            return "Enter your valid last name"
+            return "Enter a valid last name"
         }
         
         if email != "" {
             guard validateEmail(email ?? "") == true else {
-                return "Enter your valid email id"
+                return "Enter a valid email id"
             }
         }
         
-        guard password!.count >= 2 && containsOnlyAllowedCharacters(password!) == true && containsOneNumberAndOneSpecialChar(password!) == true && password! == confirmPassword! else {
-            return "Enter your valid password"
+        guard password!.count >= 8 && containsOnlyAllowedCharacters(password!) == true && containsOneNumberAndOneSpecialChar(password!) == true else {
+            return "Enter a valid password"
+        }
+        
+        guard password! == confirmPassword! else {
+            return "Password does not match Confirm Password"
         }
         
         if mobileNumber != "" {
             guard mobileNumber!.count == 10 && containsOnlyNumbers(mobileNumber!) == true else {
-                return "Enter your valid mobile number"
+                return "Enter a valid mobile number"
             }
         }
         
@@ -55,12 +59,12 @@ class Validation{
         
         if email != "" {
             guard validateEmail(email ?? "") == true else {
-                return "Enter your valid email id"
+                return "Enter a valid email id"
             }
         }
         
         guard password!.count >= 2 && containsOnlyAllowedCharacters(password!) == true && containsOneNumberAndOneSpecialChar(password!) == true else {
-            return "Enter your valid password"
+            return "Enter a valid password"
         }
         
         return nil
@@ -72,10 +76,13 @@ class Validation{
             return "Please fill the required fields"
         }
         
-        guard newPass.count >= 2 && containsOnlyAllowedCharacters(newPass) == true && containsOneNumberAndOneSpecialChar(newPass) == true && newPass == confirmPass else {
-            return "Enter your valid password"
+        guard newPass.count >= 2 && containsOnlyAllowedCharacters(newPass) == true && containsOneNumberAndOneSpecialChar(newPass) == true else {
+            return "Enter a valid password"
         }
         
+        guard newPass == confirmPass else {
+            return "Password does not match Confirm Password"
+        }
         return nil
     }
     
@@ -84,9 +91,24 @@ class Validation{
         guard fname != "" && lname != "" && email != "" && dob != "" && profilePic != "" && phone != "" else {
             return "Please fill the required fields"
         }
+        
+        guard fname.count > 3 && containsOnlyCharacters(fname) == true else {
+            return "Enter a valid first name"
+        }
+        
+        guard lname.count > 3 && containsOnlyCharacters(lname) == true else {
+            return "Enter a valid last name"
+        }
+        
         if email != "" {
             guard validateEmail(email ) == true else {
-                return "Enter your valid email id"
+                return "Enter a valid email id"
+            }
+        }
+        
+        if phone != "" {
+            guard phone.count == 10 && containsOnlyNumbers(phone) == true else {
+                return "Enter a valid mobile number"
             }
         }
         return nil

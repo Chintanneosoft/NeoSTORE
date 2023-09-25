@@ -1,4 +1,5 @@
 import UIKit
+
 //MARK: - AddressListViewController
 class AddressListViewController: UIViewController {
 
@@ -6,7 +7,7 @@ class AddressListViewController: UIViewController {
     @IBOutlet weak var lblShippingAddress: UILabel!
     @IBOutlet weak var btnPlaceOrder: UIButton!
     @IBOutlet weak var addressListTableView: UITableView!
-    
+    @IBOutlet weak var lblNoAddress: UILabel!
     //ViewModel Object
     var addressListViewModel = AddressListViewModel()
     
@@ -14,7 +15,7 @@ class AddressListViewController: UIViewController {
     var selectedIndex: Int?
     
    //wrong
-    var address: [String?] = []
+    var address: [String?]?
     var selectedAddress: String?
     
     //MARK: - ViewDidLoad
@@ -22,14 +23,12 @@ class AddressListViewController: UIViewController {
         super.viewDidLoad()
         setDelegates()
         xibRegister()
-        // Do any additional setup after loading the view.
+        setAddress()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUpNavBar()
-        setAddress()
-        addressListTableView.reloadData()
     }
     
     //MARK: - Functions
@@ -47,9 +46,17 @@ class AddressListViewController: UIViewController {
     }
     
     private func setAddress(){
-        address = []
-        address += [UserDefaults.standard.string(forKey: UserDefaultsKeys.userAddress.rawValue)]
+//        address = []
+        guard let curAddress = UserDefaults.standard.string(forKey: UserDefaultsKeys.userAddress.rawValue) else{
+            lblNoAddress.isHidden = false
+            return
+        }
+        if address == nil{
+            address = []
+        }
+        address! += [curAddress]
         selectedIndex = nil
+        addressListTableView.reloadData()
     }
     
     private func setUpNavBar(){
@@ -67,7 +74,8 @@ class AddressListViewController: UIViewController {
     
     //MARK: - @objc Funtions
     @objc func addAddress(){
-        let nextViewController = AddAddressViewController.loadFromNib()
+        let nextViewController = AddAddressViewController.loadFromNib() as! AddAddressViewController
+        nextViewController.addAddressViewControllerDelegate = self
         navigationController?.pushViewController(nextViewController, animated: true)
     }
     
@@ -76,8 +84,8 @@ class AddressListViewController: UIViewController {
         if selectedIndex != nil{
             addressListViewModel.addressListViewModelDelegate = self
             self.showLoader()
-            if address.count > 0{
-                self.addressListViewModel.placeOrder(address: address[0] ?? "")
+            if address?.count ?? 0 > 0{
+                self.addressListViewModel.placeOrder(address: address?[0] ?? "")
             }
         }
         else{
@@ -91,7 +99,12 @@ class AddressListViewController: UIViewController {
 extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return address.count
+        let boolCondition = address?.count ?? 0 == 0
+        lblShippingAddress.isHidden = boolCondition
+        lblNoAddress.isHidden = !boolCondition
+        btnPlaceOrder.isEnabled = !boolCondition
+        btnPlaceOrder.alpha = boolCondition ? 0.3 : 1
+        return address?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,7 +113,7 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
         cell.addressListCellDelegate = self
 
         cell.lblTitle.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.userFirstName.rawValue)
-        cell.lblAddress.text = address[0] ?? ""
+        cell.lblAddress.text = address?[0] ?? ""
         
         //wrong
 //        if selectedIndex == indexPath.row{
@@ -125,11 +138,11 @@ extension AddressListViewController: UITableViewDelegate, UITableViewDataSource{
 extension AddressListViewController: AddressListCellDelegate{
     
     func btnCancelTapped(btnTag: Int) {
-        
         self.showDualButtonAlert(title: AlertText.Title.alert.rawValue, msg: AlertText.Message.deleteConfirmation.rawValue, okClosure: {
             let indexPath = IndexPath(row: btnTag, section: 0)
-            self.address.remove(at: indexPath.row)
+            self.address?.remove(at: indexPath.row)
             self.addressListTableView.deleteRows(at: [indexPath], with: .fade)
+            UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.userAddress.rawValue)
         }, cancelClosure: {
             self.dismiss(animated: true)
         })
@@ -169,3 +182,8 @@ extension AddressListViewController: AddressListViewModelDelegate{
     }
 }
 
+extension AddressListViewController: AddAddressViewControllerDelegate{
+    func updateAddressList() {
+        setAddress()
+    }
+}

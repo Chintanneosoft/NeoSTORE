@@ -1,5 +1,10 @@
 import UIKit
 
+//MARK: - AddAddressListViewControllerDelegate
+protocol AddAddressViewControllerDelegate: AnyObject{
+    func updateAddressList()
+}
+
 //MARK: - AddAddressViewController
 class AddAddressViewController: BaseViewController {
 
@@ -18,6 +23,8 @@ class AddAddressViewController: BaseViewController {
     @IBOutlet weak var tfCountry: UITextField!
     @IBOutlet weak var btnSaveAddress: UIButton!
     @IBOutlet weak var addAddressScrollView: UIScrollView!
+    
+    weak var addAddressViewControllerDelegate: AddAddressViewControllerDelegate?
     
     //MARK: - ViewController Lifecycle
     override func viewDidLoad() {
@@ -69,6 +76,7 @@ class AddAddressViewController: BaseViewController {
             let address3 = (tfState.text ?? "") + " " + (tfCountry.text ?? "")
             let address = address1 + address2 + address3
             UserDefaults.standard.set(address, forKey: UserDefaultsKeys.userAddress.rawValue)
+            addAddressViewControllerDelegate?.updateAddressList()
             showSingleButtonAlert(title: AlertText.Title.success.rawValue, msg: AlertText.Message.addAddressSuccess.rawValue) {
                 self.navigationController?.popViewController(animated: true)
             }

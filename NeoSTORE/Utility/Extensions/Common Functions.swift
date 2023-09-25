@@ -33,7 +33,7 @@ extension UIViewController{
     
     func showDualButtonAlert(title: String, msg: String, okClosure: (()->Void)?, cancelClosure:(()->Void)? ){
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+        let okAction = UIAlertAction(title: "OK", style: .destructive) { (action) in
             okClosure?()
         }
         alert.addAction(okAction)

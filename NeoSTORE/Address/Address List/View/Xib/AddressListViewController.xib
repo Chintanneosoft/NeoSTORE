@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,6 +14,7 @@
             <connections>
                 <outlet property="addressListTableView" destination="m2A-P9-FPI" id="8c3-Lu-8mZ"/>
                 <outlet property="btnPlaceOrder" destination="DHr-JH-Cif" id="XRB-nx-asT"/>
+                <outlet property="lblNoAddress" destination="w7H-dS-gO0" id="SxU-59-Tli"/>
                 <outlet property="lblShippingAddress" destination="tOK-pV-3xo" id="1N3-MP-qPm"/>
                 <outlet property="view" destination="9yf-3W-qR1" id="qxx-Es-MVe"/>
             </connections>
@@ -50,6 +52,12 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please add Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7H-dS-gO0" userLabel="Empty Cart  Please add Products">
+                            <rect key="frame" x="98.666666666666686" y="365.66666666666669" width="196" height="27.666666666666686"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
@@ -61,6 +69,8 @@
                         <constraint firstItem="tOK-pV-3xo" firstAttribute="leading" secondItem="HWA-PX-kp1" secondAttribute="leading" constant="20" id="M8F-xO-lLn"/>
                         <constraint firstAttribute="trailing" secondItem="m2A-P9-FPI" secondAttribute="trailing" id="RfR-DQ-N5A"/>
                         <constraint firstAttribute="bottom" secondItem="DHr-JH-Cif" secondAttribute="bottom" constant="15" id="VwN-XX-xjP"/>
+                        <constraint firstItem="w7H-dS-gO0" firstAttribute="centerY" secondItem="HWA-PX-kp1" secondAttribute="centerY" id="X7S-oa-kiX"/>
+                        <constraint firstItem="w7H-dS-gO0" firstAttribute="centerX" secondItem="HWA-PX-kp1" secondAttribute="centerX" id="eMu-PC-Fxi"/>
                         <constraint firstItem="m2A-P9-FPI" firstAttribute="top" secondItem="tOK-pV-3xo" secondAttribute="bottom" constant="10" id="zBf-BT-Gu8"/>
                     </constraints>
                 </view>

@@ -126,6 +126,7 @@
 		4AF66A492A98D07100F65CDA /* ProductsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF66A472A98D07100F65CDA /* ProductsDetailCell.swift */; };
 		4AF66A4A2A98D07100F65CDA /* ProductsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF66A482A98D07100F65CDA /* ProductsDetailCell.xib */; };
 		789B8DE97A977ED5B74BE826 /* Pods_NeoSTORE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E02CC93B97DD9DC88229445 /* Pods_NeoSTORE.framework */; };
+		928143522AC1693100347C7B /* StoreLocatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928143512AC1693100347C7B /* StoreLocatorModel.swift */; };
 		928578582ABC092B0053B452 /* StoreLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928578572ABC092B0053B452 /* StoreLocatorViewModel.swift */; };
 		9285785B2ABC09660053B452 /* StoreLocatorAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9285785A2ABC09660053B452 /* StoreLocatorAPIService.swift */; };
 		92B01B352ABB349300DD4B28 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B01B342ABB349300DD4B28 /* LoginViewController.xib */; };
@@ -278,6 +279,7 @@
 		6D032C117B534D972C7A3592 /* Pods-NeoSTORETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORETests.release.xcconfig"; path = "Target Support Files/Pods-NeoSTORETests/Pods-NeoSTORETests.release.xcconfig"; sourceTree = "<group>"; };
 		8274638D5B9ECF38D689ECBF /* Pods-NeoSTORETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoSTORETests.debug.xcconfig"; path = "Target Support Files/Pods-NeoSTORETests/Pods-NeoSTORETests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E02CC93B97DD9DC88229445 /* Pods_NeoSTORE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeoSTORE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		928143512AC1693100347C7B /* StoreLocatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoreLocatorModel.swift; path = "NeoSTORE/Store Locator/Web Services/StoreLocatorModel.swift"; sourceTree = SOURCE_ROOT; };
 		928578572ABC092B0053B452 /* StoreLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewModel.swift; sourceTree = "<group>"; };
 		9285785A2ABC09660053B452 /* StoreLocatorAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorAPIService.swift; sourceTree = "<group>"; };
 		92B01B342ABB349300DD4B28 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 		4A5DCE902AB3091C00489711 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				928143512AC1693100347C7B /* StoreLocatorModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1866,6 +1869,7 @@
 				4A9EF7BE2A95EB8C00C88A5D /* APIManager.swift in Sources */,
 				4A933CB72AA88A01001652CC /* MyOrdersViewController.swift in Sources */,
 				4A933CC22AA89364001652CC /* MyOrderListModel.swift in Sources */,
+				928143522AC1693100347C7B /* StoreLocatorModel.swift in Sources */,
 				4A7FD2D92A8DFCC300AEF0CB /* Constants.swift in Sources */,
 				4AA48CBE2AA3482E00922820 /* TotalCell.swift in Sources */,
 				4A8D50CD2A9C723A0056D86E /* ProductDetailsModel.swift in Sources */,
@@ -2059,7 +2063,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JDQM4MDQ97;
+				DEVELOPMENT_TEAM = Z37X84PRTQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeoSTORE/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Chintan NeoStore";
@@ -2068,7 +2072,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2092,7 +2096,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JDQM4MDQ97;
+				DEVELOPMENT_TEAM = Z37X84PRTQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeoSTORE/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Chintan NeoStore";
@@ -2101,7 +2105,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

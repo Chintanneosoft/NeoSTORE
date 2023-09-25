@@ -30,7 +30,7 @@ class LoginViewModel{
                     if (value.0 != nil){
                         UserDefaults.standard.set(value.0!.data?.access_token ?? "", forKey: UserDefaultsKeys.accessToken.rawValue)
                         UserDefaults.standard.set(value.0!.data?.first_name ?? "" ,forKey: UserDefaultsKeys.userFirstName.rawValue)
-                        self.loginViewModelDelegate?.showAlert(result: true,msg: value.1!.user_msg!)
+                        self.loginViewModelDelegate?.showAlert(result: true,msg: value.0!.user_msg!)
                     }
                     else{
                         self.loginViewModelDelegate?.showAlert(result: false, msg: value.1!.user_msg!)

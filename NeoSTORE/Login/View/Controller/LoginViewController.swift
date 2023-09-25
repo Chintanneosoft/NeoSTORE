@@ -86,6 +86,8 @@ class LoginViewController: BaseViewController {
     
     //Change UI to/from forgot and login screen
     private func changeUI(){
+        tfPassword.text = ""
+        tfUsername.text = ""
         if lblForgotPassword.isHidden == false{
             tfPassword.isHidden = true
             lblForgotPassword.isHidden = true

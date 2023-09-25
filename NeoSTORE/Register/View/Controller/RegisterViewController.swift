@@ -29,6 +29,11 @@ class RegisterViewController: BaseViewController {
         setDelegates()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     //MARK: - Functions
     static func loadFromNib() -> UIViewController {
         return RegisterViewController(nibName: ViewControllerString.Register.rawValue, bundle: nil)
@@ -36,7 +41,6 @@ class RegisterViewController: BaseViewController {
     
     private func setUpUI(){
         //Navigation bar\
-        self.navigationController?.navigationBar.isHidden = false
         setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
         
         navigationItem.title = ScreenText.Register.navTitle.rawValue
@@ -55,12 +59,10 @@ class RegisterViewController: BaseViewController {
             txtv.setIcon(UIImage(named: registerViewModel.txtFieldData[index][1])!)
         }
         
-        genderView.layer.borderWidth = 1.0
-        genderView.layer.borderColor = UIColor.customColor(Color.primaryForeground).cgColor
-        
         //Buttons
         btnRegister.titleLabel?.font = UIFont.customFont(Font.fontRegular, size: 26)
         btnRegister.layer.cornerRadius = 5.0
+        mainScrollView = registerScrollView
     }
     
     private func setDelegates(){

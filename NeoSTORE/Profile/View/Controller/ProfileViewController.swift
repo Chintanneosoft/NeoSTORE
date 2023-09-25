@@ -89,6 +89,8 @@ class ProfileViewController: BaseViewController {
         //Image
         if let img = userData?.data?.user_data?.profile_pic{
             profileImg.sd_setImage(with: URL(string: img))
+        } else {
+            profileImg.image = UIImage(systemName: "person")
         }
         
         //MARK: - Locally Saved Image Fetch
@@ -192,7 +194,7 @@ class ProfileViewController: BaseViewController {
         
         if !editState {
             if sender == btnEditProflie{
-                saveImage(image: profileImg.image!, withName: imageName)
+                saveImage(image: (profileImg.image ?? UIImage(systemName: "person"))!, withName: imageName)
                 callUpdateUser()
             }
             else{

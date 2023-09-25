@@ -12,7 +12,8 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     
     //Properties
     let locationManager = CLLocationManager()
-    let apiKey = "AIzaSyDu8Jcaz3rWu-e9I8xP2y2hSWnXYnW6IfY" // Replace with your actual API key
+    let storeLocatorViewModel = StoreLocatorViewModel()
+    let apiKey = "AIzaSyDu8Jcaz3rWu-e9I8xP2y2hSWnXYnW6IfY"
     var storeData:[String] = []
     var mapView: GMSMapView!
     
@@ -27,9 +28,7 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = false
-        setUpNavbar()
+        navigationController?.navigationBar.isHidden = false
     }
     
     //MARK: - Functions
@@ -42,9 +41,8 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     }
     
     private func setUpNavbar(){
-        navigationController?.isNavigationBarHidden = false
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
-        title = "Store Locator"
+        navigationItem.title = "Store Locator"
     }
     
     private func setMapViewDelegates(){
@@ -87,16 +85,16 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
         mapView.translatesAutoresizingMaskIntoConstraints = false
-               mapViewContainer.addSubview(mapView)
-               
-               NSLayoutConstraint.activate([
-                   mapView.leadingAnchor.constraint(equalTo: mapViewContainer.leadingAnchor),
-                   mapView.trailingAnchor.constraint(equalTo: mapViewContainer.trailingAnchor),
-                   mapView.topAnchor.constraint(equalTo: mapViewContainer.topAnchor),
-                   mapView.bottomAnchor.constraint(equalTo: mapViewContainer.bottomAnchor)
-               ])
+        mapViewContainer.addSubview(mapView)
+        
+        NSLayoutConstraint.activate([
+            mapView.leadingAnchor.constraint(equalTo: mapViewContainer.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: mapViewContainer.trailingAnchor),
+            mapView.topAnchor.constraint(equalTo: mapViewContainer.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: mapViewContainer.bottomAnchor)
+        ])
     }
-
+    
     func captureMapSnapshot() {
         UIGraphicsBeginImageContextWithOptions(mapView.bounds.size, mapView.isOpaque, 0.0)
         
@@ -109,72 +107,14 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
         }
     }
     
-    func findNearbyNatureLocations(userLocation: CLLocation) {
-        let baseUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
-        let locationString = "\(userLocation.coordinate.latitude),\(userLocation.coordinate.longitude)"
-        let radius = "1000"  // 1 km
-        let type = "restaurant"  // You can adjust this to your specific needs
-        
-        guard var components = URLComponents(string: baseUrl) else { return }
-        components.queryItems = [
-            URLQueryItem(name: "location", value: locationString),
-            URLQueryItem(name: "radius", value: radius),
-            URLQueryItem(name: "type", value: type),
-            URLQueryItem(name: "key", value: apiKey)
-        ]
-        
-        guard let finalUrl = components.url else { return }
-        
-        let task = URLSession.shared.dataTask(with: finalUrl) { (data, response, error) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let data = data else { return }
-            
-            do {
-                if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    DispatchQueue.main.async {
-                        let camera = GMSCameraPosition.camera(withLatitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, zoom: 15.0)
-                        self.mapView.animate(to: camera)
-                        
-                        if let results = jsonObject["results"] as? [[String: Any]] {
-                            for result in results {
-                                if let name = result["name"] as? String,
-                                   let geometry = result["geometry"] as? [String: Any],
-                                   let location = geometry["location"] as? [String: Any],
-                                   let lat = location["lat"] as? Double,
-                                   let lng = location["lng"] as? Double,
-                                   let types = result["types"] as? [String] {
-                                    if types.contains("restaurant") {
-                                        let marker = GMSMarker()
-                                        marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-                                        marker.title = name
-                                        marker.icon = UIImage(named: "red_pin")
-                                        marker.map = self.mapView
-                                        self.storeData.append(name)
-                                        self.storeLocatorTableView.reloadData()
-                                    } else {
-                                        let marker = GMSMarker()
-                                        marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-                                        marker.title = name
-                                        marker.map = self.mapView
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            } catch {
-                print("Error parsing JSON: \(error.localizedDescription)")
-            }
-        }
-        
-        task.resume()
+    func findNearbyLocations(userLocation: CLLocation) {
+        showLoader()
+        storeLocatorViewModel.storeLocatorViewModelDelegate = self
+        storeLocatorViewModel.findNearbyLocations(userLocation: userLocation, type: "restaurant")
     }
 }
 
+//MARK: - CLLocationManagerDelegate
 extension StoreLocatorViewController : CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -184,7 +124,7 @@ extension StoreLocatorViewController : CLLocationManagerDelegate{
             
             // Stop updating location to conserve battery
             manager.stopUpdatingLocation()
-            findNearbyNatureLocations(userLocation: location)
+            findNearbyLocations(userLocation: location)
             // Capture a snapshot of the mapView
             captureMapSnapshot()
         }
@@ -196,6 +136,7 @@ extension StoreLocatorViewController : CLLocationManagerDelegate{
     }
 }
 
+//MARK: - TableView
 extension StoreLocatorViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return storeData.count
@@ -208,3 +149,37 @@ extension StoreLocatorViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
+//MARK: - StoreLocatorViewModelDelegate
+extension StoreLocatorViewController: StoreLocatorViewModelDelegate{
+    func setLocationMarkers() {
+        DispatchQueue.main.async {
+            self.hideLoader()
+            if let locationDatas = self.storeLocatorViewModel.locationDataArray{
+                for result in locationDatas{
+                    if ((result.types?.contains("restaurant")) != nil) {
+                        let marker = GMSMarker()
+                        marker.position = CLLocationCoordinate2D(latitude: result.lat ?? 0.0, longitude: result.lng ?? 0.0)
+                        marker.title = result.name ?? ""
+                        marker.icon = UIImage(named: "red_pin")
+                        marker.map = self.mapView
+                        self.storeData.append(result.name ?? "")
+                        self.storeLocatorTableView.reloadData()
+                    } else {
+                        let marker = GMSMarker()
+                        marker.position = CLLocationCoordinate2D(latitude: result.lat ?? 0.0, longitude: result.lng ?? 0.0)
+                        marker.title = result.name
+                        marker.map = self.mapView
+                    }
+                }
+            } else {
+                self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: "Not getting locations", okClosure: nil)
+            }
+        }
+    }
+    
+    func setLocationFail(msg: String) {
+        DispatchQueue.main.async {
+            self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
+        }
+    }
+}
