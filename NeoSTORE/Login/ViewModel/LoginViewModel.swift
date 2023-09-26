@@ -24,7 +24,7 @@ class LoginViewModel{
         //wrong
         if validationResult == nil{
             loginAPIService.loginUser(email: email, pass: pass){
-                 (response) in
+                (response) in
                 switch response{
                 case .success(let value):
                     if (value.0 != nil){

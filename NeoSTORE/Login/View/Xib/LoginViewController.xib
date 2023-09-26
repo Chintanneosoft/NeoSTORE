@@ -35,13 +35,13 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NeoSTORE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pa1-D3-R5g">
-                            <rect key="frame" x="76.333333333333329" y="200" width="240.33333333333337" height="53.666666666666657"/>
+                            <rect key="frame" x="76.333333333333329" y="150" width="240.33333333333337" height="53.666666666666657"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="45"/>
                             <color key="textColor" name="Primary Foreground"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ihn-5M-CWV">
-                            <rect key="frame" x="34" y="302.66666666666669" width="325" height="120"/>
+                            <rect key="frame" x="34" y="252.66666666666669" width="325" height="120"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="tVG-9r-AfK">
                                     <rect key="frame" x="0.0" y="0.0" width="325" height="50"/>
@@ -66,7 +66,7 @@
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Slw-Hu-T54">
-                            <rect key="frame" x="34" y="456.66666666666663" width="325" height="34"/>
+                            <rect key="frame" x="34" y="406.66666666666669" width="325" height="34"/>
                             <color key="backgroundColor" name="Primary Foreground"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="LOGIN">
@@ -77,7 +77,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoP-uJ-HEh">
-                            <rect key="frame" x="128.66666666666666" y="512.66666666666663" width="135.99999999999997" height="20.333333333333371"/>
+                            <rect key="frame" x="128.66666666666666" y="462.66666666666663" width="135.99999999999997" height="20.333333333333314"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" name="Primary Foreground"/>
                             <nil key="highlightedColor"/>
@@ -131,7 +131,7 @@
                         <constraint firstItem="Slw-Hu-T54" firstAttribute="top" secondItem="Ihn-5M-CWV" secondAttribute="bottom" constant="34" id="d2j-Yo-H7q"/>
                         <constraint firstItem="pa1-D3-R5g" firstAttribute="centerX" secondItem="YFN-CG-O5j" secondAttribute="centerX" id="dsy-q3-BI2"/>
                         <constraint firstItem="MKy-dM-zRD" firstAttribute="leading" secondItem="YFN-CG-O5j" secondAttribute="leading" constant="10" id="fIG-ui-AlZ"/>
-                        <constraint firstItem="pa1-D3-R5g" firstAttribute="top" secondItem="YFN-CG-O5j" secondAttribute="top" constant="200" id="gWi-Fz-6gd"/>
+                        <constraint firstItem="pa1-D3-R5g" firstAttribute="top" secondItem="YFN-CG-O5j" secondAttribute="top" constant="150" id="gWi-Fz-6gd"/>
                         <constraint firstItem="MKy-dM-zRD" firstAttribute="top" secondItem="YFN-CG-O5j" secondAttribute="top" constant="10" id="jEL-S4-Jrq"/>
                         <constraint firstItem="Ihn-5M-CWV" firstAttribute="top" secondItem="pa1-D3-R5g" secondAttribute="bottom" constant="49" id="rfZ-qi-aHT"/>
                         <constraint firstAttribute="trailing" secondItem="Ihn-5M-CWV" secondAttribute="trailing" constant="34" id="wYQ-yP-acu"/>
