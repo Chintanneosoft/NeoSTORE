@@ -4,6 +4,11 @@ import SwiftLoader
 
 //MARK: - UIViewController
 extension UIViewController{
+    //MARK: - IphoneSe Check
+    func isiPhoneSE() -> Bool {
+            let screenHeight = UIScreen.main.bounds.height
+            return screenHeight <= 667
+    }
     
     //MARK: - Loader
     func showLoader() {
@@ -136,3 +141,4 @@ extension UIColor {
         return UIColor(named: color.rawValue) ?? UIColor.black
     }
 }
+

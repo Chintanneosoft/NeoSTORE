@@ -26,6 +26,7 @@ class CartCell: UITableViewCell {
         let tap = UITapGestureRecognizer(target: self, action: #selector(imgTapped) )
         imgDropdown.addGestureRecognizer(tap)
         imgDropdown.isUserInteractionEnabled = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

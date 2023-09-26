@@ -11,7 +11,7 @@ class ProductDetailsViewController: UIViewController {
     
     //Viewmodel Object
     let productDetailsViewModel = ProductDetailsViewModel()
-    
+    let ratingPopUpUIView = RatingPopUiViewController.loadFromNib() as! RatingPopUiViewController
     //properties
     var productId : Int?
     var productCategory : String?
@@ -78,7 +78,6 @@ class ProductDetailsViewController: UIViewController {
     
     //MARK: - IBActions
     @IBAction func btnRateTapped(_ sender: UIButton) {
-        let ratingPopUpUIView = RatingPopUiViewController.loadFromNib() as! RatingPopUiViewController
         ratingPopUpUIView.ratingUpdateDataDelegate = self
         ratingPopUpUIView.modalPresentationStyle = .overCurrentContext
         ratingPopUpUIView.productId = productId
@@ -155,7 +154,7 @@ extension ProductDetailsViewController: RatingUpdateData{
     }
 }
 
-//MARK: -
+//MARK: - ProductDetailCellDelegate
 extension ProductDetailsViewController: ProductDetailCellDelegate{
     func shareTapped(productImg: UIImage) {
         shareContent(productImg: productImg)

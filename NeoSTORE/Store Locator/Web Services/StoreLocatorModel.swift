@@ -9,3 +9,4 @@ struct LocationData{
     var lng:Double?
     var types:[String]?
 }
+

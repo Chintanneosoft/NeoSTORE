@@ -13,7 +13,6 @@ class StoreLocatorViewModel: NSObject {
     
     var locationData : LocationData?
     var locationDataArray: [LocationData]?
-    
     func findNearbyLocations(userLocation: CLLocation, type:String){
         storeLocatorAPIService.findNearbyNatureLocations(userLocation: userLocation, type: type) { response in
             switch response{

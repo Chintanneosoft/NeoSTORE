@@ -48,7 +48,7 @@ class DrawerHeaderTableViewCell: UITableViewCell {
         lblEmail.text = email
         profileImg.sd_setImage(with: URL(string: imgName))
         if UserDefaultsKeys.accessToken.rawValue == ""{
-            profileImg.image = UIImage(systemName: "person")
+            profileImg.image = UIImage(systemName: ImageNames.person.rawValue)
         } else {
             profileImg.image = loadProfileImage(imageName: UserDefaults.standard.string(forKey: UserDefaultsKeys.accessToken.rawValue) ?? "")
         }

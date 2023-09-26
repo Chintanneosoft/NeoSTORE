@@ -72,6 +72,7 @@ extension RatingPopUiViewController: RatingPopUpViewModelDelegate{
     func ratingResult(title: String,msg: String) {
         DispatchQueue.main.async {
             self.showSingleButtonAlert(title: title, msg: msg) {
+                self.ratingUpdateDataDelegate?.updateData()
                 self.dismiss(animated: false,completion: nil)
             }
         }

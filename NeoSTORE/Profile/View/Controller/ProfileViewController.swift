@@ -77,7 +77,7 @@ class ProfileViewController: BaseViewController {
             txtv.font = UIFont.customFont(Font.fontRegular, size: 18)
             txtv.setPlaceholder(profileViewModel.txtFieldData[index][0])
             txtv.textColor = UIColor.customColor(Color.primaryForeground)
-            txtv.setIcon((UIImage(named: profileViewModel.txtFieldData[index][1]) ?? UIImage(systemName: "person"))!)
+            txtv.setIcon((UIImage(named: profileViewModel.txtFieldData[index][1]) ?? UIImage(systemName: ImageNames.person.rawValue))!)
         }
         
         tfFirstName.text = userData?.data?.user_data?.first_name
@@ -90,7 +90,7 @@ class ProfileViewController: BaseViewController {
         if let img = userData?.data?.user_data?.profile_pic{
             profileImg.sd_setImage(with: URL(string: img))
         } else {
-            profileImg.image = UIImage(systemName: "person")
+            profileImg.image = UIImage(systemName: ImageNames.person.rawValue)
         }
         
         //MARK: - Locally Saved Image Fetch
@@ -115,6 +115,7 @@ class ProfileViewController: BaseViewController {
     func setDatePicker(){
         
         datePicker = UIDatePicker()
+        datePicker.maximumDate = .now
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .inline
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
@@ -194,10 +195,11 @@ class ProfileViewController: BaseViewController {
         
         if !editState {
             if sender == btnEditProflie{
-                saveImage(image: (profileImg.image ?? UIImage(systemName: "person"))!, withName: imageName)
+                saveImage(image: (profileImg.image ?? UIImage(systemName: ImageNames.person.rawValue))!, withName: imageName)
                 callUpdateUser()
             }
             else{
+                setUpUI()
                 profileImg.image = loadProfileImage(imageName: imageName)
             }
         }
@@ -305,6 +307,7 @@ extension ProfileViewController: ProfileViewModelDelegate{
     func failureUser(msg: String) {
         DispatchQueue.main.async {
             self.hideLoader()
+            self.changeState(self.btnCancel)
             self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: msg, okClosure: nil)
         }
     }

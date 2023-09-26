@@ -33,36 +33,8 @@ class StoreLocatorAPIService: NSObject {
             
             do {
                 if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    DispatchQueue.main.async {
-//                        let camera = GMSCameraPosition.camera(withLatitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, zoom: 15.0)
-//                        self.mapView.animate(to: camera)
-                        
                         if let results = jsonObject["results"] as? [[String: Any]] {
                             completion(.success(results))
-                            for result in results {
-                                if let name = result["name"] as? String,
-                                   let geometry = result["geometry"] as? [String: Any],
-                                   let location = geometry["location"] as? [String: Any],
-                                   let lat = location["lat"] as? Double,
-                                   let lng = location["lng"] as? Double,
-                                   let types = result["types"] as? [String] {
-                                    if types.contains("restaurant") {
-//                                        let marker = GMSMarker()
-//                                        marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-//                                        marker.title = name
-//                                        marker.icon = UIImage(named: "red_pin")
-//                                        marker.map = self.mapView
-//                                        self.storeData.append(name)
-//                                        self.storeLocatorTableView.reloadData()
-                                    } else {
-//                                        let marker = GMSMarker()
-//                                        marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-//                                        marker.title = name
-//                                        marker.map = self.mapView
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
             } catch {
@@ -70,7 +42,6 @@ class StoreLocatorAPIService: NSObject {
                 print("Error parsing JSON: \(error.localizedDescription)")
             }
         }
-        
         task.resume()
     }
 }

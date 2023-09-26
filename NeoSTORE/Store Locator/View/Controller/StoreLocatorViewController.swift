@@ -9,11 +9,10 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     //MARK: - IBOUTLETS
     @IBOutlet weak var mapViewContainer: UIView!
     @IBOutlet weak var storeLocatorTableView: UITableView!
-    
+    @IBOutlet weak var btnShowList: UIButton!
     //Properties
     let locationManager = CLLocationManager()
     let storeLocatorViewModel = StoreLocatorViewModel()
-    let apiKey = "AIzaSyDu8Jcaz3rWu-e9I8xP2y2hSWnXYnW6IfY"
     var storeData:[String] = []
     var mapView: GMSMapView!
     
@@ -37,12 +36,14 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     }
     
     private func setUpUI(){
+        btnShowList.layer.cornerRadius = 5
+        btnShowList.titleLabel?.font = UIFont.customFont(Font.fontRegular, size: 15)
         setUpNavbar()
     }
     
     private func setUpNavbar(){
         setNavBarStyle(fontName: Font.fontBold.rawValue, fontSize: 26)
-        navigationItem.title = "Store Locator"
+        navigationItem.title = ScreenText.Profile.navTitle.rawValue
     }
     
     private func setMapViewDelegates(){
@@ -74,7 +75,7 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
             locationManager.delegate = self
             locationManager.requestWhenInUseAuthorization()
         case .denied, .restricted:
-            print("Location access denied")
+            print(AlertText.Message.locationPermissionDenied)
         default:
             break
         }
@@ -110,7 +111,12 @@ class StoreLocatorViewController: UIViewController, GMSMapViewDelegate {
     func findNearbyLocations(userLocation: CLLocation) {
         showLoader()
         storeLocatorViewModel.storeLocatorViewModelDelegate = self
-        storeLocatorViewModel.findNearbyLocations(userLocation: userLocation, type: "restaurant")
+        storeLocatorViewModel.findNearbyLocations(userLocation: userLocation, type: ScreenText.StoreLocator.restaurant.rawValue)
+    }
+    
+    //MARK: - IBActions
+    @IBAction func btnShowListTapped(_ sender: UIButton) {
+        storeLocatorTableView.isHidden = !storeLocatorTableView.isHidden
     }
 }
 
@@ -131,8 +137,7 @@ extension StoreLocatorViewController : CLLocationManagerDelegate{
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Location manager failed with error: \(error.localizedDescription)")
-        // Handle the error as needed (e.g., show an alert to the user)
+        print(error.localizedDescription)
     }
 }
 
@@ -156,11 +161,10 @@ extension StoreLocatorViewController: StoreLocatorViewModelDelegate{
             self.hideLoader()
             if let locationDatas = self.storeLocatorViewModel.locationDataArray{
                 for result in locationDatas{
-                    if ((result.types?.contains("restaurant")) != nil) {
+                    if ((result.types?.contains(ScreenText.StoreLocator.restaurant.rawValue)) != nil) {
                         let marker = GMSMarker()
                         marker.position = CLLocationCoordinate2D(latitude: result.lat ?? 0.0, longitude: result.lng ?? 0.0)
                         marker.title = result.name ?? ""
-                        marker.icon = UIImage(named: "red_pin")
                         marker.map = self.mapView
                         self.storeData.append(result.name ?? "")
                         self.storeLocatorTableView.reloadData()
@@ -172,7 +176,7 @@ extension StoreLocatorViewController: StoreLocatorViewModelDelegate{
                     }
                 }
             } else {
-                self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: "Not getting locations", okClosure: nil)
+                self.showSingleButtonAlert(title: AlertText.Title.error.rawValue, msg: AlertText.Message.locationNotFound.rawValue, okClosure: nil)
             }
         }
     }

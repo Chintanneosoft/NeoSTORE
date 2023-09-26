@@ -88,6 +88,10 @@ enum ScreenText{
         case submit = "SUBMIT"
         case editProfile = "EDIT PROFILE"
     }
+    enum StoreLocator: String{
+        case navTitle = "Store Locator"
+        case restaurant = "restaurant"
+    }
     enum Common:String{
         case rupees = "₹"
     }
@@ -107,6 +111,7 @@ enum ImageNames: String{
     case delete = "delete"
     case plus = "plus"
     case dob = "dob_icon"
+    case person = "person"
 }
 
 //MARK: - AlertText
@@ -123,6 +128,8 @@ enum AlertText{
         case selectAddress = "Select Address"
         case emptyFields = "Fill all the Fields"
         case addAddressSuccess = "Your Address is Saved Successfully"
+        case locationPermissionDenied = "Location access denied"
+        case locationNotFound = "Not getting locations"
     }
 }
 

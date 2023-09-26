@@ -5,6 +5,7 @@ class BaseViewController: UIViewController {
 
     //properties
     var mainScrollView: UIScrollView?
+    var scrollable: Bool = true
     var tapGesture: (Any)? = nil
     
     //MARK: - View Controller Life Cycle
@@ -29,6 +30,7 @@ class BaseViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification:NSNotification) {
+        mainScrollView?.isScrollEnabled = true
         guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
@@ -39,6 +41,7 @@ class BaseViewController: UIViewController {
     }
 
     @objc func keyboardWillHide(notification:NSNotification) {
+        mainScrollView?.isScrollEnabled = scrollable
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         mainScrollView?.contentInset = contentInset
         view.removeGestureRecognizer(tapGesture as! UIGestureRecognizer)
