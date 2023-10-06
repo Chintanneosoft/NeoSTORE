@@ -61,8 +61,6 @@ class LoginViewController: BaseViewController {
         btnLogin.titleLabel?.font = UIFont.customFont(Font.fontRegular,size: 26)
         btnLogin.layer.cornerRadius = 5.0
         
-        navigationItem.backButtonTitle = ""
-        //wrong
         let tap = UITapGestureRecognizer(target: self, action: #selector(forgotPassTapped))
         lblForgotPassword.addGestureRecognizer(tap)
         lblForgotPassword.isUserInteractionEnabled = true
@@ -88,17 +86,12 @@ class LoginViewController: BaseViewController {
     private func changeUI(){
         tfPassword.text = ""
         tfUsername.text = ""
-        if lblForgotPassword.isHidden == false{
-            tfPassword.isHidden = true
-            lblForgotPassword.isHidden = true
-            backImg.isHidden = false
-            btnLogin.setTitle(ScreenText.Login.submitButton.rawValue, for:.normal)
-        } else {
-            lblForgotPassword.isHidden = false
-            tfPassword.isHidden = false
-            backImg.isHidden = true
-            btnLogin.setTitle(ScreenText.Login.loginButton.rawValue, for:.normal)
-        }
+        
+        let boolCondition = (lblForgotPassword.isHidden == false)
+        tfPassword.isHidden = boolCondition
+        lblForgotPassword.isHidden = boolCondition
+        backImg.isHidden = !boolCondition
+        btnLogin.setTitle((boolCondition ? ScreenText.Login.submitButton.rawValue : ScreenText.Login.loginButton.rawValue), for: .normal)
     }
     
     //MARK: - @objc
@@ -108,18 +101,16 @@ class LoginViewController: BaseViewController {
     
     //MARK: - IBActions
     @IBAction func btnLoginTapped(_ sender: UIButton) {
-        //wrong
-        if btnLogin.titleLabel?.text == ScreenText.Login.submitButton.rawValue{
-            self.showLoader()
+        self.showLoader()
+        if lblForgotPassword.isHidden{
             callForgotPass()
         } else {
-            self.showLoader()
             sendValidations()
         }
     }
     
     @IBAction func btnAddUserTapped(_ sender: UIButton) {
-        if lblForgotPassword.isHidden == true{
+        if lblForgotPassword.isHidden{
             changeUI()
         }
         let nextViewController = RegisterViewController.loadFromNib()
@@ -131,7 +122,6 @@ class LoginViewController: BaseViewController {
 extension LoginViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // Wrong
         switch textField{
         case tfUsername:
             textField.resignFirstResponder()
@@ -148,7 +138,6 @@ extension LoginViewController: UITextFieldDelegate{
 //MARK: - LoginViewModelDelegate
 extension LoginViewController: LoginViewModelDelegate{
     
-    //wrong
     func showAlert(result: Bool,msg:String) {
         DispatchQueue.main.async {
             self.hideLoader()

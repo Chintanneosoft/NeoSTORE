@@ -41,7 +41,7 @@ class RegisterViewController: BaseViewController {
     }
     
     private func setUpUI(){
-        //Navigation bar\
+        //Navigation bar
         setNavBarStyle(fontName: Font.fontRegular.rawValue, fontSize: 20)
         
         navigationItem.title = ScreenText.Register.navTitle.rawValue
@@ -97,7 +97,6 @@ class RegisterViewController: BaseViewController {
     }
     
     @IBAction func btnRegisterTapped(_ sender: UIButton) {
-        //wrong
         self.showLoader()
         sendValidations()
     }
@@ -107,7 +106,6 @@ class RegisterViewController: BaseViewController {
 //MARK: - TextField Delegate
 extension RegisterViewController: UITextFieldDelegate{
     
-    //wrong
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField{
         case tfFirstName:
@@ -135,7 +133,6 @@ extension RegisterViewController: UITextFieldDelegate{
 
 //MARK: - RegisterViewModelDelegate
 extension RegisterViewController: RegisterViewModelDelegate{
-    //wronng
     func showAlert(result:Bool,msg:String) {
         DispatchQueue.main.async {
             self.hideLoader()
