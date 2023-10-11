@@ -146,7 +146,7 @@ extension CartViewController: UIPickerViewDelegate,UIPickerViewDataSource{
         return cartViewModel.quantityArr.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? { //wrong: next time se seedha vc delete
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return cartViewModel.quantityArr[row]
     }
     
