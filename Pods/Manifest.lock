@@ -8,12 +8,14 @@ PODS:
   - SDWebImage (5.17.0):
     - SDWebImage/Core (= 5.17.0)
   - SDWebImage/Core (5.17.0)
+  - SwiftLint (0.53.0)
   - SwiftLoader (1.0.0)
 
 DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - SDWebImage
+  - SwiftLint
   - SwiftLoader
 
 SPEC REPOS:
@@ -21,14 +23,16 @@ SPEC REPOS:
     - GoogleMaps
     - GooglePlaces
     - SDWebImage
+    - SwiftLint
     - SwiftLoader
 
 SPEC CHECKSUMS:
   GoogleMaps: 081f2547b60a1c0870a8f49166a653900e5055d5
   GooglePlaces: 867722fe422f5a4cc19c68bc28f9f74a24470e40
   SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
+  SwiftLint: 5ce4d6a8ff83f1b5fd5ad5dbf30965d35af65e44
   SwiftLoader: f12f3a6fb42576862a3a5eb80c7e59fc881b6982
 
-PODFILE CHECKSUM: 0a841dc30544fb4bb3c29a27f80b220884aca80a
+PODFILE CHECKSUM: ee8f3f1b11a2f6ae0144b5270da89ea89a5de5dd
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.13.0

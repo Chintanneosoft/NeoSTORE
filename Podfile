@@ -10,6 +10,7 @@ target 'NeoSTORE' do
   pod 'SwiftLoader'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'SwiftLint'
   
   target 'NeoSTORETests' do
     inherit! :search_paths
